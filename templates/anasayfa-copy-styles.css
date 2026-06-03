@@ -1,0 +1,42 @@
+/* anasayfa-copy — alt bölüm (tablolar / grid) renk uyumu */
+.hp-copy-feed .shadow-con,
+.hp-copy-feed .tables-col {
+  background: #ffffff;
+  border: 1px solid #e4e9f2 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 24px rgba(69, 87, 163, 0.08) !important;
+  overflow: hidden;
+}
+
+.hp-copy-feed .p-datatable .p-datatable-thead > tr > th {
+  background: #f4f6fb !important;
+  color: #586495 !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: #e4e9f2 !important;
+}
+
+.hp-copy-feed .p-datatable .p-datatable-tbody > tr > td {
+  color: #777777;
+  border-color: #eef2f7 !important;
+  font-size: 0.92rem;
+}
+
+.hp-copy-feed .p-datatable .p-datatable-tbody > tr:hover {
+  background: rgba(69, 87, 163, 0.04) !important;
+}
+
+.hp-copy-feed .p-paginator {
+  border: none;
+  background: #f4f6fb;
+  border-top: 1px solid #e4e9f2;
+}
+
+@media (max-width: 767px) {
+  .hp-copy-feed .tables-col.left-col,
+  .hp-copy-feed .tables-col {
+    margin-bottom: 1rem;
+  }
+}

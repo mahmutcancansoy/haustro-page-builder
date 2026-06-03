@@ -1,0 +1,402 @@
+{
+  "version": "1.0.0",
+  "schema": "haustro-page-contents-block",
+  "description": "Haustro panel pageContents.content[] block tipleri. AI brief, web UI ve API bu dosyadan okur.",
+  "categories": {
+    "data": { "label": "Veri", "color": "indigo", "order": 1 },
+    "view": { "label": "Görünüm", "color": "emerald", "order": 2 },
+    "layout": { "label": "Yerleşim", "color": "slate", "order": 3 },
+    "form": { "label": "Form", "color": "violet", "order": 4 },
+    "action": { "label": "Aksiyon", "color": "rose", "order": 5 },
+    "logic": { "label": "Mantık", "color": "amber", "order": 6 }
+  },
+  "handlebars": {
+    "engine": "Handlebars (Angular DEĞİL)",
+    "globals": {
+      "resources": "https://backend.haustro.net/resources/ — fotoğraf URL ön eki"
+    },
+    "syntax": [
+      { "pattern": "{{#each variableName}} ... {{/each}}", "use": "Dizi döngüsü" },
+      { "pattern": "{{this.field}}", "use": "Döngüde kayıt alanı" },
+      { "pattern": "{{#if x}} ... {{else}} ... {{/if}}", "use": "Koşul" },
+      { "pattern": "{{#cIf a \"==\" b}} ... {{/cIf}}", "use": "Karşılaştırma" },
+      { "pattern": "{{this.photo.0.name}}", "use": "Dizi index (nokta, parantez yok)" },
+      { "pattern": "{{globals.resources}}{{this.photo.0.name}}", "use": "Görsel (render-template)" },
+      { "pattern": "{{globals.resources}}{{input.photo.0.name}}", "use": "Görsel (table bağlamı)" },
+      { "pattern": "{{this.:refField:sub.name}}", "use": "Mongo referans alanı" }
+    ],
+    "forbidden": ["*ngFor", "*ngIf", "[src]", "ng-container", "ng-template", "trackBy"]
+  },
+  "patterns": [
+    {
+      "id": "ds-render",
+      "name": "Veri + HTML şablon",
+      "blocks": ["data-source", "render-template"],
+      "templateRef": "templates/inventory-cards-content.json"
+    },
+    {
+      "id": "ds-table",
+      "name": "Veri + tablo",
+      "blocks": ["data-source", "table", "table-column", "label"],
+      "templateRef": "templates/inventory-list-content.json"
+    },
+    {
+      "id": "grid-form",
+      "name": "Grid + form",
+      "blocks": ["grid", "column", "form-container", "input-text", "button"]
+    }
+  ],
+  "components": [
+    {
+      "type": "data-source",
+      "label": "Veri Kaynağı",
+      "icon": "⛓",
+      "color": "indigo",
+      "category": "data",
+      "summary": "MongoDB koleksiyonundan veri çekip Handlebars değişkenine atar.",
+      "renders": false,
+      "isContainer": false,
+      "aiPriority": "high",
+      "whenToUse": "Her gösterilecek koleksiyon için; render-template veya table'dan önce.",
+      "keyProps": ["variable-name", "table-name", "function", "table-filters", "settings"],
+      "properties": [
+        { "key": "display-name", "required": false, "description": "Editör etiketi" },
+        { "key": "variable-name", "required": true, "description": "Handlebars değişkeni (örn. inventory)" },
+        { "key": "function", "required": true, "enum": ["get", "custom"], "description": "Veri kaynağı tipi" },
+        { "key": "table-name", "required": "if function=get", "description": "Koleksiyon adı" },
+        { "key": "custom-function-name", "required": "if function=custom", "description": "Custom route adı" },
+        { "key": "table-filters", "required": false, "description": "JSON filtre string — {\"delete\":0}" },
+        { "key": "post-params", "required": false, "description": "Custom POST body (JSON)" },
+        { "key": "settings", "required": false, "description": "single | debug | canReload | forTable" }
+      ],
+      "docs": [
+        "function=get → table-name + table-filters.",
+        "render-template için forTable: false.",
+        "table için forTable: true olan ayrı data-source."
+      ],
+      "example": {
+        "type": "data-source",
+        "isContainer": false,
+        "children": [],
+        "properties": [
+          { "key": "variable-name", "value": "inventory" },
+          { "key": "function", "value": "get" },
+          { "key": "table-name", "value": "inventory" },
+          { "key": "table-filters", "value": "{\n    \"delete\" : 0\n}" },
+          {
+            "key": "settings",
+            "value": { "single": false, "debug": false, "canReload": true, "forTable": false }
+          }
+        ]
+      }
+    },
+    {
+      "type": "render-template",
+      "label": "Render Template",
+      "icon": "🧩",
+      "color": "emerald",
+      "category": "view",
+      "summary": "HTML + Handlebars + inline CSS render eder.",
+      "renders": true,
+      "isContainer": false,
+      "aiPriority": "high",
+      "whenToUse": "Kart, liste, özel UI — data-source değişkenlerini göstermek için.",
+      "keyProps": ["display-name", "content"],
+      "properties": [
+        { "key": "display-name", "required": false, "description": "Editör etiketi" },
+        { "key": "content", "required": true, "description": "Kök content alanı: HTML + <style> + Handlebars" }
+      ],
+      "docs": [
+        "content kök seviyede string; styles alanı boş kalır.",
+        "Sadece Handlebars — Angular directive yasak."
+      ],
+      "contentField": "content",
+      "isTextEditor": true,
+      "example": {
+        "type": "render-template",
+        "isContainer": false,
+        "content": "<style>.card{padding:12px}</style><div>{{#each inventory}}<p>{{this.name}}</p>{{/each}}</div>",
+        "properties": [{ "key": "display-name", "value": "Liste" }]
+      }
+    },
+    {
+      "type": "condition",
+      "label": "Koşul",
+      "icon": "⌥",
+      "color": "amber",
+      "category": "logic",
+      "summary": "Koşula göre children[] alt ağacını gösterir/gizler.",
+      "renders": false,
+      "isContainer": true,
+      "whenToUse": "Veriye bağlı koşullu UI parçaları.",
+      "keyProps": ["variable-name", "rule"],
+      "properties": [
+        { "key": "variable-name", "required": false, "description": "Bağlı değişken" },
+        { "key": "rule", "required": true, "description": "Koşul ifadesi" }
+      ],
+      "docs": ["children[] zorunlu container."],
+      "childrenAllowed": ["*"]
+    },
+    {
+      "type": "template",
+      "label": "Variable Template",
+      "icon": "𝑻",
+      "color": "sky",
+      "category": "data",
+      "summary": "Handlebars çıktısını değişkene yazar; doğrudan render etmez.",
+      "renders": false,
+      "isContainer": false,
+      "keyProps": ["variable-name", "template"],
+      "properties": [
+        { "key": "variable-name", "required": true, "description": "Hedef değişken" },
+        { "key": "template", "required": true, "description": "Handlebars şablon metni" }
+      ],
+      "docs": ["Sonra başka render-template içinde {{variable-name}} ile kullanılır."]
+    },
+    {
+      "type": "grid",
+      "label": "Grid",
+      "icon": "▥",
+      "color": "slate",
+      "category": "layout",
+      "summary": "Çok kolonlu layout container.",
+      "renders": false,
+      "isContainer": true,
+      "keyProps": ["display-name", "columns"],
+      "properties": [
+        { "key": "display-name", "required": false, "description": "Editör etiketi" },
+        { "key": "columns", "required": false, "description": "Kolon sayısı / düzen" }
+      ],
+      "childrenAllowed": ["column"]
+    },
+    {
+      "type": "column",
+      "label": "Column",
+      "icon": "▮",
+      "color": "slate",
+      "category": "layout",
+      "summary": "grid altında tek kolon.",
+      "renders": false,
+      "isContainer": true,
+      "keyProps": ["display-name", "width", "content-direction"],
+      "properties": [
+        { "key": "display-name", "required": false, "description": "Kolon adı" },
+        { "key": "width", "required": false, "description": "Genişlik" },
+        { "key": "content-direction", "required": false, "enum": ["row", "column"], "description": "İçerik yönü" }
+      ],
+      "parentTypes": ["grid"],
+      "childrenAllowed": ["*"]
+    },
+    {
+      "type": "content-header",
+      "label": "İçerik Başlığı",
+      "icon": "H",
+      "color": "slate",
+      "category": "layout",
+      "summary": "Sayfa üst başlık bandı (metin + renkler).",
+      "renders": true,
+      "isContainer": false,
+      "keyProps": ["display-name", "text", "bg-color", "text-color"],
+      "properties": [
+        { "key": "text", "required": true, "description": "Başlık metni (Handlebars destekli)" },
+        { "key": "bg-color", "required": false, "description": "Arka plan rengi" },
+        { "key": "text-color", "required": false, "description": "Metin rengi" }
+      ],
+      "docs": ["Genelde column içinde sayfa başlığı için."]
+    },
+    {
+      "type": "form-container",
+      "label": "Form",
+      "icon": "☷",
+      "color": "violet",
+      "category": "form",
+      "summary": "Form alanları + submit container.",
+      "renders": false,
+      "isContainer": true,
+      "keyProps": ["display-name", "submit-url", "submit-type"],
+      "properties": [
+        { "key": "submit-url", "required": false, "description": "POST hedef URL" },
+        { "key": "submit-type", "required": false, "description": "Submit tipi" }
+      ],
+      "childrenAllowed": ["input-text", "input-select", "input-number", "textarea", "button"]
+    },
+    {
+      "type": "input-select",
+      "label": "Select Input",
+      "icon": "▾",
+      "color": "violet",
+      "category": "form",
+      "summary": "Dropdown select.",
+      "renders": false,
+      "keyProps": ["variable-name", "label", "options-source"],
+      "properties": [
+        { "key": "variable-name", "required": true, "description": "Form alan adı" },
+        { "key": "label", "required": false, "description": "Etiket" },
+        { "key": "options-source", "required": false, "description": "Seçenek kaynağı / data-source bağlantısı" }
+      ],
+      "parentTypes": ["form-container"]
+    },
+    {
+      "type": "input-text",
+      "label": "Text Input",
+      "icon": "▭",
+      "color": "violet",
+      "category": "form",
+      "summary": "Tek satır metin.",
+      "renders": false,
+      "keyProps": ["variable-name", "label"],
+      "properties": [
+        { "key": "variable-name", "required": true, "description": "Alan adı" },
+        { "key": "label", "required": false, "description": "Etiket" }
+      ],
+      "parentTypes": ["form-container"]
+    },
+    {
+      "type": "input-number",
+      "label": "Number Input",
+      "icon": "#",
+      "color": "violet",
+      "category": "form",
+      "summary": "Sayısal input.",
+      "renders": false,
+      "keyProps": ["variable-name", "label", "min", "max"],
+      "properties": [
+        { "key": "variable-name", "required": true, "description": "Alan adı" },
+        { "key": "min", "required": false, "description": "Minimum" },
+        { "key": "max", "required": false, "description": "Maksimum" }
+      ],
+      "parentTypes": ["form-container"]
+    },
+    {
+      "type": "textarea",
+      "label": "Textarea",
+      "icon": "☰",
+      "color": "violet",
+      "category": "form",
+      "summary": "Çok satırlı metin.",
+      "renders": false,
+      "keyProps": ["variable-name", "label"],
+      "properties": [
+        { "key": "variable-name", "required": true, "description": "Alan adı" }
+      ],
+      "parentTypes": ["form-container"]
+    },
+    {
+      "type": "button",
+      "label": "Button",
+      "icon": "◉",
+      "color": "rose",
+      "category": "action",
+      "summary": "Submit, link veya custom aksiyon.",
+      "renders": false,
+      "keyProps": ["display-name", "label", "action", "target", "url"],
+      "properties": [
+        { "key": "label", "required": true, "description": "Buton metni" },
+        { "key": "action", "required": false, "enum": ["submit", "link", "route", "noAction"], "description": "Aksiyon tipi" },
+        { "key": "url", "required": false, "description": "Hedef URL (link/route)" }
+      ]
+    },
+    {
+      "type": "table",
+      "label": "Table",
+      "icon": "⊞",
+      "color": "cyan",
+      "category": "view",
+      "summary": "Veri tablosu — forTable data-source ile.",
+      "renders": true,
+      "isContainer": true,
+      "keyProps": ["variable-name", "display-name"],
+      "properties": [
+        { "key": "variable-name", "required": true, "description": "forTable data-source değişkeni" }
+      ],
+      "docs": [
+        "Bağlı data-source settings.forTable = true olmalı.",
+        "children: table-column blokları."
+      ],
+      "childrenAllowed": ["table-column"]
+    },
+    {
+      "type": "table-column",
+      "label": "Tablo Kolonu",
+      "icon": "│",
+      "color": "cyan",
+      "category": "view",
+      "summary": "table altında tek kolon tanımı.",
+      "renders": false,
+      "isContainer": true,
+      "keyProps": ["display-name"],
+      "parentTypes": ["table"],
+      "childrenAllowed": ["label"]
+    },
+    {
+      "type": "label",
+      "label": "Label / Hücre",
+      "icon": "T",
+      "color": "cyan",
+      "category": "view",
+      "summary": "Tablo hücresi veya metin — Handlebars text ile.",
+      "renders": true,
+      "keyProps": ["display-name", "text", "action", "url"],
+      "properties": [
+        { "key": "text", "required": true, "description": "Hücre içeriği — {{input.name}} gibi" },
+        { "key": "action", "required": false, "enum": ["noAction", "link", "route", "download"], "description": "Tıklama aksiyonu" }
+      ],
+      "parentTypes": ["table-column"],
+      "docs": ["Tablo bağlamında input = satır kaydı."]
+    },
+    {
+      "type": "chart",
+      "label": "Chart",
+      "icon": "◔",
+      "color": "pink",
+      "category": "view",
+      "summary": "Grafik görünümü.",
+      "renders": true,
+      "keyProps": ["variable-name", "chart-type"],
+      "properties": [
+        { "key": "variable-name", "required": true, "description": "Veri değişkeni" },
+        { "key": "chart-type", "required": false, "description": "Grafik tipi" }
+      ]
+    },
+    {
+      "type": "statistic",
+      "label": "Statistic",
+      "icon": "Σ",
+      "color": "teal",
+      "category": "view",
+      "summary": "Tek metrik kartı.",
+      "renders": true,
+      "keyProps": ["display-name", "value"],
+      "properties": [
+        { "key": "value", "required": false, "description": "Gösterilen değer (Handlebars)" }
+      ]
+    },
+    {
+      "type": "text",
+      "label": "Text",
+      "icon": "¶",
+      "color": "slate",
+      "category": "view",
+      "summary": "Statik metin bloğu.",
+      "renders": true,
+      "keyProps": ["display-name", "content"],
+      "properties": [
+        { "key": "content", "required": true, "description": "Metin içeriği" }
+      ]
+    },
+    {
+      "type": "image",
+      "label": "Image",
+      "icon": "▣",
+      "color": "slate",
+      "category": "view",
+      "summary": "Statik veya değişkenden görsel.",
+      "renders": true,
+      "keyProps": ["src", "alt"],
+      "properties": [
+        { "key": "src", "required": true, "description": "Görsel URL" },
+        { "key": "alt", "required": false, "description": "Alt metin" }
+      ]
+    }
+  ]
+}

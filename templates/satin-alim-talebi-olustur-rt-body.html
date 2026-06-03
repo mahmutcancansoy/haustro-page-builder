@@ -1,0 +1,148 @@
+<style>
+.sat-rt{font-family:'Inter',-apple-system,sans-serif;color:#0f172a;padding:0 0 24px}
+.sat-rt__header{background:#586495;color:#fff;padding:16px 20px;border-radius:0 0 12px 12px;margin:-8px -8px 20px;font-size:18px;font-weight:700}
+.sat-rt__card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.sat-rt__label{font-size:13px;font-weight:600;color:#475569;margin-bottom:10px;display:block}
+.sat-rt__radios{display:flex;flex-direction:column;gap:10px}
+.sat-rt__radio{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:border-color .15s,background .15s}
+.sat-rt__radio:hover{border-color:#818cf8;background:#f8fafc}
+.sat-rt__radio input{accent-color:#586495;width:18px;height:18px}
+.sat-rt__panel{display:none;margin-top:16px;padding-top:16px;border-top:1px dashed #e2e8f0}
+.sat-rt__panel.is-visible{display:block}
+.sat-rt__hint{font-size:12px;color:#64748b;margin-top:8px}
+.sat-rt__status{font-size:11px;color:#94a3b8;margin-top:12px;font-family:ui-monospace,monospace}
+.sat-rt__field{margin-bottom:14px}
+.sat-rt__field label{display:block;font-size:12px;font-weight:600;color:#64748b;margin-bottom:6px}
+.sat-rt__field input,.sat-rt__field select,.sat-rt__field textarea{width:100%;max-width:480px;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px}
+.sat-rt__field textarea{min-height:80px;resize:vertical}
+.sat-rt__actions{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.sat-rt__btn{padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer}
+.sat-rt__btn--primary{background:#586495;color:#fff}
+.sat-rt__btn--ghost{background:#f1f5f9;color:#334155;border:1px solid #e2e8f0}
+</style>
+
+<div class="sat-rt" id="sat-rt-root">
+  <div class="sat-rt__header">Satın Alım Talebi Oluştur</div>
+
+  <div class="sat-rt__card">
+    <span class="sat-rt__label">Satın Alma Türü</span>
+    <div class="sat-rt__radios">
+      <label class="sat-rt__radio">
+        <input type="radio" name="purchaseType" value="0" />
+        <span>Envanter Satın Alımı</span>
+      </label>
+      <label class="sat-rt__radio">
+        <input type="radio" name="purchaseType" value="1" />
+        <span>Hizmet Satın Alımı</span>
+      </label>
+    </div>
+    <p class="sat-rt__hint">Sayfa yalnızca <code>render-template</code> ile çalışır; backend çağrısı olarak yalnızca <code>emptyResponse</code> kullanılır.</p>
+    <div class="sat-rt__status" id="sat-rt-status">emptyResponse bekleniyor…</div>
+  </div>
+
+  <div class="sat-rt__card sat-rt__panel" id="sat-rt-panel-0" data-type="0">
+    <h3 style="margin:0 0 12px;font-size:15px">Envanter satın alım talebi</h3>
+    <div class="sat-rt__field">
+      <label>Departman (metin)</label>
+      <input type="text" name="departmentLabel" placeholder="Departman" />
+    </div>
+    <div class="sat-rt__field">
+      <label>Envanter (metin)</label>
+      <input type="text" name="inventoryLabel" placeholder="Envanter" />
+    </div>
+    <div class="sat-rt__field">
+      <label>Adet</label>
+      <input type="number" name="count" min="1" value="1" />
+    </div>
+    <div class="sat-rt__field">
+      <label>Açıklama</label>
+      <textarea name="description" placeholder="Talep açıklaması"></textarea>
+    </div>
+  </div>
+
+  <div class="sat-rt__card sat-rt__panel" id="sat-rt-panel-1" data-type="1">
+    <h3 style="margin:0 0 12px;font-size:15px">Hizmet satın alım talebi</h3>
+    <div class="sat-rt__field">
+      <label>Hizmet kategorisi (metin)</label>
+      <input type="text" name="serviceCategory" placeholder="Kategori" />
+    </div>
+    <div class="sat-rt__field">
+      <label>Açıklama</label>
+      <textarea name="description" placeholder="Talep açıklaması"></textarea>
+    </div>
+  </div>
+
+  <div class="sat-rt__actions">
+    <button type="button" class="sat-rt__btn sat-rt__btn--primary" id="sat-rt-save">Kaydet (emptyResponse)</button>
+    <button type="button" class="sat-rt__btn sat-rt__btn--ghost" id="sat-rt-reset">Sıfırla</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var statusEl = document.getElementById('sat-rt-status');
+  var root = document.getElementById('sat-rt-root');
+  if (!root || !statusEl) return;
+
+  function collectPost() {
+    var pt = root.querySelector('input[name="purchaseType"]:checked');
+    var post = { purchaseType: pt ? pt.value : '' };
+    var panel = pt ? document.getElementById('sat-rt-panel-' + pt.value) : null;
+    if (panel) {
+      panel.querySelectorAll('input, textarea, select').forEach(function (el) {
+        if (!el.name || el.name === 'purchaseType') return;
+        post[el.name] = el.value;
+      });
+    }
+    return post;
+  }
+
+  function callEmptyResponse(post) {
+    statusEl.textContent = 'emptyResponse çağrılıyor…';
+    return fetch('/custom/emptyResponse', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: {}, post: post || {} }),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        statusEl.textContent = 'emptyResponse OK: ' + JSON.stringify(json.response || json);
+        return json;
+      })
+      .catch(function (err) {
+        statusEl.textContent = 'emptyResponse hata: ' + (err && err.message ? err.message : String(err));
+      });
+  }
+
+  function showPanel() {
+    var pt = root.querySelector('input[name="purchaseType"]:checked');
+    root.querySelectorAll('.sat-rt__panel').forEach(function (p) {
+      p.classList.toggle('is-visible', pt && p.getAttribute('data-type') === pt.value);
+    });
+  }
+
+  root.querySelectorAll('input[name="purchaseType"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      showPanel();
+      callEmptyResponse(collectPost());
+    });
+  });
+
+  document.getElementById('sat-rt-save').addEventListener('click', function () {
+    callEmptyResponse(collectPost());
+  });
+
+  document.getElementById('sat-rt-reset').addEventListener('click', function () {
+    root.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(function (el) {
+      if (el.name === 'purchaseType') return;
+      el.value = el.type === 'number' ? '1' : '';
+    });
+    root.querySelectorAll('input[name="purchaseType"]').forEach(function (r) { r.checked = false; });
+    showPanel();
+    callEmptyResponse({ purchaseType: '' });
+  });
+
+  callEmptyResponse({ purchaseType: '' });
+})();
+</script>

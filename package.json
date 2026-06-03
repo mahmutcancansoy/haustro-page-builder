@@ -1,0 +1,43 @@
+{
+  "name": "haustro-page-builder",
+  "version": "1.0.0",
+  "description": "Haustro galliardDb üzerinde panel sayfaları (pages / pageContents) oluşturma aracı",
+  "main": "src/cli.js",
+  "bin": {
+    "haustro-pages": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "shell": "node src/cli.js shell",
+    "server": "node server/server.js",
+    "web:dev": "npm --prefix web run dev",
+    "web:build": "npm --prefix web install && npm --prefix web run build",
+    "web": "concurrently -k -n api,web -c indigo,green \"npm run server\" \"npm run web:dev\"",
+    "list": "node src/cli.js list",
+    "find": "node src/cli.js find",
+    "create-inventory-list": "node src/cli.js create-inventory-list",
+    "create-inventory-cards": "node src/cli.js create-inventory-cards",
+    "create-from-template": "node src/cli.js create-from-template",
+    "update-content": "node src/cli.js update-content",
+    "duplicate": "node src/cli.js duplicate",
+    "export-template": "node src/cli.js export-template",
+    "docs:components": "node scripts/generate-component-docs.js"
+  },
+  "keywords": [
+    "mongodb",
+    "haustro",
+    "galliard",
+    "pages"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "^12.1.0",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "mongodb": "3.7.4"
+  }
+}

@@ -1,0 +1,374 @@
+<style>
+.hp-dash {
+  --hp-primary: #4557a3;
+  --hp-primary-mid: #586495;
+  --hp-muted: #9ba6b7;
+  --hp-label: #777777;
+  --hp-text: #1e293b;
+  --hp-border: #e4e9f2;
+  --hp-surface: #ffffff;
+  --hp-soft: #f4f6fb;
+  --hp-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);
+  --hp-shadow-hover: 0 12px 32px rgba(69, 87, 163, 0.14);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--hp-text);
+  margin-bottom: 1.25rem;
+}
+
+.hp-dash *,
+.hp-dash *::before,
+.hp-dash *::after {
+  box-sizing: border-box;
+}
+
+.hp-dash__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .hp-dash__grid {
+    grid-template-columns: minmax(260px, 34%) 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+}
+
+.hp-dash__profile-link {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  min-height: 100%;
+  border-radius: 16px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.hp-dash__profile-link:hover {
+  transform: translateY(-2px);
+}
+
+.hp-dash__profile-link:hover .hp-dash__profile {
+  box-shadow: var(--hp-shadow-hover);
+  border-color: rgba(69, 87, 163, 0.28);
+}
+
+.hp-dash__profile-link:focus-visible {
+  outline: 2px solid rgba(69, 87, 163, 0.45);
+  outline-offset: 3px;
+}
+
+.hp-dash__profile {
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-border);
+  border-radius: 16px;
+  box-shadow: var(--hp-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  cursor: pointer;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.hp-dash__profile-top {
+  position: relative;
+  padding: 1.35rem 1.25rem 1rem;
+  background: linear-gradient(135deg, rgba(69, 87, 163, 0.08) 0%, rgba(88, 100, 149, 0.04) 100%);
+}
+
+.hp-dash__profile-top::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--hp-primary) 0%, var(--hp-primary-mid) 100%);
+}
+
+.hp-dash__profile-body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hp-dash__profile-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.hp-dash__greeting {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-muted);
+  margin-bottom: 0.35rem;
+}
+
+.hp-dash__name {
+  display: block;
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--hp-text);
+  margin-bottom: 0.35rem;
+  word-break: break-word;
+}
+
+.hp-dash__role {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--hp-label);
+}
+
+.hp-dash__avatar-wrap {
+  flex-shrink: 0;
+}
+
+.hp-dash__avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 3px solid rgba(69, 87, 163, 0.18);
+  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.15);
+  display: block;
+}
+
+@media (max-width: 479px) {
+  .hp-dash__avatar {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+.hp-dash__meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  padding: 0.95rem 1.25rem 1.15rem;
+  border-top: 1px solid var(--hp-border);
+  background: var(--hp-soft);
+}
+
+@media (min-width: 480px) {
+  .hp-dash__meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hp-dash__meta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--hp-label);
+}
+
+@media (min-width: 768px) {
+  .hp-dash__meta-item:first-child {
+    justify-content: flex-start;
+  }
+
+  .hp-dash__meta-item:last-child {
+    justify-content: flex-end;
+  }
+}
+
+.hp-dash__meta-item strong {
+  color: var(--hp-text);
+  font-weight: 600;
+}
+
+.hp-dash__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  align-content: start;
+}
+
+@media (min-width: 1200px) {
+  .hp-dash__stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.hp-dash__stat {
+  display: flex;
+  flex-direction: column;
+  min-height: 132px;
+  padding: 1rem 1rem 0.95rem;
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-border);
+  border-radius: 16px;
+  box-shadow: var(--hp-shadow);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.hp-dash__stat:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hp-shadow-hover);
+  border-color: rgba(69, 87, 163, 0.28);
+}
+
+.hp-dash__stat-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.hp-dash__stat-copy {
+  min-width: 0;
+}
+
+.hp-dash__stat-label {
+  display: block;
+  font-size: clamp(0.82rem, 1.8vw, 0.98rem);
+  line-height: 1.35;
+  color: var(--hp-muted);
+  margin-bottom: 0.45rem;
+}
+
+.hp-dash__stat-value {
+  display: block;
+  font-size: clamp(1.65rem, 4vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--hp-text);
+}
+
+.hp-dash__stat-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(69, 87, 163, 0.1);
+  color: var(--hp-primary);
+  font-size: 1.55rem;
+}
+
+.hp-dash__stat-foot {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(155, 166, 183, 0.45);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hp-primary);
+}
+</style>
+
+<div class="hp-dash">
+  <div class="hp-dash__grid">
+    <a href="/d/kullanici-profilim" router-link="/d/kullanici-profilim" class="hp-dash__profile-link" aria-label="Profilimi görüntüle">
+    <article class="hp-dash__profile">
+      <div class="hp-dash__profile-top">
+        <div class="hp-dash__profile-body">
+          <div class="hp-dash__profile-text">
+            <span class="hp-dash__greeting">Merhaba,</span>
+            <span class="hp-dash__name">{{users.name}} {{users.surname}}</span>
+            <span class="hp-dash__role">
+              {{#cIf users.:roleTypes:.1._id "==" ""}}
+                {{#cIf users.:roleTypes:.0._id "!=" ""}}
+                  {{users.:departments:.label}} - {{users.:roleTypes:.0.description}}
+                {{else}}
+                  {{users.:departments:.label}}
+                {{/cIf}}
+              {{else}}
+                {{users.:departments:.label}} - {{users.:roleTypes:.0.description}}
+              {{/cIf}}
+            </span>
+          </div>
+          <div class="hp-dash__avatar-wrap">
+            <img
+              src="{{globals.resources}}{{users.photo.0.name}}"
+              alt="{{users.name}} {{users.surname}}"
+              class="hp-dash__avatar"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="hp-dash__meta">
+        <div class="hp-dash__meta-item">
+          <strong>Son İşlem</strong>
+          <span>—</span>
+        </div>
+        <div class="hp-dash__meta-item">
+          <strong>Son Giriş</strong>
+          <span>{{#if lastLogin}}{{lastLogin}}{{else}}—{{/if}}</span>
+        </div>
+      </div>
+    </article>
+    </a>
+
+    <div class="hp-dash__stats">
+      <a href="/d/bekleyen-hareketler" router-link="/d/bekleyen-hareketler" class="hp-dash__stat">
+        <div class="hp-dash__stat-top">
+          <div class="hp-dash__stat-copy">
+            <span class="hp-dash__stat-label">Bekleyen Hareketler</span>
+            <span class="hp-dash__stat-value">
+              {{#cIf accountingNotifications.0._id "==" undefined}}
+                {{notifications.generalCount}}
+              {{else}}
+                {{calculations}}
+              {{/cIf}}
+            </span>
+          </div>
+          <span class="hp-dash__stat-icon"><i class="mdi mdi-alert-circle"></i></span>
+        </div>
+        <span class="hp-dash__stat-foot">Detaya git</span>
+      </a>
+
+      <a href="/d/mesajlar" router-link="/d/mesajlar" class="hp-dash__stat">
+        <div class="hp-dash__stat-top">
+          <div class="hp-dash__stat-copy">
+            <span class="hp-dash__stat-label">Okunmamış Mesajlar</span>
+            <span class="hp-dash__stat-value">{{getMessages.length}}</span>
+          </div>
+          <span class="hp-dash__stat-icon"><i class="mdi mdi-email"></i></span>
+        </div>
+        <span class="hp-dash__stat-foot">Mesajlara git</span>
+      </a>
+
+      <a href="/d/bekleyen-egitimler" router-link="/d/bekleyen-egitimler" class="hp-dash__stat">
+        <div class="hp-dash__stat-top">
+          <div class="hp-dash__stat-copy">
+            <span class="hp-dash__stat-label">Bekleyen Eğitimler</span>
+            <span class="hp-dash__stat-value">{{getWaitingQuizs.length}}</span>
+          </div>
+          <span class="hp-dash__stat-icon"><i class="mdi mdi-file-clock"></i></span>
+        </div>
+        <span class="hp-dash__stat-foot">Eğitimlere git</span>
+      </a>
+
+      <a href="/d/okunmamis-raporlar" router-link="/d/okunmamis-raporlar" class="hp-dash__stat">
+        <div class="hp-dash__stat-top">
+          <div class="hp-dash__stat-copy">
+            <span class="hp-dash__stat-label">Okunmamış Raporlar</span>
+            <span class="hp-dash__stat-value">
+              {{#cIf notifications.operationChecklistsCount "==" undefined}}
+                0
+              {{else}}
+                {{notifications.operationChecklistsCount}}
+              {{/cIf}}
+            </span>
+          </div>
+          <span class="hp-dash__stat-icon"><i class="mdi mdi-file-document"></i></span>
+        </div>
+        <span class="hp-dash__stat-foot">Raporlara git</span>
+      </a>
+    </div>
+  </div>
+</div>

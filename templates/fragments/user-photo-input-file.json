@@ -1,0 +1,361 @@
+{
+  "type": "input-file",
+  "isContainer": false,
+  "properties": [
+    {
+      "key": "display-name",
+      "header": "Display name",
+      "type": "input-text-property",
+      "value": "Foto Ekle"
+    },
+    {
+      "key": "classes",
+      "header": "Classes",
+      "type": "textarea-property",
+      "value": ""
+    },
+    {
+      "key": "name",
+      "header": "Name",
+      "type": "input-text-property",
+      "value": "photo"
+    },
+    {
+      "key": "label",
+      "header": "Label",
+      "type": "input-text-property",
+      "value": "Foto Ekle:",
+      "autoComplete": true,
+      "autoCompleteMode": "template",
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "!value.inContainer"
+        }
+      ]
+    },
+    {
+      "key": "accept",
+      "header": "Accepted files",
+      "type": "input-text-property",
+      "value": ".png, .jpg"
+    },
+    {
+      "key": "max-file-size",
+      "header": "Max file size",
+      "type": "input-text-property",
+      "value": "5242880"
+    },
+    {
+      "key": "file-limit",
+      "header": "Max files",
+      "type": "input-number-property",
+      "value": 10,
+      "min": 1,
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "value.multiple"
+        }
+      ]
+    },
+    {
+      "key": "default-value",
+      "header": "Default value",
+      "type": "input-text-property",
+      "value": "users.photo",
+      "autoComplete": true,
+      "autoCompleteMode": "variable"
+    },
+    {
+      "key": "base-url",
+      "header": "Base url",
+      "type": "input-text-property",
+      "value": "http://192.168.0.10/resources/",
+      "autoComplete": true,
+      "autoCompleteMode": "template"
+    },
+    {
+      "key": "docker compose cropper-width",
+      "header": "Cropper width",
+      "type": "input-number-property",
+      "value": 250,
+      "min": 1,
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "value.cropper"
+        }
+      ]
+    },
+    {
+      "key": "cropper-height",
+      "header": "Cropper height",
+      "type": "input-number-property",
+      "value": 250,
+      "min": 1,
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "value.cropper"
+        }
+      ]
+    },
+    {
+      "key": "cropper-header",
+      "header": "Cropper Header",
+      "type": "input-text-property",
+      "autoComplete": true,
+      "autoCompleteMode": "template",
+      "value": "Resim Yükle",
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "value.cropper"
+        }
+      ]
+    },
+    {
+      "key": "cropper-button",
+      "header": "Cropper Button Label",
+      "type": "input-text-property",
+      "value": "Kaydet",
+      "autoComplete": true,
+      "autoCompleteMode": "template",
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "value.cropper"
+        }
+      ]
+    },
+    {
+      "key": "aspect-ratio",
+      "type": "select-property",
+      "options": [
+        {
+          "label": "1 / 1",
+          "value": 1
+        },
+        {
+          "label": "4 / 3",
+          "value": 1.3333333333333333
+        },
+        {
+          "label": "16 / 9",
+          "value": 1.7777777777777777
+        }
+      ],
+      "header": "Aspect Ratio",
+      "value": 1,
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "value.cropper"
+        }
+      ]
+    },
+    {
+      "key": "bg",
+      "header": "Background",
+      "type": "color-picker-property",
+      "value": "#fff",
+      "conditions": [
+        {
+          "key": "settings",
+          "rule": "value.cropper"
+        }
+      ]
+    },
+    {
+      "key": "invalid-messages",
+      "header": "Invalid messages",
+      "type": "group-property",
+      "children": [
+        {
+          "key": "size-summary",
+          "header": "Size summary",
+          "type": "input-text-property",
+          "value": "{0}: Geçersiz dosya boyutu.",
+          "inGroup": true
+        },
+        {
+          "key": "size-detail",
+          "header": "Size detail",
+          "type": "input-text-property",
+          "value": "Maksimum dosya boyutu: {0}",
+          "inGroup": true
+        },
+        {
+          "key": "type-summary",
+          "header": "Type summary",
+          "type": "input-text-property",
+          "value": "Geçersiz dosya türü",
+          "inGroup": true
+        },
+        {
+          "key": "type-detail",
+          "header": "Type detail",
+          "type": "input-text-property",
+          "value": "Geçerli dosya türleri: {0}",
+          "inGroup": true
+        },
+        {
+          "key": "limit-summary",
+          "header": "Limit summary",
+          "type": "input-text-property",
+          "value": "Maksimum dosya adeti {0}",
+          "inGroup": true
+        },
+        {
+          "key": "limit-detail",
+          "header": "Limit detail",
+          "type": "input-text-property",
+          "value": "Dosya yükleme limitini aştınız.",
+          "inGroup": true
+        }
+      ]
+    },
+    {
+      "key": "validators",
+      "header": "Validators",
+      "type": "group-property",
+      "children": [
+        {
+          "key": "options",
+          "type": "checkbox-property",
+          "header": "Options",
+          "options": [
+            {
+              "label": "Required",
+              "name": "required"
+            },
+            {
+              "label": "Minimum Files",
+              "name": "minCount"
+            }
+          ],
+          "value": {
+            "required": false
+          },
+          "inGroup": true
+        },
+        {
+          "key": "required-text",
+          "header": "Required text",
+          "type": "input-text-property",
+          "value": "Bu alan gereklidir",
+          "conditions": [
+            {
+              "key": "options",
+              "rule": "value.required"
+            }
+          ],
+          "inGroup": true
+        },
+        {
+          "key": "file-at-least",
+          "header": "Minimum files",
+          "type": "input-number-property",
+          "value": 1,
+          "min": 1,
+          "conditions": [
+            {
+              "key": "options",
+              "rule": "value.minCount"
+            }
+          ]
+        },
+        {
+          "key": "minimum-text",
+          "header": "Minimum Count text",
+          "type": "input-text-property",
+          "value": "Minimum dosya adeti ",
+          "conditions": [
+            {
+              "key": "options",
+              "rule": "value.minCount"
+            }
+          ],
+          "inGroup": true
+        }
+      ]
+    },
+    {
+      "key": "icons",
+      "header": "Icons",
+      "type": "group-property",
+      "children": [
+        {
+          "key": "chose",
+          "header": "Chose",
+          "type": "input-text-property",
+          "value": "mdi mdi-plus",
+          "inGroup": true
+        },
+        {
+          "key": "clear",
+          "header": "Clear",
+          "type": "input-text-property",
+          "value": "mdi mdi-close",
+          "inGroup": true
+        }
+      ]
+    },
+    {
+      "key": "spacings",
+      "header": "Spacings",
+      "type": "spacings",
+      "unit": "px",
+      "margins": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "paddings": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "settings",
+      "type": "checkbox-property",
+      "header": "Settings",
+      "options": [
+        {
+          "label": "As Base64",
+          "name": "asBase64"
+        },
+        {
+          "label": "In container",
+          "name": "inContainer"
+        },
+        {
+          "label": "Disabled",
+          "name": "disabled"
+        },
+        {
+          "label": "Multiple",
+          "name": "multiple"
+        },
+        {
+          "label": "Clear button",
+          "name": "clear"
+        },
+        {
+          "label": "Cropper",
+          "name": "cropper"
+        }
+      ],
+      "value": {
+        "inContainer": false,
+        "disabled": false,
+        "multiple": false,
+        "clear": false
+      }
+    }
+  ]
+}

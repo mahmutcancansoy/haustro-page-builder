@@ -1,0 +1,4011 @@
+{
+  "content": [
+    {
+      "type": "data-source",
+      "isContainer": false,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Users"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "users"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "get"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "users",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n    \"_id\" : \"{{info._id}}\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": true,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "simple-container",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"hp-prof\" id=\"hp-prof-root\">\n  <section class=\"hp-prof__hero\">\n    <div class=\"hp-prof__avatar-wrap\">\n      <img\n        class=\"hp-prof__avatar\"\n        src=\"{{globals.resources}}{{users.photo.0.name}}\"\n        alt=\"{{users.name}} {{users.surname}}\"\n      />\n    </div>\n    <div class=\"hp-prof__identity\">\n      <span class=\"hp-prof__eyebrow\">Kullanıcı Profili</span>\n      <h1 class=\"hp-prof__name\">{{users.name}} {{users.surname}}</h1>\n      <p class=\"hp-prof__role\">\n        {{#cIf users.:roleTypes:.1._id \"==\" \"\"}}\n          {{#cIf users.:roleTypes:.0._id \"!=\" \"\"}}\n            {{users.:departments:.label}} · {{users.:roleTypes:.0.description}}\n          {{else}}\n            {{users.:departments:.label}}\n          {{/cIf}}\n        {{else}}\n          {{users.:departments:.label}} · {{users.:roleTypes:.0.description}}\n        {{/cIf}}\n      </p>\n      <div class=\"hp-prof__chips\">\n        {{#if users.email}}\n          <span class=\"hp-prof__chip\"><i class=\"mdi mdi-email-outline\"></i> {{users.email}}</span>\n        {{/if}}\n        {{#if users.phone}}\n          <span class=\"hp-prof__chip\"><i class=\"mdi mdi-phone-outline\"></i> {{users.phone}}</span>\n        {{/if}}\n      </div>\n    </div>\n  </section>\n</div>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Kullanıcı Profili"
+            }
+          ]
+        },
+        {
+          "type": "simple-container",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "render-template",
+              "isContainer": false,
+              "isTextEditor": true,
+              "content": "<h2 class=\"hp-prof__card-title\"><i class=\"mdi mdi-camera-outline\"></i> Profil Fotoğrafı</h2>\n<p class=\"hp-prof__hint\">JPG veya PNG formatında, en fazla 5 MB. Kare oranında bir fotoğraf önerilir.</p>",
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Profil Fotoğrafı Başlık"
+                }
+              ]
+            },
+            {
+              "type": "simple-container",
+              "isContainer": true,
+              "children": [
+                {
+                  "type": "form-container",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "input-file",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Profil Fotoğrafı"
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "name",
+                          "header": "Name",
+                          "type": "input-text-property",
+                          "value": "photo"
+                        },
+                        {
+                          "key": "label",
+                          "header": "Label",
+                          "type": "input-text-property",
+                          "value": "Yeni profil fotoğrafı",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "!value.inContainer"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "accept",
+                          "header": "Accepted files",
+                          "type": "input-text-property",
+                          "value": ".png, .jpg"
+                        },
+                        {
+                          "key": "max-file-size",
+                          "header": "Max file size",
+                          "type": "input-text-property",
+                          "value": "5242880"
+                        },
+                        {
+                          "key": "file-limit",
+                          "header": "Max files",
+                          "type": "input-number-property",
+                          "value": 10,
+                          "min": 1,
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.multiple"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "default-value",
+                          "header": "Default value",
+                          "type": "input-text-property",
+                          "value": "users.photo",
+                          "autoComplete": true,
+                          "autoCompleteMode": "variable"
+                        },
+                        {
+                          "key": "base-url",
+                          "header": "Base url",
+                          "type": "input-text-property",
+                          "value": "http://192.168.0.10/resources/",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "docker compose cropper-width",
+                          "header": "Cropper width",
+                          "type": "input-number-property",
+                          "value": 250,
+                          "min": 1,
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.cropper"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "cropper-height",
+                          "header": "Cropper height",
+                          "type": "input-number-property",
+                          "value": 250,
+                          "min": 1,
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.cropper"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "cropper-header",
+                          "header": "Cropper Header",
+                          "type": "input-text-property",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "value": "Resim Yükle",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.cropper"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "cropper-button",
+                          "header": "Cropper Button Label",
+                          "type": "input-text-property",
+                          "value": "Kaydet",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.cropper"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "aspect-ratio",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "1 / 1",
+                              "value": 1
+                            },
+                            {
+                              "label": "4 / 3",
+                              "value": 1.3333333333333333
+                            },
+                            {
+                              "label": "16 / 9",
+                              "value": 1.7777777777777777
+                            }
+                          ],
+                          "header": "Aspect Ratio",
+                          "value": 1,
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.cropper"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "bg",
+                          "header": "Background",
+                          "type": "color-picker-property",
+                          "value": "#fff",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.cropper"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "invalid-messages",
+                          "header": "Invalid messages",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "size-summary",
+                              "header": "Size summary",
+                              "type": "input-text-property",
+                              "value": "{0}: Geçersiz dosya boyutu.",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "size-detail",
+                              "header": "Size detail",
+                              "type": "input-text-property",
+                              "value": "Maksimum dosya boyutu: {0}",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "type-summary",
+                              "header": "Type summary",
+                              "type": "input-text-property",
+                              "value": "Geçersiz dosya türü",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "type-detail",
+                              "header": "Type detail",
+                              "type": "input-text-property",
+                              "value": "Geçerli dosya türleri: {0}",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "limit-summary",
+                              "header": "Limit summary",
+                              "type": "input-text-property",
+                              "value": "Maksimum dosya adeti {0}",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "limit-detail",
+                              "header": "Limit detail",
+                              "type": "input-text-property",
+                              "value": "Dosya yükleme limitini aştınız.",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "validators",
+                          "header": "Validators",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "options",
+                              "type": "checkbox-property",
+                              "header": "Options",
+                              "options": [
+                                {
+                                  "label": "Required",
+                                  "name": "required"
+                                },
+                                {
+                                  "label": "Minimum Files",
+                                  "name": "minCount"
+                                }
+                              ],
+                              "value": {
+                                "required": false
+                              },
+                              "inGroup": true
+                            },
+                            {
+                              "key": "required-text",
+                              "header": "Required text",
+                              "type": "input-text-property",
+                              "value": "Bu alan gereklidir",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.required"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "file-at-least",
+                              "header": "Minimum files",
+                              "type": "input-number-property",
+                              "value": 1,
+                              "min": 1,
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.minCount"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "minimum-text",
+                              "header": "Minimum Count text",
+                              "type": "input-text-property",
+                              "value": "Minimum dosya adeti ",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.minCount"
+                                }
+                              ],
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "icons",
+                          "header": "Icons",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "chose",
+                              "header": "Chose",
+                              "type": "input-text-property",
+                              "value": "mdi mdi-plus",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "clear",
+                              "header": "Clear",
+                              "type": "input-text-property",
+                              "value": "mdi mdi-close",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "As Base64",
+                              "name": "asBase64"
+                            },
+                            {
+                              "label": "In container",
+                              "name": "inContainer"
+                            },
+                            {
+                              "label": "Disabled",
+                              "name": "disabled"
+                            },
+                            {
+                              "label": "Multiple",
+                              "name": "multiple"
+                            },
+                            {
+                              "label": "Clear button",
+                              "name": "clear"
+                            },
+                            {
+                              "label": "Cropper",
+                              "name": "cropper"
+                            }
+                          ],
+                          "value": {
+                            "inContainer": false,
+                            "disabled": false,
+                            "multiple": false,
+                            "clear": false
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Fotoğrafı Kaydet"
+                        },
+                        {
+                          "key": "id",
+                          "header": "Button ID",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "Fotoğrafı Kaydet",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "severity",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Primary",
+                              "value": "p-button-default"
+                            },
+                            {
+                              "label": "Secondary",
+                              "value": "p-button-secondary"
+                            },
+                            {
+                              "label": "Success",
+                              "value": "p-button-success"
+                            },
+                            {
+                              "label": "Info",
+                              "value": "p-button-info"
+                            },
+                            {
+                              "label": "Warning",
+                              "value": "p-button-warning"
+                            },
+                            {
+                              "label": "Help",
+                              "value": "p-button-help"
+                            },
+                            {
+                              "label": "Danger",
+                              "value": "p-button-danger"
+                            }
+                          ],
+                          "header": "Severity",
+                          "value": "p-button-success"
+                        },
+                        {
+                          "key": "size",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Small",
+                              "value": "p-button-sm"
+                            },
+                            {
+                              "label": "Normal",
+                              "value": "p-button"
+                            },
+                            {
+                              "label": "Large",
+                              "value": "p-button-lg"
+                            }
+                          ],
+                          "header": "Size",
+                          "value": "p-button-sm"
+                        },
+                        {
+                          "key": "icon",
+                          "header": "Icon",
+                          "type": "input-text-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "icon-position",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Left",
+                              "value": "left"
+                            },
+                            {
+                              "label": "Right",
+                              "value": "right"
+                            }
+                          ],
+                          "header": "Icon position",
+                          "value": "left",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "width",
+                          "header": "Width",
+                          "type": "input-text-property",
+                          "value": "auto"
+                        },
+                        {
+                          "key": "action",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Submit",
+                              "value": "submit"
+                            },
+                            {
+                              "label": "Save",
+                              "value": "save"
+                            },
+                            {
+                              "label": "Link",
+                              "value": "link"
+                            },
+                            {
+                              "label": "Route",
+                              "value": "route"
+                            },
+                            {
+                              "label": "Route back",
+                              "value": "back"
+                            },
+                            {
+                              "label": "Download",
+                              "value": "download"
+                            },
+                            {
+                              "label": "Add",
+                              "value": "add"
+                            },
+                            {
+                              "label": "Edit",
+                              "value": "edit"
+                            },
+                            {
+                              "label": "Custom",
+                              "value": "custom"
+                            },
+                            {
+                              "label": "Modal Close",
+                              "value": "closeModal"
+                            }
+                          ],
+                          "header": "Action",
+                          "value": "submit"
+                        },
+                        {
+                          "key": "formKey",
+                          "header": "Form Key",
+                          "type": "input-text-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'save'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "url",
+                          "header": "Url",
+                          "type": "textarea-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "query-params",
+                          "header": "Query Params",
+                          "type": "code-editor",
+                          "value": "{\n\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "filename",
+                          "header": "Filename",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'download'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "url-targer",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "_self",
+                              "value": "_self"
+                            },
+                            {
+                              "label": "_blank",
+                              "value": "_blank"
+                            }
+                          ],
+                          "header": "Target",
+                          "value": "_self",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'link'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "styles",
+                          "header": "Styles",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "font-style",
+                              "type": "checkbox-property",
+                              "header": "Font styles",
+                              "options": [
+                                {
+                                  "label": "Bold",
+                                  "name": "bold"
+                                },
+                                {
+                                  "label": "Italic",
+                                  "name": "italic"
+                                }
+                              ],
+                              "value": {
+                                "bold": false,
+                                "italic": false
+                              },
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "addEditButton",
+                          "header": "Add Or Edit Button",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "type",
+                              "type": "select-property",
+                              "header": "Type",
+                              "options": [
+                                {
+                                  "label": "None",
+                                  "value": "none"
+                                },
+                                {
+                                  "label": "Add",
+                                  "value": "add"
+                                },
+                                {
+                                  "label": "Edit",
+                                  "value": "edit"
+                                }
+                              ],
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            []
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "In form",
+                              "name": "inForm"
+                            },
+                            {
+                              "label": "Has icon",
+                              "name": "hasIcon"
+                            },
+                            {
+                              "label": "Rounded",
+                              "name": "rounded"
+                            },
+                            {
+                              "label": "Has shadow",
+                              "name": "hasShadow"
+                            },
+                            {
+                              "label": "Has outline",
+                              "name": "hasOutline"
+                            },
+                            {
+                              "label": "Text button",
+                              "name": "textButton"
+                            },
+                            {
+                              "label": "Disabled",
+                              "name": "disabled"
+                            }
+                          ],
+                          "value": {
+                            "inForm": true,
+                            "hasIcon": false,
+                            "rounded": false,
+                            "hasShadow": false,
+                            "hasOutline": false,
+                            "textButton": false,
+                            "disabled": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Profil Fotoğrafı Güncelle"
+                    },
+                    {
+                      "key": "action",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Add",
+                          "value": "add"
+                        },
+                        {
+                          "label": "Get",
+                          "value": "get"
+                        },
+                        {
+                          "label": "Update",
+                          "value": "update"
+                        },
+                        {
+                          "label": "Custom",
+                          "value": "custom"
+                        },
+                        {
+                          "label": "Delete",
+                          "value": "delete"
+                        },
+                        {
+                          "label": "Hard delete",
+                          "value": "hardDelete"
+                        }
+                      ],
+                      "header": "Action",
+                      "value": "update"
+                    },
+                    {
+                      "key": "table-name",
+                      "header": "Table name",
+                      "type": "input-text-property",
+                      "value": "users",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value != 'custom'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "field-id",
+                      "header": "Field id",
+                      "type": "input-text-property",
+                      "value": "{{info._id}}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'update'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "hidden-values",
+                      "header": "Hidden values",
+                      "type": "code-editor",
+                      "value": "{\n\n}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "on-success",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Reset form",
+                          "value": "reset"
+                        },
+                        {
+                          "label": "Route",
+                          "value": "route"
+                        },
+                        {
+                          "label": "Redirect",
+                          "value": "redirect"
+                        },
+                        {
+                          "label": "Nothing",
+                          "value": "nothing"
+                        }
+                      ],
+                      "header": "On success",
+                      "value": "route"
+                    },
+                    {
+                      "key": "response-name",
+                      "header": "Response name",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "settings",
+                      "type": "checkbox-property",
+                      "header": "Settings",
+                      "options": [
+                        {
+                          "label": "Hidden",
+                          "name": "hidden"
+                        },
+                        {
+                          "label": "Has confirm",
+                          "name": "hasConfirm"
+                        },
+                        {
+                          "label": "Debug",
+                          "name": "debug"
+                        },
+                        {
+                          "label": "Debug response",
+                          "name": "debugResponse"
+                        },
+                        {
+                          "label": "Expose",
+                          "name": "expose"
+                        },
+                        {
+                          "label": "At Least Required Fields",
+                          "name": "minReqFields"
+                        }
+                      ],
+                      "value": {
+                        "hidden": false,
+                        "hasConfirm": false,
+                        "debug": false,
+                        "debugResponse": false,
+                        "expose": false,
+                        "minReqFields": false
+                      }
+                    },
+                    {
+                      "key": "url",
+                      "header": "Url",
+                      "type": "textarea-property",
+                      "value": "/d/kullanici-profilim",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "on-success",
+                          "rule": "value == 'redirect' || value == 'route'"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Profil Fotoğrafı Form"
+                },
+                {
+                  "key": "classes",
+                  "header": "Classes",
+                  "type": "textarea-property",
+                  "value": "hp-prof-photo-form-host"
+                },
+                {
+                  "key": "styles",
+                  "header": "Styles",
+                  "type": "code-editor",
+                  "value": "{\n\n}"
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Profil Fotoğrafı Kartı"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": "hp-prof-photo-card hp-prof__card hp-prof__card--wide"
+            },
+            {
+              "key": "styles",
+              "header": "Styles",
+              "type": "code-editor",
+              "value": "{\n\n}"
+            }
+          ]
+        },
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"hp-prof__grid\">\n  <section class=\"hp-prof__card\">\n    <h2 class=\"hp-prof__card-title\"><i class=\"mdi mdi-account-details-outline\"></i> Kişisel Bilgiler</h2>\n    <div class=\"hp-prof__row\">\n      <span class=\"hp-prof__row-label\">Ad Soyad</span>\n      <span class=\"hp-prof__row-value\">{{users.name}} {{users.surname}}</span>\n    </div>\n    <div class=\"hp-prof__row\">\n      <span class=\"hp-prof__row-label\">E-posta</span>\n      <span class=\"hp-prof__row-value\">{{#if users.email}}{{users.email}}{{else}}—{{/if}}</span>\n    </div>\n    <div class=\"hp-prof__row\">\n      <span class=\"hp-prof__row-label\">Telefon</span>\n      <span class=\"hp-prof__row-value\">{{#if users.phone}}{{users.phone}}{{else}}—{{/if}}</span>\n    </div>\n    <div class=\"hp-prof__row\">\n      <span class=\"hp-prof__row-label\">İşe Giriş Tarihi</span>\n      <span class=\"hp-prof__row-value hp-prof__date\" data-iso=\"{{users.employmentDate}}\">—</span>\n    </div>\n  </section>\n\n  <section class=\"hp-prof__card\">\n    <h2 class=\"hp-prof__card-title\"><i class=\"mdi mdi-beach\"></i> İzin Hakları</h2>\n    <div class=\"hp-prof__row\">\n      <span class=\"hp-prof__row-label\">Kalan Yıllık İzin</span>\n      <span class=\"hp-prof__row-value\">\n        <span class=\"hp-prof__leave-value\">\n          <strong>{{#if users.dayOffAmounts}}{{users.dayOffAmounts}}{{else}}0{{/if}}</strong>\n          <span>gün</span>\n        </span>\n      </span>\n    </div>\n    <p class=\"hp-prof__hint\">Kalan izin hakkınız, onaylanan izin talepleri düşüldükten sonraki güncel bakiyedir.</p>\n    <div class=\"hp-prof__actions\">\n      <a href=\"/d/yillik-izin-talebi\" router-link=\"/d/yillik-izin-talebi\" class=\"hp-prof__btn hp-prof__btn--ghost\">\n        <i class=\"mdi mdi-calendar-plus\"></i> İzin Talebi Oluştur\n      </a>\n    </div>\n  </section>\n</div>\n\n<script>\n(function () {\n  document.querySelectorAll('.hp-prof__date[data-iso]').forEach(function (el) {\n    var iso = (el.getAttribute('data-iso') || '').trim();\n    if (!iso) {\n      el.textContent = '—';\n      return;\n    }\n    var d = new Date(iso);\n    if (isNaN(d.getTime())) {\n      el.textContent = iso.slice(0, 10).split('-').reverse().join('.');\n      return;\n    }\n    el.textContent = d.toLocaleDateString('tr-TR', {\n      day: '2-digit',\n      month: 'long',\n      year: 'numeric',\n    });\n  });\n})();\n</script>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Profil Bilgi Grid"
+            }
+          ]
+        },
+        {
+          "type": "simple-container",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "render-template",
+              "isContainer": false,
+              "isTextEditor": true,
+              "content": "<h2 class=\"hp-prof__card-title\"><i class=\"mdi mdi-lock-outline\"></i> Güvenlik</h2>\n<div class=\"hp-prof__row\">\n  <span class=\"hp-prof__row-label\">Şifre</span>\n  <span class=\"hp-prof__row-value\">\n    <span class=\"hp-prof__password\" aria-label=\"Gizli şifre\">\n      <span class=\"hp-prof__password-dot\"></span>\n      <span class=\"hp-prof__password-dot\"></span>\n      <span class=\"hp-prof__password-dot\"></span>\n      <span class=\"hp-prof__password-dot\"></span>\n      <span class=\"hp-prof__password-dot\"></span>\n      <span class=\"hp-prof__password-dot\"></span>\n      <span class=\"hp-prof__password-dot\"></span>\n      <span class=\"hp-prof__password-dot\"></span>\n    </span>\n  </span>\n</div>\n<p class=\"hp-prof__hint\">Güvenlik nedeniyle mevcut şifreniz görüntülenmez. Değiştirmek için aşağıdaki butonu kullanın.</p>",
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Güvenlik Kartı"
+                }
+              ]
+            },
+            {
+              "type": "simple-container",
+              "isContainer": true,
+              "children": [
+                {
+                  "type": "modal",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "form-container",
+                      "isContainer": true,
+                      "children": [
+                        {
+                          "type": "input-password",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "Eski Şifre"
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "name",
+                              "header": "Name",
+                              "type": "input-text-property",
+                              "value": "oldPassword"
+                            },
+                            {
+                              "key": "label",
+                              "header": "Label",
+                              "type": "input-text-property",
+                              "value": "Eski Şifre",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "!value.inContainer"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "placeholder",
+                              "header": "Placeholder",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "default-value",
+                              "header": "Default value",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "class",
+                                  "header": "Class",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "position",
+                                  "type": "select-property",
+                                  "options": [
+                                    {
+                                      "label": "Left",
+                                      "value": "left"
+                                    },
+                                    {
+                                      "label": "Right",
+                                      "value": "right"
+                                    }
+                                  ],
+                                  "header": "Position",
+                                  "value": "left",
+                                  "inGroup": true
+                                }
+                              ],
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "feedback",
+                              "header": "Feedback",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "prompt-label",
+                                  "header": "Prompt label",
+                                  "type": "input-text-property",
+                                  "value": "Şifer giriniz",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "weak-label",
+                                  "header": "Weak label",
+                                  "type": "input-text-property",
+                                  "value": "Zayıf",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "medium-label",
+                                  "header": "Medium label",
+                                  "type": "input-text-property",
+                                  "value": "Orta",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "strong-label",
+                                  "header": "Strong label",
+                                  "type": "input-text-property",
+                                  "value": "Güçlü",
+                                  "inGroup": true
+                                }
+                              ],
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.showFeedback"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "100%"
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "validators",
+                              "header": "Validators",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "options",
+                                  "type": "checkbox-property",
+                                  "header": "Options",
+                                  "options": [
+                                    {
+                                      "label": "Required",
+                                      "name": "required"
+                                    },
+                                    {
+                                      "label": "Weak control",
+                                      "name": "weakControl"
+                                    },
+                                    {
+                                      "label": "Min Length",
+                                      "name": "minLenght"
+                                    },
+                                    {
+                                      "label": "Max Length",
+                                      "name": "maxLenght"
+                                    }
+                                  ],
+                                  "value": {
+                                    "required": true,
+                                    "weakControl": false,
+                                    "minLenght": false,
+                                    "maxLenght": false
+                                  },
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "required-text",
+                                  "header": "Required text",
+                                  "type": "input-text-property",
+                                  "value": "Bu alan gereklidir",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.required"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "weak-control-text",
+                                  "header": "Weak control text",
+                                  "type": "input-text-property",
+                                  "value": "Şifre çok zayıf",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.weakControl"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "min-length",
+                                  "header": "Min length",
+                                  "type": "input-number-property",
+                                  "value": 1,
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.minLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "min-length-text",
+                                  "header": "Min length text",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.minLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "max-length",
+                                  "header": "Max length",
+                                  "type": "input-number-property",
+                                  "value": 100,
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.maxLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "max-length-text",
+                                  "header": "Max length text",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.maxLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "Has icon",
+                                  "name": "hasIcon"
+                                },
+                                {
+                                  "label": "Show feedback",
+                                  "name": "showFeedback"
+                                },
+                                {
+                                  "label": "In container",
+                                  "name": "inContainer"
+                                }
+                              ],
+                              "value": {
+                                "inContainer": false,
+                                "hasIcon": false,
+                                "showFeedback": false
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "input-password",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "Yeni Şifre"
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "name",
+                              "header": "Name",
+                              "type": "input-text-property",
+                              "value": "newPassword"
+                            },
+                            {
+                              "key": "label",
+                              "header": "Label",
+                              "type": "input-text-property",
+                              "value": "Yeni Şifre",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "!value.inContainer"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "placeholder",
+                              "header": "Placeholder",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "default-value",
+                              "header": "Default value",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "class",
+                                  "header": "Class",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "position",
+                                  "type": "select-property",
+                                  "options": [
+                                    {
+                                      "label": "Left",
+                                      "value": "left"
+                                    },
+                                    {
+                                      "label": "Right",
+                                      "value": "right"
+                                    }
+                                  ],
+                                  "header": "Position",
+                                  "value": "left",
+                                  "inGroup": true
+                                }
+                              ],
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "feedback",
+                              "header": "Feedback",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "prompt-label",
+                                  "header": "Prompt label",
+                                  "type": "input-text-property",
+                                  "value": "Şifer giriniz",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "weak-label",
+                                  "header": "Weak label",
+                                  "type": "input-text-property",
+                                  "value": "Zayıf",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "medium-label",
+                                  "header": "Medium label",
+                                  "type": "input-text-property",
+                                  "value": "Orta",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "strong-label",
+                                  "header": "Strong label",
+                                  "type": "input-text-property",
+                                  "value": "Güçlü",
+                                  "inGroup": true
+                                }
+                              ],
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.showFeedback"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "100%"
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "validators",
+                              "header": "Validators",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "options",
+                                  "type": "checkbox-property",
+                                  "header": "Options",
+                                  "options": [
+                                    {
+                                      "label": "Required",
+                                      "name": "required"
+                                    },
+                                    {
+                                      "label": "Weak control",
+                                      "name": "weakControl"
+                                    },
+                                    {
+                                      "label": "Min Length",
+                                      "name": "minLenght"
+                                    },
+                                    {
+                                      "label": "Max Length",
+                                      "name": "maxLenght"
+                                    }
+                                  ],
+                                  "value": {
+                                    "required": true,
+                                    "weakControl": false,
+                                    "minLenght": false,
+                                    "maxLenght": false
+                                  },
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "required-text",
+                                  "header": "Required text",
+                                  "type": "input-text-property",
+                                  "value": "Bu alan gereklidir",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.required"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "weak-control-text",
+                                  "header": "Weak control text",
+                                  "type": "input-text-property",
+                                  "value": "Şifre çok zayıf",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.weakControl"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "min-length",
+                                  "header": "Min length",
+                                  "type": "input-number-property",
+                                  "value": 1,
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.minLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "min-length-text",
+                                  "header": "Min length text",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.minLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "max-length",
+                                  "header": "Max length",
+                                  "type": "input-number-property",
+                                  "value": 100,
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.maxLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "max-length-text",
+                                  "header": "Max length text",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.maxLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "Has icon",
+                                  "name": "hasIcon"
+                                },
+                                {
+                                  "label": "Show feedback",
+                                  "name": "showFeedback"
+                                },
+                                {
+                                  "label": "In container",
+                                  "name": "inContainer"
+                                }
+                              ],
+                              "value": {
+                                "inContainer": false,
+                                "hasIcon": false,
+                                "showFeedback": false
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "input-password",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "Yeni Şifre Tekrar"
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "name",
+                              "header": "Name",
+                              "type": "input-text-property",
+                              "value": "newPasswordAgain"
+                            },
+                            {
+                              "key": "label",
+                              "header": "Label",
+                              "type": "input-text-property",
+                              "value": "Yeni Şifre Tekrar",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "!value.inContainer"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "placeholder",
+                              "header": "Placeholder",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "default-value",
+                              "header": "Default value",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "class",
+                                  "header": "Class",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "position",
+                                  "type": "select-property",
+                                  "options": [
+                                    {
+                                      "label": "Left",
+                                      "value": "left"
+                                    },
+                                    {
+                                      "label": "Right",
+                                      "value": "right"
+                                    }
+                                  ],
+                                  "header": "Position",
+                                  "value": "left",
+                                  "inGroup": true
+                                }
+                              ],
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "feedback",
+                              "header": "Feedback",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "prompt-label",
+                                  "header": "Prompt label",
+                                  "type": "input-text-property",
+                                  "value": "Şifer giriniz",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "weak-label",
+                                  "header": "Weak label",
+                                  "type": "input-text-property",
+                                  "value": "Zayıf",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "medium-label",
+                                  "header": "Medium label",
+                                  "type": "input-text-property",
+                                  "value": "Orta",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "strong-label",
+                                  "header": "Strong label",
+                                  "type": "input-text-property",
+                                  "value": "Güçlü",
+                                  "inGroup": true
+                                }
+                              ],
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.showFeedback"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "100%"
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "validators",
+                              "header": "Validators",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "options",
+                                  "type": "checkbox-property",
+                                  "header": "Options",
+                                  "options": [
+                                    {
+                                      "label": "Required",
+                                      "name": "required"
+                                    },
+                                    {
+                                      "label": "Weak control",
+                                      "name": "weakControl"
+                                    },
+                                    {
+                                      "label": "Min Length",
+                                      "name": "minLenght"
+                                    },
+                                    {
+                                      "label": "Max Length",
+                                      "name": "maxLenght"
+                                    }
+                                  ],
+                                  "value": {
+                                    "required": true,
+                                    "weakControl": false,
+                                    "minLenght": false,
+                                    "maxLenght": false
+                                  },
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "required-text",
+                                  "header": "Required text",
+                                  "type": "input-text-property",
+                                  "value": "Bu alan gereklidir",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.required"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "weak-control-text",
+                                  "header": "Weak control text",
+                                  "type": "input-text-property",
+                                  "value": "Şifre çok zayıf",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.weakControl"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "min-length",
+                                  "header": "Min length",
+                                  "type": "input-number-property",
+                                  "value": 1,
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.minLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "min-length-text",
+                                  "header": "Min length text",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.minLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "max-length",
+                                  "header": "Max length",
+                                  "type": "input-number-property",
+                                  "value": 100,
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.maxLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "max-length-text",
+                                  "header": "Max length text",
+                                  "type": "input-text-property",
+                                  "value": "",
+                                  "conditions": [
+                                    {
+                                      "key": "options",
+                                      "rule": "value.maxLenght"
+                                    }
+                                  ],
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "Has icon",
+                                  "name": "hasIcon"
+                                },
+                                {
+                                  "label": "Show feedback",
+                                  "name": "showFeedback"
+                                },
+                                {
+                                  "label": "In container",
+                                  "name": "inContainer"
+                                }
+                              ],
+                              "value": {
+                                "inContainer": false,
+                                "hasIcon": false,
+                                "showFeedback": false
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "button",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "İptal"
+                            },
+                            {
+                              "key": "id",
+                              "header": "Button ID",
+                              "type": "input-text-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "İptal",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "severity",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Primary",
+                                  "value": "p-button-default"
+                                },
+                                {
+                                  "label": "Secondary",
+                                  "value": "p-button-secondary"
+                                },
+                                {
+                                  "label": "Success",
+                                  "value": "p-button-success"
+                                },
+                                {
+                                  "label": "Info",
+                                  "value": "p-button-info"
+                                },
+                                {
+                                  "label": "Warning",
+                                  "value": "p-button-warning"
+                                },
+                                {
+                                  "label": "Help",
+                                  "value": "p-button-help"
+                                },
+                                {
+                                  "label": "Danger",
+                                  "value": "p-button-danger"
+                                }
+                              ],
+                              "header": "Severity",
+                              "value": "p-button-secondary"
+                            },
+                            {
+                              "key": "size",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Small",
+                                  "value": "p-button-sm"
+                                },
+                                {
+                                  "label": "Normal",
+                                  "value": "p-button"
+                                },
+                                {
+                                  "label": "Large",
+                                  "value": "p-button-lg"
+                                }
+                              ],
+                              "header": "Size",
+                              "value": "p-button"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "icon-position",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Left",
+                                  "value": "left"
+                                },
+                                {
+                                  "label": "Right",
+                                  "value": "right"
+                                }
+                              ],
+                              "header": "Icon position",
+                              "value": "left",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "auto"
+                            },
+                            {
+                              "key": "action",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Submit",
+                                  "value": "submit"
+                                },
+                                {
+                                  "label": "Save",
+                                  "value": "save"
+                                },
+                                {
+                                  "label": "Link",
+                                  "value": "link"
+                                },
+                                {
+                                  "label": "Route",
+                                  "value": "route"
+                                },
+                                {
+                                  "label": "Route back",
+                                  "value": "back"
+                                },
+                                {
+                                  "label": "Download",
+                                  "value": "download"
+                                },
+                                {
+                                  "label": "Add",
+                                  "value": "add"
+                                },
+                                {
+                                  "label": "Edit",
+                                  "value": "edit"
+                                },
+                                {
+                                  "label": "Custom",
+                                  "value": "custom"
+                                },
+                                {
+                                  "label": "Modal Close",
+                                  "value": "closeModal"
+                                }
+                              ],
+                              "header": "Action",
+                              "value": "closeModal"
+                            },
+                            {
+                              "key": "formKey",
+                              "header": "Form Key",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'save'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url",
+                              "header": "Url",
+                              "type": "textarea-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "query-params",
+                              "header": "Query Params",
+                              "type": "code-editor",
+                              "value": "{\n\n}",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'route'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "filename",
+                              "header": "Filename",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'download'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url-targer",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "_self",
+                                  "value": "_self"
+                                },
+                                {
+                                  "label": "_blank",
+                                  "value": "_blank"
+                                }
+                              ],
+                              "header": "Target",
+                              "value": "_self",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'link'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "styles",
+                              "header": "Styles",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "font-style",
+                                  "type": "checkbox-property",
+                                  "header": "Font styles",
+                                  "options": [
+                                    {
+                                      "label": "Bold",
+                                      "name": "bold"
+                                    },
+                                    {
+                                      "label": "Italic",
+                                      "name": "italic"
+                                    }
+                                  ],
+                                  "value": {
+                                    "bold": false,
+                                    "italic": false
+                                  },
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "addEditButton",
+                              "header": "Add Or Edit Button",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "type",
+                                  "type": "select-property",
+                                  "header": "Type",
+                                  "options": [
+                                    {
+                                      "label": "None",
+                                      "value": "none"
+                                    },
+                                    {
+                                      "label": "Add",
+                                      "value": "add"
+                                    },
+                                    {
+                                      "label": "Edit",
+                                      "value": "edit"
+                                    }
+                                  ],
+                                  "value": "none",
+                                  "inGroup": true
+                                },
+                                []
+                              ]
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                "10"
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "In form",
+                                  "name": "inForm"
+                                },
+                                {
+                                  "label": "Has icon",
+                                  "name": "hasIcon"
+                                },
+                                {
+                                  "label": "Rounded",
+                                  "name": "rounded"
+                                },
+                                {
+                                  "label": "Has shadow",
+                                  "name": "hasShadow"
+                                },
+                                {
+                                  "label": "Has outline",
+                                  "name": "hasOutline"
+                                },
+                                {
+                                  "label": "Text button",
+                                  "name": "textButton"
+                                },
+                                {
+                                  "label": "Disabled",
+                                  "name": "disabled"
+                                }
+                              ],
+                              "value": {
+                                "inForm": false,
+                                "hasIcon": false,
+                                "rounded": false,
+                                "hasShadow": false,
+                                "hasOutline": true,
+                                "textButton": false,
+                                "disabled": false
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "button",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "Şifreyi Kaydet"
+                            },
+                            {
+                              "key": "id",
+                              "header": "Button ID",
+                              "type": "input-text-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "Şifreyi Kaydet",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "severity",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Primary",
+                                  "value": "p-button-default"
+                                },
+                                {
+                                  "label": "Secondary",
+                                  "value": "p-button-secondary"
+                                },
+                                {
+                                  "label": "Success",
+                                  "value": "p-button-success"
+                                },
+                                {
+                                  "label": "Info",
+                                  "value": "p-button-info"
+                                },
+                                {
+                                  "label": "Warning",
+                                  "value": "p-button-warning"
+                                },
+                                {
+                                  "label": "Help",
+                                  "value": "p-button-help"
+                                },
+                                {
+                                  "label": "Danger",
+                                  "value": "p-button-danger"
+                                }
+                              ],
+                              "header": "Severity",
+                              "value": "p-button-default"
+                            },
+                            {
+                              "key": "size",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Small",
+                                  "value": "p-button-sm"
+                                },
+                                {
+                                  "label": "Normal",
+                                  "value": "p-button"
+                                },
+                                {
+                                  "label": "Large",
+                                  "value": "p-button-lg"
+                                }
+                              ],
+                              "header": "Size",
+                              "value": "p-button-sm"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "icon-position",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Left",
+                                  "value": "left"
+                                },
+                                {
+                                  "label": "Right",
+                                  "value": "right"
+                                }
+                              ],
+                              "header": "Icon position",
+                              "value": "left",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "auto"
+                            },
+                            {
+                              "key": "action",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Submit",
+                                  "value": "submit"
+                                },
+                                {
+                                  "label": "Save",
+                                  "value": "save"
+                                },
+                                {
+                                  "label": "Link",
+                                  "value": "link"
+                                },
+                                {
+                                  "label": "Route",
+                                  "value": "route"
+                                },
+                                {
+                                  "label": "Route back",
+                                  "value": "back"
+                                },
+                                {
+                                  "label": "Download",
+                                  "value": "download"
+                                },
+                                {
+                                  "label": "Add",
+                                  "value": "add"
+                                },
+                                {
+                                  "label": "Edit",
+                                  "value": "edit"
+                                },
+                                {
+                                  "label": "Custom",
+                                  "value": "custom"
+                                },
+                                {
+                                  "label": "Modal Close",
+                                  "value": "closeModal"
+                                }
+                              ],
+                              "header": "Action",
+                              "value": "submit"
+                            },
+                            {
+                              "key": "formKey",
+                              "header": "Form Key",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'save'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url",
+                              "header": "Url",
+                              "type": "textarea-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "query-params",
+                              "header": "Query Params",
+                              "type": "code-editor",
+                              "value": "{\n\n}",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'route'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "filename",
+                              "header": "Filename",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'download'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url-targer",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "_self",
+                                  "value": "_self"
+                                },
+                                {
+                                  "label": "_blank",
+                                  "value": "_blank"
+                                }
+                              ],
+                              "header": "Target",
+                              "value": "_self",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'link'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "styles",
+                              "header": "Styles",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "font-style",
+                                  "type": "checkbox-property",
+                                  "header": "Font styles",
+                                  "options": [
+                                    {
+                                      "label": "Bold",
+                                      "name": "bold"
+                                    },
+                                    {
+                                      "label": "Italic",
+                                      "name": "italic"
+                                    }
+                                  ],
+                                  "value": {
+                                    "bold": false,
+                                    "italic": false
+                                  },
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "addEditButton",
+                              "header": "Add Or Edit Button",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "type",
+                                  "type": "select-property",
+                                  "header": "Type",
+                                  "options": [
+                                    {
+                                      "label": "None",
+                                      "value": "none"
+                                    },
+                                    {
+                                      "label": "Add",
+                                      "value": "add"
+                                    },
+                                    {
+                                      "label": "Edit",
+                                      "value": "edit"
+                                    }
+                                  ],
+                                  "value": "none",
+                                  "inGroup": true
+                                },
+                                []
+                              ]
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "In form",
+                                  "name": "inForm"
+                                },
+                                {
+                                  "label": "Has icon",
+                                  "name": "hasIcon"
+                                },
+                                {
+                                  "label": "Rounded",
+                                  "name": "rounded"
+                                },
+                                {
+                                  "label": "Has shadow",
+                                  "name": "hasShadow"
+                                },
+                                {
+                                  "label": "Has outline",
+                                  "name": "hasOutline"
+                                },
+                                {
+                                  "label": "Text button",
+                                  "name": "textButton"
+                                },
+                                {
+                                  "label": "Disabled",
+                                  "name": "disabled"
+                                }
+                              ],
+                              "value": {
+                                "inForm": true,
+                                "hasIcon": false,
+                                "rounded": false,
+                                "hasShadow": false,
+                                "hasOutline": true,
+                                "textButton": false,
+                                "disabled": false
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Profil Şifre Formu"
+                        },
+                        {
+                          "key": "formId",
+                          "header": "Form ID",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "submitId",
+                          "header": "Submit Button ID",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "key",
+                          "header": "Key",
+                          "type": "input-text-property",
+                          "value": "changePassword",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.expose"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "action",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Add",
+                              "value": "add"
+                            },
+                            {
+                              "label": "Get",
+                              "value": "get"
+                            },
+                            {
+                              "label": "Update",
+                              "value": "update"
+                            },
+                            {
+                              "label": "Custom",
+                              "value": "custom"
+                            },
+                            {
+                              "label": "Delete",
+                              "value": "delete"
+                            },
+                            {
+                              "label": "Hard delete",
+                              "value": "hardDelete"
+                            }
+                          ],
+                          "header": "Action",
+                          "value": "custom"
+                        },
+                        {
+                          "key": "custom-function-name",
+                          "header": "Custom function name",
+                          "type": "input-text-property",
+                          "value": "changePassword",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'custom'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "table-name",
+                          "header": "Table name",
+                          "type": "input-text-property",
+                          "value": "annualLeave",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value != 'custom'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "field-id",
+                          "header": "Field id",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'update'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "hidden-values",
+                          "header": "Hidden values",
+                          "type": "code-editor",
+                          "value": "{\n    \"test\" : \"test\"\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "table-filters",
+                          "header": "Table filters",
+                          "type": "code-editor",
+                          "value": "{\n    \"test\" : \"test\"\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'custom'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "on-success",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Reset form",
+                              "value": "reset"
+                            },
+                            {
+                              "label": "Route",
+                              "value": "route"
+                            },
+                            {
+                              "label": "Redirect",
+                              "value": "redirect"
+                            },
+                            {
+                              "label": "Nothing",
+                              "value": "nothing"
+                            }
+                          ],
+                          "header": "On success",
+                          "value": "reset"
+                        },
+                        {
+                          "key": "url",
+                          "header": "Url",
+                          "type": "textarea-property",
+                          "value": "/d/tesisat-teknik-ariza-sube",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "on-success",
+                              "rule": "value == 'redirect' || value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "query-params",
+                          "header": "Query Params",
+                          "type": "code-editor",
+                          "value": "{\n    \"_id\" : \"{{params._id}}\",\n    \"type\" : \"archive\",\n    \"startDate\" : \"{{forms.dateFilterKey.startDate.value}}\",\n    \"endDate\" : \"{{forms.dateFilterKey.endDate.value}}\"\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "on-success",
+                              "rule": "value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "response-name",
+                          "header": "Response name",
+                          "type": "input-text-property",
+                          "value": "changePasswordPost",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "on-success-message",
+                          "header": "On success message",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "header",
+                              "header": "Header",
+                              "type": "input-text-property",
+                              "value": "",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "popUp",
+                              "header": "Pop Up View",
+                              "type": "checkbox-property",
+                              "options": [
+                                {
+                                  "label": "Enable",
+                                  "name": "popUpView"
+                                }
+                              ],
+                              "value": {
+                                "popUpView": false
+                              },
+                              "inGroup": true
+                            },
+                            {
+                              "key": "life",
+                              "header": "Life",
+                              "type": "input-number-property",
+                              "value": 3000,
+                              "min": 0,
+                              "inGroup": true
+                            },
+                            {
+                              "key": "severity",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Success",
+                                  "value": "success"
+                                },
+                                {
+                                  "label": "Info",
+                                  "value": "info"
+                                },
+                                {
+                                  "label": "Warning",
+                                  "value": "warn"
+                                },
+                                {
+                                  "label": "Error",
+                                  "value": "error"
+                                }
+                              ],
+                              "header": "Severity",
+                              "value": "success",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "confirm",
+                          "header": "Confirm",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "header",
+                              "header": "Header",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "content",
+                              "header": "Content",
+                              "type": "textarea-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "accept",
+                              "header": "Accept",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "reject",
+                              "header": "Reject",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            }
+                          ],
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasConfirm"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "upload-title",
+                          "header": "File upload title",
+                          "type": "input-text-property",
+                          "value": "Dosyalar yükleniyor..."
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "Hidden",
+                              "name": "hidden"
+                            },
+                            {
+                              "label": "Has confirm",
+                              "name": "hasConfirm"
+                            },
+                            {
+                              "label": "Debug",
+                              "name": "debug"
+                            },
+                            {
+                              "label": "Debug response",
+                              "name": "debugResponse"
+                            },
+                            {
+                              "label": "Expose",
+                              "name": "expose"
+                            },
+                            {
+                              "label": "At Least Required Fields",
+                              "name": "minReqFields"
+                            }
+                          ],
+                          "value": {
+                            "hidden": false,
+                            "hasConfirm": false,
+                            "debug": false,
+                            "debugResponse": true,
+                            "expose": false,
+                            "minReqFields": false
+                          }
+                        },
+                        {
+                          "key": "reqFieldsArr",
+                          "header": "At least Req fields",
+                          "type": "textarea-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.minReqFields"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "atLeastError",
+                          "header": "On Fill At Least Msg",
+                          "type": "group-property",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.minReqFields"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "key": "header",
+                              "header": "Header",
+                              "type": "input-text-property",
+                              "value": "",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "",
+                              "inGroup": true
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "condition",
+                      "isContainer": true,
+                      "children": [
+                        {
+                          "type": "label",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "error message"
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "{{response.changePasswordPost.message}}",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "label",
+                              "header": "Form label",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.inForm"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "action",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "No action",
+                                  "value": "noAction"
+                                },
+                                {
+                                  "label": "Link",
+                                  "value": "link"
+                                },
+                                {
+                                  "label": "Route",
+                                  "value": "route"
+                                },
+                                {
+                                  "label": "Download",
+                                  "value": "download"
+                                }
+                              ],
+                              "header": "Action",
+                              "value": "noAction"
+                            },
+                            {
+                              "key": "url",
+                              "header": "Url",
+                              "type": "textarea-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value != 'noAction'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "query-params",
+                              "header": "Query Params",
+                              "type": "code-editor",
+                              "value": "{\n\n}",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'route'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "filename",
+                              "header": "Filename",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'download'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url-targer",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "_self",
+                                  "value": "_self"
+                                },
+                                {
+                                  "label": "_blank",
+                                  "value": "_blank"
+                                }
+                              ],
+                              "header": "Target",
+                              "value": "_self",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'link'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "styles",
+                              "header": "Styles",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "font-size",
+                                  "header": "Font size",
+                                  "type": "input-text-property",
+                                  "value": "15px",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "color",
+                                  "header": "Color",
+                                  "type": "color-picker-property",
+                                  "value": "#0ead63",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "decoration",
+                                  "type": "select-property",
+                                  "options": [
+                                    {
+                                      "label": "None",
+                                      "value": "none"
+                                    },
+                                    {
+                                      "label": "Overline",
+                                      "value": "overline"
+                                    },
+                                    {
+                                      "label": "Line through",
+                                      "value": "line-through"
+                                    },
+                                    {
+                                      "label": "Underline",
+                                      "value": "underline"
+                                    }
+                                  ],
+                                  "header": "Decoration",
+                                  "value": "none",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "font-style",
+                                  "type": "checkbox-property",
+                                  "header": "Font styles",
+                                  "options": [
+                                    {
+                                      "label": "Bold",
+                                      "name": "bold"
+                                    },
+                                    {
+                                      "label": "Italic",
+                                      "name": "italic"
+                                    }
+                                  ],
+                                  "value": {
+                                    "bold": false,
+                                    "italic": false
+                                  },
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "alignment",
+                                  "header": "Alignment",
+                                  "type": "select-button",
+                                  "options": [
+                                    {
+                                      "label": "Left",
+                                      "value": "left"
+                                    },
+                                    {
+                                      "label": "Center",
+                                      "value": "center"
+                                    },
+                                    {
+                                      "label": "Right",
+                                      "value": "right"
+                                    }
+                                  ],
+                                  "value": "left",
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "In form",
+                                  "name": "inForm"
+                                }
+                              ],
+                              "value": {
+                                "inForm": false
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "if error"
+                        },
+                        {
+                          "key": "condition",
+                          "header": "Condition",
+                          "type": "textarea-property",
+                          "value": "\"{{response.changePasswordPost.status}}\" == \"error\"",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "oneTimeCheck",
+                          "header": "One Time Check",
+                          "type": "checkbox-property",
+                          "options": [
+                            {
+                              "label": "Check on Create Only",
+                              "name": "once"
+                            }
+                          ],
+                          "value": {
+                            "once": false
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "condition",
+                      "isContainer": true,
+                      "children": [
+                        {
+                          "type": "label",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "success message"
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "{{response.changePasswordPost.message}}",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "label",
+                              "header": "Form label",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.inForm"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "action",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "No action",
+                                  "value": "noAction"
+                                },
+                                {
+                                  "label": "Link",
+                                  "value": "link"
+                                },
+                                {
+                                  "label": "Route",
+                                  "value": "route"
+                                },
+                                {
+                                  "label": "Download",
+                                  "value": "download"
+                                }
+                              ],
+                              "header": "Action",
+                              "value": "noAction"
+                            },
+                            {
+                              "key": "url",
+                              "header": "Url",
+                              "type": "textarea-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value != 'noAction'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "query-params",
+                              "header": "Query Params",
+                              "type": "code-editor",
+                              "value": "{\n\n}",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'route'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "filename",
+                              "header": "Filename",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'download'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url-targer",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "_self",
+                                  "value": "_self"
+                                },
+                                {
+                                  "label": "_blank",
+                                  "value": "_blank"
+                                }
+                              ],
+                              "header": "Target",
+                              "value": "_self",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'link'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "styles",
+                              "header": "Styles",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "font-size",
+                                  "header": "Font size",
+                                  "type": "input-text-property",
+                                  "value": "15px",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "color",
+                                  "header": "Color",
+                                  "type": "color-picker-property",
+                                  "value": "#0ead63",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "decoration",
+                                  "type": "select-property",
+                                  "options": [
+                                    {
+                                      "label": "None",
+                                      "value": "none"
+                                    },
+                                    {
+                                      "label": "Overline",
+                                      "value": "overline"
+                                    },
+                                    {
+                                      "label": "Line through",
+                                      "value": "line-through"
+                                    },
+                                    {
+                                      "label": "Underline",
+                                      "value": "underline"
+                                    }
+                                  ],
+                                  "header": "Decoration",
+                                  "value": "none",
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "font-style",
+                                  "type": "checkbox-property",
+                                  "header": "Font styles",
+                                  "options": [
+                                    {
+                                      "label": "Bold",
+                                      "name": "bold"
+                                    },
+                                    {
+                                      "label": "Italic",
+                                      "name": "italic"
+                                    }
+                                  ],
+                                  "value": {
+                                    "bold": false,
+                                    "italic": false
+                                  },
+                                  "inGroup": true
+                                },
+                                {
+                                  "key": "alignment",
+                                  "header": "Alignment",
+                                  "type": "select-button",
+                                  "options": [
+                                    {
+                                      "label": "Left",
+                                      "value": "left"
+                                    },
+                                    {
+                                      "label": "Center",
+                                      "value": "center"
+                                    },
+                                    {
+                                      "label": "Right",
+                                      "value": "right"
+                                    }
+                                  ],
+                                  "value": "left",
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "In form",
+                                  "name": "inForm"
+                                }
+                              ],
+                              "value": {
+                                "inForm": false
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "if success"
+                        },
+                        {
+                          "key": "condition",
+                          "header": "Condition",
+                          "type": "textarea-property",
+                          "value": "\"{{response.changePasswordPost.status}}\" == \"success\"",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "oneTimeCheck",
+                          "header": "One Time Check",
+                          "type": "checkbox-property",
+                          "options": [
+                            {
+                              "label": "Check on Create Only",
+                              "name": "once"
+                            }
+                          ],
+                          "value": {
+                            "once": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Şifre Değiştir Modal"
+                    },
+                    {
+                      "key": "label",
+                      "header": "Label",
+                      "type": "input-text-property",
+                      "value": "Şifre Değiştir"
+                    },
+                    {
+                      "key": "classes",
+                      "header": "Classes",
+                      "type": "textarea-property",
+                      "value": "hp-prof-password-modal"
+                    },
+                    {
+                      "key": "header",
+                      "header": "Header",
+                      "type": "input-text-property",
+                      "value": "Şifre Değiştir"
+                    },
+                    {
+                      "key": "width",
+                      "header": "Width",
+                      "type": "input-text-property",
+                      "value": "min(440px, 92vw)"
+                    },
+                    {
+                      "key": "appendTo",
+                      "header": "Append To",
+                      "type": "input-text-property",
+                      "value": "body"
+                    },
+                    {
+                      "key": "position",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "Top",
+                          "value": "top"
+                        },
+                        {
+                          "label": "Bottom",
+                          "value": "bottom"
+                        }
+                      ],
+                      "header": "Position",
+                      "value": "center"
+                    },
+                    {
+                      "header": "Open method",
+                      "key": "openWay",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "open-type",
+                          "header": "Open Type",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Open onload",
+                              "value": "visible"
+                            },
+                            {
+                              "label": "Open on post",
+                              "value": "onPost"
+                            },
+                            {
+                              "label": "Show open button",
+                              "value": "showOpenBtn"
+                            }
+                          ],
+                          "value": "showOpenBtn",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "openBtnClass",
+                          "header": "Open button class",
+                          "type": "input-text-property",
+                          "value": "hp-prof__btn hp-prof__btn--ghost p-button p-component",
+                          "conditions": [
+                            {
+                              "key": "open-type",
+                              "rule": "value =='showOpenBtn'"
+                            }
+                          ],
+                          "inGroup": true
+                        },
+                        {
+                          "key": "openBtnIcon",
+                          "header": "Open button icon",
+                          "type": "input-text-property",
+                          "value": "mdi mdi-key-change",
+                          "conditions": [
+                            {
+                              "key": "open-type",
+                              "rule": "value =='showOpenBtn'"
+                            }
+                          ],
+                          "inGroup": true
+                        },
+                        {
+                          "key": "openBtnText",
+                          "header": "Open button text",
+                          "type": "input-text-property",
+                          "value": "Şifre Değiştir",
+                          "conditions": [
+                            {
+                              "key": "open-type",
+                              "rule": "value =='showOpenBtn'"
+                            }
+                          ],
+                          "inGroup": true
+                        }
+                      ]
+                    },
+                    {
+                      "key": "settings",
+                      "type": "checkbox-property",
+                      "header": "Settings",
+                      "options": [
+                        {
+                          "label": "Draggable",
+                          "name": "draggable"
+                        },
+                        {
+                          "label": "Keeps dialog in the viewport",
+                          "name": "keepInViewport"
+                        },
+                        {
+                          "label": "Resizable",
+                          "name": "resizable"
+                        },
+                        {
+                          "label": "Block background",
+                          "name": "modal"
+                        },
+                        {
+                          "label": "Block scroll",
+                          "name": "blockScroll"
+                        },
+                        {
+                          "label": "Closing with ESC key",
+                          "name": "closeOnEscape"
+                        },
+                        {
+                          "label": "Outside click close",
+                          "name": "dismissableMask"
+                        },
+                        {
+                          "label": "Show close icon",
+                          "name": "closable"
+                        },
+                        {
+                          "label": "Show the header",
+                          "name": "showHeader"
+                        },
+                        {
+                          "label": "Can be displayed full screen",
+                          "name": "maximizable"
+                        },
+                        {
+                          "label": "QR Modal",
+                          "name": "qrModal"
+                        }
+                      ],
+                      "value": {
+                        "draggable": false,
+                        "keepInViewport": true,
+                        "resizable": false,
+                        "modal": true,
+                        "blockScroll": true,
+                        "closeOnEscape": true,
+                        "dismissableMask": true,
+                        "closable": true,
+                        "showHeader": true,
+                        "maximizable": false,
+                        "qrModal": false
+                      }
+                    },
+                    {
+                      "key": "closeIcon",
+                      "header": "Close Icon",
+                      "type": "input-text-property",
+                      "value": "pi pi-times",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.closable"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Şifre Modal Host"
+                },
+                {
+                  "key": "classes",
+                  "header": "Classes",
+                  "type": "textarea-property",
+                  "value": "hp-prof-modal-host hp-prof__actions"
+                },
+                {
+                  "key": "styles",
+                  "header": "Styles",
+                  "type": "code-editor",
+                  "value": "{\n\n}"
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Güvenlik Bölümü"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": "hp-prof-security-card hp-prof__card hp-prof__card--wide"
+            },
+            {
+              "key": "styles",
+              "header": "Styles",
+              "type": "code-editor",
+              "value": "{\n\n}"
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Profil Layout"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": "hp-prof-page"
+        },
+        {
+          "key": "styles",
+          "header": "Styles",
+          "type": "code-editor",
+          "value": "{\n\n}"
+        }
+      ]
+    }
+  ],
+  "styles": "/* Profilim — tüm bloklar (render-template + simple-container) için ortak stiller */\n.hp-prof-page {\n  --hp-primary: #4557a3;\n  --hp-primary-mid: #586495;\n  --hp-muted: #9ba6b7;\n  --hp-label: #777777;\n  --hp-text: #1e293b;\n  --hp-border: #e4e9f2;\n  --hp-surface: #ffffff;\n  --hp-soft: #f4f6fb;\n  --hp-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);\n  max-width: 960px;\n  margin: 0 auto;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  color: var(--hp-text);\n}\n\n.hp-prof-page *,\n.hp-prof-page *::before,\n.hp-prof-page *::after {\n  box-sizing: border-box;\n}\n\n.hp-prof-page .hp-prof__hero {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 1.25rem;\n  padding: 1.5rem;\n  background: var(--hp-surface);\n  border: 1px solid var(--hp-border);\n  border-radius: 18px;\n  box-shadow: var(--hp-shadow);\n  margin-bottom: 1rem;\n  position: relative;\n  overflow: hidden;\n}\n\n.hp-prof-page .hp-prof__hero::before {\n  content: '';\n  position: absolute;\n  inset: 0 0 auto 0;\n  height: 4px;\n  background: linear-gradient(90deg, var(--hp-primary) 0%, var(--hp-primary-mid) 100%);\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__hero {\n    grid-template-columns: auto 1fr;\n    align-items: center;\n    padding: 1.75rem 2rem;\n  }\n}\n\n.hp-prof-page .hp-prof__avatar-wrap {\n  display: flex;\n  justify-content: center;\n}\n\n.hp-prof-page .hp-prof__avatar {\n  width: 120px;\n  height: 120px;\n  border-radius: 22px;\n  object-fit: cover;\n  border: 4px solid rgba(69, 87, 163, 0.16);\n  box-shadow: 0 10px 28px rgba(69, 87, 163, 0.18);\n  display: block;\n}\n\n.hp-prof-page .hp-prof__identity {\n  min-width: 0;\n  text-align: center;\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__identity {\n    text-align: left;\n  }\n}\n\n.hp-prof-page .hp-prof__eyebrow {\n  display: block;\n  font-size: 0.72rem;\n  font-weight: 700;\n  letter-spacing: 0.14em;\n  text-transform: uppercase;\n  color: var(--hp-muted);\n  margin-bottom: 0.35rem;\n}\n\n.hp-prof-page .hp-prof__name {\n  margin: 0 0 0.35rem;\n  font-size: clamp(1.35rem, 3vw, 1.75rem);\n  font-weight: 700;\n  line-height: 1.2;\n  word-break: break-word;\n}\n\n.hp-prof-page .hp-prof__role {\n  margin: 0 0 0.85rem;\n  font-size: 0.95rem;\n  color: var(--hp-label);\n  line-height: 1.45;\n}\n\n.hp-prof-page .hp-prof__chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.5rem;\n  justify-content: center;\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__chips {\n    justify-content: flex-start;\n  }\n}\n\n.hp-prof-page .hp-prof__chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  padding: 0.35rem 0.7rem;\n  border-radius: 999px;\n  background: var(--hp-soft);\n  border: 1px solid var(--hp-border);\n  font-size: 0.78rem;\n  color: var(--hp-primary);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 1rem;\n}\n\n@media (min-width: 640px) {\n  .hp-prof-page .hp-prof__grid {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n}\n\n.hp-prof-page .hp-prof__card,\n.hp-prof-page .hp-prof-photo-card,\n.hp-prof-page .hp-prof-security-card {\n  background: var(--hp-surface);\n  border: 1px solid var(--hp-border);\n  border-radius: 16px;\n  box-shadow: var(--hp-shadow);\n  padding: 1.15rem 1.2rem 1.25rem;\n}\n\n.hp-prof-page .hp-prof__card--wide {\n  grid-column: 1 / -1;\n}\n\n.hp-prof-page .hp-prof-photo-card {\n  margin-bottom: 1rem;\n}\n\n.hp-prof-page .hp-prof-security-card {\n  margin-top: 1rem;\n}\n\n.hp-prof-page .hp-prof__card-title {\n  display: flex;\n  align-items: center;\n  gap: 0.55rem;\n  margin: 0 0 1rem;\n  font-size: 0.95rem;\n  font-weight: 700;\n  color: var(--hp-primary-mid);\n}\n\n.hp-prof-page .hp-prof__card-title i {\n  font-size: 1.15rem;\n  color: var(--hp-primary);\n}\n\n.hp-prof-page .hp-prof__row {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.7rem 0;\n  border-bottom: 1px solid #eef2f7;\n}\n\n.hp-prof-page .hp-prof__row:last-child {\n  border-bottom: none;\n  padding-bottom: 0;\n}\n\n.hp-prof-page .hp-prof__row-label {\n  font-size: 0.82rem;\n  font-weight: 600;\n  color: var(--hp-muted);\n  flex-shrink: 0;\n}\n\n.hp-prof-page .hp-prof__row-value {\n  font-size: 0.92rem;\n  color: var(--hp-text);\n  text-align: right;\n  word-break: break-word;\n}\n\n.hp-prof-page .hp-prof__leave-value {\n  display: flex;\n  align-items: baseline;\n  justify-content: flex-end;\n  gap: 0.35rem;\n  font-weight: 700;\n}\n\n.hp-prof-page .hp-prof__leave-value strong {\n  font-size: 1.65rem;\n  color: var(--hp-primary);\n  line-height: 1;\n}\n\n.hp-prof-page .hp-prof__leave-value span {\n  font-size: 0.82rem;\n  color: var(--hp-label);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__password {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.45rem;\n  letter-spacing: 0.18em;\n  color: var(--hp-text);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__password-dot {\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  background: var(--hp-primary);\n  opacity: 0.55;\n}\n\n.hp-prof-page .hp-prof__actions {\n  margin-top: 0.85rem;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n  min-height: 2.5rem;\n}\n\n.hp-prof-page .hp-prof__btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.45rem;\n  padding: 0.62rem 1rem;\n  border-radius: 10px;\n  font-size: 0.86rem;\n  font-weight: 600;\n  text-decoration: none;\n  border: 1px solid transparent;\n  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;\n}\n\n.hp-prof-page .hp-prof__btn:hover {\n  transform: translateY(-1px);\n}\n\n.hp-prof-page .hp-prof__btn--ghost {\n  background: var(--hp-soft);\n  color: var(--hp-primary);\n  border-color: var(--hp-border);\n}\n\n.hp-prof-page .hp-prof__hint {\n  margin: 0.75rem 0 0;\n  font-size: 0.78rem;\n  color: var(--hp-label);\n  line-height: 1.45;\n}\n\n.hp-prof-page .hp-prof-photo-form-host {\n  margin-top: 0.85rem;\n}\n\n.hp-prof-page .hp-prof-photo-form-host .p-fileupload,\n.hp-prof-page .hp-prof-photo-form-host .p-inputtext,\n.hp-prof-page .hp-prof-photo-form-host input[type=\"file\"] {\n  max-width: 100%;\n}\n\n.hp-prof-page .hp-prof-photo-form-host .p-button {\n  border-radius: 10px;\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof-modal-host {\n  margin: 0;\n  padding: 0;\n}\n\n.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn {\n  background: #4557a3;\n  color: #fff;\n  border: none;\n  border-radius: 10px;\n  font-weight: 600;\n  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.22);\n}\n\n.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn:hover {\n  background: #3f4f96;\n  color: #fff;\n}\n\n.hp-prof-password-modal .p-dialog-content {\n  padding-top: 0.5rem;\n}"
+}

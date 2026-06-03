@@ -1,0 +1,34 @@
+<div class="hp-prof" id="hp-prof-root">
+  <section class="hp-prof__hero">
+    <div class="hp-prof__avatar-wrap">
+      <img
+        class="hp-prof__avatar"
+        src="{{globals.resources}}{{users.photo.0.name}}"
+        alt="{{users.name}} {{users.surname}}"
+      />
+    </div>
+    <div class="hp-prof__identity">
+      <span class="hp-prof__eyebrow">Kullanıcı Profili</span>
+      <h1 class="hp-prof__name">{{users.name}} {{users.surname}}</h1>
+      <p class="hp-prof__role">
+        {{#cIf users.:roleTypes:.1._id "==" ""}}
+          {{#cIf users.:roleTypes:.0._id "!=" ""}}
+            {{users.:departments:.label}} · {{users.:roleTypes:.0.description}}
+          {{else}}
+            {{users.:departments:.label}}
+          {{/cIf}}
+        {{else}}
+          {{users.:departments:.label}} · {{users.:roleTypes:.0.description}}
+        {{/cIf}}
+      </p>
+      <div class="hp-prof__chips">
+        {{#if users.email}}
+          <span class="hp-prof__chip"><i class="mdi mdi-email-outline"></i> {{users.email}}</span>
+        {{/if}}
+        {{#if users.phone}}
+          <span class="hp-prof__chip"><i class="mdi mdi-phone-outline"></i> {{users.phone}}</span>
+        {{/if}}
+      </div>
+    </div>
+  </section>
+</div>

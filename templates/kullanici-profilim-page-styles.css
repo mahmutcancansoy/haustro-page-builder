@@ -1,0 +1,320 @@
+/* Profilim — tüm bloklar (render-template + simple-container) için ortak stiller */
+.hp-prof-page {
+  --hp-primary: #4557a3;
+  --hp-primary-mid: #586495;
+  --hp-muted: #9ba6b7;
+  --hp-label: #777777;
+  --hp-text: #1e293b;
+  --hp-border: #e4e9f2;
+  --hp-surface: #ffffff;
+  --hp-soft: #f4f6fb;
+  --hp-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);
+  max-width: 960px;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--hp-text);
+}
+
+.hp-prof-page *,
+.hp-prof-page *::before,
+.hp-prof-page *::after {
+  box-sizing: border-box;
+}
+
+.hp-prof-page .hp-prof__hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-border);
+  border-radius: 18px;
+  box-shadow: var(--hp-shadow);
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hp-prof-page .hp-prof__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--hp-primary) 0%, var(--hp-primary-mid) 100%);
+}
+
+@media (min-width: 768px) {
+  .hp-prof-page .hp-prof__hero {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    padding: 1.75rem 2rem;
+  }
+}
+
+.hp-prof-page .hp-prof__avatar-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.hp-prof-page .hp-prof__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 22px;
+  object-fit: cover;
+  border: 4px solid rgba(69, 87, 163, 0.16);
+  box-shadow: 0 10px 28px rgba(69, 87, 163, 0.18);
+  display: block;
+}
+
+.hp-prof-page .hp-prof__identity {
+  min-width: 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hp-prof-page .hp-prof__identity {
+    text-align: left;
+  }
+}
+
+.hp-prof-page .hp-prof__eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-muted);
+  margin-bottom: 0.35rem;
+}
+
+.hp-prof-page .hp-prof__name {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.hp-prof-page .hp-prof__role {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  color: var(--hp-label);
+  line-height: 1.45;
+}
+
+.hp-prof-page .hp-prof__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .hp-prof-page .hp-prof__chips {
+    justify-content: flex-start;
+  }
+}
+
+.hp-prof-page .hp-prof__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--hp-soft);
+  border: 1px solid var(--hp-border);
+  font-size: 0.78rem;
+  color: var(--hp-primary);
+  font-weight: 600;
+}
+
+.hp-prof-page .hp-prof__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .hp-prof-page .hp-prof__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.hp-prof-page .hp-prof__card,
+.hp-prof-page .hp-prof-photo-card,
+.hp-prof-page .hp-prof-security-card {
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-border);
+  border-radius: 16px;
+  box-shadow: var(--hp-shadow);
+  padding: 1.15rem 1.2rem 1.25rem;
+}
+
+.hp-prof-page .hp-prof__card--wide {
+  grid-column: 1 / -1;
+}
+
+.hp-prof-page .hp-prof-photo-card {
+  margin-bottom: 1rem;
+}
+
+.hp-prof-page .hp-prof-security-card {
+  margin-top: 1rem;
+}
+
+.hp-prof-page .hp-prof__card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--hp-primary-mid);
+}
+
+.hp-prof-page .hp-prof__card-title i {
+  font-size: 1.15rem;
+  color: var(--hp-primary);
+}
+
+.hp-prof-page .hp-prof__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.hp-prof-page .hp-prof__row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.hp-prof-page .hp-prof__row-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--hp-muted);
+  flex-shrink: 0;
+}
+
+.hp-prof-page .hp-prof__row-value {
+  font-size: 0.92rem;
+  color: var(--hp-text);
+  text-align: right;
+  word-break: break-word;
+}
+
+.hp-prof-page .hp-prof__leave-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  font-weight: 700;
+}
+
+.hp-prof-page .hp-prof__leave-value strong {
+  font-size: 1.65rem;
+  color: var(--hp-primary);
+  line-height: 1;
+}
+
+.hp-prof-page .hp-prof__leave-value span {
+  font-size: 0.82rem;
+  color: var(--hp-label);
+  font-weight: 600;
+}
+
+.hp-prof-page .hp-prof__password {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  letter-spacing: 0.18em;
+  color: var(--hp-text);
+  font-weight: 600;
+}
+
+.hp-prof-page .hp-prof__password-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--hp-primary);
+  opacity: 0.55;
+}
+
+.hp-prof-page .hp-prof__actions {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  min-height: 2.5rem;
+}
+
+.hp-prof-page .hp-prof__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.62rem 1rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.hp-prof-page .hp-prof__btn:hover {
+  transform: translateY(-1px);
+}
+
+.hp-prof-page .hp-prof__btn--ghost {
+  background: var(--hp-soft);
+  color: var(--hp-primary);
+  border-color: var(--hp-border);
+}
+
+.hp-prof-page .hp-prof__hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.78rem;
+  color: var(--hp-label);
+  line-height: 1.45;
+}
+
+.hp-prof-page .hp-prof-photo-form-host {
+  margin-top: 0.85rem;
+}
+
+.hp-prof-page .hp-prof-photo-form-host .p-fileupload,
+.hp-prof-page .hp-prof-photo-form-host .p-inputtext,
+.hp-prof-page .hp-prof-photo-form-host input[type="file"] {
+  max-width: 100%;
+}
+
+.hp-prof-page .hp-prof-photo-form-host .p-button {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.hp-prof-page .hp-prof-modal-host {
+  margin: 0;
+  padding: 0;
+}
+
+.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn {
+  background: #4557a3;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.22);
+}
+
+.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn:hover {
+  background: #3f4f96;
+  color: #fff;
+}
+
+.hp-prof-password-modal .p-dialog-content {
+  padding-top: 0.5rem;
+}
