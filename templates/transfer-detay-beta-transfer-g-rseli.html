@@ -1,0 +1,61 @@
+<div class="tdb-visual">
+  <div class="tdb-visual__route">
+    <div class="tdb-visual__node tdb-visual__node--from">
+      <div class="tdb-visual__icon" aria-hidden="true"><i class="pi pi-home"></i></div>
+      <div class="tdb-visual__label">{{transfers.:departments:old.label}}</div>
+      <span class="tdb-visual__tag">Çıkış şubesi</span>
+    </div>
+
+    <div class="tdb-visual__lane">
+      <div class="tdb-visual__line"></div>
+      {{#cIf transfers.transferMethods "==" "kargo"}}
+        <div class="tdb-visual__carrier tdb-visual__carrier--cargo">
+          <i class="pi pi-box"></i>
+          <span>Kargo</span>
+        </div>
+      {{/cIf}}
+      {{#cIf transfers.transferMethods "!=" "kargo"}}
+        <div class="tdb-visual__carrier tdb-visual__carrier--driver">
+          <i class="pi pi-truck"></i>
+          <span>{{transfers.:users:driver.name}} {{transfers.:users:driver.surname}}</span>
+        </div>
+      {{/cIf}}
+    </div>
+
+    <div class="tdb-visual__node tdb-visual__node--to">
+      <div class="tdb-visual__icon" aria-hidden="true"><i class="pi pi-map-marker"></i></div>
+      <div class="tdb-visual__label">{{transfers.:departments:new.label}}</div>
+      <span class="tdb-visual__tag">Varış şubesi</span>
+    </div>
+  </div>
+
+  <div class="tdb-visual__details">
+    <div class="tdb-visual__product">
+      <img
+        class="tdb-visual__img"
+        src="{{globals.resources}}{{transfers.:inventory:.photo.0.name}}"
+        alt=""
+      />
+      <div>
+        <span class="tdb-visual__detail-label">Envanter</span>
+        <strong>{{#if transfers.:inventory:.name}}{{transfers.:inventory:.name}} {{/if}}{{#if transfers.:inventory:.model}}{{transfers.:inventory:.model}}{{/if}}</strong>
+      </div>
+    </div>
+    <div class="tdb-visual__stat">
+      <span class="tdb-visual__detail-label">Miktar</span>
+      <strong>{{transfers.amount}} adet</strong>
+    </div>
+    <div class="tdb-visual__stat">
+      <span class="tdb-visual__detail-label">Tarih</span>
+      <strong>{{renderDate transfers.dateTime}}</strong>
+    </div>
+    <div class="tdb-visual__stat">
+      <span class="tdb-visual__detail-label">Teslim eden</span>
+      <strong>{{transfers.:users:delivered.name}} {{transfers.:users:delivered.surname}}</strong>
+    </div>
+    <div class="tdb-visual__stat">
+      <span class="tdb-visual__detail-label">Teslim alacak</span>
+      <strong>{{transfers.:users:received.name}} {{transfers.:users:received.surname}}</strong>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="hp-prof__grid">
+  <section class="hp-prof__card">
+    <h2 class="hp-prof__card-title"><i class="mdi mdi-account-details-outline"></i> Kişisel Bilgiler</h2>
+    <div class="hp-prof__row">
+      <span class="hp-prof__row-label">Ad Soyad</span>
+      <span class="hp-prof__row-value">{{users.name}} {{users.surname}}</span>
+    </div>
+    <div class="hp-prof__row">
+      <span class="hp-prof__row-label">E-posta</span>
+      <span class="hp-prof__row-value">{{#if users.email}}{{users.email}}{{else}}—{{/if}}</span>
+    </div>
+    <div class="hp-prof__row">
+      <span class="hp-prof__row-label">Telefon</span>
+      <span class="hp-prof__row-value">{{#if users.phone}}{{users.phone}}{{else}}—{{/if}}</span>
+    </div>
+    <div class="hp-prof__row">
+      <span class="hp-prof__row-label">İşe Giriş Tarihi</span>
+      <span class="hp-prof__row-value hp-prof__date" data-iso="{{users.employmentDate}}">—</span>
+    </div>
+  </section>
+
+  <section class="hp-prof__card">
+    <h2 class="hp-prof__card-title"><i class="mdi mdi-beach"></i> İzin Hakları</h2>
+    <div class="hp-prof__row">
+      <span class="hp-prof__row-label">Kalan Yıllık İzin</span>
+      <span class="hp-prof__row-value">
+        <span class="hp-prof__leave-value">
+          <strong>{{#if users.dayOffAmounts}}{{users.dayOffAmounts}}{{else}}0{{/if}}</strong>
+          <span>gün</span>
+        </span>
+      </span>
+    </div>
+    <p class="hp-prof__hint">Kalan izin hakkınız, onaylanan izin talepleri düşüldükten sonraki güncel bakiyedir.</p>
+    <div class="hp-prof__actions">
+      <a href="/d/yillik-izin-talebi" router-link="/d/yillik-izin-talebi" class="hp-prof__btn hp-prof__btn--ghost">
+        <i class="mdi mdi-calendar-plus"></i> İzin Talebi Oluştur
+      </a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('.hp-prof__date[data-iso]').forEach(function (el) {
+    var iso = (el.getAttribute('data-iso') || '').trim();
+    if (!iso) {
+      el.textContent = '—';
+      return;
+    }
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) {
+      el.textContent = iso.slice(0, 10).split('-').reverse().join('.');
+      return;
+    }
+    el.textContent = d.toLocaleDateString('tr-TR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+  });
+})();
+</script>

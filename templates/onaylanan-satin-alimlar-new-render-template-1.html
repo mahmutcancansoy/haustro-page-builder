@@ -1,0 +1,148 @@
+<div class="col-auto text-end">
+    {{#cIf input.:purchases:.status "==" "0"}}
+        <div class="status-pill status-waiting">
+            <i class="pi pi-clock"></i> Beklemede
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "1"}}
+    <div class="status-pill status-collecting-fixed">
+        <i class="pi pi-spin pi-spinner"></i> Teklif Toplanıyor
+    </div>
+{{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "2"}}
+        <div class="status-pill status-info">
+            <i class="pi pi-file-import"></i> Teklifler Yüklendi
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "3"}}
+        <div class="status-pill status-approved">
+            <i class="pi pi-check-circle"></i> Teklif Onaylandı
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "4"}}
+        <div class="status-pill status-order">
+            <i class="pi pi-shopping-cart"></i> Sipariş Verildi
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "5"}}
+        <div class="status-pill status-shipping">
+            <i class="pi pi-map-marker"></i> Sipariş Yolda
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "6"}}
+        <div class="status-pill status-delivered">
+            <i class="pi pi-box"></i> Teslim Edildi
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "7"}}
+        <div class="status-pill status-invoice">
+            <i class="pi pi-file-pdf"></i> Fatura Yüklendi
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "8"}}
+        <div class="status-pill status-final">
+            <i class="pi pi-verified"></i> Talep Karşılandı
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "9"}}
+        <div class="status-pill status-rejected">
+            <i class="pi pi-times-circle"></i> Reddedildi
+        </div>
+    {{/cIf}}
+
+    {{#cIf input.:purchases:.status "==" "10"}}
+        <div class="status-pill status-cancel">
+            <i class="pi pi-ban"></i> İptal Edildi
+        </div>
+    {{/cIf}}
+</div>
+<style>
+    /* Teklifler Yüklendi - Açık Mavi */
+.status-info {
+    background: #e6f7ff;
+    color: #1890ff;
+    border: 1px solid #91d5ff;
+}
+/* Onaylandı (Statü 3) - Canlı Yeşil Tonu */
+.status-approved {
+    background: #f6ffed !important;
+    color: #52c41a !important;
+    border: 1px solid #b7eb8f !important;
+    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.15);
+}
+/* Sipariş Verildi / Yolda - Mor Tonları */
+.status-order, .status-shipping {
+    background: #f9f0ff;
+    color: #722ed1;
+    border: 1px solid #d3adf7;
+}
+
+/* Teslim Edildi / Fatura - Turkuaz/Yeşil Tonları */
+.status-delivered, .status-invoice {
+    background: #e6fffb;
+    color: #13c2c2;
+    border: 1px solid #87e8de;
+}
+
+/* Tamamlandı (8) - Koyu Yeşil */
+.status-final {
+    background: #f6ffed;
+    color: #389e0d;
+    border: 1px solid #b7eb8f;
+}
+
+/* İptal Edildi (10) - Koyu Gri */
+.status-cancel {
+    background: #f5f5f5;
+    color: #595959;
+    border: 1px solid #d9d9d9;
+}/* Beklemede (0) - Turuncu/Kehribar Tonları */
+.status-waiting {
+    background: #fffbe6;
+    color: #faad14;
+    border: 1px solid #ffe58f;
+}
+
+/* Teklif Toplanıyor (1) - Canlı Mavi (İşlem devam ediyor) */
+/* Daha güçlü bir seçici (Specific Selector) */
+/* "status-pill" ve "status-collecting-fixed" sınıflarının ikisine birden sahip olan div'leri hedefle */
+div.status-pill.status-collecting-fixed {
+    background: #e6f7ff !important;
+    color: #096dd9 !important;
+    border: 1px solid #91d5ff !important;
+    display: inline-flex !important; /* Görünmüyorsa zorla görünür yap */
+}
+
+/* İçindeki ikonun rengini de sabitleyelim */
+div.status-pill.status-collecting-fixed i {
+    color: #096dd9 !important;
+}
+
+/* Reddedildi (9) - Kırmızı Tonları */
+.status-rejected {
+    background: #fff1f0;
+    color: #f5222d;
+    border: 1px solid #ffa39e;
+}
+
+/* Mevcut Statü Pill Yapısı (Sabit Kalabilir) */
+.status-pill {
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+</style>

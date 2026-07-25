@@ -1,0 +1,15 @@
+<div class="dro-hero">
+  <div class="dro-hero__main">
+    <span class="dro-hero__period">{{input.period}}</span>
+    <h2>Denetleme Raporu Özeti</h2>
+    <p class="dro-hero__branch">{{input.:departments:.label}}</p>
+  </div>
+  {{#if input.total.point}}
+  <div class="dro-hero__score">
+    <span class="dro-hero__score-num">{{input.total.point}}</span>
+    <span class="dro-hero__score-max">/5</span>
+    <span class="dro-hero__score-pct">%{{input.total.pointPercent}}</span>
+    {{#if input.resultText}}<span class="dro-hero__badge">{{input.resultText}}</span>{{/if}}
+  </div>
+  {{/if}}
+</div>

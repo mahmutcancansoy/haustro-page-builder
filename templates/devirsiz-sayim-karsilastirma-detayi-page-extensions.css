@@ -1,0 +1,206 @@
+/* Devirsiz Sayım Karşılaştırma Detayı — hero + karşılaştırma tablosu */
+
+.ass-page .ass__hero--compare {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem 1.25rem;
+}
+
+.ass-page .ass__hero-media--icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+}
+
+.ass-page .ass__hero-media--icon i {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.ass-page .ass__hero-arrow {
+  margin: 0 0.35rem;
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.ass-page .ass__hero-meta-line {
+  margin: 0.35rem 0 0;
+  font-size: 0.86rem;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+
+.ass-page .ass__hero-meta-line i {
+  font-size: 0.82rem;
+  margin-right: 0.15rem;
+}
+
+/* Detay kartı */
+.ass-page .ass__detail-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__detail-card > .form-container,
+.ass-page .ass__detail-card .form-container {
+  padding: 0 0 0.25rem !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Karşılaştırma tablosu sarmalayıcı */
+.ass-page .ass__compare-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ass-page .ass__compare-head.grid,
+.ass-page .ass__compare-row.grid {
+  display: grid !important;
+  grid-template-columns: minmax(11rem, 1.55fr) repeat(6, minmax(4.75rem, 1fr));
+  gap: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  min-width: 52rem;
+}
+
+.ass-page .ass__compare-head {
+  background: linear-gradient(180deg, #f1f5f9 0%, #e8edf5 100%);
+  border-bottom: 2px solid #c7d2e4;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.ass-page .ass__compare-head > .column,
+.ass-page .ass__compare-row > .column {
+  padding: 0 !important;
+  min-width: 0;
+}
+
+.ass-page .ass__compare-head .label,
+.ass-page .ass__compare-head label {
+  display: block;
+  padding: 0.8rem 0.65rem;
+  margin: 0 !important;
+  color: #475569 !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.ass-page .ass__compare-head > .column:first-child .label,
+.ass-page .ass__compare-head > .column:first-child label {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.ass-page .ass__compare-loop {
+  display: block;
+}
+
+.ass-page .ass__compare-row {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s ease;
+}
+
+.ass-page .ass__compare-row:hover {
+  background: #f8fafc;
+}
+
+.ass-page .ass__compare-row:last-child {
+  border-bottom: none;
+}
+
+.ass-page .ass__compare-row .label,
+.ass-page .ass__compare-row label,
+.ass-page .ass__compare-row a {
+  display: block;
+  padding: 0.72rem 0.65rem;
+  margin: 0 !important;
+  color: #1e293b !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+  text-align: center;
+  line-height: 1.35;
+  text-transform: none !important;
+  letter-spacing: normal;
+}
+
+.ass-page .ass__compare-row > .column:first-child .label,
+.ass-page .ass__compare-row > .column:first-child label,
+.ass-page .ass__compare-row > .column:first-child a {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.ass-page .ass__compare-row > .column:first-child a {
+  color: var(--ass-primary, #4557a3) !important;
+  text-decoration: none;
+}
+
+.ass-page .ass__compare-row > .column:first-child a:hover {
+  text-decoration: underline;
+}
+
+.ass-page .ass__compare-row > .column:nth-child(6) .label,
+.ass-page .ass__compare-row > .column:nth-child(6) label,
+.ass-page .ass__compare-row > .column:nth-child(7) .label,
+.ass-page .ass__compare-row > .column:nth-child(7) label {
+  font-weight: 700 !important;
+}
+
+.ass-page .ass__compare-row > .column:nth-child(6) .label,
+.ass-page .ass__compare-row > .column:nth-child(6) label {
+  color: #b45309 !important;
+}
+
+.ass-page .ass__compare-row > .column:nth-child(7) .label,
+.ass-page .ass__compare-row > .column:nth-child(7) label {
+  color: #be123c !important;
+}
+
+@media (min-width: 768px) {
+  .ass-page .ass__hero-media--icon {
+    width: 5.25rem;
+    height: 5.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__compare-head.grid,
+  .ass-page .ass__compare-row.grid {
+    min-width: 44rem;
+  }
+}
+
+@media print {
+  .ass-page .ass__toolbar {
+    display: none !important;
+  }
+
+  .ass-page .ass__compare-table {
+    overflow: visible;
+  }
+
+  .ass-page .ass__compare-head {
+    position: static;
+  }
+}

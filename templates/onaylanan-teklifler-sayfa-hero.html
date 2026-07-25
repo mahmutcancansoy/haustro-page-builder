@@ -1,0 +1,14 @@
+<div class="ass__hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Satın Alma</span>
+    <h1>Teklifler</h1>
+    <p class="ass__hero-sub">Teklifler yüklendi statüsündeki talepler. Her satın alma ayrı kartta; üstte talep özeti, altta teklif grubu.</p>
+  </div>
+  <div class="ass__hero-meta">
+    {{#if getPurchaseOffers.length}}
+      <span class="ass__chip"><i class="pi pi-shopping-cart"></i> {{getPurchaseOffers.length}} talep</span>
+    {{else}}
+      <span class="ass__chip"><i class="pi pi-shopping-cart"></i> Teklifler Yüklendi</span>
+    {{/if}}
+  </div>
+</div>

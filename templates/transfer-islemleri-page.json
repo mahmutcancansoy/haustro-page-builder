@@ -1,0 +1,79 @@
+{
+  "isExpanded": false,
+  "type": "main",
+  "properties": [
+    {
+      "key": "display-name",
+      "type": "input-text-property",
+      "header": "Display Name",
+      "value": "Transfer İşlemleri"
+    },
+    {
+      "key": "label",
+      "type": "input-text-property",
+      "header": "Label",
+      "value": "Transfer İşlemleri"
+    },
+    {
+      "key": "icon",
+      "type": "input-text-property",
+      "header": "Icon",
+      "value": ""
+    },
+    {
+      "key": "route-type",
+      "type": "select-property",
+      "options": [
+        { "label": "Category", "value": "category" },
+        { "label": "Static", "value": "static" },
+        { "label": "External", "value": "external" }
+      ],
+      "header": "Route Type",
+      "value": "category"
+    },
+    {
+      "key": "url-targer",
+      "type": "select-property",
+      "options": [
+        { "label": "_self", "value": "_self" },
+        { "label": "_blank", "value": "_blank" }
+      ],
+      "header": "Target",
+      "value": "_self",
+      "conditions": [
+        { "key": "route-type", "rule": "value == 'external'" }
+      ]
+    },
+    {
+      "key": "url",
+      "type": "input-text-property",
+      "header": "Url",
+      "value": "",
+      "conditions": [
+        { "key": "route-type", "rule": "value != 'category'" }
+      ]
+    },
+    {
+      "key": "settings",
+      "type": "checkbox-property",
+      "header": "Settings",
+      "options": [
+        { "label": "Hidden", "name": "hidden" }
+      ],
+      "value": {
+        "hidden": false
+      }
+    },
+    {
+      "key": "default-url",
+      "header": "Default Url",
+      "type": "input-text-property",
+      "value": "transfer-talebi-olustur",
+      "conditions": [
+        { "key": "route-type", "rule": "value == 'category'" }
+      ]
+    }
+  ],
+  "parent": "",
+  "children": []
+}

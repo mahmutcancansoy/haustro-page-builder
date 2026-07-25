@@ -1,0 +1,366 @@
+/* Mutfak Kapanış Kontrol Oluştur */
+
+.ass-page .mkko-hero .ass__hero-meta {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ass-page .mkko-chip--closing {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+}
+
+.ass-page .mkko-checklist-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: visible;
+}
+
+.ass-page .mkko-checklist-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.ass-page .mkko-list-head {
+  margin: 1rem 1.15rem 0.5rem;
+}
+
+.ass-page .mkko-form,
+.ass-page .mkko-checklist-card .form-container {
+  padding: 0 0.85rem 1rem !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.ass-page .mkko-form-array {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Departman bilgisi */
+.ass-page .mkko-meta,
+.ass-page .mkko-meta.form-group-container {
+  margin: 0 0 0.85rem !important;
+  padding: 0.75rem 0.9rem !important;
+  border-radius: 10px;
+  background: #f8fafc !important;
+  border: 1px solid #e8edf5 !important;
+}
+
+.ass-page .mkko-meta .grid,
+.ass-page .mkko-meta .row {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .mkko-meta .label {
+  color: #475569 !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+}
+
+/* Tablo başlığı */
+.ass-page .mkko-table-head-wrap {
+  margin: 0 0 0.35rem !important;
+  padding: 0 !important;
+}
+
+.ass-page .mkko-table-head,
+.ass-page .mkko-table-head.grid,
+.ass-page .mkko-table-head.row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 9rem 6.5rem;
+  gap: 0.5rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.ass-page .mkko-table-head > .column,
+.ass-page .mkko-table-head > .col {
+  padding: 0 !important;
+  min-width: 0;
+}
+
+.ass-page .mkko-th-question,
+.ass-page .mkko-th-answers,
+.ass-page .mkko-th-photo {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  margin: 0 !important;
+  padding: 0.55rem 0.65rem !important;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  color: #fff !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ass-page .mkko-th-question {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Soru döngüsü */
+.ass-page .mkko-questions-loop {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .mkko-question-row {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.ass-page .mkko-question-grid,
+.ass-page .mkko-question-grid.grid,
+.ass-page .mkko-question-grid.row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 9rem 6.5rem;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0.55rem 0.65rem !important;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  box-sizing: border-box;
+}
+
+.ass-page .mkko-questions-loop > .condition:nth-child(even) .mkko-question-grid {
+  background: #fcfdff;
+}
+
+.ass-page .mkko-question-grid > .column,
+.ass-page .mkko-question-grid > .col {
+  padding: 0 !important;
+  min-width: 0;
+}
+
+.ass-page .mkko-q-label,
+.ass-page .mkko-q-label.label {
+  display: flex !important;
+  align-items: center;
+  width: 100% !important;
+  min-height: 2.5rem;
+  margin: 0 !important;
+  padding: 0.35rem 0.45rem !important;
+  color: #334155 !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  word-break: break-word;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ass-page .mkko-hidden-field,
+.ass-page .mkko-question-grid .input-hidden,
+.ass-page .mkko-question-grid [class*='input-hidden'] {
+  display: none !important;
+}
+
+/* Evet / Hayır */
+.ass-page .mkko-radio-col,
+.ass-page .mkko-question-grid .mkko-radio-col {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.ass-page .mkko-radio-col .input-radio,
+.ass-page .mkko-radio-col .p-field-radiobutton,
+.ass-page .mkko-radio-col .field-radiobutton {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.65rem;
+  margin: 0 !important;
+}
+
+.ass-page .mkko-radio-col .p-radiobutton,
+.ass-page .mkko-radio-col .p-radiobutton-box {
+  margin: 0 !important;
+}
+
+.ass-page .mkko-radio-col label {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  margin: 0 !important;
+}
+
+/* Fotoğraf */
+.ass-page .mkko-photo-col,
+.ass-page .mkko-question-grid .mkko-photo-col {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.ass-page .mkko-photo-col .camera-file-upload,
+.ass-page .mkko-photo-col .p-button {
+  margin: 0 !important;
+  border-radius: 8px !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+}
+
+/* Bölüm başlıkları */
+.ass-page .mkko-section-title,
+.ass-page .mkko-section-app {
+  margin: 0.75rem 0 0.35rem !important;
+  padding: 0 !important;
+}
+
+.ass-page .mkko-section-title .label,
+.ass-page .mkko-section-app .label {
+  display: block;
+  margin: 0 !important;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 10px;
+  background: #eef2ff !important;
+  border: 1px solid #c7d2fe;
+  color: #3730a3 !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Notlar / açıklama */
+.ass-page .mkko-notes-section {
+  margin: 0.5rem 0 !important;
+}
+
+.ass-page .mkko-notes-body {
+  margin: 0 0 0.5rem !important;
+  padding: 0 !important;
+}
+
+.ass-page .mkko-notes-body .p-inputtextarea,
+.ass-page .mkko-notes-body textarea {
+  width: 100% !important;
+  min-height: 5.5rem;
+  border-radius: 10px !important;
+  border-color: #cbd5e1 !important;
+  font-size: 0.9rem !important;
+}
+
+/* Serbest metin sorusu */
+.ass-page .mkko-text-question-grid,
+.ass-page .mkko-text-question-grid.grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0.55rem 0.65rem !important;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+}
+
+.ass-page .mkko-text-question-grid .p-inputtext,
+.ass-page .mkko-text-question-grid input {
+  width: 100% !important;
+  border-radius: 10px !important;
+}
+
+/* Uyarı */
+.ass-page .mkko-warning {
+  margin: 0.85rem 0 0 !important;
+  padding: 0.75rem 0.9rem !important;
+  border-radius: 10px;
+  background: #fffbeb !important;
+  border: 1px solid #fde68a !important;
+}
+
+.ass-page .mkko-warning .label {
+  color: #92400e !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  white-space: normal !important;
+}
+
+/* Kaydet */
+.ass-page .mkko-actions,
+.ass-page .mkko-actions.grid,
+.ass-page .mkko-actions.row {
+  display: flex !important;
+  justify-content: flex-end;
+  margin: 1rem 0 0 !important;
+  padding: 0.75rem 0 0 !important;
+  border-top: 1px solid #e8edf5;
+}
+
+.ass-page .mkko-actions .p-button,
+.ass-page .mkko-actions button {
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  min-height: 2.6rem;
+  padding: 0 1.35rem !important;
+  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.18);
+}
+
+.ass-page .ass__toolbar .p-button,
+.ass-page .ass__toolbar button {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+
+.ass-page .ass__toolbar .p-button-secondary,
+.ass-page .ass__toolbar .p-button.p-button-secondary {
+  background: #fff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #4557a3 !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .mkko-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ass-page .mkko-hero .ass__hero-meta {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .ass-page .mkko-table-head,
+  .ass-page .mkko-question-grid {
+    grid-template-columns: minmax(0, 1fr) 7.5rem 5.5rem;
+    gap: 0.35rem;
+  }
+
+  .ass-page .mkko-text-question-grid {
+    grid-template-columns: 1fr;
+  }
+}

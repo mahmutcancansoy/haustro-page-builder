@@ -1,0 +1,203 @@
+/* Tedarik Faturaları — hafif cila + güncel buton dili (ass/atr uyumlu) */
+
+/* Tablo */
+.p-datatable {
+  --tf-primary: #4557a3;
+  --tf-muted: #64748b;
+  --tf-text: #1e293b;
+  --tf-border: #e2e8f0;
+  --tf-soft: #f8fafc;
+  --tf-radius: 14px;
+
+  background: #fff;
+  border: 1px solid var(--tf-border);
+  border-radius: var(--tf-radius);
+  box-shadow: 0 4px 20px rgba(69, 87, 163, 0.1);
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+.p-datatable .p-datatable-header {
+  background: var(--tf-soft);
+  border-bottom: 1px solid var(--tf-border);
+  padding: 0.75rem 1rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background: var(--tf-soft) !important;
+  color: var(--tf-muted) !important;
+  font-size: 0.7rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: var(--tf-border) !important;
+  padding: 0.85rem 1rem !important;
+  white-space: nowrap;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  transition: background 0.12s ease;
+}
+
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: #fcfdff;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8fafc !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9 !important;
+  padding: 0.85rem 1rem !important;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.p-datatable-emptymessage td {
+  text-align: center;
+  padding: 2.5rem 1rem !important;
+  color: #94a3b8 !important;
+  font-weight: 600;
+}
+
+/* Sayfalama */
+.p-paginator {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  padding: 0.65rem 0.75rem !important;
+}
+
+.p-paginator .p-paginator-page.p-highlight {
+  background: #4557a3 !important;
+  border-color: #4557a3 !important;
+}
+
+/* Form alanları */
+.p-dropdown,
+.p-inputtext,
+.p-inputnumber-input {
+  border-radius: 10px !important;
+}
+
+.p-dropdown:not(.p-disabled).p-focus,
+.p-inputtext:enabled:focus {
+  border-color: #5b6fd6 !important;
+  box-shadow: 0 0 0 3px rgba(91, 111, 214, 0.16) !important;
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight {
+  border-color: #4557a3 !important;
+  background: #4557a3 !important;
+}
+
+.p-radiobutton-label,
+.p-field-radiobutton > label {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Toolbar — ass__toolbar */
+.ass__toolbar .p-button,
+.tf-toolbar .p-button {
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  min-height: 2.5rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+}
+
+.ass__toolbar .p-button:not(:disabled):hover,
+.tf-toolbar .p-button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+/* Primary CTA — indigo gradient (mail / denetleme kart CTA) */
+.p-button.tf-cta-btn,
+button.p-button.tf-cta-btn {
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  border-color: #4557a3 !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(69, 87, 163, 0.22);
+}
+
+.p-button.tf-cta-btn:not(:disabled):hover,
+button.p-button.tf-cta-btn:not(:disabled):hover {
+  background: linear-gradient(135deg, #3d4d94 0%, #5163c9 100%) !important;
+  border-color: #3d4d94 !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(69, 87, 163, 0.28);
+}
+
+/* Outline CTA (ikinci aksiyon) */
+.p-button.tf-cta-btn-outline,
+.p-button.tf-cta-btn-outline.p-button-secondary,
+button.p-button.tf-cta-btn-outline {
+  background: #fff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #4557a3 !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(69, 87, 163, 0.08);
+}
+
+.p-button.tf-cta-btn-outline:not(:disabled):hover {
+  background: #eef2ff !important;
+  border-color: #a5b4fc !important;
+  color: #3730a3 !important;
+}
+
+/* Liste satır aksiyonu — atr-detail-btn dili */
+.p-datatable .p-button.tf-detail-btn,
+.p-datatable .p-button.tf-detail-btn.p-button-secondary,
+.p-button.tf-detail-btn,
+.p-button.tf-detail-btn.p-button-secondary {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  min-height: 2rem;
+  padding-left: 0.85rem !important;
+  padding-right: 0.85rem !important;
+  background: #fff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #4557a3 !important;
+  box-shadow: 0 2px 8px rgba(69, 87, 163, 0.1);
+}
+
+.p-datatable .p-button.tf-detail-btn:not(:disabled):hover,
+.p-button.tf-detail-btn:not(:disabled):hover {
+  background: #eef2ff !important;
+  border-color: #a5b4fc !important;
+  color: #3730a3 !important;
+  transform: none;
+}
+
+/* Modal senkron butonu */
+.p-dialog .p-button.tf-cta-btn {
+  min-height: 2.5rem;
+}
+
+/* Modal */
+.p-dialog .p-dialog-header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.p-dialog .p-dialog-title {
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.p-dialog .p-dialog-content {
+  padding-top: 1rem;
+}
+
+.p-dialog .p-dialog-footer {
+  border-top: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.7rem 0.75rem !important;
+  }
+}

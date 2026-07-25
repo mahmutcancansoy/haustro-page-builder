@@ -1,0 +1,70 @@
+<div class="tdb-status">
+  <div class="tdb-status__main">
+    <span class="tdb-status__eyebrow">Transfer durumu</span>
+    <div class="tdb-status__badges">
+      {{#cIf transfers.status "==" "0"}}
+        <span class="tdb-badge tdb-badge--pending"><i class="pi pi-clock"></i> Onay bekliyor</span>
+      {{/cIf}}
+      {{#cIf transfers.status "==" "5"}}
+        <span class="tdb-badge tdb-badge--danger"><i class="pi pi-times-circle"></i> Reddedildi</span>
+      {{/cIf}}
+      {{#cIf transfers.status "==" "1"}}
+        <span class="tdb-badge tdb-badge--done"><i class="pi pi-check-circle"></i> Tamamlandı</span>
+      {{/cIf}}
+      {{#cIf transfers.transferMethods "==" "kargo"}}
+        {{#cIf transfers.status "==" "2"}}
+          <span class="tdb-badge tdb-badge--pending"><i class="pi pi-upload"></i> Çıkış onayı bekleniyor</span>
+        {{/cIf}}
+        {{#cIf transfers.status "==" "3"}}
+          <span class="tdb-badge tdb-badge--cargo"><i class="pi pi-box"></i> Varış şubesinde bekliyor</span>
+        {{/cIf}}
+      {{/cIf}}
+      {{#cIf transfers.transferMethods "!=" "kargo"}}
+        {{#cIf transfers.status "==" "2"}}
+          <span class="tdb-badge tdb-badge--pending"><i class="pi pi-truck"></i> Şoför teslim almayı bekliyor</span>
+        {{/cIf}}
+        {{#cIf transfers.status "==" "3"}}
+          <span class="tdb-badge tdb-badge--transit"><i class="pi pi-map-marker"></i> Teslimat yolda</span>
+        {{/cIf}}
+        {{#cIf transfers.status "==" "4"}}
+          <span class="tdb-badge tdb-badge--cargo"><i class="pi pi-building"></i> Şube teslim onayı bekleniyor</span>
+        {{/cIf}}
+      {{/cIf}}
+    </div>
+    <p class="tdb-status__hint">
+      {{#cIf transfers.transferMethods "==" "kargo"}}
+        {{#cIf transfers.status "==" "2"}}
+          Çıkış şubesindeki sorumlu personel kargonun gönderildiğini sisteme bildirmelidir.
+        {{/cIf}}
+        {{#cIf transfers.status "==" "3"}}
+          Kargo yola çıktı. Varış şubesindeki teslim alacak personel teslimi onaylamalıdır.
+        {{/cIf}}
+      {{/cIf}}
+      {{#cIf transfers.transferMethods "!=" "kargo"}}
+        {{#cIf transfers.status "==" "2"}}
+          Atanan şoför transferi teslim aldığını onaylamalıdır.
+        {{/cIf}}
+        {{#cIf transfers.status "==" "3"}}
+          Şoför envanteri varış şubesine teslim etmelidir.
+        {{/cIf}}
+        {{#cIf transfers.status "==" "4"}}
+          Varış şubesindeki teslim alacak personel envanteri kontrol edip teslimi onaylamalıdır.
+        {{/cIf}}
+      {{/cIf}}
+    </p>
+  </div>
+  <div class="tdb-status__meta">
+    {{#cIf transfers.transferMethods "==" "kargo"}}
+      <span class="tdb-status__chip"><i class="pi pi-send"></i> Kargo ile nakil</span>
+    {{/cIf}}
+    {{#cIf transfers.transferMethods "!=" "kargo"}}
+      <span class="tdb-status__chip"><i class="pi pi-send"></i> Şoför ile nakil</span>
+    {{/cIf}}
+    {{#if transfers.confirmDescription}}
+      <span class="tdb-status__chip"><i class="pi pi-comment"></i> {{transfers.confirmDescription}}</span>
+    {{/if}}
+    {{#if transfers.shippedDescription}}
+      <span class="tdb-status__chip"><i class="pi pi-upload"></i> {{transfers.shippedDescription}}</span>
+    {{/if}}
+  </div>
+</div>

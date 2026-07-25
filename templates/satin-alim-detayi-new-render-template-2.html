@@ -1,0 +1,196 @@
+<div class="col-12 mt-4">
+    <div class="info-card m-4">
+        <div class="card-header-modern">
+            <i class="pi pi-sitemap"></i>
+            <h5>Satın Alma Onay Süreci</h5>
+        </div>
+
+        <div class="card-content-modern">
+            <div class="workflow-steps-vertical">
+
+                {{!-- 1. ADIM --}}
+                {{#if betaPurchase.chain.0.description}}
+                {{!-- Dinamik Sınıflar: is-completed, is-active veya is-pending --}}
+                <div class="wf-row {{#if betaPurchase.approvedBy.0.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order "==" 1}}is-active{{else}}is-pending{{/cIf}}{{/if}}">
+                    <div class="wf-line-box">
+                        <div class="wf-circle">
+                            {{#if betaPurchase.approvedBy.0.userName}}<i class="pi pi-check"></i>{{else}}1{{/if}}
+                        </div>
+                    </div>
+                    <div class="wf-info">
+                        {{!-- wf-desc: CSS ile durumuna göre rengini ayarlar --}}
+                        <div class="wf-desc">{{betaPurchase.chain.0.description}}</div>
+                        <div class="wf-status-area">
+                            {{#if betaPurchase.approvedBy.0.userName}}
+                                <span class="badge-user"><i class="pi pi-user"></i> {{betaPurchase.approvedBy.0.userName}}</span>
+                                <span class="badge-date">{{renderDate betaPurchase.approvedBy.0.datetime}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{!-- 2. ADIM --}}
+                {{#if betaPurchase.chain.1.description}}
+                <div class="wf-row {{#if betaPurchase.approvedBy.1.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order "==" 2}}is-active{{else}}is-pending{{/cIf}}{{/if}}">
+                    <div class="wf-line-box">
+                        <div class="wf-circle">
+                            {{#if betaPurchase.approvedBy.1.userName}}<i class="pi pi-check"></i>{{else}}2{{/if}}
+                        </div>
+                    </div>
+                    <div class="wf-info">
+                        <div class="wf-desc">{{betaPurchase.chain.1.description}}</div>
+                        <div class="wf-status-area">
+                            {{#if betaPurchase.approvedBy.1.userName}}
+                                <span class="badge-user"><i class="pi pi-user"></i> {{betaPurchase.approvedBy.1.userName}}</span>
+                                <span class="badge-date">{{renderDate betaPurchase.approvedBy.1.datetime}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{!-- 3. ADIM --}}
+                {{#if betaPurchase.chain.2.description}}
+                <div class="wf-row {{#if betaPurchase.approvedBy.2.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order "==" 3}}is-active{{else}}is-pending{{/cIf}}{{/if}}">
+                    <div class="wf-line-box">
+                        <div class="wf-circle">
+                            {{#if betaPurchase.approvedBy.2.userName}}<i class="pi pi-check"></i>{{else}}3{{/if}}
+                        </div>
+                    </div>
+                    <div class="wf-info">
+                        <div class="wf-desc">{{betaPurchase.chain.2.description}}</div>
+                        <div class="wf-status-area">
+                            {{#if betaPurchase.approvedBy.2.userName}}
+                                <span class="badge-user"><i class="pi pi-user"></i> {{betaPurchase.approvedBy.2.userName}}</span>
+                                <span class="badge-date">{{renderDate betaPurchase.approvedBy.2.datetime}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{!-- 4. ADIM --}}
+                {{#if betaPurchase.chain.3.description}}
+                <div class="wf-row {{#if betaPurchase.approvedBy.3.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order "==" 4}}is-active{{else}}is-pending{{/cIf}}{{/if}}">
+                    <div class="wf-line-box">
+                        <div class="wf-circle">
+                            {{#if betaPurchase.approvedBy.3.userName}}<i class="pi pi-check"></i>{{else}}4{{/if}}
+                        </div>
+                    </div>
+                    <div class="wf-info">
+                        <div class="wf-desc">{{betaPurchase.chain.3.description}}</div>
+                        <div class="wf-status-area">
+                            {{#if betaPurchase.approvedBy.3.userName}}
+                                <span class="badge-user"><i class="pi pi-user"></i> {{betaPurchase.approvedBy.3.userName}}</span>
+                                <span class="badge-date">{{renderDate betaPurchase.approvedBy.3.datetime}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .workflow-steps-vertical {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wf-row {
+        display: flex;
+        gap: 15px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+    .wf-line-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        width: 32px;
+        flex-shrink: 0;
+    }
+
+    /* Durumuna göre çizgi rengi */
+    .wf-row:not(:last-child) .wf-line-box::after {
+        content: '';
+        position: absolute;
+        top: 32px;
+        width: 2px;
+        height: calc(100% - 5px);
+        background: #e2e8f0; /* Standart gri */
+        z-index: 1;
+    }
+
+    .wf-circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        background: white;
+        color: #cbd5e1; /* Standart soluk gri */
+        border: 2px solid #e2e8f0;
+        z-index: 2;
+        font-size: 0.8rem;
+    }
+
+    .wf-info {
+        padding-top: 4px;
+    }
+
+    /* Standart Başlık Rengi (Koyu Gri/Lacivert) */
+    .wf-desc {
+        font-weight: 700;
+        color: #334155;
+        font-size: 1rem;
+        margin-bottom: 4px;
+        transition: color 0.3s; /* Renk geçişi yumuşak olsun */
+    }
+
+    /* DURUM RENKLERİ */
+    
+    /* 1. Tamamlanan Adım: Yeşil */
+    .is-completed .wf-circle {
+        background: #22c55e;
+        color: white;
+        border-color: #22c55e;
+    }
+    .is-completed:not(:last-child) .wf-line-box::after {
+        background: #22c55e; /* Çizgi yeşil */
+    }
+    .badge-user { color: #16a34a; font-weight: 600; font-size: 0.85rem; margin-right: 8px; }
+    .badge-date { color: #94a3b8; font-size: 0.75rem; }
+
+    /* 2. Aktif Adım: Turuncu (Sıradaki) */
+    .is-active .wf-circle {
+        background: #f97316; /* Canlı Turuncu */
+        color: white;
+        border-color: #f97316;
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+    }
+    /* Aktif adımda başlık ismi koyu kalsın (kopy lacivert) */
+    .is-active .wf-desc {
+        color: #33415599;
+    }
+
+    /* 3. Bekleyen Adım (Soluk Gri): Onaylanması Gereken */
+    .is-pending .wf-circle {
+        background: #f8fafc;
+        border-style: dashed;
+        color: #cbd5e1; /* Daire içindeki numara soluk */
+        border-color: #cbd5e1;
+    }
+    /* Bekleyen adımda başlık ismi SOLUK GRİ olsun */
+    .is-pending .wf-desc {
+        color: #cbd5e1; /* Şık bir soluk gri tonu */
+        font-weight: 600; /* Solukluk vurgusu için fontu biraz inceltebiliriz */
+    }
+</style>

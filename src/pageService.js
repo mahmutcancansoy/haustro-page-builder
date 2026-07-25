@@ -30,7 +30,7 @@ async function findPageByName(name, { parentId } = {}) {
       { 'properties.value': regex },
     ],
   };
-  if (parentId) filter.parent = parentId;
+  if (parentId != null) filter.parent = parentId;
   return db.collection('pages').find(filter).toArray();
 }
 

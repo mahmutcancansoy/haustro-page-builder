@@ -1,0 +1,30 @@
+<div class="ass__hero ass__hero--person pdro-hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Performans değerlendirme</span>
+    <h1>{{evaluationPeriod.periodText}} Özeti</h1>
+    <p class="ass__hero-sub">{{users.name}} {{users.surname}}{{#if users.:departments:.label}} · {{users.:departments:.label}}{{/if}}</p>
+  </div>
+  <div class="ass__hero-meta">
+    {{#if performanceEvaluations.0.averageScore}}
+      <span class="ass__chip pdro-chip--score"><i class="pi pi-star-fill"></i> Ortalama {{performanceEvaluations.0.averageScore}}</span>
+    {{/if}}
+    {{#if performanceEvaluations.0.previousPeriodScore}}
+      <span class="ass__chip pdro-chip--prev"><i class="pi pi-history"></i> Önceki dönem: {{performanceEvaluations.0.previousPeriodScore}}{{#if performanceEvaluations.0.previousPeriodLabel}} · {{performanceEvaluations.0.previousPeriodLabel}}{{/if}}</span>
+    {{/if}}
+    {{#if performanceEvaluations.0.scoreDelta}}
+      <span class="ass__chip pdro-chip--delta"><i class="pi pi-sort-alt"></i> Fark {{performanceEvaluations.0.scoreDelta}} <span class="pdro-chip-hint">önceki döneme göre</span></span>
+    {{/if}}
+    {{#if performanceEvaluations.0.insertCount}}
+      <span class="ass__chip"><i class="pi pi-users"></i> {{performanceEvaluations.0.insertCount}} kişi değerlendirdi</span>
+    {{/if}}
+    {{#if performanceEvaluations.0.seniorCount}}
+      <span class="ass__chip pdro-chip--senior"><i class="pi pi-arrow-up"></i> Üst rol {{performanceEvaluations.0.seniorCount}}</span>
+    {{/if}}
+    {{#if performanceEvaluations.0.juniorCount}}
+      <span class="ass__chip pdro-chip--junior"><i class="pi pi-arrow-down"></i> Alt rol {{performanceEvaluations.0.juniorCount}}</span>
+    {{/if}}
+    {{#if performanceEvaluations.0.sameCount}}
+      <span class="ass__chip pdro-chip--same"><i class="pi pi-minus"></i> Aynı seviye {{performanceEvaluations.0.sameCount}}</span>
+    {{/if}}
+  </div>
+</div>

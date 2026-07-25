@@ -1,0 +1,206 @@
+<style>
+    .inventory-card {
+        display: flex;
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        padding: 20px;
+        gap: 25px;
+        font-family: 'Inter', -apple-system, sans-serif;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .image-section {
+        flex-shrink: 0;
+    }
+
+    .inventory-img {
+        width: 200px;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid #f1f5f9;
+        object-fit: cover;
+    }
+
+    .content-section {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .product-title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 800;
+        color: #1e293b;
+        line-height: 1.2;
+    }
+
+    .specs {
+        font-size: 14px;
+        color: #64748b;
+        margin-top: -5px;
+        font-weight: 500;
+    }
+
+    .info-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 12px;
+    }
+
+    .info-row {
+        display: flex;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .info-label {
+        font-weight: 700;
+        color: #475569;
+        width: 150px;
+        flex-shrink: 0;
+    }
+
+    .info-value {
+        color: #64748b;
+    }
+
+    .location-tag {
+        display: inline-block;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        padding: 2px 8px;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #4557a3;
+    }
+
+    .quantity-badge {
+        background: #4557a3;
+        color: white;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    .empty-zimmet-msg {
+        color: #94a3b8;
+        font-size: 14px;
+        font-style: italic;
+    }
+</style>
+
+<div class="inventory-card">
+    <div class="image-section">
+        <img src="{{globals.resources}}{{inventoryParent.photo.0.name}}" alt="Ürün" class="inventory-img">
+    </div>
+
+    <div class="content-section">
+        <h2 class="product-title">{{#if inventoryParent.cins}}{{inventoryParent.cins}} {{/if}}{{#if inventoryParent.name}}{{inventoryParent.name}} {{/if}}{{#if inventoryParent.model}}{{inventoryParent.model}} {{/if}}{{#if inventoryParent.:materiels:.name}}{{inventoryParent.:materiels:.name}} {{/if}}{{#if inventoryParent.:colors:.name}}{{inventoryParent.:colors:.name}} {{/if}}{{#if inventoryParent.pattern}}{{inventoryParent.pattern}} {{/if}}{{#if inventoryParent.code}}{{inventoryParent.code}} {{/if}}</h2>
+        <div class="specs">{{#if inventoryParent.width }}{{inventoryParent.width}}x{{/if}}{{#if inventoryParent.height}}{{inventoryParent.height}}x{{/if}}{{#if inventoryParent.depth}}{{inventoryParent.depth}} {{/if}} • {{#if inventoryParent.bulk}} {{inventoryParent.bulk}}ML {{/if}}</div>
+
+        <div class="info-grid">
+            <div class="info-row">
+                <span class="info-label">Envanter No:</span>
+                <span class="info-value">{{inventoryParent.no}}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Kategori:</span>
+                <span class="info-value">{{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent}}
+{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.name}} -
+{{/if}}{{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent}}
+{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.name}} -
+{{/if}}
+{{inventoryParent.:inventoryCats:category.name}} </span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Özel Kodu:</span>
+                <span class="info-value">Özel Kod 1:{{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}
+  {{inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}
+{{else if inventoryParent.:inventoryCats:category.short}}
+  {{inventoryParent.:inventoryCats:category.short}}
+{{else}}
+  Boş
+{{/if}} - Özel Kod 2:{{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}{{else}}Boş{{/if}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}{{else}}Boş{{/if}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}{{else}}Boş{{/if}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.short}}{{inventoryParent.:inventoryCats:category.short}}{{else}}Boş{{/if}}
+{{else}}
+  Boş
+{{/if}} - Özel Kod 3:{{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}{{else}}Boş{{/if}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}{{else}}Boş{{/if}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.short}}{{inventoryParent.:inventoryCats:category.short}}{{else}}Boş{{/if}}
+{{else}}
+  Boş
+{{/if}} - Özel Kod 4:{{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}{{inventoryParent.:inventoryCats:category.:inventoryCats:parent.short}}{{else}}Boş{{/if}}
+{{else if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.short}}{{inventoryParent.:inventoryCats:category.short}}{{else}}Boş{{/if}}
+{{else}}
+  Boş
+{{/if}} - Özel Kod 5:{{#if inventoryParent.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}
+  {{#if inventoryParent.:inventoryCats:category.short}}{{inventoryParent.:inventoryCats:category.short}}{{else}}Boş{{/if}}
+{{else}}
+  Boş
+{{/if}}</div>
+            <div class="info-row">
+                <span class="info-label">Materyal / Renk:</span>
+                <span class="info-value">{{inventoryParent.:materiels:.name}} / {{inventoryParent.:colors:.name}} </span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Amortisman Süresi:</span>
+                <span class="info-value"><span class="quantity-badge">{{inventoryParent.:inventoryCats:category.amortismanYears}} Yıl</span></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Par Değeri:</span>
+                <span class="info-value">{{inventoryParent.parValue}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Şube Dağılımı:</span>
+                <div class="info-value">
+                    <span class="location-tag">{{departmentsOfInventory.departments}}</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Toplam Miktar:</span>
+                <span class="info-value"><span class="quantity-badge">{{departmentsOfInventory.count}}</span></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Şubelerdeki Zimmetler:</span>
+                <div class="info-value">
+                    {{#if departmentsOfInventory.assignedCount}}
+                    <span class="location-tag">{{departmentsOfInventory.assignedDepartments}}</span>
+                    {{else}}
+                    <span class="empty-zimmet-msg">Hiçbir şubede zimmet bulunmamaktadır.</span>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Toplam Zimmet Miktarı:</span>
+                <span class="info-value"><span class="quantity-badge">{{departmentsOfInventory.assignedCount}}</span></span>
+            </div>
+        </div>
+    </div>
+</div>

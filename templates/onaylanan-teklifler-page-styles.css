@@ -1,0 +1,372 @@
+/* Teklifler — ass-page diline uyumlu (aktif-transfer / geçmiş transfer yenilikleri) */
+.ass-page {
+  --ass-primary: #4557a3;
+  --ass-primary-mid: #586495;
+  --ass-accent: #5b6fd6;
+  --ass-muted: #94a3b8;
+  --ass-label: #64748b;
+  --ass-text: #1e293b;
+  --ass-border: #e2e8f0;
+  --ass-surface: #ffffff;
+  --ass-soft: #f8fafc;
+  --ass-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);
+  --ass-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 1.25rem 1rem 2.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ass-text);
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .ass-page { padding: 1.5rem 1.5rem 2.75rem; }
+}
+@media (min-width: 1200px) {
+  .ass-page { padding: 1.75rem 2rem 3rem; }
+}
+
+.ass-page *,
+.ass-page *::before,
+.ass-page *::after {
+  box-sizing: border-box;
+}
+
+.ass-page .ass__hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--ass-radius);
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+  color: #fff;
+  box-shadow: 0 12px 40px rgba(69, 87, 163, 0.25);
+}
+
+.ass-page .ass__hero-main { flex: 1 1 240px; min-width: 0; }
+
+.ass-page .ass__eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 0.35rem;
+}
+
+.ass-page .ass__hero h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.ass-page .ass__hero-sub {
+  margin: 0;
+  font-size: 0.92rem;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+
+.ass-page .ass__hero-meta {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ass-page .ass__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.ass-page .ot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ass-page .ot-list > * {
+  display: contents;
+}
+
+/* Her satın alma container */
+.ass-page .ass__list-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface);
+  border: 1px solid var(--ass-border);
+  border-radius: var(--ass-radius);
+  box-shadow: var(--ass-shadow);
+  overflow: hidden;
+}
+
+/* Loop kökünün kartlar arası boşluğu */
+.ass-page > .loop,
+.ass-page .loop {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ass-page .ass__list-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--ass-border);
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+}
+
+.ass-page .ass__list-head-icon {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #eef2ff;
+  color: var(--ass-primary);
+  font-size: 1rem;
+}
+
+.ass-page .ot-head__main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ass-page .ot-head__eyebrow {
+  margin: 0 0 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ass-muted);
+}
+
+.ass-page .ot-head__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.ass-page .ot-head__title-row h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ass-text);
+  line-height: 1.35;
+}
+
+.ass-page .ot-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.65rem;
+}
+
+.ass-page .ot-metric {
+  background: #fff;
+  border: 1px solid var(--ass-border);
+  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+}
+
+.ass-page .ot-metric__label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ass-muted);
+  margin-bottom: 0.2rem;
+}
+
+.ass-page .ot-metric__value {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ass-text);
+  word-break: break-word;
+}
+
+.ass-page .ot-head__desc {
+  margin: 0.85rem 0 0;
+  padding: 0.7rem 0.8rem;
+  background: #fff;
+  border: 1px solid var(--ass-border);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--ass-label);
+  line-height: 1.45;
+}
+
+.ass-page .ot-offers {
+  padding: 1rem 1.15rem 1.2rem;
+}
+
+.ass-page .ot-offers__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.ass-page .ot-offers__title h3 {
+  margin: 0 0 0.1rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ass-text);
+}
+
+.ass-page .ot-offers__title p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ass-label);
+}
+
+.ass-page .ot-offers-table,
+.ass-page .ass__list-card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  background: #fff;
+  border: 1px solid var(--ass-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ass-page .ot-offers-table th,
+.ass-page .ass__list-card table th {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ass-label);
+  background: var(--ass-soft);
+  border-bottom: 2px solid var(--ass-border);
+}
+
+.ass-page .ot-offers-table td,
+.ass-page .ass__list-card table td {
+  padding: 0.9rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--ass-text);
+  font-weight: 600;
+}
+
+.ass-page .ot-offers-table tr:last-child td,
+.ass-page .ass__list-card table tr:last-child td {
+  border-bottom: none;
+}
+
+.ass-page .ot-offers-table tr:hover td,
+.ass-page .ass__list-card table tr:hover td {
+  background: #f8fafc;
+}
+
+.ass-page .ot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ass-page .ot-actions .p-button,
+.ass-page .ot-actions button {
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  min-height: 2.35rem;
+}
+
+/* Status — aktif-transfer atr-status dili */
+.ass-page .atr-status {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+  width: max-content !important;
+  padding: 0.28rem 0.7rem !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+}
+
+.ass-page .atr-status--created,
+.ass-page .atr-status--pending {
+  background: #fff7ed;
+  color: #c2410c !important;
+  border: 1px solid #fed7aa;
+}
+
+.ass-page .atr-status--transit {
+  background: #eff6ff;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe;
+}
+
+.ass-page .atr-status--waiting {
+  background: #fffbeb;
+  color: #b45309 !important;
+  border: 1px solid #fde68a;
+}
+
+.ass-page .atr-status--cargo {
+  background: #f5f3ff;
+  color: #6d28d9 !important;
+  border: 1px solid #ddd6fe;
+}
+
+.ass-page .atr-status--arrive {
+  background: #ecfeff;
+  color: #0e7490 !important;
+  border: 1px solid #a5f3fc;
+}
+
+.ass-page .atr-status--received,
+.ass-page .atr-status--done {
+  background: #ecfdf5;
+  color: #047857 !important;
+  border: 1px solid #a7f3d0;
+}
+
+.ass-page .atr-status--danger {
+  background: #fef2f2;
+  color: #b91c1c !important;
+  border: 1px solid #fecaca;
+}
+
+@media (max-width: 768px) {
+  .ass-page .ass__list-head {
+    flex-direction: column;
+  }
+
+  .ass-page .ot-head__title-row {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,42 @@
+<div class="ass__inventory">
+  {{#if getMonthlyCountings.countings.length}}
+  <div class="ass-table-wrap">
+    <table class="ass-table">
+      <thead>
+        <tr>
+          <th class="ass-table__num" scope="col">#</th>
+          <th class="ass-table__name" scope="col">Envanter</th>
+          <th class="ass-table__qty" scope="col">Miktar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each getMonthlyCountings.countings}}
+        <tr class="ass-table__row">
+          <td class="ass-table__num" data-label="#"></td>
+          <td class="ass-table__name" data-label="Envanter">
+            <a
+              class="ass-table__link"
+              href="/d/arac-gerec-detayi?_id={{inventory._id}}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="ass-table__link-icon"><i class="pi pi-box"></i></span>
+              <span class="ass-table__link-text">{{#if inventory.cins}}{{inventory.cins}} {{/if}}{{#if inventory.name}}{{inventory.name}} {{/if}}{{#if inventory.model}}{{inventory.model}} {{/if}}{{#if inventory.:materiels:.name}}{{inventory.:materiels:.name}} {{/if}}{{#if inventory.:colors:.name}}{{inventory.:colors:.name}} {{/if}}{{#if inventory.pattern}}{{inventory.pattern}} {{/if}}{{#if inventory.width}}{{inventory.width}}x{{/if}}{{#if inventory.height}}{{inventory.height}}x{{/if}}{{#if inventory.depth}}{{inventory.depth}} {{/if}}{{#if inventory.bulk}} {{inventory.bulk}}ML {{/if}}{{#if inventory.code}}{{inventory.code}} {{/if}}</span>
+              <i class="pi pi-external-link ass-table__link-arrow"></i>
+            </a>
+          </td>
+          <td class="ass-table__qty" data-label="Miktar">
+            <span class="ass-qty-badge">{{count}}</span>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="ass__empty">
+    <i class="pi pi-inbox"></i>
+    <p>Bu sayım dönemine ait envanter kaydı bulunamadı.</p>
+  </div>
+  {{/if}}
+</div>

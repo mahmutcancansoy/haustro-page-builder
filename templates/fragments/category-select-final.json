@@ -1,0 +1,52 @@
+{
+  "_id": "6346f6f0b03e3600367d9567",
+  "type": "template",
+  "properties": [
+    {
+      "key": "display-name",
+      "header": "Display name",
+      "type": "input-text-property",
+      "value": "Category Select Final"
+    },
+    {
+      "key": "name",
+      "header": "Name",
+      "type": "input-text-property",
+      "value": ""
+    },
+    {
+      "key": "variables",
+      "type": "variable-array",
+      "header": "Variables",
+      "value": [
+        {
+          "key": "exposeFieldName",
+          "value": ":inventoryCats:category"
+        },
+        {
+          "key": "lastChildSelect",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "key": "classes",
+      "header": "Classes",
+      "type": "textarea-property",
+      "value": "hp-age__category",
+      "autoComplete": true,
+      "autoCompleteMode": "template"
+    },
+    {
+      "key": "styles",
+      "header": "Styles",
+      "type": "code-editor",
+      "value": "{\n\n}",
+      "autoComplete": true,
+      "autoCompleteMode": "template"
+    }
+  ],
+  "isContainer": false,
+  "children": [],
+  "label": "Category Select Final"
+}

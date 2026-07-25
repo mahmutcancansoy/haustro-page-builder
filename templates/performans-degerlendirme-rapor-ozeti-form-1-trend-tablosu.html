@@ -1,0 +1,28 @@
+{{#if performanceEvaluations.0.periodTrend}}
+<div class="pdro-trend">
+  <p class="pdro-trend__title">Son dönem karşılaştırması</p>
+  <div class="pdro-trend__table-wrap">
+    <table class="pdro-trend__table">
+      <thead>
+        <tr>
+          <th>Dönem</th>
+          <th class="pdro-trend__num">Ortalama</th>
+          <th class="pdro-trend__num">
+            <span class="pdro-th-main">Fark</span>
+            <span class="pdro-th-hint">önceki döneme göre</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each performanceEvaluations.0.periodTrend}}
+        <tr{{#if isCurrent}} class="pdro-trend__row--current"{{/if}}>
+          <td>{{periodLabel}}</td>
+          <td class="pdro-trend__num">{{#if averageScore}}{{averageScore}}{{else}}—{{/if}}</td>
+          <td class="pdro-trend__num pdro-trend__delta">{{#if scoreDelta}}{{scoreDelta}}{{else}}—{{/if}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{/if}}

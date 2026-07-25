@@ -1,0 +1,129 @@
+{
+  "isExpanded": false,
+  "type": "sub",
+  "properties": [
+    {
+      "key": "display-name",
+      "type": "input-text-property",
+      "header": "Display Name",
+      "value": "Transfer Aşamaları"
+    },
+    {
+      "key": "label",
+      "type": "input-text-property",
+      "header": "Label",
+      "value": "Transfer Aşamaları"
+    },
+    {
+      "key": "icon",
+      "type": "input-text-property",
+      "header": "Icon",
+      "value": "pi pi-send"
+    },
+    {
+      "key": "route-type",
+      "type": "select-property",
+      "options": [
+        {
+          "label": "Dynamic",
+          "value": "dynamic"
+        },
+        {
+          "label": "Static",
+          "value": "static"
+        },
+        {
+          "label": "External",
+          "value": "external"
+        }
+      ],
+      "header": "Route Type",
+      "value": "dynamic"
+    },
+    {
+      "key": "url-targer",
+      "type": "select-property",
+      "options": [
+        {
+          "label": "_self",
+          "value": "_self"
+        },
+        {
+          "label": "_blank",
+          "value": "_blank"
+        }
+      ],
+      "header": "Target",
+      "value": "_self",
+      "conditions": [
+        {
+          "key": "route-type",
+          "rule": "value == 'external'"
+        }
+      ]
+    },
+    {
+      "key": "url",
+      "type": "input-text-property",
+      "header": "Url",
+      "value": "transfer-asamalari",
+      "conditions": [
+        {
+          "key": "route-type",
+          "rule": "value != 'category'"
+        }
+      ]
+    },
+    {
+      "key": "bg",
+      "header": "Background",
+      "type": "group-property",
+      "children": [
+        {
+          "key": "bg-type",
+          "header": "Type",
+          "type": "select-button",
+          "options": [
+            {
+              "label": "Color",
+              "value": "color"
+            },
+            {
+              "label": "Gradient",
+              "value": "gradient"
+            }
+          ],
+          "value": "color",
+          "inGroup": true
+        },
+        {
+          "key": "bg-color",
+          "header": "Color",
+          "type": "color-property",
+          "value": "#ffffff",
+          "inGroup": true
+        }
+      ]
+    },
+    {
+      "key": "settings",
+      "type": "checkbox-property",
+      "header": "Settings",
+      "options": [
+        {
+          "label": "Show in menu",
+          "name": "showInMenu"
+        },
+        {
+          "label": "Show header",
+          "name": "showHeader"
+        }
+      ],
+      "value": {
+        "showInMenu": true,
+        "showHeader": true
+      }
+    }
+  ],
+  "children": []
+}

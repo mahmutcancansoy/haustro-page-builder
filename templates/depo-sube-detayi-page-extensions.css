@@ -1,0 +1,288 @@
+/* Depo / Şube Detayı — hero, bölüm kartı, accordion ve tablolar */
+
+/* Şube hero */
+.ass-page .ass__hero--branch {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem 1.25rem;
+}
+
+.ass-page .ass__hero--branch .ass__hero-media {
+  grid-column: 1;
+  grid-row: 1;
+  flex: 0 0 auto;
+}
+
+.ass-page .ass__hero--branch .ass__hero-img {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+  display: block;
+}
+
+.ass-page .ass__hero--branch .ass__hero-main {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.ass-page .ass__hero--branch .ass__hero-meta {
+  grid-column: 3;
+  align-self: flex-start;
+}
+
+.ass-page .ass__hero-meta-line {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+
+.ass-page .ass__hero-meta-line i {
+  font-size: 0.82rem;
+  margin-right: 0.2rem;
+}
+
+/* Bölümler kartı */
+.ass-page .ass__sections-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__sections-card > .acordion,
+.ass-page .ass__sections-card > .ass__accordion,
+.ass-page .ass__sections-card .ass__accordion {
+  padding: 0 1rem 1rem;
+}
+
+/* Accordion */
+.ass-page .ass__sections-card .ass__accordion.p-accordion,
+.ass-page .ass__sections-card .ass__accordion .p-accordion,
+.ass-page .ass__accordion.p-accordion,
+.ass-page .ass__accordion .p-accordion {
+  border: none;
+  background: transparent;
+}
+
+.ass-page .ass__accordion .p-accordion-tab,
+.ass-page .ass__accordion .p-accordionpanel {
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.ass-page .ass__accordion .p-accordion-tab:last-child,
+.ass-page .ass__accordion .p-accordionpanel:last-child {
+  margin-bottom: 0;
+}
+
+.ass-page .ass__accordion .p-accordion-header,
+.ass-page .ass__accordion .p-accordionheader {
+  border: none !important;
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%) !important;
+}
+
+.ass-page .ass__accordion .p-accordion-header-link,
+.ass-page .ass__accordion .p-accordionheader-link,
+.ass-page .ass__accordion .p-accordion-header-action {
+  padding: 0.95rem 1.15rem !important;
+  font-weight: 800 !important;
+  font-size: 0.92rem !important;
+  color: var(--ass-text, #1e293b) !important;
+  text-decoration: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__accordion .p-accordion-header-link:hover,
+.ass-page .ass__accordion .p-accordionheader-link:hover {
+  background: #f8fafc !important;
+}
+
+.ass-page .ass__accordion .p-accordion-content,
+.ass-page .ass__accordion .p-accordioncontent-content {
+  padding: 0 1rem 1rem !important;
+  border: none !important;
+  background: #fff !important;
+}
+
+.ass-page .ass__accordion .p-accordion-tab-custom-header,
+.ass-page .ass__accordion .acordion-tab-custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0 0 0.75rem;
+}
+
+.ass-page .ass__accordion .p-button,
+.ass-page .ass__accordion .p-button.p-button-sm {
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* Transfer özeti */
+.ass-page .ass__transfer-summary,
+.ass-page .ass__transfer-summary.label,
+.ass-page label.ass__transfer-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  background: #eef2ff !important;
+  color: #4557a3 !important;
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4;
+}
+
+.ass-page .ass__transfer-summary::before {
+  content: '₺';
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 8px;
+  background: rgba(69, 87, 163, 0.12);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+/* Tablolar */
+.ass-page .ass__sections-card .p-datatable,
+.ass-page .ass__sections-card .p-datatable-wrapper,
+.ass-page .ass__sections-card table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ass-page .ass__sections-card .p-datatable-thead > tr > th,
+.ass-page .ass__sections-card thead th {
+  padding: 0.8rem 1rem !important;
+  background: var(--ass-soft, #f8fafc) !important;
+  border-bottom: 2px solid var(--ass-border, #e2e8f0) !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ass-label, #64748b) !important;
+}
+
+.ass-page .ass__sections-card .p-datatable-tbody > tr > td,
+.ass-page .ass__sections-card tbody td {
+  padding: 0.85rem 1rem !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  font-size: 0.88rem;
+  color: var(--ass-text, #1e293b);
+  vertical-align: middle;
+}
+
+.ass-page .ass__sections-card .p-datatable-tbody > tr:hover,
+.ass-page .ass__sections-card tbody tr:hover {
+  background: #f8fafc !important;
+}
+
+.ass-page .ass__sections-card .p-datatable-tbody > tr:last-child > td,
+.ass-page .ass__sections-card tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.ass-page .ass__sections-card .p-datatable img,
+.ass-page .ass__sections-card table img {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--ass-border, #e2e8f0);
+  background: #f8fafc;
+}
+
+.ass-page .ass__sections-card .p-button.p-button-sm,
+.ass-page .ass__sections-card .p-button-link {
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.ass-page .ass__sections-card .p-paginator {
+  padding: 0.75rem 0 0.25rem;
+  border: none;
+  background: transparent;
+}
+
+.ass-page .ass__sections-card .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: var(--ass-primary, #4557a3);
+  border-color: var(--ass-primary, #4557a3);
+}
+
+/* Durum etiketleri */
+.ass-page .ass__sections-card .condition .label,
+.ass-page .ass__sections-card label.label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0;
+  text-transform: none !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__hero--branch {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'media main'
+      'meta meta';
+    align-items: start;
+  }
+
+  .ass-page .ass__hero--branch .ass__hero-media {
+    grid-area: media;
+  }
+
+  .ass-page .ass__hero--branch .ass__hero-img {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .ass-page .ass__hero--branch .ass__hero-main {
+    grid-area: main;
+  }
+
+  .ass-page .ass__hero--branch .ass__hero-meta {
+    grid-area: meta;
+    width: 100%;
+    margin-top: 0.15rem;
+  }
+
+  .ass-page .ass__sections-card > .acordion,
+  .ass-page .ass__sections-card > .ass__accordion {
+    padding: 0 0.65rem 0.85rem;
+  }
+}
+
+@media print {
+  .ass-page .ass__sections-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .ass-page .ass__accordion .p-accordion-tab,
+  .ass-page .ass__accordion .p-accordionpanel {
+    break-inside: avoid;
+  }
+}

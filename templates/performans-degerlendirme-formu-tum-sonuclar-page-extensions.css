@@ -1,0 +1,555 @@
+/* Performans Değerlendirme Formu — Tüm Sonuçlar */
+
+.ass-page .pdft-hero .ass__hero-meta {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ass-page .pdft-chip--score {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+}
+
+/* Filtre kartı */
+.ass-page .pdft-filter-card {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  margin-bottom: 1.1rem;
+  padding: 0;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: visible;
+}
+
+.ass-page .pdft-filter-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 100%);
+}
+
+.ass-page .pdft-filter-grid,
+.ass-page .pdft-filter-grid.grid,
+.ass-page .pdft-filter-grid.row {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1rem;
+  margin: 0 !important;
+  padding: 0.95rem 1.1rem !important;
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+.ass-page .pdft-filter-grid > .column,
+.ass-page .pdft-filter-grid > .col,
+.ass-page .pdft-filter-grid [class*='col-'] {
+  flex: 1 1 200px;
+  min-width: 0;
+  padding: 0 !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+.ass-page .pdft-filter-grid .form-container {
+  position: relative;
+  z-index: 40;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.ass-page .pdft-filter-grid .p-field,
+.ass-page .pdft-filter-grid .field,
+.ass-page .pdft-filter-grid .form-group {
+  overflow: visible !important;
+}
+
+.ass-page .pdft-filter-grid .p-dropdown {
+  width: 100% !important;
+  min-width: 14rem;
+  border-radius: 10px !important;
+  border-color: #c7d2fe !important;
+}
+
+.ass-page .pdft-filter-grid .p-dropdown-panel,
+.ass-page .pdft-filter-card .p-dropdown-panel,
+.ass-page .pdft-filter-grid .p-dropdown-items-wrapper {
+  z-index: 9999 !important;
+}
+
+.ass-page .pdft-filter-grid .p-dropdown.p-dropdown-open {
+  z-index: 50;
+  position: relative;
+}
+
+.ass-page .pdft-filter-grid label,
+.ass-page .pdft-filter-grid .p-field label {
+  color: #64748b !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Sonuç tablosu kartı */
+.ass-page .pdft-results-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: visible;
+}
+
+.ass-page .pdft-results-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.ass-page .pdft-results-form,
+.ass-page .pdft-results-card .form-container {
+  padding: 0.5rem 0.85rem 1rem !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.ass-page .pdft-form-array {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .pdft-form-group {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Üst bilgi satırı */
+.ass-page .pdft-matrix-meta,
+.ass-page .pdft-matrix-meta.grid,
+.ass-page .pdft-matrix-meta.row {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0 0 0.75rem !important;
+  padding: 0.65rem 0.75rem !important;
+  border-radius: 10px;
+  background: #f8fafc !important;
+  border: 1px solid #e8edf5 !important;
+}
+
+.ass-page .pdft-matrix-meta > .column,
+.ass-page .pdft-matrix-meta > .col,
+.ass-page .pdft-matrix-meta [class*='col-'] {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 0 !important;
+  width: auto !important;
+}
+
+.ass-page .pdft-matrix-meta .label {
+  color: #475569 !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+}
+
+/* Tablo başlık satırı */
+.ass-page .pdft-matrix-header,
+.ass-page .pdft-matrix-header.grid,
+.ass-page .pdft-matrix-header.row {
+  margin: 0 0 0.35rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.ass-page .pdft-matrix-header > .column,
+.ass-page .pdft-matrix-header > .col,
+.ass-page .pdft-matrix-header [class*='col-'] {
+  padding: 0 !important;
+}
+
+.ass-page .pdft-matrix-header .label {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  margin: 0 !important;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  color: #fff !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Tablo gövdesi — satır bazlı hizalama (kriter | puan | ortalama) */
+.ass-page .pdft-matrix-body,
+.ass-page .pdft-matrix-body.grid,
+.ass-page .pdft-matrix-body.row {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  gap: 0.35rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.ass-page .pdft-matrix-rows-loop,
+.ass-page .pdft-matrix-body > .pdft-matrix-rows-loop {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+.ass-page .pdft-matrix-row,
+.ass-page .pdft-matrix-row.grid,
+.ass-page .pdft-matrix-row.row {
+  display: grid !important;
+  grid-template-columns: minmax(280px, 34%) 1fr 88px;
+  gap: 0.5rem;
+  align-items: stretch;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.ass-page .pdft-matrix-footer,
+.ass-page .pdft-matrix-footer.grid,
+.ass-page .pdft-matrix-footer.row {
+  display: grid !important;
+  grid-template-columns: minmax(280px, 34%) 1fr 88px;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.15rem 0 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.ass-page .pdft-matrix-row > .column,
+.ass-page .pdft-matrix-row > .col,
+.ass-page .pdft-matrix-footer > .column,
+.ass-page .pdft-matrix-footer > .col,
+.ass-page .pdft-row-criterion,
+.ass-page .pdft-row-scores,
+.ass-page .pdft-row-avg {
+  padding: 0 !important;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.ass-page .pdft-row-scores {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ass-page .pdft-footer-spacer {
+  min-height: 0;
+}
+
+/* Eski üç sütun düzeni (geri uyumluluk) */
+.ass-page .pdft-matrix-body > .column,
+.ass-page .pdft-matrix-body > .col,
+.ass-page .pdft-matrix-body [class*='col-'] {
+  padding: 0 !important;
+  min-width: 0;
+  align-self: flex-start;
+}
+
+.ass-page .pdft-criteria-col,
+.ass-page .pdft-matrix-body > .column:first-child,
+.ass-page .pdft-matrix-body > .col:first-child {
+  flex: 0 0 34% !important;
+  width: 34% !important;
+  min-width: 280px !important;
+  max-width: 420px !important;
+}
+
+.ass-page .pdft-scroll-col,
+.ass-page .pdft-matrix-body .col-scroll {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.25rem !important;
+}
+
+.ass-page .pdft-avg-col,
+.ass-page .pdft-matrix-body > .column:last-child,
+.ass-page .pdft-matrix-body > .col:last-child {
+  flex: 0 0 88px !important;
+  width: 88px !important;
+  min-width: 88px !important;
+  max-width: 104px !important;
+  background: transparent !important;
+}
+
+.ass-page .pdft-avg-col.column,
+.ass-page .pdft-avg-col[class*='col-'] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Soru döngüleri — sütunlar arası dikey hizalama */
+.ass-page .pdft-matrix-body .pdft-question-loop,
+.ass-page .pdft-matrix-body .pdft-matrix-loop.pdft-question-loop {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .pdft-criteria-col .pdft-hidden-field,
+.ass-page .pdft-criteria-col .input-hidden,
+.ass-page .pdft-criteria-col [class*='input-hidden'],
+.ass-page .pdft-row-criterion .pdft-hidden-field,
+.ass-page .pdft-row-criterion .input-hidden,
+.ass-page .pdft-row-criterion [class*='input-hidden'] {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+}
+
+/* Kriter satırları */
+.ass-page .pdft-criterion,
+.ass-page .pdft-criterion.label,
+.ass-page .pdft-criterion.pdft-score-chip {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 2.75rem;
+  margin: 0 !important;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #eef2f7;
+  color: #334155 !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  text-align: left;
+  box-shadow: none !important;
+  box-sizing: border-box;
+}
+
+/* Puan satırı — her soru için yatay şerit */
+.ass-page .pdft-evaluator-row,
+.ass-page .pdft-scroll-col .pdft-evaluator-row,
+.ass-page .pdft-row-scores .pdft-evaluator-row,
+.ass-page .rowFlex.nowarp.pdft-evaluator-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 0.2rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+}
+
+.ass-page .pdft-evaluator-row .pdft-scores-loop,
+.ass-page .pdft-evaluator-row > .pdft-matrix-loop,
+.ass-page .pdft-evaluator-row > .loop {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 0.2rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: max-content;
+  min-width: 100%;
+}
+
+.ass-page .pdft-evaluator-row .column,
+.ass-page .pdft-evaluator-row > .column,
+.ass-page .pdft-evaluator-row [class*='col-'],
+.ass-page .pdft-scores-loop > .column,
+.ass-page .pdft-scores-loop [class*='col-'] {
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Puan hücreleri */
+.ass-page .pdft-score-chip,
+.ass-page .pdft-score-chip.label,
+.ass-page .pdft-evaluator-row .h-40.label,
+.ass-page .pdft-evaluator-row .w-40.label {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem !important;
+  min-width: 2.5rem !important;
+  height: 2.5rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 8px;
+  background: #eef2ff !important;
+  border: 1px solid #c7d2fe;
+  color: #3730a3 !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 6px rgba(69, 87, 163, 0.1);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.ass-page .pdft-avg-score,
+.ass-page .pdft-avg-score.label,
+.ass-page .pdft-avg-score.h-40 {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 2.75rem;
+  margin: 0 !important;
+  padding: 0.35rem !important;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+  border: 1px solid #6ee7b7;
+  color: #047857 !important;
+  font-size: 0.86rem !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+  box-sizing: border-box;
+}
+
+.ass-page .pdft-grand-avg {
+  margin-top: 0.35rem !important;
+}
+
+.ass-page .pdft-total-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 0.2rem;
+  margin: 0.35rem 0 0 !important;
+  padding: 0 !important;
+  min-height: 2.75rem;
+}
+
+.ass-page .pdft-total-row .pdft-scores-loop {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 0.2rem;
+}
+
+.ass-page .pdft-matrix-loop {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Eski yardımcı sınıflar (korunur) */
+.ass-page .nowarp {
+  flex-wrap: nowrap !important;
+}
+
+.ass-page .rowFlex {
+  display: flex;
+  flex-direction: row;
+}
+
+.ass-page .col-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.ass-page .w-40 {
+  width: 2.5rem;
+}
+
+.ass-page .h-40 {
+  height: 2.5rem;
+}
+
+/* Toolbar */
+.ass-page .ass__toolbar .p-button,
+.ass-page .ass__toolbar button {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+
+.ass-page .ass__toolbar .p-button-secondary,
+.ass-page .ass__toolbar .p-button.p-button-secondary {
+  background: #fff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #4557a3 !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .pdft-hero.ass__hero--person {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ass-page .pdft-hero .ass__hero-meta {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .ass-page .pdft-matrix-row,
+  .ass-page .pdft-matrix-footer {
+    grid-template-columns: minmax(220px, 240px) 1fr 72px;
+  }
+
+  .ass-page .pdft-criteria-col,
+  .ass-page .pdft-matrix-body > .column:first-child,
+  .ass-page .pdft-matrix-body > .col:first-child {
+    flex: 0 0 240px !important;
+    width: 240px !important;
+    min-width: 220px !important;
+    max-width: 280px !important;
+  }
+}

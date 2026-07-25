@@ -1,0 +1,47 @@
+<div class="ass__hero ass__hero--product ttad-hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Teknik servis · Detay</span>
+    <h1>Tesisat Teknik Arıza Detayı</h1>
+    <p class="ass__hero-sub">{{technicalDemands.description}}</p>
+    <p class="ass__hero-meta-line">
+      <i class="pi pi-building"></i> {{technicalDemands.:departments:.label}}
+      · <i class="pi pi-user"></i> {{technicalDemands.:users:creator.name}} {{technicalDemands.:users:creator.surname}}
+      · <i class="pi pi-calendar"></i> {{renderDateTime technicalDemands.datetime}}
+    </p>
+  </div>
+  <div class="ass__hero-status">
+    {{#cIf technicalDemands.status "==" "0"}}
+      <span class="ass__badge ass__badge--pending"><i class="pi pi-clock"></i> Beklemede</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "1"}}
+      <span class="ass__badge ass__badge--info"><i class="pi pi-user"></i> Teknisyen Atandı</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "2"}}
+      <span class="ass__badge ass__badge--info"><i class="pi pi-search"></i> Arıza İnceleniyor</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "3"}}
+      <span class="ass__badge ass__badge--waiting"><i class="pi pi-file"></i> Teklif Bekleniyor</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "4"}}
+      <span class="ass__badge ass__badge--waiting"><i class="pi pi-verified"></i> Onay Bekleniyor</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "5"}}
+      <span class="ass__badge ass__badge--waiting"><i class="pi pi-cog"></i> Servis Bekleniyor</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "6"}}
+      <span class="ass__badge ass__badge--waiting"><i class="pi pi-box"></i> Parça Bekleniyor</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "7"}}
+      <span class="ass__badge ass__badge--progress"><i class="pi pi-wrench"></i> Onarım Sürecinde</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "8"}}
+      <span class="ass__badge ass__badge--done"><i class="pi pi-check-circle"></i> Arıza Giderildi</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "9"}}
+      <span class="ass__badge ass__badge--waiting"><i class="pi pi-check"></i> Onay Bekliyor</span>
+    {{/cIf}}
+    {{#cIf technicalDemands.status "==" "10"}}
+      <span class="ass__badge ass__badge--done"><i class="pi pi-calendar"></i> Onarımı Planlandı</span>
+    {{/cIf}}
+  </div>
+</div>

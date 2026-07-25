@@ -1,0 +1,776 @@
+{{#if params._id}}
+{{#each adminOverview}}
+<div class="aup-page">
+  <a class="aup-back" href="/d/admin-sistem-durumu">
+    <i class="pi pi-arrow-left"></i> Kullanıcı özetine dön
+  </a>
+
+  {{#if this.error}}
+  <div class="aup-error">
+    <i class="pi pi-exclamation-triangle"></i>
+    <div>
+      <h2>Profil yüklenemedi</h2>
+      <p>{{this.error}}</p>
+    </div>
+  </div>
+  {{else}}
+  <section class="aup-hero">
+    <div class="aup-hero__identity">
+      <div class="aup-avatar">
+        {{#if this.photoName}}
+        <img src="{{globals.resources}}{{this.photoName}}" alt="{{this.fullName}}">
+        {{else}}
+        <i class="pi pi-user"></i>
+        {{/if}}
+      </div>
+      <div class="aup-hero__copy">
+        <span class="aup-eyebrow">Admin kullanıcı profili</span>
+        <h1>{{this.fullName}}</h1>
+        <p>{{this.department.label}}{{#if this.roles.0.label}} · {{this.roles.0.label}}{{/if}}</p>
+        <div class="aup-hero__badges">
+          <span class="aup-badge aup-badge--active">
+            <i class="pi pi-check-circle"></i> {{this.statusLabel}}
+          </span>
+          <span class="aup-badge">
+            <i class="pi pi-envelope"></i> {{this.email}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="aup-stats">
+    <article class="aup-stat">
+      <span class="aup-stat__icon"><i class="pi pi-calendar"></i></span>
+      <div>
+        <span class="aup-stat__label">İşe giriş tarihi</span>
+        <strong>{{this.employmentDateLabel}}</strong>
+      </div>
+    </article>
+    <article class="aup-stat aup-stat--tenure">
+      <span class="aup-stat__icon"><i class="pi pi-clock"></i></span>
+      <div>
+        <span class="aup-stat__label">Çalışma süresi</span>
+        <strong>{{this.employmentDuration}}</strong>
+      </div>
+    </article>
+    <article class="aup-stat aup-stat--login">
+      <span class="aup-stat__icon"><i class="pi pi-sign-in"></i></span>
+      <div>
+        <span class="aup-stat__label">Son oturum</span>
+        <strong>{{this.lastLoginLabel}}</strong>
+      </div>
+    </article>
+    <article class="aup-stat aup-stat--pending">
+      <span class="aup-stat__icon"><i class="pi pi-bell"></i></span>
+      <div>
+        <span class="aup-stat__label">Toplam bekleyen</span>
+        <strong>{{this.pendingTotal}}</strong>
+      </div>
+    </article>
+  </div>
+
+  <div class="aup-grid">
+    <section class="aup-card">
+      <div class="aup-card__head">
+        <span class="aup-card__icon"><i class="pi pi-id-card"></i></span>
+        <div>
+          <h2>Kullanıcı bilgileri</h2>
+          <p>Hesap, iletişim ve çalışma bilgileri</p>
+        </div>
+      </div>
+      <dl class="aup-details">
+        <div>
+          <dt>Ad soyad</dt>
+          <dd>{{this.fullName}}</dd>
+        </div>
+        <div>
+          <dt>E-posta</dt>
+          <dd>{{this.email}}</dd>
+        </div>
+        <div>
+          <dt>Kullanıcı adı</dt>
+          <dd>{{this.username}}</dd>
+        </div>
+        <div>
+          <dt>Telefon</dt>
+          <dd>{{this.phone}}</dd>
+        </div>
+        <div>
+          <dt>Son 90 gün giriş</dt>
+          <dd>{{this.loginCount90Days}}</dd>
+        </div>
+        <div>
+          <dt>Çalışma süresi</dt>
+          <dd>{{this.employmentYears}} yıl {{this.employmentMonths}} ay</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="aup-card">
+      <div class="aup-card__head">
+        <span class="aup-card__icon"><i class="pi pi-sitemap"></i></span>
+        <div>
+          <h2>Şube ve roller</h2>
+          <p>Organizasyon içindeki mevcut atamalar</p>
+        </div>
+      </div>
+
+      <div class="aup-department">
+        <span class="aup-department__icon"><i class="pi pi-map-marker"></i></span>
+        <div>
+          <span>Şube / departman</span>
+          <strong>{{this.department.label}}</strong>
+          {{#if this.department.short}}<small>{{this.department.short}}</small>{{/if}}
+        </div>
+      </div>
+
+      <div class="aup-roles">
+        <span class="aup-section-label">Roller ({{this.roleCount}})</span>
+        {{#each this.roles}}
+        <div class="aup-role">
+          <span class="aup-role__icon"><i class="pi pi-shield"></i></span>
+          <div>
+            <strong>{{this.label}}</strong>
+            {{#if this.name}}<small>{{this.name}}</small>{{/if}}
+          </div>
+          {{#if this.score}}<span class="aup-role__score">{{this.score}}</span>{{/if}}
+        </div>
+        {{else}}
+        <p class="aup-empty-text">Atanmış rol bulunamadı.</p>
+        {{/each}}
+      </div>
+    </section>
+  </div>
+
+  <section class="aup-card aup-card--pending">
+    <div class="aup-card__head aup-card__head--split">
+      <div class="aup-card__title-group">
+        <span class="aup-card__icon"><i class="pi pi-bell"></i></span>
+        <div>
+          <h2>Bekleyen bildirimler</h2>
+          <p>Okunmamış mesajlar ve kullanıcı bildirimleri</p>
+        </div>
+      </div>
+      <div class="aup-pending-counts">
+        <span><i class="pi pi-envelope"></i> {{this.unreadMessageCount}} mesaj</span>
+        <span><i class="pi pi-bell"></i> {{this.pendingNotificationCount}} bildirim</span>
+      </div>
+    </div>
+
+    <div class="aup-notifications">
+      {{#each this.pendingItems}}
+      <article class="aup-notification aup-notification--{{this.type}}">
+        <span class="aup-notification__icon">
+          {{#cIf this.type "==" "message"}}
+          <i class="pi pi-envelope"></i>
+          {{else}}
+          <i class="pi pi-bell"></i>
+          {{/cIf}}
+        </span>
+        <div class="aup-notification__copy">
+          <span class="aup-notification__type">{{this.typeLabel}}</span>
+          <strong>{{this.title}}</strong>
+          {{#if this.datetime}}<small>{{this.datetime}}</small>{{/if}}
+        </div>
+      </article>
+      {{else}}
+      <div class="aup-empty">
+        <i class="pi pi-check-circle"></i>
+        <h3>Bekleyen kayıt yok</h3>
+        <p>Bu kullanıcının okunmamış mesajı veya bekleyen bildirimi bulunmuyor.</p>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+  <section class="aup-card aup-card--logs" id="sayfa-loglari">
+    <div class="aup-card__head aup-card__head--split">
+      <div class="aup-card__title-group">
+        <span class="aup-card__icon"><i class="pi pi-history"></i></span>
+        <div>
+          <h2>Sayfa logları</h2>
+          <p>Son {{this.pageVisitDays}} günde girilen ve çıkılan sayfalar ({{this.pageVisitCount}} kayıt)</p>
+        </div>
+      </div>
+    </div>
+
+    {{#if this.pageVisits}}
+    <div class="aup-logs-wrap">
+      <table class="aup-logs">
+        <thead>
+          <tr>
+            <th scope="col">Sayfa</th>
+            <th scope="col">Giriş</th>
+            <th scope="col">Çıkış</th>
+            <th scope="col">Süre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.pageVisits}}
+          <tr class="aup-logs__row{{#cIf this.isOpen "==" "1"}} aup-logs__row--open{{/cIf}}">
+            <td class="aup-logs__page" data-label="Sayfa">
+              <strong>{{this.pageTitle}}</strong>
+              <span>{{this.path}}</span>
+            </td>
+            <td data-label="Giriş">{{this.enteredAtLabel}}</td>
+            <td data-label="Çıkış">
+              {{#cIf this.isOpen "==" "1"}}
+              <span class="aup-logs__badge aup-logs__badge--open">{{this.exitedAtLabel}}</span>
+              {{else}}
+              {{this.exitedAtLabel}}
+              {{/cIf}}
+            </td>
+            <td data-label="Süre">{{this.durationLabel}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="aup-empty">
+      <i class="pi pi-inbox"></i>
+      <h3>Sayfa logu yok</h3>
+      <p>Bu kullanıcı için henüz kayıtlı sayfa ziyareti bulunmuyor.</p>
+    </div>
+    {{/if}}
+  </section>
+  {{/if}}
+</div>
+{{/each}}
+{{else}}{{#if params.pageId}}
+{{#each adminOverview}}
+<div class="aup-page apvd-page">
+  <a class="aup-back" href="/d/admin-sistem-durumu#sayfa-ziyaretleri">
+    <i class="pi pi-arrow-left"></i> Sayfa ziyaretlerine dön
+  </a>
+
+  {{#if this.error}}
+  <div class="aup-error">
+    <i class="pi pi-exclamation-triangle"></i>
+    <div>
+      <h2>Detay yüklenemedi</h2>
+      <p>{{this.error}}</p>
+    </div>
+  </div>
+  {{else}}
+  <section class="aup-hero apvd-hero">
+    <div class="aup-hero__identity">
+      <div class="aup-avatar aup-avatar--icon">
+        <i class="pi pi-eye"></i>
+      </div>
+      <div class="aup-hero__copy">
+        <span class="aup-eyebrow">Sayfa ziyaret detayı</span>
+        <h1>{{this.pageTitle}}</h1>
+        <p>{{this.path}}</p>
+        <div class="aup-hero__badges">
+          <span class="aup-badge">
+            <i class="pi pi-calendar"></i> Son {{this.days}} gün
+          </span>
+          <span class="aup-badge">
+            <i class="pi pi-users"></i> {{this.uniqueUserCount}} kullanıcı
+          </span>
+          <span class="aup-badge">
+            <i class="pi pi-chart-bar"></i> {{this.totalVisits}} ziyaret
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="aup-stats apvd-stats">
+    <article class="aup-stat">
+      <span class="aup-stat__icon"><i class="pi pi-chart-bar"></i></span>
+      <div>
+        <span class="aup-stat__label">Toplam ziyaret</span>
+        <strong>{{this.totalVisits}}</strong>
+      </div>
+    </article>
+    <article class="aup-stat">
+      <span class="aup-stat__icon"><i class="pi pi-users"></i></span>
+      <div>
+        <span class="aup-stat__label">Farklı kullanıcı</span>
+        <strong>{{this.uniqueUserCount}}</strong>
+      </div>
+    </article>
+    <article class="aup-stat">
+      <span class="aup-stat__icon"><i class="pi pi-link"></i></span>
+      <div>
+        <span class="aup-stat__label">Yol</span>
+        <strong class="apvd-path">{{this.path}}</strong>
+      </div>
+    </article>
+  </div>
+
+  <section class="aup-card" id="sayfa-ziyaret-kullanicilar">
+    <div class="aup-card__head">
+      <div class="aup-card__title-group">
+        <span class="aup-card__icon"><i class="pi pi-users"></i></span>
+        <div>
+          <h2>Bu sayfaya giren kullanıcılar</h2>
+          <p>Ziyaret sayısına göre sıralı</p>
+        </div>
+      </div>
+    </div>
+
+    {{#cIf this.hasUsers "==" "1"}}
+    <div class="aup-logs-wrap">
+      <table class="aup-logs apvd-users">
+        <thead>
+          <tr>
+            <th scope="col">Kullanıcı</th>
+            <th scope="col">E-posta</th>
+            <th scope="col">Ziyaret</th>
+            <th scope="col">Ort. süre</th>
+            <th scope="col">Son ziyaret</th>
+            <th scope="col">İşlem</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.users}}
+          <tr>
+            <td data-label="Kullanıcı"><strong>{{this.fullName}}</strong></td>
+            <td data-label="E-posta">{{this.email}}</td>
+            <td data-label="Ziyaret"><span class="auo-pill auo-pill--total">{{this.visitCount}}</span></td>
+            <td data-label="Ort. süre">{{this.avgDurationLabel}}</td>
+            <td data-label="Son ziyaret">{{this.lastVisitLabel}}</td>
+            <td data-label="İşlem">
+              <a class="auo-link" href="{{this.profileUrl}}">Profil</a>
+              <a class="auo-link auo-link--muted" href="{{this.logsUrl}}">Loglar</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="aup-empty">
+      <i class="pi pi-inbox"></i>
+      <h3>Kullanıcı yok</h3>
+      <p>Bu sayfa için henüz ziyaret kaydı bulunmuyor.</p>
+    </div>
+    {{/cIf}}
+  </section>
+
+  <section class="aup-card aup-card--logs" id="sayfa-ziyaret-kayitlari">
+    <div class="aup-card__head">
+      <div class="aup-card__title-group">
+        <span class="aup-card__icon"><i class="pi pi-history"></i></span>
+        <div>
+          <h2>Son ziyaretler</h2>
+          <p>Kronolojik ziyaret kayıtları</p>
+        </div>
+      </div>
+    </div>
+
+    {{#cIf this.hasVisits "==" "1"}}
+    <div class="aup-logs-wrap">
+      <table class="aup-logs">
+        <thead>
+          <tr>
+            <th scope="col">Kullanıcı</th>
+            <th scope="col">Giriş</th>
+            <th scope="col">Çıkış</th>
+            <th scope="col">Süre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.visits}}
+          <tr class="aup-logs__row{{#cIf this.isOpen "==" "1"}} aup-logs__row--open{{/cIf}}">
+            <td class="aup-logs__page" data-label="Kullanıcı">
+              <strong><a class="auo-link" href="{{this.profileUrl}}">{{this.fullName}}</a></strong>
+              <span>{{this.email}}</span>
+            </td>
+            <td data-label="Giriş">{{this.enteredAtLabel}}</td>
+            <td data-label="Çıkış">
+              {{#cIf this.isOpen "==" "1"}}
+              <span class="aup-logs__badge aup-logs__badge--open">{{this.exitedAtLabel}}</span>
+              {{else}}
+              {{this.exitedAtLabel}}
+              {{/cIf}}
+            </td>
+            <td data-label="Süre">{{this.durationLabel}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="aup-empty">
+      <i class="pi pi-inbox"></i>
+      <h3>Kayıt yok</h3>
+      <p>Bu sayfa için ziyaret geçmişi bulunmuyor.</p>
+    </div>
+    {{/cIf}}
+  </section>
+  {{/if}}
+</div>
+{{/each}}
+{{else}}
+{{#each adminOverview}}
+<div class="auo-page">
+  <div class="auo__hero">
+    <div class="auo__hero-main">
+      <span class="auo__eyebrow">Sistem yönetimi</span>
+      <h1>Sistem Durumu</h1>
+      <p>Aktif kullanıcılar, son giriş zamanları ve kuyrukta bekleyen bildirimler.</p>
+    </div>
+    {{#if this.activeUserCount}}
+    <span class="auo__count">{{this.activeUserCount}} aktif kullanıcı</span>
+    {{/if}}
+  </div>
+
+  <div class="auo__stats">
+    <a class="auo-stat" href="/d/admin-sistem-aktif-kullanicilar">
+      <span class="auo-stat__icon"><i class="pi pi-users"></i></span>
+      <div class="auo-stat__copy">
+        <span class="auo-stat__label">Aktif kullanıcı</span>
+        <span class="auo-stat__value">{{this.activeUserCount}}</span>
+      </div>
+    </a>
+    <a class="auo-stat auo-stat--today" href="/d/admin-sistem-bugun-giris">
+      <span class="auo-stat__icon"><i class="pi pi-sign-in"></i></span>
+      <div class="auo-stat__copy">
+        <span class="auo-stat__label">Bugün giriş yapan</span>
+        <span class="auo-stat__value">{{this.loggedInToday}}</span>
+      </div>
+    </a>
+    <a class="auo-stat auo-stat--pending" href="/d/admin-sistem-bekleyen-bildirim">
+      <span class="auo-stat__icon"><i class="pi pi-bell"></i></span>
+      <div class="auo-stat__copy">
+        <span class="auo-stat__label">Bekleyen bildirimi olan</span>
+        <span class="auo-stat__value">{{this.usersWithPending}}</span>
+      </div>
+    </a>
+    <a class="auo-stat auo-stat--messages" href="/d/admin-sistem-okunmamis-mesaj">
+      <span class="auo-stat__icon"><i class="pi pi-envelope"></i></span>
+      <div class="auo-stat__copy">
+        <span class="auo-stat__label">Toplam okunmamış mesaj</span>
+        <span class="auo-stat__value">{{this.totalUnreadMessages}}</span>
+      </div>
+    </a>
+    <div class="auo-stat auo-stat--online" role="status">
+      <span class="auo-stat__icon"><i class="pi pi-check-circle"></i></span>
+      <div class="auo-stat__copy">
+        <span class="auo-stat__label">Anlık çevrimiçi</span>
+        <span class="auo-stat__value">{{this.onlineNowCount}}</span>
+      </div>
+    </div>
+    <a class="auo-stat auo-stat--muted" href="/d/admin-sistem-hic-giris-yok">
+      <span class="auo-stat__icon"><i class="pi pi-times-circle"></i></span>
+      <div class="auo-stat__copy">
+        <span class="auo-stat__label">Hiç giriş yapmamış</span>
+        <span class="auo-stat__value">{{this.neverLoggedIn}}</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="auo__card auo__card--online" id="anlik-kullanicilar">
+    <div class="auo__list-head">
+      <div class="auo__list-head-icon auo__list-head-icon--online"><i class="pi pi-check-circle"></i></div>
+      <div>
+        <h2>Anlık kullanıcılar</h2>
+        <p>
+          Şu an bir sayfada açık oturumu olanlar
+          (son {{this.onlineNowStaleLabel}} · {{this.onlineNowCount}} kişi)
+        </p>
+      </div>
+    </div>
+
+    {{#cIf this.hasOnlineNow "==" "1"}}
+    <div class="auo-online-wrap">
+      <table class="auo-online">
+        <thead>
+          <tr>
+            <th scope="col">Kullanıcı</th>
+            <th scope="col">Bulunduğu sayfa</th>
+            <th scope="col">Giriş</th>
+            <th scope="col">Süre</th>
+            <th scope="col">İşlem</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.onlineNowUsers}}
+          <tr>
+            <td class="auo-online__user" data-label="Kullanıcı">
+              <span class="auo-online__dot" title="Çevrimiçi"></span>
+              <div>
+                <strong>{{this.fullName}}</strong>
+                <span>{{this.email}}</span>
+              </div>
+            </td>
+            <td class="auo-online__page" data-label="Sayfa">
+              <strong>{{this.pageTitle}}</strong>
+              <span>{{this.path}}</span>
+            </td>
+            <td data-label="Giriş">{{this.enteredAtLabel}}</td>
+            <td data-label="Süre">{{this.durationLabel}}</td>
+            <td data-label="İşlem">
+              <a class="auo-link" href="{{this.profileUrl}}">Profil</a>
+              <a class="auo-link auo-link--muted" href="{{this.pageDetailUrl}}">Sayfa</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="auo-empty">
+      <i class="pi pi-moon"></i>
+      <p>Şu an açık sayfa ziyareti olan kullanıcı yok.</p>
+    </div>
+    {{/cIf}}
+  </div>
+
+  <div class="auo__activity-card">
+    <div class="auo__list-head">
+      <div class="auo__list-head-icon"><i class="pi pi-chart-bar"></i></div>
+      <div>
+        <h2>Sistem yoğunluğu</h2>
+        <p>Son {{this.activityDays}} gündeki başarılı girişlere göre saatlik dağılım.</p>
+      </div>
+    </div>
+
+    <div class="auo-activity__highlights">
+      <article class="auo-activity__highlight auo-activity__highlight--peak">
+        <span class="auo-activity__highlight-label">En yoğun saat</span>
+        <strong class="auo-activity__highlight-value">{{this.peakHourLabel}}</strong>
+        <span class="auo-activity__highlight-meta">{{this.peakHourCount}} giriş</span>
+      </article>
+      <article class="auo-activity__highlight auo-activity__highlight--quiet">
+        <span class="auo-activity__highlight-label">En sakin saat</span>
+        <strong class="auo-activity__highlight-value">{{this.quietHourLabel}}</strong>
+        <span class="auo-activity__highlight-meta">{{this.quietHourCount}} giriş</span>
+      </article>
+    </div>
+
+    {{#if this.activityByHour}}
+    <div class="auo-activity__chart" role="img" aria-label="Saatlik giriş yoğunluğu grafiği">
+      {{#each this.activityByHour}}
+      <div class="auo-activity__bar-wrap" title="{{this.rangeLabel}}: {{this.count}} giriş">
+        <div class="auo-activity__bar{{#cIf this.isPeak "==" "1"}} auo-activity__bar--peak{{/cIf}}{{#cIf this.isQuiet "==" "1"}} auo-activity__bar--quiet{{/cIf}}" style="height: {{this.percent}}%;"></div>
+        <span class="auo-activity__bar-label">{{this.label}}</span>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+
+    <div class="auo-activity__lists">
+      <div class="auo-activity__list">
+        <h3><i class="pi pi-arrow-up"></i> En yoğun saatler</h3>
+        <ul>
+          {{#each this.peakHours}}
+          <li>
+            <span class="auo-activity__list-range">{{this.rangeLabel}}</span>
+            <span class="auo-activity__list-count">{{this.count}} giriş</span>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="auo-activity__list">
+        <h3><i class="pi pi-arrow-down"></i> En sakin saatler</h3>
+        <ul>
+          {{#each this.quietHours}}
+          <li>
+            <span class="auo-activity__list-range">{{this.rangeLabel}}</span>
+            <span class="auo-activity__list-count">{{this.count}} giriş</span>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="auo__card auo__card--page-visits" id="sayfa-ziyaretleri">
+    <div class="auo__list-head auo__list-head--with-action">
+      <div class="auo__list-head-icon"><i class="pi pi-eye"></i></div>
+      <div class="auo__list-head-copy">
+        <h2>Sayfa ziyaretleri</h2>
+        <p>
+          Son {{this.pageVisitStatsDays}} günde ziyaret edilen sayfalar ·
+          {{this.pageVisitTotal}} ziyaret · {{this.pageVisitDistinct}} farklı sayfa
+        </p>
+      </div>
+      <a class="auo-head-btn" href="/d/admin-sistem-ziyaret-haric">
+        <i class="pi pi-eye-slash"></i>
+        Log hariç tutulanlar
+      </a>
+    </div>
+
+    <div class="auo-page-stats">
+      <article class="auo-page-stats__item">
+        <span class="auo-page-stats__label">Toplam ziyaret</span>
+        <strong class="auo-page-stats__value">{{this.pageVisitTotal}}</strong>
+      </article>
+      <article class="auo-page-stats__item">
+        <span class="auo-page-stats__label">Farklı sayfa</span>
+        <strong class="auo-page-stats__value">{{this.pageVisitDistinct}}</strong>
+      </article>
+      <article class="auo-page-stats__item auo-page-stats__item--top">
+        <span class="auo-page-stats__label">En çok ziyaret</span>
+        <strong class="auo-page-stats__value">{{this.topVisitedPageTitle}}</strong>
+        <span class="auo-page-stats__meta">{{this.topVisitedPageCount}} kez</span>
+      </article>
+    </div>
+
+    {{#if this.pageVisitPages}}
+    <div class="auo-page-visits-wrap">
+      <table class="auo-page-visits">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Sayfa</th>
+            <th scope="col">Ziyaret</th>
+            <th scope="col">Kullanıcı</th>
+            <th scope="col">Son ziyaret</th>
+            <th scope="col">Yoğunluk</th>
+            <th scope="col">Detay</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.pageVisitPages}}
+          <tr class="auo-page-visits__row{{#cIf this.isTop "==" "1"}} auo-page-visits__row--top{{/cIf}}">
+            <td class="auo-page-visits__rank" data-label="#">{{this.rank}}</td>
+            <td class="auo-page-visits__page" data-label="Sayfa">
+              <strong>{{this.pageTitle}}</strong>
+              <span>{{this.path}}</span>
+            </td>
+            <td class="auo-page-visits__count" data-label="Ziyaret">
+              <span class="auo-pill auo-pill--total">{{this.count}}</span>
+            </td>
+            <td data-label="Kullanıcı">{{this.uniqueUserCount}}</td>
+            <td data-label="Son ziyaret">{{this.lastVisitLabel}}</td>
+            <td class="auo-page-visits__bar-cell" data-label="Yoğunluk">
+              <div class="auo-page-visits__bar-track" title="{{this.count}} ziyaret">
+                <div class="auo-page-visits__bar" style="width: {{this.percent}}%;"></div>
+              </div>
+            </td>
+            <td data-label="Detay">
+              <a class="auo-link" href="/d/admin-sistem-durumu?pageId={{this.pageId}}">Detay</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{#cIf this.pageVisitHasPager "==" "1"}}
+      <div class="auo-paginate">
+        {{#cIf this.pageVisitHasPrev "==" "1"}}
+        <a class="auo-paginate__btn" href="/d/admin-sistem-durumu?pvPage={{this.pageVisitPrevPage}}#sayfa-ziyaretleri" aria-label="Önceki sayfa">
+          <i class="pi pi-chevron-left"></i>
+        </a>
+        {{else}}
+        <span class="auo-paginate__btn auo-paginate__btn--disabled" aria-disabled="true">
+          <i class="pi pi-chevron-left"></i>
+        </span>
+        {{/cIf}}
+        <span class="auo-paginate__info">{{this.pageVisitPage}} / {{this.pageVisitTotalPages}}</span>
+        {{#cIf this.pageVisitHasNext "==" "1"}}
+        <a class="auo-paginate__btn" href="/d/admin-sistem-durumu?pvPage={{this.pageVisitNextPage}}#sayfa-ziyaretleri" aria-label="Sonraki sayfa">
+          <i class="pi pi-chevron-right"></i>
+        </a>
+        {{else}}
+        <span class="auo-paginate__btn auo-paginate__btn--disabled" aria-disabled="true">
+          <i class="pi pi-chevron-right"></i>
+        </span>
+        {{/cIf}}
+      </div>
+      {{/cIf}}
+    </div>
+    {{else}}
+    <div class="auo-empty">
+      <i class="pi pi-inbox"></i>
+      <p>Henüz sayfa ziyaret kaydı yok. Backend loglama aktif olduktan sonra burada görünecek.</p>
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="auo__card" id="kullanici-listesi">
+    <div class="auo__list-head">
+      <div class="auo__list-head-icon"><i class="pi pi-id-card"></i></div>
+      <div>
+        <h2>Kullanıcı listesi</h2>
+        <p>Bekleyen bildirimi olanlar üstte; ardından son girişe göre sıralanır.</p>
+      </div>
+    </div>
+
+    {{#if this.users}}
+    <div class="auo-table-wrap">
+      <table class="auo-table">
+        <thead>
+          <tr>
+            <th scope="col">Kullanıcı</th>
+            <th scope="col">Departman</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Son giriş</th>
+            <th scope="col">Okunmamış mesaj</th>
+            <th scope="col">Bildirim</th>
+            <th scope="col">Toplam bekleyen</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.users}}
+          <tr class="auo-table__row{{#cIf this.hasPending "==" "1"}} auo-table__row--pending{{/cIf}}{{#cIf this.neverLoggedIn "==" "1"}} auo-table__row--never{{/cIf}}">
+            <td class="auo-table__user" data-label="Kullanıcı">
+              <strong>{{this.fullName}}</strong>
+              <span class="auo-table__email">{{this.email}}</span>
+            </td>
+            <td data-label="Departman">{{this.departmentLabel}}</td>
+            <td data-label="Rol">{{this.roleLabel}}</td>
+            <td data-label="Son giriş">
+              {{#cIf this.lastLoginToday "==" "1"}}
+              <span class="auo-badge auo-badge--today">{{this.lastLogin}}</span>
+              {{else}}
+              {{#cIf this.neverLoggedIn "==" "1"}}
+              <span class="auo-badge auo-badge--never">Hiç giriş yok</span>
+              {{else}}
+              {{this.lastLogin}}
+              {{/cIf}}
+              {{/cIf}}
+            </td>
+            <td class="auo-table__num" data-label="Mesaj">
+              {{#if this.unreadMessages}}
+              <span class="auo-pill auo-pill--msg">{{this.unreadMessages}}</span>
+              {{else}}
+              <span class="auo-pill auo-pill--zero">0</span>
+              {{/if}}
+            </td>
+            <td class="auo-table__num" data-label="Bildirim">
+              {{#if this.pendingNotifications}}
+              <span class="auo-pill auo-pill--notif">{{this.pendingNotifications}}</span>
+              {{else}}
+              <span class="auo-pill auo-pill--zero">0</span>
+              {{/if}}
+            </td>
+            <td class="auo-table__num" data-label="Toplam">
+              {{#if this.pendingTotal}}
+              <span class="auo-pill auo-pill--total">{{this.pendingTotal}}</span>
+              {{else}}
+              <span class="auo-pill auo-pill--zero">0</span>
+              {{/if}}
+            </td>
+            <td class="auo-table__action" data-label="">
+              <div class="auo-table__actions">
+                <a class="auo-link" href="/d/admin-sistem-durumu?_id={{this._id}}&view=logs#sayfa-loglari">
+                  <i class="pi pi-history"></i> Loglar
+                </a>
+                <a class="auo-link auo-link--muted" href="/d/admin-sistem-durumu?_id={{this._id}}">
+                  <i class="pi pi-arrow-right"></i> Profil
+                </a>
+              </div>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="auo-empty">
+      <i class="pi pi-inbox"></i>
+      <p>Aktif kullanıcı bulunamadı.</p>
+    </div>
+    {{/if}}
+  </div>
+</div>
+{{/each}}
+{{/if}}{{/if}}

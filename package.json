@@ -21,7 +21,15 @@
     "update-content": "node src/cli.js update-content",
     "duplicate": "node src/cli.js duplicate",
     "export-template": "node src/cli.js export-template",
-    "docs:components": "node scripts/generate-component-docs.js"
+    "docs:components": "node scripts/generate-component-docs.js",
+    "seed-mail-recipients": "node scripts/seed-mail-recipients.js",
+    "setup-mail-alicilari": "node scripts/setup-mail-alicilari.js",
+    "setup-is-akislari": "node scripts/setup-is-akislari.js",
+    "patch-transfer-beta": "node scripts/patch-transfer-olustur-beta-a1-mode.js && node scripts/patch-transfer-detay-beta-kargo-flow.js && node scripts/patch-transfer-a0-links.js",
+    "deploy:prepare-transfer-beta": "node scripts/prepare-transfer-beta-deploy.js",
+    "patch-aktif-transfer-raporlari": "node scripts/patch-aktif-transfer-raporlari-design.js",
+    "setup-gecmis-transferler": "node scripts/setup-gecmis-transferler.js",
+    "hide-legacy-transfer-lists": "node scripts/hide-legacy-transfer-lists.js"
   },
   "keywords": [
     "mongodb",

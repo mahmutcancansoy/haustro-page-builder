@@ -1,0 +1,373 @@
+/* Performans Değerlendirme Formu — Renksiz */
+
+.ass-page .pdfn-hero .ass__hero-meta {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ass-page .pdfn-chip--person {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+}
+
+/* Form kartı */
+.ass-page .pdfn-form-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: visible;
+}
+
+.ass-page .pdfn-form-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.ass-page .pdfn-list-head {
+  margin: 1rem 1.15rem 0.5rem;
+}
+
+.ass-page .pdfn-form-wrap {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.ass-page .pdfn-form,
+.ass-page .pdfn-form-card .form-container {
+  padding: 0 0.85rem 1rem !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.ass-page .pdfn-form-array {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Personel bilgisi */
+.ass-page .pdfn-form-intro {
+  margin: 0 0 0.85rem !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.ass-page .pdfn-person-row,
+.ass-page .pdfn-person-row.grid,
+.ass-page .pdfn-person-row.row {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  margin: 0 0 0.75rem !important;
+  padding: 0.8rem 0.95rem !important;
+  border-radius: 10px;
+  background: #f8fafc !important;
+  border: 1px solid #e8edf5 !important;
+}
+
+.ass-page .pdfn-person-row > .column,
+.ass-page .pdfn-person-row > .col {
+  flex: 1 1 auto;
+  padding: 0 !important;
+  min-width: 0;
+}
+
+.ass-page .pdfn-meta-label,
+.ass-page .pdfn-meta-value {
+  margin: 0 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+}
+
+.ass-page .pdfn-meta-label {
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.ass-page .pdfn-meta-value {
+  color: #1e293b !important;
+  font-weight: 800 !important;
+}
+
+/* Tablo başlığı — orijinal p-col-8 / p-col-4 oranı */
+.ass-page .pdfn-table-head,
+.ass-page .pdfn-table-head.grid,
+.ass-page .pdfn-table-head.row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.ass-page .pdfn-table-head > .column,
+.ass-page .pdfn-table-head > .col,
+.ass-page .pdfn-table-head [class*='p-col-'] {
+  padding: 0 !important;
+  min-width: 0;
+  width: auto !important;
+  max-width: none !important;
+  flex: unset !important;
+}
+
+.ass-page .pdfn-th-criteria,
+.ass-page .pdfn-th-score {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  margin: 0 !important;
+  padding: 0.55rem 0.65rem !important;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  color: #fff !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ass-page .pdfn-th-criteria {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Kriter döngüsü */
+.ass-page .pdfn-questions-loop {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .pdfn-question-row {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.ass-page .pdfn-question-grid,
+.ass-page .pdfn-question-grid.grid,
+.ass-page .pdfn-question-grid.row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0.65rem 0.85rem !important;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e8edf5;
+  box-sizing: border-box;
+}
+
+.ass-page .pdfn-questions-loop > .form-group-container:nth-child(even) .pdfn-question-grid {
+  background: #fcfdff;
+}
+
+.ass-page .pdfn-question-grid > .column,
+.ass-page .pdfn-question-grid > .col,
+.ass-page .pdfn-question-grid [class*='p-col-'] {
+  padding: 0 !important;
+  min-width: 0;
+  width: auto !important;
+  max-width: none !important;
+  flex: unset !important;
+}
+
+.ass-page .pdfn-q-label,
+.ass-page .pdfn-q-label.label {
+  display: flex !important;
+  align-items: center;
+  width: 100% !important;
+  min-height: 2.5rem;
+  margin: 0 !important;
+  padding: 0.35rem 0.45rem !important;
+  color: #334155 !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  word-break: break-word;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Puan seçimi */
+.ass-page .pdfn-score-col,
+.ass-page .pdfn-question-grid .pdfn-score-col {
+  display: flex !important;
+  align-items: center;
+  justify-content: stretch;
+  width: 100% !important;
+  min-width: 0;
+}
+
+.ass-page .pdfn-score-col .p-field,
+.ass-page .pdfn-score-col .field,
+.ass-page .pdfn-score-col .form-group,
+.ass-page .pdfn-score-col .input-select,
+.ass-page .pdfn-score-col [class*='input-select'] {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+}
+
+.ass-page .pdfn-score-col .p-dropdown,
+.ass-page .pdfn-score-col select {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+  border-radius: 12px !important;
+  border-color: #c7d2fe !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+}
+
+.ass-page .pdfn-score-col .p-dropdown:not(.p-disabled).p-focus {
+  border-color: var(--ass-primary, #4557a3) !important;
+  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.12) !important;
+}
+
+.ass-page .pdfn-score-col .p-dropdown-panel {
+  z-index: 9999 !important;
+}
+
+.ass-page .pdfn-score-col .p-dropdown-item .pi-check {
+  color: #64748b;
+  margin-right: 0.35rem;
+}
+
+.ass-page .pdfn-score-col .p-dropdown-label.p-placeholder {
+  color: #94a3b8;
+}
+
+/* Hata mesajı */
+.ass-page .pdfn-error,
+.ass-page .pdfn-error.label {
+  color: #dc2626 !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  padding: 0.35rem 0 !important;
+}
+
+/* Kaydet */
+.ass-page .pdfn-actions,
+.ass-page .pdfn-actions.grid,
+.ass-page .pdfn-actions.row {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 1rem 0 0 !important;
+  padding: 0.85rem 0 0 !important;
+  border-top: 1px solid #e8edf5;
+}
+
+.ass-page .pdfn-actions .p-button,
+.ass-page .pdfn-actions button {
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  min-height: 2.6rem;
+  padding: 0 1.35rem !important;
+  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.18);
+}
+
+.ass-page .pdfn-actions .p-button-success,
+.ass-page .pdfn-actions .p-button.p-button-success {
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.22);
+}
+
+/* Başarı sonrası butonlar */
+.ass-page .pdfn-success-actions,
+.ass-page .pdfn-success-actions.grid,
+.ass-page .pdfn-success-actions.row {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 1rem 0 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .pdfn-success-actions .p-button,
+.ass-page .pdfn-success-actions button {
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  min-height: 2.5rem;
+  padding: 0 1.25rem !important;
+}
+
+.ass-page .ass__toolbar .p-button,
+.ass-page .ass__toolbar button {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+
+.ass-page .ass__toolbar .p-button-secondary,
+.ass-page .ass__toolbar .p-button.p-button-secondary {
+  background: #fff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #4557a3 !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .pdfn-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ass-page .pdfn-hero .ass__hero-meta {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .ass-page .pdfn-table-head,
+  .ass-page .pdfn-question-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  .ass-page .pdfn-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ass-page .pdfn-actions .p-button,
+  .ass-page .pdfn-actions button {
+    width: 100%;
+  }
+}
+
+@media print {
+  .ass-page .ass__toolbar,
+  .ass-page .pdfn-actions,
+  .ass-page .pdfn-success-actions {
+    display: none !important;
+  }
+
+  .ass-page .pdfn-form-card {
+    box-shadow: none !important;
+    border-color: #cbd5e1 !important;
+  }
+}

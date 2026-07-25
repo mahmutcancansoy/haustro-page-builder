@@ -1,0 +1,281 @@
+/* Hizmetler — kategori ağacı */
+
+.ass-page .hiz-hero .ass__hero-meta {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ass-page .hiz-chip--filter {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+}
+
+.ass-page .hiz-services-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0 0 1.15rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .hiz-services-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.ass-page .hiz-list-head {
+  margin: 1rem 1.15rem 0.35rem;
+}
+
+.ass-page .hiz-form,
+.ass-page .hiz-services-card .form-container {
+  padding: 0 1.15rem 0.25rem !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.ass-page .hiz-tree-panel {
+  margin-top: 0.35rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e8edf5;
+}
+
+/* Özel hizmet ağacı */
+.ass-page .hiz-svc-tree {
+  width: 100%;
+  font-family: inherit;
+}
+
+.ass-page .hiz-svc-tree__hidden-inputs {
+  display: none;
+}
+
+.ass-page .hiz-svc-tree__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.ass-page .hiz-svc-tree__search-wrap {
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #c7d2fe;
+}
+
+.ass-page .hiz-svc-tree__search-wrap i {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.ass-page .hiz-svc-tree__search {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.ass-page .hiz-svc-tree__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ass-page .hiz-svc-tree__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #4557a3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.ass-page .hiz-svc-tree__btn:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+.ass-page .hiz-svc-tree__viewport {
+  max-height: min(62vh, 560px);
+  overflow: auto;
+  padding-right: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ass-page .hiz-svc-tree__forest,
+.ass-page .hiz-svc-tree__branch {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ass-page .hiz-svc-tree__branch {
+  margin-left: 1.15rem;
+  padding-left: 0.85rem;
+  border-left: 2px solid #e2e8f0;
+}
+
+.ass-page .hiz-svc-tree__item {
+  margin: 0.3rem 0;
+}
+
+.ass-page .hiz-svc-tree__item[data-open='0'] > .hiz-svc-tree__branch {
+  display: none;
+}
+
+.ass-page .hiz-svc-tree__row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  transition: background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ass-page .hiz-svc-tree__item[data-level='0'] > .hiz-svc-tree__row {
+  background: linear-gradient(135deg, #f8fafc 0%, #fff 100%);
+  border-color: #e2e8f0;
+}
+
+.ass-page .hiz-svc-tree__row:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  box-shadow: 0 2px 8px rgba(69, 87, 163, 0.08);
+}
+
+.ass-page .hiz-svc-tree__toggle {
+  flex: 0 0 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ass-page .hiz-svc-tree__toggle:hover {
+  background: #e0e7ff;
+  color: #4557a3;
+}
+
+.ass-page .hiz-svc-tree__toggle--spacer {
+  background: transparent;
+  cursor: default;
+}
+
+.ass-page .hiz-svc-tree__check-wrap {
+  flex: 0 0 auto;
+  display: inline-flex;
+  margin: 0;
+  cursor: pointer;
+}
+
+.ass-page .hiz-svc-tree__check {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: #4557a3;
+  cursor: pointer;
+}
+
+.ass-page .hiz-svc-tree__badge {
+  flex: 0 0 auto;
+  min-width: 2.1rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.ass-page .hiz-svc-tree__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #334155;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.ass-page .hiz-svc-tree__item--leaf > .hiz-svc-tree__row .hiz-svc-tree__label {
+  font-weight: 500;
+  color: #475569;
+}
+
+.ass-page .hiz-svc-tree__empty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: #94a3b8;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px dashed #e2e8f0;
+}
+
+.ass-page .hiz-svc-tree__empty i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #cbd5e1;
+}
+
+.ass-page .hiz-svc-tree__empty p {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .ass-page .hiz-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ass-page .hiz-hero .ass__hero-meta {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .ass-page .hiz-svc-tree__viewport {
+    max-height: 50vh;
+  }
+
+  .ass-page .hiz-svc-tree__branch {
+    margin-left: 0.65rem;
+    padding-left: 0.55rem;
+  }
+}

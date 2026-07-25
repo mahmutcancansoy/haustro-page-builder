@@ -1,0 +1,20 @@
+<div class="ass__hero pdev-hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">İnsan kaynakları</span>
+    <h1>Performans Değerlendirme</h1>
+    <p class="ass__hero-sub">{{#if evaluationPeriod.periodText}}{{evaluationPeriod.periodText}}{{/if}}</p>
+  </div>
+  <div class="ass__hero-meta pdev-hero-meta">
+    {{#if evaluationPeriod._id}}
+      <span class="ass__chip pdev-chip--period"><i class="pi pi-calendar"></i> {{evaluationPeriod.periodText}}</span>
+      <span class="ass__chip pdev-chip--score"><i class="pi pi-chart-bar"></i> Toplam: {{performanceEvaluations.completedReviews}}/{{performanceEvaluationsUserStats.totalUsers}}</span>
+      {{#if performanceEvaluationsUserStats.mandatoryTotalUsers}}
+        <span class="ass__chip pdev-chip--mandatory"><i class="pi pi-exclamation-circle"></i> Zorunlu: {{performanceEvaluationsUserStats.mandatoryCompletedUsers}}/{{performanceEvaluationsUserStats.mandatoryTotalUsers}}</span>
+      {{/if}}
+    {{else}}
+      <span class="ass__chip pdev-chip--period"><i class="pi pi-calendar"></i> Dönem seçilmedi</span>
+      <span class="ass__chip pdev-chip--score"><i class="pi pi-chart-bar"></i> Toplam: —</span>
+      <span class="ass__chip pdev-chip--mandatory"><i class="pi pi-exclamation-circle"></i> Zorunlu: —</span>
+    {{/if}}
+  </div>
+</div>

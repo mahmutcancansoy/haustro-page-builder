@@ -1,0 +1,259 @@
+<div class="hiz-svc-tree" id="hiz-svc-tree">
+  <div class="hiz-svc-tree__toolbar">
+    <div class="hiz-svc-tree__search-wrap">
+      <i class="pi pi-search"></i>
+      <input
+        type="search"
+        class="hiz-svc-tree__search"
+        placeholder="Hizmet kategorisi ara…"
+        autocomplete="off"
+      />
+    </div>
+    <div class="hiz-svc-tree__actions">
+      <button type="button" class="hiz-svc-tree__btn" data-action="expand-all">
+        <i class="pi pi-plus-circle"></i> Tümünü aç
+      </button>
+      <button type="button" class="hiz-svc-tree__btn" data-action="collapse-all">
+        <i class="pi pi-minus-circle"></i> Tümünü kapat
+      </button>
+    </div>
+  </div>
+
+  <div id="hiz-roles-hidden" class="hiz-svc-tree__hidden-inputs" aria-hidden="true"></div>
+
+  <div class="hiz-svc-tree__viewport">
+    {{#if roleCategories.length}}
+    <ul class="hiz-svc-tree__forest" data-hiz-forest>
+      {{#each roleCategories}}
+      <li
+        class="hiz-svc-tree__item"
+        data-level="0"
+        data-key="{{#if key}}{{key}}{{else}}{{_id}}{{/if}}"
+        data-label="{{#if label}}{{label}}{{else}}{{name}}{{/if}}"
+        data-open="1"
+      >
+        <div class="hiz-svc-tree__row">
+          <button type="button" class="hiz-svc-tree__toggle" aria-label="Alt kategorileri göster/gizle">
+            <i class="pi pi-chevron-down"></i>
+          </button>
+          <label class="hiz-svc-tree__check-wrap" title="Seç">
+            <input type="checkbox" class="hiz-svc-tree__check" {{#if checked}}checked{{/if}} />
+          </label>
+          <span class="hiz-svc-tree__badge">{{#if short}}{{short}}{{else}}—{{/if}}</span>
+          <span class="hiz-svc-tree__label">{{#if label}}{{label}}{{else}}{{name}}{{/if}}</span>
+        </div>
+        {{#if children}}
+        <ul class="hiz-svc-tree__branch">
+          {{#each children}}
+          <li
+            class="hiz-svc-tree__item"
+            data-level="1"
+            data-key="{{#if key}}{{key}}{{else}}{{_id}}{{/if}}"
+            data-label="{{#if label}}{{label}}{{else}}{{name}}{{/if}}"
+            data-open="1"
+          >
+            <div class="hiz-svc-tree__row">
+              <button type="button" class="hiz-svc-tree__toggle" aria-label="Alt kategorileri göster/gizle">
+                <i class="pi pi-chevron-down"></i>
+              </button>
+              <label class="hiz-svc-tree__check-wrap" title="Seç">
+                <input type="checkbox" class="hiz-svc-tree__check" {{#if checked}}checked{{/if}} />
+              </label>
+              <span class="hiz-svc-tree__badge">{{#if short}}{{short}}{{else}}—{{/if}}</span>
+              <span class="hiz-svc-tree__label">{{#if label}}{{label}}{{else}}{{name}}{{/if}}</span>
+            </div>
+            {{#if children}}
+            <ul class="hiz-svc-tree__branch">
+              {{#each children}}
+              <li
+                class="hiz-svc-tree__item"
+                data-level="2"
+                data-key="{{#if key}}{{key}}{{else}}{{_id}}{{/if}}"
+                data-label="{{#if label}}{{label}}{{else}}{{name}}{{/if}}"
+                data-open="1"
+              >
+                <div class="hiz-svc-tree__row">
+                  <button type="button" class="hiz-svc-tree__toggle" aria-label="Alt kategorileri göster/gizle">
+                    <i class="pi pi-chevron-down"></i>
+                  </button>
+                  <label class="hiz-svc-tree__check-wrap" title="Seç">
+                    <input type="checkbox" class="hiz-svc-tree__check" {{#if checked}}checked{{/if}} />
+                  </label>
+                  <span class="hiz-svc-tree__badge">{{#if short}}{{short}}{{else}}—{{/if}}</span>
+                  <span class="hiz-svc-tree__label">{{#if label}}{{label}}{{else}}{{name}}{{/if}}</span>
+                </div>
+                {{#if children}}
+                <ul class="hiz-svc-tree__branch">
+                  {{#each children}}
+                  <li
+                    class="hiz-svc-tree__item hiz-svc-tree__item--leaf"
+                    data-level="3"
+                    data-key="{{#if key}}{{key}}{{else}}{{_id}}{{/if}}"
+                    data-label="{{#if label}}{{label}}{{else}}{{name}}{{/if}}"
+                    data-open="1"
+                  >
+                    <div class="hiz-svc-tree__row">
+                      <span class="hiz-svc-tree__toggle hiz-svc-tree__toggle--spacer" aria-hidden="true"></span>
+                      <label class="hiz-svc-tree__check-wrap" title="Seç">
+                        <input type="checkbox" class="hiz-svc-tree__check" {{#if checked}}checked{{/if}} />
+                      </label>
+                      <span class="hiz-svc-tree__badge">{{#if short}}{{short}}{{else}}—{{/if}}</span>
+                      <span class="hiz-svc-tree__label">{{#if label}}{{label}}{{else}}{{name}}{{/if}}</span>
+                    </div>
+                  </li>
+                  {{/each}}
+                </ul>
+                {{/if}}
+              </li>
+              {{/each}}
+            </ul>
+            {{/if}}
+          </li>
+          {{/each}}
+        </ul>
+        {{/if}}
+        {{#unless children}}
+        {{#if serviceChildren}}
+        <ul class="hiz-svc-tree__branch">
+          {{#each serviceChildren}}
+          <li
+            class="hiz-svc-tree__item hiz-svc-tree__item--leaf"
+            data-level="1"
+            data-key="{{#if key}}{{key}}{{else}}{{_id}}{{/if}}"
+            data-label="{{#if label}}{{label}}{{else}}{{name}}{{/if}}"
+            data-open="1"
+          >
+            <div class="hiz-svc-tree__row">
+              <span class="hiz-svc-tree__toggle hiz-svc-tree__toggle--spacer" aria-hidden="true"></span>
+              <label class="hiz-svc-tree__check-wrap" title="Seç">
+                <input type="checkbox" class="hiz-svc-tree__check" {{#if checked}}checked{{/if}} />
+              </label>
+              <span class="hiz-svc-tree__badge">{{#if short}}{{short}}{{else}}—{{/if}}</span>
+              <span class="hiz-svc-tree__label">{{#if label}}{{label}}{{else}}{{name}}{{/if}}</span>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+        {{/if}}
+        {{/unless}}
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <div class="hiz-svc-tree__empty">
+      <i class="pi pi-sitemap"></i>
+      <p>Henüz hizmet kategorisi bulunamadı.</p>
+    </div>
+    {{/if}}
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('hiz-svc-tree');
+  if (!root) return;
+
+  var search = root.querySelector('.hiz-svc-tree__search');
+  var hiddenBox = document.getElementById('hiz-roles-hidden');
+
+  function itemHasBranch(item) {
+    var branch = item.querySelector(':scope > .hiz-svc-tree__branch');
+    return branch && branch.children.length > 0;
+  }
+
+  function refreshToggles() {
+    root.querySelectorAll('.hiz-svc-tree__item').forEach(function (item) {
+      var btn = item.querySelector(':scope > .hiz-svc-tree__row .hiz-svc-tree__toggle');
+      if (!btn || btn.classList.contains('hiz-svc-tree__toggle--spacer')) return;
+      if (!itemHasBranch(item)) {
+        btn.style.visibility = 'hidden';
+        btn.disabled = true;
+      }
+    });
+  }
+
+  function setOpen(item, open) {
+    item.setAttribute('data-open', open ? '1' : '0');
+    var icon = item.querySelector(':scope > .hiz-svc-tree__row .hiz-svc-tree__toggle i');
+    if (icon) {
+      icon.className = open ? 'pi pi-chevron-down' : 'pi pi-chevron-right';
+    }
+  }
+
+  root.addEventListener('click', function (e) {
+    var btn = e.target.closest('.hiz-svc-tree__toggle');
+    if (!btn || btn.disabled || btn.classList.contains('hiz-svc-tree__toggle--spacer')) return;
+    var item = btn.closest('.hiz-svc-tree__item');
+    if (!item) return;
+    setOpen(item, item.getAttribute('data-open') !== '1');
+  });
+
+  root.querySelector('[data-action="expand-all"]')?.addEventListener('click', function () {
+    root.querySelectorAll('.hiz-svc-tree__item').forEach(function (item) {
+      if (itemHasBranch(item)) setOpen(item, true);
+    });
+  });
+
+  root.querySelector('[data-action="collapse-all"]')?.addEventListener('click', function () {
+    root.querySelectorAll('.hiz-svc-tree__item').forEach(function (item) {
+      if (itemHasBranch(item)) setOpen(item, false);
+    });
+  });
+
+  function syncHiddenRoles() {
+    if (!hiddenBox) return;
+    hiddenBox.innerHTML = '';
+    root.querySelectorAll('.hiz-svc-tree__check:checked').forEach(function (cb) {
+      var item = cb.closest('.hiz-svc-tree__item');
+      if (!item) return;
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'roles';
+      input.value = item.getAttribute('data-key') || '';
+      hiddenBox.appendChild(input);
+    });
+  }
+
+  root.addEventListener('change', function (e) {
+    if (!e.target.classList.contains('hiz-svc-tree__check')) return;
+    syncHiddenRoles();
+  });
+
+  function applyFilter(q) {
+    var query = (q || '').trim().toLowerCase();
+    root.querySelectorAll('.hiz-svc-tree__item').forEach(function (item) {
+      var label = (item.getAttribute('data-label') || '').toLowerCase();
+      var badge = (item.querySelector('.hiz-svc-tree__badge')?.textContent || '').toLowerCase();
+      var selfMatch = !query || label.indexOf(query) >= 0 || badge.indexOf(query) >= 0;
+      var childMatch = false;
+      item.querySelectorAll(':scope > .hiz-svc-tree__branch .hiz-svc-tree__item').forEach(function (child) {
+        if (child.style.display !== 'none') childMatch = true;
+      });
+      if (!query) {
+        item.style.display = '';
+        return;
+      }
+      if (selfMatch) {
+        item.style.display = '';
+        var p = item.parentElement?.closest('.hiz-svc-tree__item');
+        while (p) {
+          p.style.display = '';
+          setOpen(p, true);
+          p = p.parentElement?.closest('.hiz-svc-tree__item');
+        }
+      } else {
+        item.style.display = childMatch ? '' : 'none';
+      }
+    });
+  }
+
+  if (search) {
+    search.addEventListener('input', function () {
+      applyFilter(search.value);
+    });
+  }
+
+  refreshToggles();
+  syncHiddenRoles();
+})();
+</script>

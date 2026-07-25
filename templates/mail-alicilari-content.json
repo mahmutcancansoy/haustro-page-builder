@@ -1,0 +1,228 @@
+{
+  "pageId": "6a3bc0e643f4623d22b4042b",
+  "content": [
+    {
+      "type": "condition",
+      "isContainer": true,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Header hidden"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "false",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "type": "condition",
+      "isContainer": true,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Ana içerik"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "true",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ],
+      "children": [
+        {
+          "type": "data-source",
+          "isContainer": false,
+          "children": [],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Mail kuralları"
+            },
+            {
+              "key": "variable-name",
+              "header": "Variable name",
+              "type": "input-text-property",
+              "value": "mailRules"
+            },
+            {
+              "key": "function",
+              "header": "Function",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Get",
+                  "value": "get"
+                },
+                {
+                  "label": "Custom",
+                  "value": "custom"
+                }
+              ],
+              "value": "get"
+            },
+            {
+              "key": "table-name",
+              "header": "Table name",
+              "type": "input-text-property",
+              "value": "mailRecipients",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'get'"
+                }
+              ]
+            },
+            {
+              "key": "custom-function-name",
+              "header": "Custom function name",
+              "type": "input-text-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "table-filters",
+              "header": "Table filters",
+              "type": "code-editor",
+              "value": "{\n    \"delete\": { \"$ne\": 1 }\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "post-params",
+              "header": "Post",
+              "type": "code-editor",
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Single data",
+                  "name": "single"
+                },
+                {
+                  "label": "Debug",
+                  "name": "debug"
+                },
+                {
+                  "label": "Can reload",
+                  "name": "canReload"
+                },
+                {
+                  "label": "For table",
+                  "name": "forTable"
+                }
+              ],
+              "value": {
+                "single": false,
+                "debug": false,
+                "canReload": true,
+                "forTable": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "simple-container",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "render-template",
+              "isContainer": false,
+              "isTextEditor": true,
+              "content": "<div class=\"mr-page\">\n  <div class=\"mr__hero\">\n    <div class=\"mr__hero-main\">\n      <span class=\"mr__eyebrow\">Sistem ayarları</span>\n      <h1>Mail Alıcıları</h1>\n      <p>Otomatik raporlar, envanter ve teknik talep maillerindeki sabit alıcı listelerini yönetin.</p>\n    </div>\n    {{#if mailRules.length}}<span class=\"mr__count\">{{mailRules.length}} kural</span>{{/if}}\n  </div>\n\n  <div class=\"mr-grid\">\n    {{#each mailRules}}\n    <article class=\"mr-card\">\n      <div class=\"mr-card__head\">\n        <h3 class=\"mr-card__title\">{{this.label}}</h3>\n        {{#if this.active}}\n        <span class=\"mr-card__badge\">Aktif</span>\n        {{else}}\n        <span class=\"mr-card__badge mr-card__badge--inactive\">Pasif</span>\n        {{/if}}\n      </div>\n\n      <p class=\"mr-card__meta\">\n        <strong>Kategori:</strong> {{this.categoryLabel}}<br>\n        <strong>Anahtar:</strong> <code>{{this.key}}</code><br>\n        <strong>Kaynak:</strong> {{this.sourceFile}}\n      </p>\n\n      {{#cIf this.recipientMode \"==\" \"role_only\"}}\n      <div class=\"mr-card__mode\"><i class=\"pi pi-users\"></i> {{this.roleNote}}</div>\n      {{/cIf}}\n      {{#cIf this.recipientMode \"==\" \"role_plus_fixed\"}}\n      <div class=\"mr-card__mode\"><i class=\"pi pi-users\"></i> {{this.roleNote}}</div>\n      {{/cIf}}\n\n      <ul class=\"mr-recipients\">\n        {{#if this.recipientsText}}\n        <li><i class=\"pi pi-envelope\"></i> {{this.recipientsText}}</li>\n        {{else}}\n        {{#each this.recipients}}\n        <li><i class=\"pi pi-envelope\"></i> {{this.value}}{{#cIf this.kind \"==\" \"username\"}} <span style=\"color:#64748b\">(kullanıcı)</span>{{/cIf}}</li>\n        {{else}}\n        <li><i class=\"pi pi-info-circle\"></i> Sabit alıcı tanımlı değil (rol bazlı)</li>\n        {{/each}}\n        {{/if}}\n      </ul>\n\n      <a class=\"mr-card__cta\" href=\"/d/mail-alici-duzenle?_id={{this._id}}\">\n        <i class=\"pi pi-pencil\"></i> Düzenle\n      </a>\n    </article>\n    {{else}}\n    <div class=\"mr-empty\">\n      <i class=\"pi pi-inbox\"></i>\n      <p>Henüz mail alıcı kuralı bulunamadı.</p>\n    </div>\n    {{/each}}\n  </div>\n</div>",
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Mail alıcı listesi"
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Mail Alıcıları Layout"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": ""
+            },
+            {
+              "key": "styles",
+              "header": "Styles",
+              "type": "code-editor",
+              "value": "{\n\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "styles": "/* Mail alıcıları — panel standart paleti (ass/dr ile uyumlu) */\n.mr-page {\n  --mr-primary: #4557a3;\n  --mr-primary-mid: #5b6fd6;\n  --mr-primary-light: #7c8ce8;\n  --mr-indigo-mid: #c7d2fe;\n  --mr-surface: #ffffff;\n  --mr-text: #0f172a;\n  --mr-muted: #475569;\n  --mr-border: #e2e8f0;\n  --mr-radius: 14px;\n  --mr-shadow: 0 4px 20px rgba(69, 87, 163, 0.12);\n  --mr-shadow-soft: 0 2px 12px rgba(69, 87, 163, 0.08);\n\n  width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  padding: 1.25rem 1rem 2.5rem;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  color: var(--mr-text);\n  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);\n  box-sizing: border-box;\n}\n\n.mr-page *,\n.mr-page *::before,\n.mr-page *::after {\n  box-sizing: border-box;\n}\n\n.mr-page .mr__hero {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 1.35rem;\n  padding: 1.35rem 1.5rem;\n  border-radius: var(--mr-radius);\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 52%, #7c8ce8 100%);\n  color: #fff;\n  box-shadow: 0 14px 36px rgba(69, 87, 163, 0.32);\n}\n\n.mr-page .mr__hero-main {\n  min-width: 0;\n}\n\n.mr-page .mr__eyebrow {\n  display: inline-block;\n  margin-bottom: 0.4rem;\n  padding: 0.2rem 0.55rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.28);\n  font-size: 0.66rem;\n  font-weight: 800;\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n  color: #fff;\n}\n\n.mr-page .mr__hero h1 {\n  margin: 0 0 0.3rem;\n  font-size: clamp(1.1rem, 2.2vw, 1.45rem);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n  color: #fff;\n}\n\n.mr-page .mr__hero p {\n  margin: 0;\n  font-size: 0.9rem;\n  color: rgba(255, 255, 255, 0.92);\n  line-height: 1.45;\n  font-weight: 500;\n}\n\n.mr-page .mr__count {\n  flex-shrink: 0;\n  padding: 0.45rem 0.85rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.28);\n  font-size: 0.8rem;\n  font-weight: 700;\n  color: #fff;\n}\n\n.mr-page .mr-section {\n  margin-bottom: 1.5rem;\n}\n\n.mr-page .mr-section__title {\n  margin: 0 0 0.75rem;\n  font-size: 0.78rem;\n  font-weight: 800;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: var(--mr-muted);\n}\n\n.mr-page .mr-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));\n  gap: 1rem;\n}\n\n.mr-page .mr-card {\n  position: relative;\n  background: var(--mr-surface);\n  border: 1px solid var(--mr-border);\n  border-radius: var(--mr-radius);\n  box-shadow: var(--mr-shadow-soft);\n  padding: 1rem 1.1rem;\n  display: flex;\n  flex-direction: column;\n  gap: 0.75rem;\n  overflow: hidden;\n}\n\n.mr-page .mr-card::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 4px;\n  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);\n}\n\n.mr-page .mr-card__head {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 0.75rem;\n  margin-top: 0.15rem;\n}\n\n.mr-page .mr-card__title {\n  margin: 0;\n  font-size: 1rem;\n  font-weight: 700;\n  line-height: 1.35;\n  color: var(--mr-text);\n}\n\n.mr-page .mr-card__badge {\n  flex-shrink: 0;\n  padding: 0.2rem 0.55rem;\n  border-radius: 999px;\n  font-size: 0.68rem;\n  font-weight: 700;\n  background: #eef2ff;\n  color: #4557a3;\n  border: 1px solid #c7d2fe;\n}\n\n.mr-page .mr-card__badge--inactive {\n  background: #fef2f2;\n  color: #b91c1c;\n  border-color: #fecaca;\n}\n\n.mr-page .mr-card__meta {\n  font-size: 0.78rem;\n  color: var(--mr-muted);\n  line-height: 1.4;\n}\n\n.mr-page .mr-card__meta code {\n  font-size: 0.72rem;\n  background: #f1f5f9;\n  padding: 0.1rem 0.35rem;\n  border-radius: 4px;\n  color: #334155;\n}\n\n.mr-page .mr-recipients {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  display: flex;\n  flex-direction: column;\n  gap: 0.35rem;\n}\n\n.mr-page .mr-recipients li {\n  display: flex;\n  align-items: center;\n  gap: 0.45rem;\n  font-size: 0.82rem;\n  color: #334155;\n}\n\n.mr-page .mr-recipients li i {\n  color: var(--mr-primary-mid);\n  font-size: 0.75rem;\n}\n\n.mr-page .mr-card__mode {\n  font-size: 0.75rem;\n  color: #4557a3;\n  background: #f8fafc;\n  border: 1px dashed #c7d2fe;\n  border-radius: 8px;\n  padding: 0.45rem 0.6rem;\n}\n\n.mr-page .mr-card__cta {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.4rem;\n  margin-top: auto;\n  padding: 0.5rem 0.85rem;\n  border-radius: 8px;\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%);\n  color: #fff !important;\n  text-decoration: none;\n  font-size: 0.82rem;\n  font-weight: 700;\n  width: fit-content;\n  border: 1px solid #4557a3;\n  box-shadow: 0 4px 14px rgba(69, 87, 163, 0.22);\n  transition: filter 0.15s ease, transform 0.15s ease;\n}\n\n.mr-page .mr-card__cta:hover {\n  filter: brightness(1.05);\n  transform: translateY(-1px);\n}\n\n.mr-page .mr-empty {\n  grid-column: 1 / -1;\n  text-align: center;\n  padding: 2.5rem 1rem;\n  color: var(--mr-muted);\n}\n\n.mr-page .mr-empty i {\n  font-size: 2rem;\n  margin-bottom: 0.5rem;\n  display: block;\n  opacity: 0.5;\n  color: var(--mr-primary-light);\n}\n\n/* Düzenle sayfası — tam genişlik, dengeli yatay boşluk */\n.mr-page.ass-page {\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n  padding: 1.25rem 1.25rem 2.5rem;\n}\n\n@media (min-width: 768px) {\n  .mr-page.ass-page {\n    padding: 1.5rem 1.75rem 2.75rem;\n  }\n}\n\n@media (min-width: 1200px) {\n  .mr-page.ass-page {\n    padding: 1.75rem 2rem 3rem;\n  }\n}\n\n.mr-edit {\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n}\n\n.mr-page .mr-edit__card {\n  background: var(--mr-surface);\n  border: 1px solid var(--mr-border);\n  border-radius: var(--mr-radius);\n  box-shadow: var(--mr-shadow-soft);\n  padding: 1.25rem 1.35rem;\n  margin-bottom: 0;\n}\n\n.mr-page .mr-edit__recipients-box {\n  margin: 0 0 0.65rem;\n  padding: 0.9rem 1rem;\n  background: #f8fafc;\n  border: 1px solid var(--mr-border);\n  border-radius: 10px;\n  font-size: 0.88rem;\n  line-height: 1.55;\n  color: #334155;\n  word-break: break-word;\n  white-space: pre-wrap;\n}\n\n.mr-page .mr-edit__recipients-empty {\n  color: var(--mr-muted);\n  font-style: italic;\n}\n\n.mr-page .mr-edit__label {\n  margin: 0 0 0.35rem;\n  font-size: 0.78rem;\n  font-weight: 700;\n  color: var(--mr-muted);\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n}\n\n.mr-page .mr-edit__value {\n  margin: 0 0 1rem;\n  font-size: 0.95rem;\n}\n\n.mr-page .mr-edit__hint {\n  margin: 0.5rem 0 0;\n  font-size: 0.78rem;\n  color: var(--mr-muted);\n  line-height: 1.45;\n}\n\n.mr-page .mr-back {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  margin-bottom: 1rem;\n  color: var(--mr-primary);\n  text-decoration: none;\n  font-size: 0.85rem;\n  font-weight: 600;\n}\n\n.mr-page .mr-back:hover {\n  color: var(--mr-primary-mid);\n}\n\n.mr-page .mr-edit__form-card {\n  margin-top: 1rem;\n  width: 100%;\n  max-width: 100%;\n  padding: 0;\n  background: var(--mr-surface);\n  border: 1px solid var(--mr-border);\n  border-radius: var(--mr-radius);\n  box-shadow: var(--mr-shadow-soft);\n  overflow: hidden;\n}\n\n.mr-page .mr-edit__form-card .mr-form-head {\n  margin-bottom: 0;\n  padding: 1.15rem 1.25rem;\n  border-bottom: 1px solid var(--mr-border);\n}\n\n/* Form — rol/hizmet sayfaları ile uyumlu */\n.mr-page .mr-edit__form-card .mr-form,\n.mr-page .mr-edit__form-card .form-container {\n  margin-top: 0;\n  padding: 0 1.25rem 1.25rem;\n  width: 100%;\n  max-width: 100%;\n  background: transparent;\n  border: none;\n  border-radius: 0;\n  box-shadow: none;\n}\n\n.mr-page .mr-form-head {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.85rem;\n  margin-bottom: 1rem;\n  padding-bottom: 0.85rem;\n  border-bottom: 1px solid var(--mr-border);\n}\n\n.mr-page .mr-form-head__icon {\n  flex-shrink: 0;\n  width: 2.5rem;\n  height: 2.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 10px;\n  background: #eef2ff;\n  color: var(--mr-primary);\n  font-size: 1.1rem;\n}\n\n.mr-page .mr-form-head h2 {\n  margin: 0 0 0.25rem;\n  font-size: 1rem;\n  font-weight: 700;\n  color: var(--mr-text);\n}\n\n.mr-page .mr-form-head p {\n  margin: 0;\n  font-size: 0.82rem;\n  color: var(--mr-muted);\n  line-height: 1.45;\n}\n\n.mr-page .mr-form-actions {\n  display: flex;\n  gap: 0.75rem;\n  margin-top: 1rem;\n}\n\n.mr-page .form-container .p-inputtext,\n.mr-page .mr-edit__form-card input.p-inputtext {\n  width: 100% !important;\n  max-width: 100% !important;\n}\n\n.mr-page .form-container textarea,\n.mr-page .form-container .p-inputtextarea {\n  border-color: #c7d2fe !important;\n  border-radius: 10px !important;\n}\n\n.mr-page .form-container textarea:focus,\n.mr-page .form-container .p-inputtextarea:focus {\n  border-color: var(--mr-primary) !important;\n  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;\n}\n\n.mr-page .form-container .p-button,\n.mr-page .form-container button.p-button {\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;\n  border-color: #4557a3 !important;\n  color: #fff !important;\n}\n\n.mr-page .form-container .p-button:hover,\n.mr-page .form-container button.p-button:hover {\n  filter: brightness(1.05);\n}",
+  "syncedAt": "2026-06-24T12:53:20.970Z"
+}

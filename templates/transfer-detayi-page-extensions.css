@@ -1,0 +1,115 @@
+/* Transfer Detayı — hero, detay kartı, şoför işlem kartları */
+
+.ass-page .ass__hero--transfer .ass__hero-meta-line {
+  margin: 0.35rem 0 0;
+}
+
+/* Durum rozetleri (form içi) */
+.ass-page .ass__detail-card .form-container > .condition .label,
+.ass-page .ass__detail-card .form-container > label .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0;
+  text-transform: none !important;
+}
+
+/* Şoför işlem kartları */
+.ass-page .ass__action-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__action-card > .condition,
+.ass-page .ass__action-card .condition {
+  padding: 0 1.15rem 1.25rem;
+  margin: 0;
+  border: none;
+}
+
+.ass-page .ass__action-card .form-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__action-card .form-container label,
+.ass-page .ass__action-card .form-container .label {
+  color: #64748b !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ass-page .ass__action-card .p-button,
+.ass-page .ass__action-card .p-button-success,
+.ass-page .ass__action-card .p-button.p-button-success {
+  border-radius: 10px;
+  font-weight: 700;
+  min-height: 2.5rem;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.22);
+}
+
+.ass-page .ass__action-card .input-text,
+.ass-page .ass__action-card input.p-inputtext,
+.ass-page .ass__action-card textarea {
+  border-radius: 10px;
+}
+
+.ass-page .ass__action-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--ass-border, #e2e8f0);
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+}
+
+.ass-page .ass__action-head-icon {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #eef2ff;
+  color: var(--ass-primary, #4557a3);
+  font-size: 1rem;
+}
+
+.ass-page .ass__action-head h2 {
+  margin: 0 0 0.15rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ass-text, #1e293b);
+}
+
+.ass-page .ass__action-head p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--ass-label, #64748b);
+  line-height: 1.4;
+}
+
+@media print {
+  .ass-page .ass__action-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .ass-page .ass__action-card .p-button {
+    display: none !important;
+  }
+}

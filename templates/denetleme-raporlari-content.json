@@ -1,0 +1,1064 @@
+{
+  "_id": "64aeb149b03e360015135613",
+  "pageId": "64aeb149b03e360015135611",
+  "content": [
+    {
+      "type": "condition",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "data-source",
+          "isContainer": true,
+          "children": [],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "departments"
+            },
+            {
+              "key": "variable-name",
+              "header": "Variable name",
+              "type": "input-text-property",
+              "value": "departments"
+            },
+            {
+              "key": "function",
+              "header": "Function",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Get",
+                  "value": "get"
+                },
+                {
+                  "label": "Custom",
+                  "value": "custom"
+                }
+              ],
+              "value": "custom"
+            },
+            {
+              "key": "table-name",
+              "header": "Table name",
+              "type": "input-text-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'get'"
+                }
+              ]
+            },
+            {
+              "key": "custom-function-name",
+              "header": "Custom function name",
+              "type": "input-text-property",
+              "value": "departmentsLastInspection",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "table-filters",
+              "header": "Table filters",
+              "type": "code-editor",
+              "value": "{\n    \"status\" : \"active\"\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "post-params",
+              "header": "Post",
+              "type": "code-editor",
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "debug-type",
+              "header": "Debug type",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Log",
+                  "value": "log"
+                },
+                {
+                  "label": "Table",
+                  "value": "table"
+                }
+              ],
+              "value": "log",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.debug"
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Single data",
+                  "name": "single"
+                },
+                {
+                  "label": "Debug",
+                  "name": "debug"
+                },
+                {
+                  "label": "Can reload",
+                  "name": "canReload"
+                },
+                {
+                  "label": "For table",
+                  "name": "forTable"
+                }
+              ],
+              "value": {
+                "single": false,
+                "debug": false,
+                "canReload": false,
+                "forTable": false
+              }
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Genel Görebilen"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "\"{{info.roleId}}\" == \"606a1a7298373700173180e1\" || \"{{info.roleId}}\" == \"6031912131912b3fd840ca34\" || \"{{info.roleId}}\" == \"606a1a5c9837370011535d6c\" || \"{{info.roleId}}\" == \"606a1a7d98373700120ccc1b\" || \"{{info.roleId}}\" == \"606a1ca798373700120ccc20\"",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "condition",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "data-source",
+          "isContainer": true,
+          "children": [],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "departments"
+            },
+            {
+              "key": "variable-name",
+              "header": "Variable name",
+              "type": "input-text-property",
+              "value": "departments"
+            },
+            {
+              "key": "function",
+              "header": "Function",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Get",
+                  "value": "get"
+                },
+                {
+                  "label": "Custom",
+                  "value": "custom"
+                }
+              ],
+              "value": "custom"
+            },
+            {
+              "key": "table-name",
+              "header": "Table name",
+              "type": "input-text-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'get'"
+                }
+              ]
+            },
+            {
+              "key": "custom-function-name",
+              "header": "Custom function name",
+              "type": "input-text-property",
+              "value": "departmentsLastInspection",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "table-filters",
+              "header": "Table filters",
+              "type": "code-editor",
+              "value": "{\n    \"status\" : \"active\",\n    \"_id\":\"{{info.department}}\"\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "post-params",
+              "header": "Post",
+              "type": "code-editor",
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "debug-type",
+              "header": "Debug type",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Log",
+                  "value": "log"
+                },
+                {
+                  "label": "Table",
+                  "value": "table"
+                }
+              ],
+              "value": "log",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.debug"
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Single data",
+                  "name": "single"
+                },
+                {
+                  "label": "Debug",
+                  "name": "debug"
+                },
+                {
+                  "label": "Can reload",
+                  "name": "canReload"
+                },
+                {
+                  "label": "For table",
+                  "name": "forTable"
+                }
+              ],
+              "value": {
+                "single": false,
+                "debug": false,
+                "canReload": false,
+                "forTable": false
+              }
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Departman Bazlı Görebilen"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "\"{{info.roleId}}\" != \"606a1a7298373700173180e1\" &&\n\"{{info.roleId}}\" != \"6031912131912b3fd840ca34\" &&\n\"{{info.roleId}}\" != \"606a1a5c9837370011535d6c\" &&\n\"{{info.roleId}}\" != \"606a1a7d98373700120ccc1b\" &&\n\"{{info.roleId}}\" != \"606a1ca798373700120ccc20\"",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "simple-container",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"dr__hero\">\n  <div class=\"dr__hero-main\">\n    <span class=\"dr__eyebrow\">Operasyon denetimi</span>\n    <h1>Denetleme Raporları</h1>\n    <p>Şubelerin son denetleme tarihi ve puan özeti</p>\n  </div>\n  {{#if departments.length}}<span class=\"dr__count\">{{departments.length}} şube</span>{{/if}}\n</div>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Sayfa hero"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "table-column",
+              "isContainer": true,
+              "children": [
+                {
+                  "type": "simple-container",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "render-template",
+                      "isContainer": false,
+                      "isTextEditor": true,
+                      "content": "<div class=\"dr-card__header\">\n  {{#if input.short}}<span class=\"dr-card__code\">{{input.short}}</span>{{/if}}\n  <h3 class=\"dr-card__title\">{{input.label}}</h3>\n</div>\n\n<div class=\"dr-card__metrics\">\n  <div class=\"dr-card__metric\">\n    <span class=\"dr-card__metric-label\">Son denetleme</span>\n    {{#if input.lastInspection.datetime}}\n    <span class=\"dr-card__metric-value\">{{renderDateTime input.lastInspection.datetime}}</span>\n    {{else}}\n    <span class=\"dr-card__metric-value dr-card__metric-value--muted\">Henüz yok</span>\n    {{/if}}\n  </div>\n\n  <div class=\"dr-card__metric\">\n    <span class=\"dr-card__metric-label\">Puan</span>\n    {{#if input.lastInspection.total.point}}\n    <div class=\"dr-card__score\">\n      <span class=\"dr-card__score-num\">{{input.lastInspection.total.point}}</span>\n      <span class=\"dr-card__score-max\">/5</span>\n    </div>\n    {{#if input.lastInspection.resultText}}\n    <span class=\"dr-card__badge\">{{input.lastInspection.resultText}}</span>\n    {{/if}}\n    {{else}}\n    <span class=\"dr-card__metric-value dr-card__metric-value--muted\">—</span>\n    {{/if}}\n  </div>\n</div>",
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Şube kart içeriği"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Raporu görüntüle"
+                        },
+                        {
+                          "key": "id",
+                          "header": "Button ID",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": "dr-card__action-btn"
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "Raporu görüntüle",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "severity",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Primary",
+                              "value": "p-button-default"
+                            },
+                            {
+                              "label": "Secondary",
+                              "value": "p-button-secondary"
+                            },
+                            {
+                              "label": "Success",
+                              "value": "p-button-success"
+                            },
+                            {
+                              "label": "Info",
+                              "value": "p-button-info"
+                            },
+                            {
+                              "label": "Warning",
+                              "value": "p-button-warning"
+                            },
+                            {
+                              "label": "Help",
+                              "value": "p-button-help"
+                            },
+                            {
+                              "label": "Danger",
+                              "value": "p-button-danger"
+                            }
+                          ],
+                          "header": "Severity",
+                          "value": "p-button-secondary"
+                        },
+                        {
+                          "key": "size",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Small",
+                              "value": "p-button-sm"
+                            },
+                            {
+                              "label": "Normal",
+                              "value": "p-button"
+                            },
+                            {
+                              "label": "Large",
+                              "value": "p-button-lg"
+                            }
+                          ],
+                          "header": "Size",
+                          "value": "p-button-sm"
+                        },
+                        {
+                          "key": "icon",
+                          "header": "Icon",
+                          "type": "input-text-property",
+                          "value": "pi pi-arrow-right",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "icon-position",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Left",
+                              "value": "left"
+                            },
+                            {
+                              "label": "Right",
+                              "value": "right"
+                            }
+                          ],
+                          "header": "Icon position",
+                          "value": "right",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "width",
+                          "header": "Width",
+                          "type": "input-text-property",
+                          "value": "auto"
+                        },
+                        {
+                          "key": "action",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Submit",
+                              "value": "submit"
+                            },
+                            {
+                              "label": "Save",
+                              "value": "save"
+                            },
+                            {
+                              "label": "Link",
+                              "value": "link"
+                            },
+                            {
+                              "label": "Route",
+                              "value": "route"
+                            },
+                            {
+                              "label": "Route back",
+                              "value": "back"
+                            },
+                            {
+                              "label": "Download",
+                              "value": "download"
+                            },
+                            {
+                              "label": "Add",
+                              "value": "add"
+                            },
+                            {
+                              "label": "Edit",
+                              "value": "edit"
+                            },
+                            {
+                              "label": "Custom",
+                              "value": "custom"
+                            },
+                            {
+                              "label": "Modal Close",
+                              "value": "closeModal"
+                            }
+                          ],
+                          "header": "Action",
+                          "value": "route"
+                        },
+                        {
+                          "key": "formKey",
+                          "header": "Form Key",
+                          "type": "input-text-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'save'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "url",
+                          "header": "Url",
+                          "type": "textarea-property",
+                          "value": "/d/denetleme-raporu-ozeti",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "query-params",
+                          "header": "Query Params",
+                          "type": "code-editor",
+                          "value": "{\n    \"_id\" : \"{{input._id}}\"\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "filename",
+                          "header": "Filename",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'download'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "url-targer",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "_self",
+                              "value": "_self"
+                            },
+                            {
+                              "label": "_blank",
+                              "value": "_blank"
+                            }
+                          ],
+                          "header": "Target",
+                          "value": "_self",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'link'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "styles",
+                          "header": "Styles",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "font-style",
+                              "type": "checkbox-property",
+                              "header": "Font styles",
+                              "options": [
+                                {
+                                  "label": "Bold",
+                                  "name": "bold"
+                                },
+                                {
+                                  "label": "Italic",
+                                  "name": "italic"
+                                }
+                              ],
+                              "value": {
+                                "bold": false,
+                                "italic": false
+                              },
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "addEditButton",
+                          "header": "Add Or Edit Button",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "type",
+                              "type": "select-property",
+                              "header": "Type",
+                              "options": [
+                                {
+                                  "label": "None",
+                                  "value": "none"
+                                },
+                                {
+                                  "label": "Add",
+                                  "value": "add"
+                                },
+                                {
+                                  "label": "Edit",
+                                  "value": "edit"
+                                }
+                              ],
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            []
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            10
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "In form",
+                              "name": "inForm"
+                            },
+                            {
+                              "label": "Has icon",
+                              "name": "hasIcon"
+                            },
+                            {
+                              "label": "Rounded",
+                              "name": "rounded"
+                            },
+                            {
+                              "label": "Has shadow",
+                              "name": "hasShadow"
+                            },
+                            {
+                              "label": "Has outline",
+                              "name": "hasOutline"
+                            },
+                            {
+                              "label": "Text button",
+                              "name": "textButton"
+                            },
+                            {
+                              "label": "Disabled",
+                              "name": "disabled"
+                            }
+                          ],
+                          "value": {
+                            "inForm": false,
+                            "hasIcon": true,
+                            "rounded": false,
+                            "hasShadow": false,
+                            "hasOutline": false,
+                            "textButton": false,
+                            "disabled": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Şube kartı"
+                    },
+                    {
+                      "key": "classes",
+                      "header": "Classes",
+                      "type": "textarea-property",
+                      "value": "dr-card"
+                    },
+                    {
+                      "key": "styles",
+                      "header": "Styles",
+                      "type": "code-editor",
+                      "value": "{\n\n}"
+                    }
+                  ]
+                }
+              ],
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Şube kartı"
+                },
+                {
+                  "key": "variable",
+                  "header": "Variable name",
+                  "type": "input-text-property",
+                  "value": ""
+                },
+                {
+                  "key": "header",
+                  "header": "Header",
+                  "type": "input-text-property",
+                  "value": ""
+                },
+                {
+                  "key": "width",
+                  "header": "Width",
+                  "type": "input-text-property",
+                  "value": "auto"
+                },
+                {
+                  "key": "content-direction",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "row",
+                      "value": "row"
+                    },
+                    {
+                      "label": "column",
+                      "value": "column"
+                    }
+                  ],
+                  "header": "Content direction",
+                  "value": "row"
+                },
+                {
+                  "key": "justify-content",
+                  "header": "Justify content",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Unset",
+                      "value": "unset"
+                    },
+                    {
+                      "label": "Start",
+                      "value": "flex-start"
+                    },
+                    {
+                      "label": "Center",
+                      "value": "center"
+                    },
+                    {
+                      "label": "End",
+                      "value": "flex-end"
+                    }
+                  ],
+                  "value": "center"
+                },
+                {
+                  "key": "align-items",
+                  "header": "Align items",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Unset",
+                      "value": "unset"
+                    },
+                    {
+                      "label": "Start",
+                      "value": "flex-start"
+                    },
+                    {
+                      "label": "Center",
+                      "value": "center"
+                    },
+                    {
+                      "label": "End",
+                      "value": "flex-end"
+                    }
+                  ],
+                  "value": ""
+                },
+                {
+                  "key": "filter-type",
+                  "header": "Filter Type",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "No Filter",
+                      "value": "none"
+                    },
+                    {
+                      "label": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "label": "Select",
+                      "value": "select"
+                    }
+                  ],
+                  "value": "none"
+                },
+                {
+                  "key": "filter-select",
+                  "header": "Filter Select Options",
+                  "type": "textarea-property",
+                  "value": [],
+                  "conditions": [
+                    {
+                      "key": "filter-type",
+                      "rule": "value=='select'"
+                    }
+                  ]
+                },
+                {
+                  "key": "settings",
+                  "header": "Settings",
+                  "type": "checkbox-property",
+                  "options": [
+                    {
+                      "label": "Hide in mobile",
+                      "name": "hideInMobile"
+                    }
+                  ],
+                  "value": {
+                    "hideInMobile": false
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Şube kart grid"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": "dr-table"
+            },
+            {
+              "key": "data-source",
+              "header": "Data source",
+              "type": "input-text-property",
+              "value": "departments",
+              "autoComplete": true,
+              "autoCompleteMode": "source"
+            },
+            {
+              "key": "empty-message",
+              "header": "Empty message",
+              "type": "input-text-property",
+              "value": "Gösterilecek şube bulunamadı."
+            },
+            {
+              "key": "paginator-position",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Bottom",
+                  "value": "bottom"
+                },
+                {
+                  "label": "Top",
+                  "value": "top"
+                },
+                {
+                  "label": "Both",
+                  "value": "both"
+                }
+              ],
+              "header": "Paginator position",
+              "value": "bottom",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.pagination"
+                }
+              ]
+            },
+            {
+              "key": "row-count",
+              "header": "Row count",
+              "type": "input-number-property",
+              "value": 100,
+              "min": 0
+            },
+            {
+              "key": "alignment",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Left",
+                  "value": "left"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                },
+                {
+                  "label": "Right",
+                  "value": "right"
+                }
+              ],
+              "header": "Alignment",
+              "value": "center"
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Pagination",
+                  "name": "pagination"
+                },
+                {
+                  "label": "Sorting",
+                  "name": "sorting"
+                },
+                {
+                  "label": "General Filter",
+                  "name": "filtering"
+                },
+                {
+                  "label": "Show Clear Filters Button",
+                  "name": "clearAllFilterBtn"
+                }
+              ],
+              "value": {
+                "pagination": false,
+                "sorting": false,
+                "clearAllFilterBtn": false,
+                "filtering": false
+              }
+            },
+            {
+              "key": "filter-fields",
+              "header": "Filter Fields",
+              "type": "textarea-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.filtering"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Denetleme Raporları Layout"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": "dr-page"
+        },
+        {
+          "key": "styles",
+          "header": "Styles",
+          "type": "code-editor",
+          "value": "{\n\n}"
+        }
+      ]
+    }
+  ],
+  "styles": "/* Denetleme Raporları — özet sayfasıyla uyumlu canlı liste */\n.dr-page {\n  --dr-primary: #4557a3;\n  --dr-primary-mid: #5b6fd6;\n  --dr-primary-light: #7c8ce8;\n  --dr-indigo-mid: #c7d2fe;\n  --dr-surface: #ffffff;\n  --dr-text: #0f172a;\n  --dr-muted: #475569;\n  --dr-radius: 14px;\n  --dr-shadow: 0 4px 20px rgba(69, 87, 163, 0.12);\n  --dr-shadow-soft: 0 2px 12px rgba(69, 87, 163, 0.08);\n\n  width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  padding: 1.25rem 1rem 2.5rem;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  color: var(--dr-text);\n  background: #f4f6f8;\n  box-sizing: border-box;\n}\n\n.dr-page *,\n.dr-page *::before,\n.dr-page *::after {\n  box-sizing: border-box;\n}\n\n/* Hero — dro-hero ile aynı dil */\n.dr-page .dr__hero {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 1.35rem;\n  padding: 1.35rem 1.5rem;\n  border-radius: var(--dr-radius);\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 52%, #7c8ce8 100%);\n  color: #fff;\n  box-shadow: 0 14px 36px rgba(69, 87, 163, 0.32);\n}\n\n.dr-page .dr__hero-main {\n  min-width: 0;\n}\n\n.dr-page .dr__eyebrow {\n  display: inline-block;\n  margin-bottom: 0.4rem;\n  padding: 0.2rem 0.55rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.28);\n  font-size: 0.66rem;\n  font-weight: 800;\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n  color: #fff;\n}\n\n.dr-page .dr__hero h1 {\n  margin: 0 0 0.3rem;\n  font-size: clamp(1.1rem, 2.2vw, 1.45rem);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n  color: #fff;\n}\n\n.dr-page .dr__hero p {\n  margin: 0;\n  font-size: 0.9rem;\n  color: rgba(255, 255, 255, 0.92);\n  line-height: 1.45;\n  font-weight: 500;\n}\n\n.dr-page .dr__count {\n  flex-shrink: 0;\n  padding: 0.45rem 0.85rem;\n  border-radius: 12px;\n  background: rgba(255, 255, 255, 0.14);\n  border: 1px solid rgba(255, 255, 255, 0.22);\n  color: #fff;\n  font-size: 0.78rem;\n  font-weight: 800;\n  white-space: nowrap;\n}\n\n/* Tablo → kart grid */\n.dr-page .dr-table,\n.dr-page > .table.dr-table {\n  background: transparent;\n  border: none;\n  box-shadow: none;\n}\n\n.dr-page .dr-table .p-datatable,\n.dr-page .dr-table .p-datatable-wrapper,\n.dr-page .dr-table table {\n  background: transparent !important;\n  border: none !important;\n}\n\n.dr-page .dr-table .p-datatable-thead,\n.dr-page .dr-table thead,\n.dr-page .dr-table .p-datatable-header,\n.dr-page .dr-table .p-paginator {\n  display: none !important;\n}\n\n.dr-page .dr-table .p-datatable-tbody,\n.dr-page .dr-table tbody {\n  display: grid !important;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 1rem;\n  width: 100%;\n  max-width: 1280px;\n  margin: 0 auto;\n}\n\n.dr-page .dr-table .p-datatable-tbody > tr,\n.dr-page .dr-table tbody > tr {\n  display: block !important;\n  border: none !important;\n  background: transparent !important;\n  box-shadow: none !important;\n}\n\n.dr-page .dr-table .p-datatable-tbody > tr > td,\n.dr-page .dr-table tbody > td,\n.dr-page .dr-table tbody td {\n  display: block !important;\n  border: none !important;\n  padding: 0 !important;\n  background: transparent !important;\n  vertical-align: top !important;\n}\n\n.dr-page .dr-table .p-datatable-emptymessage,\n.dr-page .dr-table .p-datatable-emptymessage td {\n  grid-column: 1 / -1;\n  display: block !important;\n  padding: 2.5rem 1.5rem !important;\n  text-align: center;\n  color: var(--dr-muted);\n  font-size: 0.9rem;\n  font-weight: 600;\n  background: linear-gradient(160deg, #ffffff 0%, #eef2ff 100%) !important;\n  border: 1px dashed #a5b4fc !important;\n  border-radius: var(--dr-radius);\n}\n\n/* Kart — dro-summary-col benzeri */\n.dr-page .dr-card {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  padding: 1.15rem 1.2rem 1.1rem;\n  background: linear-gradient(160deg, #ffffff 0%, #eef2ff 100%);\n  border: 1px solid #a5b4fc;\n  border-top: 3px solid var(--dr-primary-mid);\n  border-radius: var(--dr-radius);\n  box-shadow: var(--dr-shadow);\n  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;\n}\n\n.dr-page .simple-container.dr-card {\n  display: flex;\n  flex-direction: column;\n}\n\n.dr-page .dr-card:hover {\n  border-color: #818cf8;\n  border-top-color: var(--dr-primary);\n  box-shadow: 0 8px 28px rgba(69, 87, 163, 0.2);\n  transform: translateY(-2px);\n}\n\n.dr-page .dr-card__header {\n  display: flex;\n  align-items: center;\n  gap: 0.55rem;\n  margin-bottom: 1rem;\n  padding-bottom: 0.85rem;\n  border-bottom: 2px solid var(--dr-indigo-mid);\n}\n\n.dr-page .dr-card__code {\n  flex-shrink: 0;\n  padding: 0.22rem 0.55rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.85);\n  border: 1px solid #c7d2fe;\n  color: var(--dr-primary);\n  font-size: 0.7rem;\n  font-weight: 800;\n  letter-spacing: 0.04em;\n}\n\n.dr-page .dr-card__title {\n  margin: 0;\n  font-size: 1rem;\n  font-weight: 800;\n  line-height: 1.35;\n  color: var(--dr-text);\n}\n\n.dr-page .dr-card__metrics {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 0.75rem 1rem;\n  flex: 1;\n  margin-bottom: 1rem;\n}\n\n.dr-page .dr-card__metric {\n  display: flex;\n  flex-direction: column;\n  gap: 0.2rem;\n  min-width: 0;\n  padding: 0.5rem 0.6rem;\n  border-radius: 10px;\n  background: rgba(255, 255, 255, 0.72);\n}\n\n.dr-page .dr-card__metric-label {\n  font-size: 0.68rem;\n  font-weight: 700;\n  letter-spacing: 0.05em;\n  text-transform: uppercase;\n  color: var(--dr-primary-mid);\n}\n\n.dr-page .dr-card__metric-value {\n  font-size: 0.86rem;\n  font-weight: 700;\n  color: #1e293b;\n  line-height: 1.35;\n}\n\n.dr-page .dr-card__metric-value--muted {\n  color: #94a3b8;\n  font-weight: 600;\n}\n\n.dr-page .dr-card__score {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: baseline;\n  gap: 0.15rem 0.35rem;\n}\n\n.dr-page .dr-card__score-num {\n  font-size: 1.15rem;\n  font-weight: 800;\n  color: var(--dr-primary);\n  letter-spacing: -0.02em;\n}\n\n.dr-page .dr-card__score-max {\n  font-size: 0.78rem;\n  font-weight: 700;\n  color: #94a3b8;\n}\n\n.dr-page .dr-card__badge {\n  display: inline-block;\n  margin-top: 0.15rem;\n  padding: 0.14rem 0.48rem;\n  border-radius: 999px;\n  font-size: 0.62rem;\n  font-weight: 800;\n  letter-spacing: 0.04em;\n  background: #fef08a;\n  color: #854d0e;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);\n}\n\n.dr-page .dr-card__badge--excellent {\n  background: #dcfce7;\n  color: #15803d;\n}\n\n.dr-page .dr-card__badge--good {\n  background: #dbeafe;\n  color: #1d4ed8;\n}\n\n.dr-page .dr-card__badge--pass {\n  background: #fef9c3;\n  color: #a16207;\n}\n\n.dr-page .dr-card__badge--fair {\n  background: #ffedd5;\n  color: #c2410c;\n}\n\n.dr-page .dr-card__badge--poor {\n  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);\n  color: #b91c1c;\n  border: 1px solid #fca5a5;\n}\n\n/* Aksiyon butonu — dro-area-action benzeri */\n.dr-page .dr-card__action {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.4rem;\n  width: 100%;\n  margin-top: auto;\n  padding: 0.55rem 0.85rem;\n  border-radius: 10px;\n  border: none;\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%);\n  color: #fff !important;\n  font-size: 0.82rem;\n  font-weight: 700;\n  text-decoration: none;\n  box-shadow: 0 4px 12px rgba(69, 87, 163, 0.28);\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n\n.dr-page .dr-card__action i {\n  font-size: 0.72rem;\n  color: #fff;\n  transition: transform 0.15s ease;\n}\n\n.dr-page .dr-card__action:hover {\n  background: linear-gradient(135deg, #364785 0%, #4f5fc4 100%);\n  transform: translateY(-1px);\n  box-shadow: 0 6px 16px rgba(69, 87, 163, 0.35);\n}\n\n.dr-page .dr-card__action:hover i {\n  transform: translateX(2px);\n}\n\n.dr-page .dr-card .dr-card__action-btn,\n.dr-page .dr-card .p-button.dr-card__action-btn {\n  display: inline-flex !important;\n  align-items: center;\n  justify-content: center;\n  gap: 0.4rem;\n  width: 100%;\n  margin-top: auto;\n  padding: 0.55rem 0.85rem !important;\n  border-radius: 10px !important;\n  border: none !important;\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;\n  color: #fff !important;\n  font-size: 0.82rem !important;\n  font-weight: 700 !important;\n  box-shadow: 0 4px 12px rgba(69, 87, 163, 0.28) !important;\n  transition: transform 0.15s ease, box-shadow 0.15s ease !important;\n}\n\n.dr-page .dr-card .dr-card__action-btn:hover,\n.dr-page .dr-card .p-button.dr-card__action-btn:hover {\n  background: linear-gradient(135deg, #364785 0%, #4f5fc4 100%) !important;\n  transform: translateY(-1px);\n  box-shadow: 0 6px 16px rgba(69, 87, 163, 0.35) !important;\n}\n\n.dr-page .dr-card .dr-card__action-btn .p-button-icon-right {\n  font-size: 0.72rem;\n}\n\n@media (min-width: 768px) {\n  .dr-page {\n    padding: 1.5rem 1.5rem 3rem;\n  }\n\n  .dr-page .dr-table .p-datatable-tbody,\n  .dr-page .dr-table tbody {\n    gap: 1.15rem;\n  }\n}\n\n@media (max-width: 520px) {\n  .dr-page .dr__hero {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n\n  .dr-page .dr-card__metrics {\n    grid-template-columns: 1fr;\n  }\n}",
+  "updatedAt": "2026-06-10T01:24:08.403Z"
+}

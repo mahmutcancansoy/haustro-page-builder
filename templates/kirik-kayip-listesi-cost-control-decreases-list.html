@@ -1,0 +1,52 @@
+<div class="ass__inventory">
+  {{#if monthlyCostReports.decreasesInfo.length}}
+  <div class="ass-table-wrap">
+    <table class="ass-table ass-table--wide">
+      <thead>
+        <tr>
+          <th class="ass-table__name" scope="col">Envanter</th>
+          <th class="ass-table__num-col" scope="col">Eski Miktar</th>
+          <th class="ass-table__num-col" scope="col">Transfer</th>
+          <th class="ass-table__num-col" scope="col">Olması Gereken</th>
+          <th class="ass-table__num-col" scope="col">Yeni Miktar</th>
+          <th class="ass-table__num-col ass-table__num-col--warn" scope="col">Adet Fark</th>
+          <th class="ass-table__num-col ass-table__num-col--warn" scope="col">Fiyat Fark</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each monthlyCostReports.decreasesInfo}}
+        <tr class="ass-table__row">
+          <td class="ass-table__name" data-label="Envanter">
+            <a
+              class="ass-table__link"
+              href="/d/arac-gerec-detayi?_id={{inventoryId}}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="ass-table__link-icon"><i class="pi pi-box"></i></span>
+              <span class="ass-table__link-text">{{inventoryName}}</span>
+              <i class="pi pi-external-link ass-table__link-arrow"></i>
+            </a>
+          </td>
+          <td class="ass-table__num-col" data-label="Eski Miktar">{{old}}</td>
+          <td class="ass-table__num-col" data-label="Transfer">{{transferIn}}</td>
+          <td class="ass-table__num-col" data-label="Olması Gereken">{{mustBe}}</td>
+          <td class="ass-table__num-col" data-label="Yeni Miktar">{{new}}</td>
+          <td class="ass-table__num-col ass-table__num-col--warn" data-label="Adet Fark">
+            <span class="ass-qty-badge ass-qty-badge--warn">-{{decreaseAmount}}</span>
+          </td>
+          <td class="ass-table__num-col ass-table__num-col--warn" data-label="Fiyat Fark">
+            <span class="ass-qty-badge ass-qty-badge--warn">-{{diffPrice}} TL</span>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="ass__empty">
+    <i class="pi pi-inbox"></i>
+    <p>Bu dönem için eksilen stok kaydı bulunamadı.</p>
+  </div>
+  {{/if}}
+</div>

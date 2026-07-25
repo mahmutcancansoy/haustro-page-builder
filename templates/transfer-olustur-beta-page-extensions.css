@@ -1,0 +1,129 @@
+/* Transfer Oluştur Beta — modern form + inline envanter önizleme */
+
+.ass-page .tob-hero .ass__chip.tob-chip {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+.ass-page .ass__preview-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__preview-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.ass-page .ass__preview-card > .condition {
+  padding: 1rem 1.15rem 1.25rem;
+  margin: 0;
+}
+
+.ass-page .ass__preview-card .inventory-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.ass-page .ass__form-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__form-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.ass-page .ass__form-card > .form-container,
+.ass-page .ass__form-card .form-container {
+  padding: 0 1.15rem 1.25rem !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__form-card .ass__list-head {
+  margin: 1rem 1.15rem 0.75rem;
+}
+
+.ass-page .ass__form-card label,
+.ass-page .ass__form-card .p-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ass-label, #64748b);
+  margin-bottom: 0.35rem;
+}
+
+.ass-page .ass__form-card .p-inputtext,
+.ass-page .ass__form-card .p-dropdown,
+.ass-page .ass__form-card .p-inputnumber-input,
+.ass-page .ass__form-card .p-inputtextarea,
+.ass-page .ass__form-card input.p-inputtext,
+.ass-page .ass__form-card textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 10px !important;
+  border-color: #cbd5e1 !important;
+  font-size: 0.92rem !important;
+}
+
+.ass-page .ass__form-card .p-inputtext:enabled:focus,
+.ass-page .ass__form-card .p-dropdown:not(.p-disabled).p-focus,
+.ass-page .ass__form-card .p-inputtextarea:enabled:focus,
+.ass-page .ass__form-card .p-inputnumber-input:enabled:focus {
+  border-color: var(--ass-primary, #4557a3) !important;
+  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.12) !important;
+}
+
+.ass-page .ass__form-card .p-button.p-button-default,
+.ass-page .ass__form-card .p-button.p-button-success {
+  border-radius: 10px;
+  font-weight: 700;
+  min-height: 2.5rem;
+  margin-top: 0.75rem;
+  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.18);
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__preview-card .inventory-card {
+    flex-direction: column;
+  }
+
+  .ass-page .ass__preview-card .inventory-img {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .ass-page .ass__preview-card .info-row {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .ass-page .ass__preview-card .info-label {
+    width: auto;
+  }
+}
+
+@media print {
+  .ass-page .ass__toolbar {
+    display: none !important;
+  }
+}

@@ -1,0 +1,448 @@
+/* Denetleme Raporu Özeti — canlı modern detay sayfası */
+.dro-page {
+  --dro-primary: #4557a3;
+  --dro-primary-mid: #5b6fd6;
+  --dro-primary-light: #7c8ce8;
+  --dro-teal: #0d9488;
+  --dro-teal-soft: #ccfbf1;
+  --dro-indigo-soft: #e0e7ff;
+  --dro-indigo-mid: #c7d2fe;
+  --dro-surface: #ffffff;
+  --dro-text: #0f172a;
+  --dro-muted: #475569;
+  --dro-radius: 14px;
+  --dro-shadow: 0 4px 20px rgba(69, 87, 163, 0.12);
+  --dro-shadow-soft: 0 2px 12px rgba(69, 87, 163, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 1.25rem 1rem 2.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--dro-text);
+  background: #f4f6f8;
+  box-sizing: border-box;
+}
+
+.dro-page *,
+.dro-page *::before,
+.dro-page *::after {
+  box-sizing: border-box;
+}
+
+/* Geri link */
+.dro-page .dro-page-head {
+  margin-bottom: 1rem;
+}
+
+.dro-page .dro-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #c7d2fe;
+  color: var(--dro-primary) !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--dro-shadow-soft);
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dro-page .dro-back:hover {
+  background: #fff;
+  transform: translateY(-1px);
+  box-shadow: var(--dro-shadow);
+}
+
+.dro-page .dro-back i {
+  font-size: 0.75rem;
+}
+
+/* Loop rapor kartı */
+.dro-page .dro-report {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 1.35rem;
+}
+
+.dro-page .dro-report:last-child {
+  margin-bottom: 0;
+}
+
+/* Hero grid */
+.dro-page .dro-hero-grid,
+.dro-page .grid.dro-hero-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 0 0.85rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.dro-page .dro-hero-grid > .row,
+.dro-page .dro-hero-grid .row {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.dro-page .dro-hero-grid .col,
+.dro-page .dro-hero-grid [class*='col-'] {
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.dro-page .dro-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--dro-radius);
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 52%, #7c8ce8 100%);
+  color: #fff;
+  box-shadow: 0 14px 36px rgba(69, 87, 163, 0.32);
+}
+
+.dro-page .dro-hero__main {
+  min-width: 0;
+}
+
+.dro-page .dro-hero__period {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.dro-page .dro-hero h2 {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.dro-page .dro-hero__branch {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 500;
+}
+
+.dro-page .dro-hero__score {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.15rem 0.35rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  text-align: right;
+}
+
+.dro-page .dro-hero__score-num {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+}
+
+.dro-page .dro-hero__score-max {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.dro-page .dro-hero__score-pct {
+  display: block;
+  width: 100%;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.dro-page .dro-hero__badge {
+  display: inline-block;
+  margin-top: 0.2rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: #fef08a;
+  color: #854d0e;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Ana kart grid */
+.dro-page .dro-card-grid,
+.dro-page .grid.dro-card-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.dro-page .dro-card-grid > .row,
+.dro-page .dro-card-grid .row {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.dro-page .dro-card-grid .col,
+.dro-page .dro-card-grid [class*='col-'] {
+  flex: 1 1 280px;
+  min-width: 0;
+  padding: 0 !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+.dro-page .dro-summary-col {
+  background: linear-gradient(160deg, #ffffff 0%, #eef2ff 100%);
+  border: 1px solid #a5b4fc;
+  border-top: 3px solid var(--dro-primary-mid);
+  border-radius: var(--dro-radius);
+  box-shadow: var(--dro-shadow);
+  padding: 1.15rem 1.2rem !important;
+}
+
+.dro-page .dro-areas-col {
+  background: linear-gradient(160deg, #ffffff 0%, #f0fdfa 100%);
+  border: 1px solid #5eead4;
+  border-top: 3px solid var(--dro-teal);
+  border-radius: var(--dro-radius);
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.14);
+  padding: 1.15rem 1.2rem !important;
+}
+
+/* Özet formu */
+.dro-page .dro-summary-col .form-container::before {
+  content: 'Özet Bilgiler';
+  display: block;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 2px solid var(--dro-indigo-mid);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--dro-primary);
+}
+
+.dro-page .dro-summary-row,
+.dro-page .dro-summary-col .form-container .dro-summary-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.75rem !important;
+  padding: 0.55rem 0.65rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: none;
+}
+
+.dro-page .dro-summary-row:last-child,
+.dro-page .dro-summary-col .form-container .dro-summary-row:last-child {
+  margin-bottom: 0 !important;
+}
+
+.dro-page .dro-summary-col .form-group,
+.dro-page .dro-summary-col .field,
+.dro-page .dro-summary-col .p-field {
+  margin-bottom: 0 !important;
+}
+
+.dro-page .dro-summary-col label,
+.dro-page .dro-summary-row label {
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--dro-primary-mid) !important;
+  margin-bottom: 0.15rem !important;
+}
+
+.dro-page .dro-summary-col .label,
+.dro-page .dro-summary-row .label,
+.dro-page .dro-summary-col .p-label,
+.dro-page .dro-summary-row span:not(label) {
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+/* Alan raporları */
+.dro-page .dro-areas-col .form-container::before {
+  content: 'Alan Denetim Raporları';
+  display: block;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 2px solid #99f6e4;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.dro-page .dro-areas-col .form-group,
+.dro-page .dro-areas-col .field,
+.dro-page .dro-areas-col .condition,
+.dro-page .dro-areas-col .form-container > .condition {
+  margin-bottom: 0.55rem !important;
+}
+
+.dro-page .dro-area-row,
+.dro-page .dro-area-action,
+.dro-page .dro-area-missing,
+.dro-page .dro-areas-col .dro-area-row,
+.dro-page .dro-areas-col .dro-area-action,
+.dro-page .dro-areas-col .dro-area-missing {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem !important;
+  margin-bottom: 0.5rem !important;
+  background: #fff;
+  border: 1px solid #ccfbf1;
+  border-left: 3px solid var(--dro-teal);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.06);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.dro-page .dro-area-row:hover,
+.dro-page .dro-area-action:hover {
+  border-color: #5eead4;
+  border-left-color: #0d9488;
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.14);
+  transform: translateY(-1px);
+}
+
+.dro-page .dro-area-row > label,
+.dro-page .dro-area-action > label,
+.dro-page .dro-area-missing > label,
+.dro-page .dro-area-row label:first-child,
+.dro-page .dro-area-action label:first-child,
+.dro-page .dro-area-missing label:first-child {
+  flex: 1;
+  min-width: 0;
+  margin: 0 !important;
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  color: #134e4a !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+.dro-page .dro-area-action a,
+.dro-page .dro-area-action .label:not(label),
+.dro-page .dro-area-action > span,
+.dro-page .dro-area-action span:last-child {
+  flex-shrink: 0;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.38rem 0.78rem !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  color: #fff !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(69, 87, 163, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dro-page .dro-area-action:hover a,
+.dro-page .dro-area-action:hover span:last-child {
+  background: linear-gradient(135deg, #364785 0%, #4f5fc4 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(69, 87, 163, 0.35);
+}
+
+.dro-page .dro-area-missing .label:not(label),
+.dro-page .dro-area-missing > span,
+.dro-page .dro-area-missing span:last-child {
+  flex-shrink: 0;
+  display: inline-block !important;
+  padding: 0.3rem 0.62rem !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+  color: #b91c1c !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  border: 1px solid #fca5a5;
+}
+
+/* Koşul blokları iç içe boşluk */
+.dro-page .dro-areas-col .condition .condition {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .dro-page {
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .dro-page .dro-card-grid .col:first-child,
+  .dro-page .dro-card-grid [class*='col-']:first-child {
+    flex: 0 1 38%;
+  }
+
+  .dro-page .dro-card-grid .col:last-child,
+  .dro-page .dro-card-grid [class*='col-']:last-child {
+    flex: 1 1 58%;
+  }
+}
+
+@media (max-width: 640px) {
+  .dro-page .dro-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dro-page .dro-hero__score {
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .dro-page .dro-area-row,
+  .dro-page .dro-area-action,
+  .dro-page .dro-area-missing {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

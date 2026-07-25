@@ -1,0 +1,70 @@
+<div class="info-card m-4">
+    <div class="card-header-modern offer-header">
+        <i class="pi pi-verified"></i>
+        <h5>Onaylanan Teklif Detayları</h5>
+    </div>
+    
+    <div class="card-content-modern">
+        <div class="supplier-section mb-4">
+            <label class="text-muted small fw-bold">TEDARİKÇİ FİRMA</label>
+            <div class="d-flex align-items-center gap-2">
+                <i class="pi pi-building text-primary"></i>
+                <span class="fw-bold fs-5 text-dark">{{confirmOffer.:suppliers.name}}</span>
+            </div>
+        </div>
+
+        <div class="detail-grid">
+            <div class="detail-item">
+                <label>Birim Fiyat (KDV'siz)</label>
+                <span>{{confirmOffer.netPrice}} ₺</span>
+            </div>
+            <div class="detail-item">
+                <label>KDV Oranı</label>
+                <span class="badge bg-light text-dark border">%{{confirmOffer.kdvRate}}</span>
+            </div>
+            <div class="detail-item">
+                <label>Birim Fiyat (KDV Dahil)</label>
+                <span class="text-primary fw-bold">{{confirmOffer.price}} ₺</span>
+            </div>
+            <div class="detail-item">
+                <label>Talep Edilen Miktar</label>
+                <span>{{confirmOffer.stockAmount}} Adet</span>
+            </div>
+
+            {{#if confirmOffer.typePrice}}
+            <div class="detail-item currency-highlight">
+                <label>Döviz Fiyatı</label>
+                <span>{{confirmOffer.typePrice}} {{confirmOffer.currencyType}}</span>
+            </div>
+            <div class="detail-item">
+                <label>Döviz Kuru Tarihi</label>
+                <span>{{renderDate confirmOffer.typePriceDate}}</span>
+            </div>
+            {{/if}}
+
+            <div class="detail-item">
+                <label>Teklif Tarihi</label>
+                <span>{{renderDate confirmOffer.offerTime}}</span>
+            </div>
+            <div class="detail-item">
+                <label>Sipariş Transfer Tarihi</label>
+                <span>{{renderDate confirmOffer.transferDatetime}}</span>
+            </div>
+            <div class="detail-item">
+                <label>Garanti Süresi</label>
+                <span>{{confirmOffer.expiryGuarantee}} Ay</span>
+            </div>
+        </div>
+
+        <div class="offer-description mt-4">
+            <label class="d-block mb-2 text-muted small fw-bold">TEKLİF AÇIKLAMASI</label>
+            <div class="description-box">
+                {{#if confirmOffer.description}}
+                    {{confirmOffer.description}}
+                {{else}}
+                    <span class="text-muted italic">Açıklama belirtilmemiş.</span>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

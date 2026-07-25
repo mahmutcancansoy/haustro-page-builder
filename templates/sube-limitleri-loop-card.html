@@ -1,0 +1,55 @@
+<div class="sl-card">
+  <div class="sl-card__head">
+    <div class="sl-card__branch">
+      <span class="sl-card__badge">{{input.short}}</span>
+      <h3 class="sl-card__title">{{input.label}}</h3>
+    </div>
+    <div class="sl-card__manager">
+      <i class="pi pi-user"></i>
+      <span>{{input.:users:manager.name}} {{input.:users:manager.surname}}</span>
+    </div>
+  </div>
+
+  <div class="sl-metrics">
+    <div class="sl-metric">
+      <div class="sl-metric__top">
+        <span class="sl-metric__label">İşlem başı limit</span>
+        <span class="sl-metric__limit">{{input.purchaseLimits.perTransactionLimit}} ₺</span>
+      </div>
+      {{#if input.purchaseLimits.perTransactionLimit}}
+      <div class="sl-metric__sub">Bu ay en yüksek onaylı teklif: <strong>{{input.limitUsage.perTransactionPeak}} ₺</strong></div>
+      {{#if input.limitUsage.perTransactionPercent}}
+      <div class="sl-bar"><div class="sl-bar__fill sl-bar__fill--tx" style="width: {{input.limitUsage.perTransactionPercent}}%"></div></div>
+      {{/if}}
+      {{else}}
+      <div class="sl-metric__sub sl-metric__sub--muted">Tanımlı değil</div>
+      {{/if}}
+    </div>
+
+    <div class="sl-metric">
+      <div class="sl-metric__top">
+        <span class="sl-metric__label">Aylık kullanım</span>
+        <span class="sl-metric__used">{{input.limitUsage.monthlySpent}} / {{input.purchaseLimits.monthlyLimit}} ₺</span>
+      </div>
+      {{#if input.purchaseLimits.monthlyLimit}}
+      <div class="sl-bar"><div class="sl-bar__fill sl-bar__fill--month" style="width: {{input.limitUsage.monthlyPercent}}%"></div></div>
+      <div class="sl-metric__remain">Kalan: <strong>{{input.limitUsage.monthlyRemaining}} ₺</strong></div>
+      {{else}}
+      <div class="sl-metric__sub sl-metric__sub--muted">Aylık limit tanımlı değil</div>
+      {{/if}}
+    </div>
+
+    <div class="sl-metric">
+      <div class="sl-metric__top">
+        <span class="sl-metric__label">Yıllık kullanım</span>
+        <span class="sl-metric__used">{{input.limitUsage.yearlySpent}} / {{input.purchaseLimits.yearlyLimit}} ₺</span>
+      </div>
+      {{#if input.purchaseLimits.yearlyLimit}}
+      <div class="sl-bar"><div class="sl-bar__fill sl-bar__fill--year" style="width: {{input.limitUsage.yearlyPercent}}%"></div></div>
+      <div class="sl-metric__remain">Kalan: <strong>{{input.limitUsage.yearlyRemaining}} ₺</strong></div>
+      {{else}}
+      <div class="sl-metric__sub sl-metric__sub--muted">Yıllık limit tanımlı değil</div>
+      {{/if}}
+    </div>
+  </div>
+</div>

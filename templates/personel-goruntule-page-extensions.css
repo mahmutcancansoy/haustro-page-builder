@@ -1,0 +1,206 @@
+/* Personel Görüntüle — hero + özlük bilgi kartı (form gizli, salt okunur görünüm) */
+
+.ass-page .ass__hero--person .ass__hero-sub {
+  margin: 0;
+}
+
+.ass-page .ass__view-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__view-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.ass-page .ass__view-card > .form-container,
+.ass-page .ass__view-card .ass__view-form,
+.ass-page .ass__view-card .form-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__view-body {
+  padding: 0.35rem 1.15rem 1.35rem;
+}
+
+/* Bölüm başlıkları */
+.ass-page .ass__section-title,
+.ass-page .ass__section-title.label,
+.ass-page .ass__view-body > .label.ass__section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1.15rem 0 0.75rem !important;
+  padding: 0 0 0.55rem !important;
+  border-bottom: 2px solid #eef2ff;
+  color: #4557a3 !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ass-page .ass__view-body > .label.ass__section-title:first-child,
+.ass-page .ass__view-body > .ass__section-title:first-child {
+  margin-top: 0.5rem !important;
+}
+
+.ass-page .ass__section-divider,
+.ass-page .ass__section-divider.content-header {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden;
+}
+
+.ass-page .ass__subsection-header,
+.ass-page .ass__subsection-header.content-header {
+  margin: 0.85rem 0 0.65rem !important;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 10px !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Alan gridleri — tek sütun liste */
+.ass-page .ass__field-grid,
+.ass-page .ass__field-grid.grid,
+.ass-page .ass__field-grid.row {
+  display: flex !important;
+  flex-direction: column;
+  gap: 0;
+  margin: 0 0 0.35rem !important;
+  padding: 0 !important;
+}
+
+.ass-page .ass__field-grid > .column,
+.ass-page .ass__field-grid > .col,
+.ass-page .ass__field-grid [class*='col-'] {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+  flex: none !important;
+  padding: 0 !important;
+}
+
+/* Form alanları — etiket üstte, değer altta (input gizli görünüm) */
+.ass-page .ass__view-card .p-field,
+.ass-page .ass__view-card .field,
+.ass-page .ass__view-card .form-group {
+  margin: 0 !important;
+  padding: 0.68rem 0 !important;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.ass-page .ass__view-card label,
+.ass-page .ass__view-card .p-field label {
+  display: block;
+  margin: 0 0 0.2rem !important;
+  color: #64748b !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.ass-page .ass__view-card .p-inputtext,
+.ass-page .ass__view-card .p-inputnumber-input,
+.ass-page .ass__view-card .p-dropdown,
+.ass-page .ass__view-card .p-inputtextarea,
+.ass-page .ass__view-card input.p-inputtext,
+.ass-page .ass__view-card textarea,
+.ass-page .ass__view-card .p-calendar .p-inputtext,
+.ass-page .ass__view-card .p-inputnumber-input {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #1e293b !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #1e293b;
+  cursor: default;
+}
+
+.ass-page .ass__view-card .p-inputtext:disabled,
+.ass-page .ass__view-card .p-inputnumber-input:disabled,
+.ass-page .ass__view-card .p-dropdown.p-disabled,
+.ass-page .ass__view-card input:disabled,
+.ass-page .ass__view-card textarea:disabled {
+  background: transparent !important;
+  color: #1e293b !important;
+}
+
+.ass-page .ass__view-card .p-dropdown .p-dropdown-trigger,
+.ass-page .ass__view-card .p-inputnumber-button-group,
+.ass-page .ass__view-card .p-fileupload-buttonbar,
+.ass-page .ass__view-card .p-fileupload-content .p-button {
+  display: none !important;
+}
+
+.ass-page .ass__view-card .p-fileupload-content {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Zimmet / uniform listeleri */
+.ass-page .ass__asset-loop,
+.ass-page .ass__view-card .loop,
+.ass-page .ass__form-array {
+  margin: 0.35rem 0 0.75rem;
+}
+
+.ass-page .ass__asset-loop .label,
+.ass-page .ass__asset-loop label,
+.ass-page .ass__view-card .loop .label,
+.ass-page .ass__view-card .loop label {
+  text-transform: none !important;
+  letter-spacing: normal;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+}
+
+.ass-page .ass__form-array .loop,
+.ass-page .ass__form-array .label {
+  padding: 0.55rem 0.75rem;
+  background: #f8fafc;
+  border: 1px solid #e8edf5;
+  border-radius: 10px;
+  margin-bottom: 0.45rem;
+}
+
+@media (min-width: 768px) {
+  .ass-page .ass__view-body {
+    padding: 0.5rem 1.35rem 1.5rem;
+  }
+}
+
+@media print {
+  .ass-page .ass__hero {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

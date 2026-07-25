@@ -1,0 +1,100 @@
+<style>
+.inv-cards-wrapper{padding:16px;font-family:'Inter',-apple-system,sans-serif}
+.inv-cards-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.inv-cards-header__actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.inv-cards-title{margin:0;font-size:18px;font-weight:700;color:#1e293b}
+.inv-cards-count{font-size:12px;color:#64748b;background:#f1f5f9;padding:4px 10px;border-radius:999px;font-weight:600;white-space:nowrap}
+.inv-view-switch{display:inline-flex;padding:3px;border:1px solid #e2e8f0;border-radius:10px;background:#f8fafc}
+.inv-view-switch__btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 11px;border:0;border-radius:7px;background:transparent;color:#64748b;font:inherit;font-size:12px;font-weight:700;text-decoration:none;cursor:pointer}
+.inv-view-switch__btn.is-active{background:#fff;color:#4557a3;box-shadow:0 1px 4px rgba(15,23,42,.12)}
+.inv-legacy-table-wrap{margin:0 16px 16px}
+.inv-cards-empty{padding:32px;text-align:center;color:#94a3b8;background:#f8fafc;border:1px dashed #e2e8f0;border-radius:12px}
+.inv-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.inv-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 1px 2px rgba(15,23,42,.04);text-decoration:none;color:inherit;cursor:pointer}
+.inv-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,23,42,.08);border-color:#c7d2fe}
+.inv-card__media{position:relative;width:100%;height:160px;background:#f1f5f9;overflow:hidden}
+.inv-card__img{width:100%;height:100%;object-fit:cover;display:block}
+.inv-card__img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:13px;background:linear-gradient(135deg,#f1f5f9,#e2e8f0)}
+.inv-card__no{position:absolute;top:8px;left:8px;background:rgba(15,23,42,.8);color:#fff;font-size:11px;padding:3px 8px;border-radius:999px;letter-spacing:.3px;font-weight:600}
+.inv-card__cat{position:absolute;bottom:8px;right:8px;background:rgba(99,102,241,.92);color:#fff;font-size:11px;padding:3px 8px;border-radius:999px;font-weight:600;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inv-card__body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.inv-card__title{font-size:14px;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inv-card__subtitle{font-size:12px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inv-card__meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.inv-card__chip{display:inline-flex;align-items:center;gap:4px;background:#f1f5f9;border-radius:8px;padding:3px 8px;font-size:11px;color:#334155}
+.inv-card__chip-label{color:#94a3b8;font-weight:600}
+.inv-card__chip-value{font-weight:700}
+.inv-card__desc{font-size:12px;color:#475569;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.inv-card__footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px dashed #e2e8f0}
+.inv-card__price{font-size:14px;font-weight:800;color:#0f172a}
+.inv-card__price small{font-weight:500;color:#64748b;margin-left:2px}
+.inv-card__dims{font-size:11px;color:#64748b;font-weight:500}
+</style>
+
+<div class="inv-cards-wrapper" id="inv-cards-root">
+  <div class="inv-cards-header">
+    <h3 class="inv-cards-title">Araç Gereç Envanteri</h3>
+    <div class="inv-cards-header__actions">
+      <span class="inv-cards-count">{{inventory.length}} kayıt</span>
+      <div class="inv-view-switch" role="group" aria-label="Görünüm seçimi">
+        <a class="inv-view-switch__btn{{#cIf params.view "!=" "table"}} is-active{{/cIf}}" href="/d/arac-gerec-envanteri">
+          <i class="pi pi-th-large"></i> Kart
+        </a>
+        <a class="inv-view-switch__btn{{#cIf params.view "==" "table"}} is-active{{/cIf}}" href="/d/arac-gerec-envanteri?view=table">
+          <i class="pi pi-list"></i> Tablo
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {{#if inventory.length}}
+  <div class="inv-cards-grid">
+    {{#each inventory}}
+    <a class="inv-card" href="/d/arac-gerec-detayi?_id={{this._id}}" data-cat="{{this.:inventoryCats:category._id}}" data-catname="{{this.:inventoryCats:category.name}}" data-search="{{this.name}} {{this.model}} {{this.code}} {{this.cins}} {{this.no}} {{this.:inventoryCats:category.name}}">
+      <div class="inv-card__media">
+        {{#if this.photo.0.name}}
+          <img class="inv-card__img" src="{{globals.resources}}{{this.photo.0.name}}" alt="{{this.name}}" loading="lazy" onerror="this.onerror=null;this.src='{{this.photo.0.original}}';" />
+        {{else}}
+          {{#if this.photo.0.original}}
+          <img class="inv-card__img" src="{{this.photo.0.original}}" alt="{{this.name}}" loading="lazy" />
+          {{else}}
+          <div class="inv-card__img-placeholder"><span>Görsel Yok</span></div>
+          {{/if}}
+        {{/if}}
+        {{#if this.no}}<span class="inv-card__no">{{this.no}}</span>{{/if}}
+        {{#if this.:inventoryCats:category.name}}<span class="inv-card__cat">{{this.:inventoryCats:category.name}}</span>{{/if}}
+      </div>
+
+      <div class="inv-card__body">
+        <div class="inv-card__title" title="{{this.name}}">{{#if this.name}}{{this.name}}{{else}}-{{/if}}</div>
+        {{#if this.model}}<div class="inv-card__subtitle">{{this.model}}</div>{{/if}}
+
+        <div class="inv-card__meta">
+          {{#if this.code}}
+          <span class="inv-card__chip">
+            <span class="inv-card__chip-label">Kod</span>
+            <span class="inv-card__chip-value">{{this.code}}</span>
+          </span>
+          {{/if}}
+          {{#if this.cins}}
+          <span class="inv-card__chip">
+            <span class="inv-card__chip-label">Cins</span>
+            <span class="inv-card__chip-value">{{this.cins}}</span>
+          </span>
+          {{/if}}
+        </div>
+
+        {{#if this.description}}<div class="inv-card__desc">{{this.description}}</div>{{/if}}
+
+        <div class="inv-card__footer">
+          {{#if this.basePrice}}<span class="inv-card__price">{{this.basePrice}} <small>₺</small></span>{{/if}}
+          {{#if this.width}}<span class="inv-card__dims">{{this.width}} × {{this.height}} × {{this.depth}}</span>{{/if}}
+        </div>
+      </div>
+    </a>
+    {{/each}}
+  </div>
+  {{else}}
+  <div class="inv-cards-empty">Henüz envanter kaydı bulunmuyor.</div>
+  {{/if}}
+</div>

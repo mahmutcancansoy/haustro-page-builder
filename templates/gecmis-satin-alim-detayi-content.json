@@ -1,0 +1,750 @@
+{
+  "_id": "6a218e7b5170eb00f07c1162",
+  "pageId": "6a218e755170eb00d1750a02",
+  "content": [
+    {
+      "type": "data-source",
+      "isContainer": true,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "betaPurchase"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "betaPurchase"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "custom"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "betaPurchase",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n\"oprType\": \"approvalState\", \n\"purchaseId\": \"{{params._id}}\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": false,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "data-source",
+      "isContainer": true,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "purchases"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "purchases"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "get"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "purchases",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n \"_id\":\"{{params._id}}\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": true,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "data-source",
+      "isContainer": true,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "confirmOffer"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "confirmOffer"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "get"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "offers",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n \"status\":\"1\",\n \":purchases:\":\"{{params._id}}\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": true,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "condition",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"purchase-detail-wrapper\">\n    <div class=\"main-header-card mb-4\">\n        <div class=\"row align-items-center\">\n            <div class=\"col-auto\">\n                <div class=\"product-image-wrapper\">\n                    <img src=\"{{globals.resources}}{{purchases.:inventory:.photo.0.name}}\" alt=\"Envanter\" class=\"w-25 rounded-3\">\n                </div>\n            </div>\n            <div class=\"col\">\n                <h4 class=\"mb-1 fw-bold text-white\">Geçmiş Satın Alım Detayı</h4>\n                <p class=\"mb-2 text-white-50\">{{#if purchases.:inventory:.cins}}{{purchases.:inventory:.cins}} {{/if}}{{#if purchases.:inventory:.name}}{{purchases.:inventory:.name}} {{/if}}{{#if purchases.:inventory:.model}}{{purchases.:inventory:.model}} {{/if}}{{#if purchases.:inventory:.:materiels:.name}}{{purchases.:inventory:.:materiels:.name}} {{/if}}{{#if purchases.:inventory:.:colors:.name}}{{purchases.:inventory:.:colors:.name}} {{/if}}{{#if purchases.:inventory:.pattern}}{{purchases.:inventory:.pattern}} {{/if}}{{#if purchases.:inventory:.width}}{{purchases.:inventory:.width}}x{{/if}}{{#if purchases.:inventory:.height}}{{purchases.:inventory:.height}}x{{/if}}{{#if purchases.:inventory:.depth}}{{purchases.:inventory:.depth}} {{/if}}{{#if purchases.:inventory:.bulk}} {{purchases.:inventory:.bulk}}ML {{/if}}{{#if purchases.:inventory:.code}}{{purchases.:inventory:.code}} {{/if}}</p>\n                <div class=\"d-flex flex-wrap gap-3 mt-2\">\n                    <span class=\"badge text-light\"><i class=\"pi pi-money-bill me-1\"></i>Baz Fiyat: {{purchases.:inventory:.basePrice}} ₺</span>\n                </div>\n            </div>\n            <div class=\"col-auto text-end\">\n    {{#cIf purchases.status \"==\" \"0\"}}\n        <div class=\"status-pill status-waiting\">\n            <i class=\"pi pi-clock\"></i> Beklemede\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"1\"}}\n        <div class=\"status-pill status-process\">\n            <i class=\"pi pi-spin pi-spinner\"></i> Teklif Toplanıyor\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"2\"}}\n        <div class=\"status-pill status-info\">\n            <i class=\"pi pi-file-import\"></i> Teklifler Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"3\"}}\n        <div class=\"status-pill status-approved\">\n            <i class=\"pi pi-check-circle\"></i> Teklif Onaylandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"4\"}}\n        <div class=\"status-pill status-order\">\n            <i class=\"pi pi-shopping-cart\"></i> Sipariş Verildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"5\"}}\n        <div class=\"status-pill status-shipping\">\n            <i class=\"pi pi-map-marker\"></i> Sipariş Yolda\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"6\"}}\n        <div class=\"status-pill status-delivered\">\n            <i class=\"pi pi-box\"></i> Teslim Edildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"7\"}}\n        <div class=\"status-pill status-invoice\">\n            <i class=\"pi pi-file-pdf\"></i> Fatura Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"8\"}}\n        <div class=\"status-pill status-final\">\n            <i class=\"pi pi-verified\"></i> Talep Karşılandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"9\"}}\n        <div class=\"status-pill status-rejected\">\n            <i class=\"pi pi-times-circle\"></i> Reddedildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"10\"}}\n        <div class=\"status-pill status-cancel\">\n            <i class=\"pi pi-ban\"></i> İptal Edildi\n        </div>\n    {{/cIf}}\n</div>\n        </div>\n    </div>\n\n    <div class=\"row gy-4\">\n        <div class=\"col-12 col-lg-7\">\n            <div class=\"info-card\">\n                <div class=\"card-header-modern\">\n                    <i class=\"pi pi-box\"></i>\n                    <h5>Envanter Teknik Detayları</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <div class=\"detail-grid\">\n                        <div class=\"detail-item\">\n                            <label>Envanter No</label>\n                            <span>{{purchases.:inventory:.no}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Envanter Tipi</label>\n                            <span>{{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.name}}\n{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.name}} -\n{{/if}}\n{{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.name}}\n{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.name}} -\n{{/if}}\n{{purchases.:inventory:.:inventoryCats:category.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Ebatlar (En x Boy x Der)</label>\n                            <span>{{purchases.:inventory:.width}} x {{purchases.:inventory:.height}} x {{purchases.:inventory:.depth}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Materyal / Renk</label>\n                            <span>{{purchases.:inventory:.:materiels:.name}} / {{purchases.:inventory:.:colors:.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Amortisman Süresi</label>\n                            <span>{{purchases.:inventory:.:depreciations:.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Bakım İhtiyacı</label>\n                            <span>{{#if purchases.:inventory:.:periodicMaintenances:.name}}\n{{purchases.:inventory:.:periodicMaintenances:.name}} Ay\n{{else}}\nYok\n{{/if}}</span>\n                        </div>\n                    </div>\n                    \n                    <div class=\"special-code-section mt-4\">\n    <label class=\"d-block mb-2 text-muted small fw-bold\">ÖZEL KOD HİYERARŞİSİ</label>\n    <div class=\"code-flow d-flex align-items-center flex-wrap gap-2\">\n        \n        {{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else}}\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n        {{/if}}\n\n    </div>\n</div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-12 col-lg-5\">\n            <div class=\"info-card h-100\">\n                <div class=\"card-header-modern secondary\">\n                    <i class=\"pi pi-send\"></i>\n                    <h5>Talep Bilgileri</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <ul class=\"vertical-detail-list\">\n                        <li>\n                            <i class=\"pi pi-user\"></i>\n                            <div>\n                                <label>Talep Eden</label>\n                                <span>{{purchases.:users:demander.name}} {{purchases.:users:demander.surname}}</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-map-marker\"></i>\n                            <div>\n                                <label>Şube / Depo</label>\n                                <span>{{purchases.:departments:.label}} ({{purchases.:departments:.short}})</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-info-circle\"></i>\n                            <div>\n                                <label>Talep Açıklaması</label>\n                                <span>{{purchases.description}}</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-list\"></i>\n                            <div>\n                                <label>Talep Miktarı</label>\n                                <span>{{purchases.count}} Adet</span>\n                            </div>\n                        </li>\n                    </ul>\n\n                    <div class=\"date-grid mt-4\">\n                        <div class=\"date-item\">\n                            <label>Talep Tarihi</label>\n                            <span>{{renderDate purchases.datetime}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Onay Tarihi</label>\n                            <span>{{renderDate purchases.terminateDatetime}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Garanti Bitiş Tarihi</label>\n                            <span>{{renderDate purchases.expiryGuarantee}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Son Tüketim Tarihi</label>\n                            <span>{{renderDate purchases.expiryDate}}</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<style>\n/* Ana Renkler ve Font */\n:root {\n    --primary-color: #4557a3;\n    --header-bg: #408090; /* Görseldeki turkuaz tonu */\n    --card-shadow: 0 10px 30px rgba(0,0,0,0.08);\n}\n\n.purchase-detail-wrapper {\n    font-family: 'Inter', sans-serif;\n    color: #334155;\n    background: #f8fafc;\n    padding: 20px;\n}\n\n/* Üst Kart Tasarımı */\n.main-header-card {\n    background: var(--header-bg);\n    padding: 30px;\n    border-radius: 20px;\n    box-shadow: var(--card-shadow);\n}\n\n.product-image-wrapper img {\n    border: 4px solid rgba(255,255,255,0.2);\n    box-shadow: 0 4px 10px rgba(0,0,0,0.2);\n}\n\n/* Teklifler Yüklendi - Açık Mavi */\n.status-info {\n    background: #e6f7ff;\n    color: #1890ff;\n    border: 1px solid #91d5ff;\n}\n/* Onaylandı (Statü 3) - Canlı Yeşil Tonu */\n.status-approved {\n    background: #f6ffed !important;\n    color: #52c41a !important;\n    border: 1px solid #b7eb8f !important;\n    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.15);\n}\n/* Sipariş Verildi / Yolda - Mor Tonları */\n.status-order, .status-shipping {\n    background: #f9f0ff;\n    color: #722ed1;\n    border: 1px solid #d3adf7;\n}\n\n/* Teslim Edildi / Fatura - Turkuaz/Yeşil Tonları */\n.status-delivered, .status-invoice {\n    background: #e6fffb;\n    color: #13c2c2;\n    border: 1px solid #87e8de;\n}\n\n/* Tamamlandı (8) - Koyu Yeşil */\n.status-final {\n    background: #f6ffed;\n    color: #389e0d;\n    border: 1px solid #b7eb8f;\n}\n\n/* İptal Edildi (10) - Koyu Gri */\n.status-cancel {\n    background: #f5f5f5;\n    color: #595959;\n    border: 1px solid #d9d9d9;\n}\n\n/* Mevcut Statü Pill Yapısı (Sabit Kalabilir) */\n.status-pill {\n    padding: 8px 16px;\n    border-radius: 50px;\n    font-weight: 700;\n    font-size: 0.85rem;\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.05);\n}\n.status-waiting {\n        background-color: #fefce8; /* Çok açık sarı */\n        color: #854d0e;            /* Koyu altın/amber */\n        border-color: #fef08a;\n        box-shadow: 0 2px 4px rgba(234, 179, 8, 0.1);\n    }\n    .status-waiting i {\n        color: #ca8a04;\n    }\n\n/* Bilgi Kartları */\n.info-card {\n    background: white;\n    border-radius: 16px;\n    box-shadow: var(--card-shadow);\n    overflow: hidden;\n    border: 1px solid #e2e8f0;\n}\n\n.card-header-modern {\n    padding: 15px 25px;\n    background: #f1f5f9;\n    border-bottom: 1px solid #e2e8f0;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.card-header-modern h5 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }\n.card-header-modern i { font-size: 1.2rem; color: var(--primary-color); }\n\n.card-content-modern { padding: 25px; }\n\n/* Grid Yapısı */\n.detail-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 20px;\n}\n\n.detail-item label {\n    display: block;\n    font-size: 0.75rem;\n    color: #94a3b8;\n    text-transform: uppercase;\n    font-weight: 700;\n    margin-bottom: 4px;\n}\n\n.detail-item span { font-weight: 600; color: #1e293b; }\n\n/* Liste Yapısı */\n.vertical-detail-list { list-style: none; padding: 0; margin: 0; }\n.vertical-detail-list li {\n    display: flex;\n    gap: 15px;\n    margin-bottom: 20px;\n    align-items: flex-start;\n}\n\n.vertical-detail-list i {\n    background: #eef2ff;\n    color: var(--primary-color);\n    padding: 10px;\n    border-radius: 10px;\n}\n\n.vertical-detail-list label { display: block; font-size: 0.8rem; color: #64748b; margin-bottom: 2px; }\n.vertical-detail-list span { font-weight: 600; }\n\n/* Özel Kod Akışı */\n.code-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }\n.code-step {\n    background: #f1f5f9;\n    padding: 5px 12px;\n    border-radius: 8px;\n    font-size: 0.85rem;\n    font-weight: 600;\n}\n.code-step.empty { color: #cbd5e1; font-weight: 400; }\n\n.date-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 10px;\n    background: #f8fafc;\n    padding: 15px;\n    border-radius: 12px;\n}\n.date-item label { display: block; font-size: 0.7rem; color: #94a3b8; }\n.date-item span { font-weight: 600; font-size: 0.9rem; }\n</style>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "New Render Template 1"
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Inventory"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "\"{{purchases.:inventory:._id}}\"!=\"\"",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "condition",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"purchase-detail-wrapper\">\n    <div class=\"main-header-card mb-4\">\n        <div class=\"row align-items-center\">\n            <div class=\"col-auto\">\n            </div>\n            <div class=\"col\">\n                <h4 class=\"mb-1 fw-bold text-white\">Geçmiş Satın Alım Detayı</h4>\n                <p class=\"mb-2 text-white-50\">{{purchases.:serviceCats:.name}}</p>\n            </div>\n            <div class=\"col-auto text-end\">\n    {{#cIf purchases.status \"==\" \"0\"}}\n        <div class=\"status-pill status-waiting\">\n            <i class=\"pi pi-clock\"></i> Beklemede\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"1\"}}\n        <div class=\"status-pill status-process\">\n            <i class=\"pi pi-spin pi-spinner\"></i> Teklif Toplanıyor\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"2\"}}\n        <div class=\"status-pill status-info\">\n            <i class=\"pi pi-file-import\"></i> Teklifler Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"3\"}}\n        <div class=\"status-pill status-approved\">\n            <i class=\"pi pi-check-circle\"></i> Teklif Onaylandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"4\"}}\n        <div class=\"status-pill status-order\">\n            <i class=\"pi pi-shopping-cart\"></i> Sipariş Verildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"5\"}}\n        <div class=\"status-pill status-shipping\">\n            <i class=\"pi pi-map-marker\"></i> Sipariş Yolda\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"6\"}}\n        <div class=\"status-pill status-delivered\">\n            <i class=\"pi pi-box\"></i> Teslim Edildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"7\"}}\n        <div class=\"status-pill status-invoice\">\n            <i class=\"pi pi-file-pdf\"></i> Fatura Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"8\"}}\n        <div class=\"status-pill status-final\">\n            <i class=\"pi pi-verified\"></i> Talep Karşılandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"9\"}}\n        <div class=\"status-pill status-rejected\">\n            <i class=\"pi pi-times-circle\"></i> Reddedildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"10\"}}\n        <div class=\"status-pill status-cancel\">\n            <i class=\"pi pi-ban\"></i> İptal Edildi\n        </div>\n    {{/cIf}}\n</div>\n        </div>\n    </div>\n\n    <div class=\"row gy-4\">\n        <div class=\"col-12 col-lg-7\">\n            <div class=\"info-card\">\n                <div class=\"card-header-modern\">\n                    <i class=\"pi pi-box\"></i>\n                    <h5>Hizmet Teknik Detayları</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <div class=\"special-code-section mt-4\">\n                        <label class=\"d-block mb-2 text-muted small fw-bold\">HİZMET ADI</label>\n                        <span>{{purchases.:serviceCats:.name}}</span>\n                    </div>\n                    <div class=\"special-code-section mt-4\">\n    <label class=\"d-block mb-2 text-muted small fw-bold\">ÖZEL KOD HİYERARŞİSİ</label>\n    <div class=\"code-flow d-flex align-items-center flex-wrap gap-2\">\n    \n    {{#if purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.:serviceCats:parent.:serviceCats:parent.short}}\n        {{!-- 5 Seviyeli Hiyerarşi --}}\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.:serviceCats:parent.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step active\">{{purchases.:serviceCats:.short}}</span>\n\n    {{else if purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.:serviceCats:parent.short}}\n        {{!-- 4 Seviyeli Hiyerarşi --}}\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step active\">{{purchases.:serviceCats:.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n\n    {{else if purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.short}}\n        {{!-- 3 Seviyeli Hiyerarşi --}}\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step active\">{{purchases.:serviceCats:.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n\n    {{else if purchases.:serviceCats:.:serviceCats:parent.short}}\n        {{!-- 2 Seviyeli Hiyerarşi (MS > BM) --}}\n        <span class=\"code-step\">{{purchases.:serviceCats:.:serviceCats:parent.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step active\">{{purchases.:serviceCats:.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n\n    {{else}}\n        {{!-- Sadece Tek Kategori --}}\n        <span class=\"code-step active\">{{purchases.:serviceCats:.short}}</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n        <i class=\"pi pi-angle-right text-muted\"></i>\n        <span class=\"code-step empty text-muted\">Boş</span>\n    {{/if}}\n\n</div>\n</div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-12 col-lg-5\">\n            <div class=\"info-card h-100\">\n                <div class=\"card-header-modern secondary\">\n                    <i class=\"pi pi-send\"></i>\n                    <h5>Talep Bilgileri</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <ul class=\"vertical-detail-list\">\n                        <li>\n                            <i class=\"pi pi-user\"></i>\n                            <div>\n                                <label>Talep Eden</label>\n                                <span>{{purchases.:users:demander.name}} {{purchases.:users:demander.surname}}</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-map-marker\"></i>\n                            <div>\n                                <label>Şube / Depo</label>\n                                <span>{{purchases.:departments:.label}} ({{purchases.:departments:.short}})</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-info-circle\"></i>\n                            <div>\n                                <label>Talep Açıklaması</label>\n                                <span>{{purchases.description}}</span>\n                            </div>\n                        </li>\n                    </ul>\n\n                    <div class=\"date-grid mt-4\">\n                        <div class=\"date-item\">\n                            <label>Talep Tarihi</label>\n                            <span>{{renderDate purchases.datetime}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Onay Tarihi</label>\n                            <span>{{renderDate purchases.terminateDatetime}}</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<style>\n/* Ana Renkler ve Font */\n:root {\n    --primary-color: #4557a3;\n    --header-bg: #408090; /* Görseldeki turkuaz tonu */\n    --card-shadow: 0 10px 30px rgba(0,0,0,0.08);\n}\n\n.purchase-detail-wrapper {\n    font-family: 'Inter', sans-serif;\n    color: #334155;\n    background: #f8fafc;\n    padding: 20px;\n}\n\n/* Üst Kart Tasarımı */\n.main-header-card {\n    background: var(--header-bg);\n    padding: 30px;\n    border-radius: 20px;\n    box-shadow: var(--card-shadow);\n}\n\n.product-image-wrapper img {\n    border: 4px solid rgba(255,255,255,0.2);\n    box-shadow: 0 4px 10px rgba(0,0,0,0.2);\n}\n\n/* Teklifler Yüklendi - Açık Mavi */\n.status-info {\n    background: #e6f7ff;\n    color: #1890ff;\n    border: 1px solid #91d5ff;\n}\n/* Onaylandı (Statü 3) - Canlı Yeşil Tonu */\n.status-approved {\n    background: #f6ffed !important;\n    color: #52c41a !important;\n    border: 1px solid #b7eb8f !important;\n    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.15);\n}\n/* Sipariş Verildi / Yolda - Mor Tonları */\n.status-order, .status-shipping {\n    background: #f9f0ff;\n    color: #722ed1;\n    border: 1px solid #d3adf7;\n}\n\n/* Teslim Edildi / Fatura - Turkuaz/Yeşil Tonları */\n.status-delivered, .status-invoice {\n    background: #e6fffb;\n    color: #13c2c2;\n    border: 1px solid #87e8de;\n}\n\n/* Tamamlandı (8) - Koyu Yeşil */\n.status-final {\n    background: #f6ffed;\n    color: #389e0d;\n    border: 1px solid #b7eb8f;\n}\n\n/* İptal Edildi (10) - Koyu Gri */\n.status-cancel {\n    background: #f5f5f5;\n    color: #595959;\n    border: 1px solid #d9d9d9;\n}\n\n/* Mevcut Statü Pill Yapısı (Sabit Kalabilir) */\n.status-pill {\n    padding: 8px 16px;\n    border-radius: 50px;\n    font-weight: 700;\n    font-size: 0.85rem;\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.05);\n}\n.status-waiting {\n        background-color: #fefce8; /* Çok açık sarı */\n        color: #854d0e;            /* Koyu altın/amber */\n        border-color: #fef08a;\n        box-shadow: 0 2px 4px rgba(234, 179, 8, 0.1);\n    }\n    .status-waiting i {\n        color: #ca8a04;\n    }\n\n/* Bilgi Kartları */\n.info-card {\n    background: white;\n    border-radius: 16px;\n    box-shadow: var(--card-shadow);\n    overflow: hidden;\n    border: 1px solid #e2e8f0;\n}\n\n.card-header-modern {\n    padding: 15px 25px;\n    background: #f1f5f9;\n    border-bottom: 1px solid #e2e8f0;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.card-header-modern h5 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }\n.card-header-modern i { font-size: 1.2rem; color: var(--primary-color); }\n\n.card-content-modern { padding: 25px; }\n\n/* Grid Yapısı */\n.detail-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 20px;\n}\n\n.detail-item label {\n    display: block;\n    font-size: 0.75rem;\n    color: #94a3b8;\n    text-transform: uppercase;\n    font-weight: 700;\n    margin-bottom: 4px;\n}\n\n.detail-item span { font-weight: 600; color: #1e293b; }\n\n/* Liste Yapısı */\n.vertical-detail-list { list-style: none; padding: 0; margin: 0; }\n.vertical-detail-list li {\n    display: flex;\n    gap: 15px;\n    margin-bottom: 20px;\n    align-items: flex-start;\n}\n\n.vertical-detail-list i {\n    background: #eef2ff;\n    color: var(--primary-color);\n    padding: 10px;\n    border-radius: 10px;\n}\n\n.vertical-detail-list label { display: block; font-size: 0.8rem; color: #64748b; margin-bottom: 2px; }\n.vertical-detail-list span { font-weight: 600; }\n\n/* Özel Kod Akışı */\n.code-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }\n.code-step {\n    background: #f1f5f9;\n    padding: 5px 12px;\n    border-radius: 8px;\n    font-size: 0.85rem;\n    font-weight: 600;\n}\n.code-step.empty { color: #cbd5e1; font-weight: 400; }\n\n.date-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 10px;\n    background: #f8fafc;\n    padding: 15px;\n    border-radius: 12px;\n}\n.date-item label { display: block; font-size: 0.7rem; color: #94a3b8; }\n.date-item span { font-weight: 600; font-size: 0.9rem; }\n</style>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "New Render Template 1"
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Service"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "\"{{purchases.:serviceCats:._id}}\"!=\"\"",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "render-template",
+      "isContainer": false,
+      "isTextEditor": true,
+      "content": "<div class=\"col-12 mt-4\">\n    <div class=\"info-card m-4\">\n        <div class=\"card-header-modern\">\n            <i class=\"pi pi-sitemap\"></i>\n            <h5>Satın Alma Onay Süreci</h5>\n        </div>\n\n        <div class=\"card-content-modern\">\n            <div class=\"workflow-steps-vertical\">\n\n                {{!-- 1. ADIM --}}\n                {{#if betaPurchase.chain.0.description}}\n                {{!-- Dinamik Sınıflar: is-completed, is-active veya is-pending --}}\n                <div class=\"wf-row {{#if betaPurchase.approvedBy.0.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order \"==\" 1}}is-active{{else}}is-pending{{/cIf}}{{/if}}\">\n                    <div class=\"wf-line-box\">\n                        <div class=\"wf-circle\">\n                            {{#if betaPurchase.approvedBy.0.userName}}<i class=\"pi pi-check\"></i>{{else}}1{{/if}}\n                        </div>\n                    </div>\n                    <div class=\"wf-info\">\n                        {{!-- wf-desc: CSS ile durumuna göre rengini ayarlar --}}\n                        <div class=\"wf-desc\">{{betaPurchase.chain.0.description}}</div>\n                        <div class=\"wf-status-area\">\n                            {{#if betaPurchase.approvedBy.0.userName}}\n                                <span class=\"badge-user\"><i class=\"pi pi-user\"></i> {{betaPurchase.approvedBy.0.userName}}</span>\n                                <span class=\"badge-date\">{{renderDate betaPurchase.approvedBy.0.datetime}}</span>\n                            {{/if}}\n                        </div>\n                    </div>\n                </div>\n                {{/if}}\n\n                {{!-- 2. ADIM --}}\n                {{#if betaPurchase.chain.1.description}}\n                <div class=\"wf-row {{#if betaPurchase.approvedBy.1.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order \"==\" 2}}is-active{{else}}is-pending{{/cIf}}{{/if}}\">\n                    <div class=\"wf-line-box\">\n                        <div class=\"wf-circle\">\n                            {{#if betaPurchase.approvedBy.1.userName}}<i class=\"pi pi-check\"></i>{{else}}2{{/if}}\n                        </div>\n                    </div>\n                    <div class=\"wf-info\">\n                        <div class=\"wf-desc\">{{betaPurchase.chain.1.description}}</div>\n                        <div class=\"wf-status-area\">\n                            {{#if betaPurchase.approvedBy.1.userName}}\n                                <span class=\"badge-user\"><i class=\"pi pi-user\"></i> {{betaPurchase.approvedBy.1.userName}}</span>\n                                <span class=\"badge-date\">{{renderDate betaPurchase.approvedBy.1.datetime}}</span>\n                            {{/if}}\n                        </div>\n                    </div>\n                </div>\n                {{/if}}\n\n                {{!-- 3. ADIM --}}\n                {{#if betaPurchase.chain.2.description}}\n                <div class=\"wf-row {{#if betaPurchase.approvedBy.2.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order \"==\" 3}}is-active{{else}}is-pending{{/cIf}}{{/if}}\">\n                    <div class=\"wf-line-box\">\n                        <div class=\"wf-circle\">\n                            {{#if betaPurchase.approvedBy.2.userName}}<i class=\"pi pi-check\"></i>{{else}}3{{/if}}\n                        </div>\n                    </div>\n                    <div class=\"wf-info\">\n                        <div class=\"wf-desc\">{{betaPurchase.chain.2.description}}</div>\n                        <div class=\"wf-status-area\">\n                            {{#if betaPurchase.approvedBy.2.userName}}\n                                <span class=\"badge-user\"><i class=\"pi pi-user\"></i> {{betaPurchase.approvedBy.2.userName}}</span>\n                                <span class=\"badge-date\">{{renderDate betaPurchase.approvedBy.2.datetime}}</span>\n                            {{/if}}\n                        </div>\n                    </div>\n                </div>\n                {{/if}}\n\n                {{!-- 4. ADIM --}}\n                {{#if betaPurchase.chain.3.description}}\n                <div class=\"wf-row {{#if betaPurchase.approvedBy.3.userName}}is-completed{{else}}{{#cIf betaPurchase.nextRole.order \"==\" 4}}is-active{{else}}is-pending{{/cIf}}{{/if}}\">\n                    <div class=\"wf-line-box\">\n                        <div class=\"wf-circle\">\n                            {{#if betaPurchase.approvedBy.3.userName}}<i class=\"pi pi-check\"></i>{{else}}4{{/if}}\n                        </div>\n                    </div>\n                    <div class=\"wf-info\">\n                        <div class=\"wf-desc\">{{betaPurchase.chain.3.description}}</div>\n                        <div class=\"wf-status-area\">\n                            {{#if betaPurchase.approvedBy.3.userName}}\n                                <span class=\"badge-user\"><i class=\"pi pi-user\"></i> {{betaPurchase.approvedBy.3.userName}}</span>\n                                <span class=\"badge-date\">{{renderDate betaPurchase.approvedBy.3.datetime}}</span>\n                            {{/if}}\n                        </div>\n                    </div>\n                </div>\n                {{/if}}\n\n            </div>\n        </div>\n    </div>\n</div>\n<style>\n    .workflow-steps-vertical {\n        display: flex;\n        flex-direction: column;\n    }\n\n    .wf-row {\n        display: flex;\n        gap: 15px;\n        padding-bottom: 20px;\n        position: relative;\n    }\n\n    .wf-line-box {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        position: relative;\n        width: 32px;\n        flex-shrink: 0;\n    }\n\n    /* Durumuna göre çizgi rengi */\n    .wf-row:not(:last-child) .wf-line-box::after {\n        content: '';\n        position: absolute;\n        top: 32px;\n        width: 2px;\n        height: calc(100% - 5px);\n        background: #e2e8f0; /* Standart gri */\n        z-index: 1;\n    }\n\n    .wf-circle {\n        width: 32px;\n        height: 32px;\n        border-radius: 50%;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        font-weight: 700;\n        background: white;\n        color: #cbd5e1; /* Standart soluk gri */\n        border: 2px solid #e2e8f0;\n        z-index: 2;\n        font-size: 0.8rem;\n    }\n\n    .wf-info {\n        padding-top: 4px;\n    }\n\n    /* Standart Başlık Rengi (Koyu Gri/Lacivert) */\n    .wf-desc {\n        font-weight: 700;\n        color: #334155;\n        font-size: 1rem;\n        margin-bottom: 4px;\n        transition: color 0.3s; /* Renk geçişi yumuşak olsun */\n    }\n\n    /* DURUM RENKLERİ */\n    \n    /* 1. Tamamlanan Adım: Yeşil */\n    .is-completed .wf-circle {\n        background: #22c55e;\n        color: white;\n        border-color: #22c55e;\n    }\n    .is-completed:not(:last-child) .wf-line-box::after {\n        background: #22c55e; /* Çizgi yeşil */\n    }\n    .badge-user { color: #16a34a; font-weight: 600; font-size: 0.85rem; margin-right: 8px; }\n    .badge-date { color: #94a3b8; font-size: 0.75rem; }\n\n    /* 2. Aktif Adım: Turuncu (Sıradaki) */\n    .is-active .wf-circle {\n        background: #f97316; /* Canlı Turuncu */\n        color: white;\n        border-color: #f97316;\n        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);\n    }\n    /* Aktif adımda başlık ismi koyu kalsın (kopy lacivert) */\n    .is-active .wf-desc {\n        color: #33415599;\n    }\n\n    /* 3. Bekleyen Adım (Soluk Gri): Onaylanması Gereken */\n    .is-pending .wf-circle {\n        background: #f8fafc;\n        border-style: dashed;\n        color: #cbd5e1; /* Daire içindeki numara soluk */\n        border-color: #cbd5e1;\n    }\n    /* Bekleyen adımda başlık ismi SOLUK GRİ olsun */\n    .is-pending .wf-desc {\n        color: #cbd5e1; /* Şık bir soluk gri tonu */\n        font-weight: 600; /* Solukluk vurgusu için fontu biraz inceltebiliriz */\n    }\n</style>",
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "New Render Template 2"
+        }
+      ]
+    },
+    {
+      "type": "condition",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"info-card m-4\">\n    <div class=\"card-header-modern offer-header\">\n        <i class=\"pi pi-verified\"></i>\n        <h5>Onaylanan Teklif Detayları</h5>\n    </div>\n    \n    <div class=\"card-content-modern\">\n        <div class=\"supplier-section mb-4\">\n            <label class=\"text-muted small fw-bold\">TEDARİKÇİ FİRMA</label>\n            <div class=\"d-flex align-items-center gap-2\">\n                <i class=\"pi pi-building text-primary\"></i>\n                <span class=\"fw-bold fs-5 text-dark\">{{confirmOffer.:suppliers.name}}</span>\n            </div>\n        </div>\n\n        <div class=\"detail-grid\">\n            <div class=\"detail-item\">\n                <label>Birim Fiyat (KDV'siz)</label>\n                <span>{{confirmOffer.netPrice}} ₺</span>\n            </div>\n            <div class=\"detail-item\">\n                <label>KDV Oranı</label>\n                <span class=\"badge bg-light text-dark border\">%{{confirmOffer.kdvRate}}</span>\n            </div>\n            <div class=\"detail-item\">\n                <label>Birim Fiyat (KDV Dahil)</label>\n                <span class=\"text-primary fw-bold\">{{confirmOffer.price}} ₺</span>\n            </div>\n            <div class=\"detail-item\">\n                <label>Talep Edilen Miktar</label>\n                <span>{{confirmOffer.stockAmount}} Adet</span>\n            </div>\n\n            {{#if confirmOffer.typePrice}}\n            <div class=\"detail-item currency-highlight\">\n                <label>Döviz Fiyatı</label>\n                <span>{{confirmOffer.typePrice}} {{confirmOffer.currencyType}}</span>\n            </div>\n            <div class=\"detail-item\">\n                <label>Döviz Kuru Tarihi</label>\n                <span>{{renderDate confirmOffer.typePriceDate}}</span>\n            </div>\n            {{/if}}\n\n            <div class=\"detail-item\">\n                <label>Teklif Tarihi</label>\n                <span>{{renderDate confirmOffer.offerTime}}</span>\n            </div>\n            <div class=\"detail-item\">\n                <label>Sipariş Transfer Tarihi</label>\n                <span>{{renderDate confirmOffer.transferDatetime}}</span>\n            </div>\n            <div class=\"detail-item\">\n                <label>Garanti Süresi</label>\n                <span>{{confirmOffer.expiryGuarantee}} Ay</span>\n            </div>\n        </div>\n\n        <div class=\"offer-description mt-4\">\n            <label class=\"d-block mb-2 text-muted small fw-bold\">TEKLİF AÇIKLAMASI</label>\n            <div class=\"description-box\">\n                {{#if confirmOffer.description}}\n                    {{confirmOffer.description}}\n                {{else}}\n                    <span class=\"text-muted italic\">Açıklama belirtilmemiş.</span>\n                {{/if}}\n            </div>\n        </div>\n    </div>\n</div>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "New Render Template 3"
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Onaylanan teklif"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "\"{{confirmOffer._id}}\" != \"\"",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "condition",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "data-source",
+          "isContainer": true,
+          "children": [],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "elogoDocuments"
+            },
+            {
+              "key": "variable-name",
+              "header": "Variable name",
+              "type": "input-text-property",
+              "value": "elogoDocuments"
+            },
+            {
+              "key": "function",
+              "header": "Function",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Get",
+                  "value": "get"
+                },
+                {
+                  "label": "Custom",
+                  "value": "custom"
+                }
+              ],
+              "value": "get"
+            },
+            {
+              "key": "table-name",
+              "header": "Table name",
+              "type": "input-text-property",
+              "value": "elogoDocuments",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'get'"
+                }
+              ]
+            },
+            {
+              "key": "custom-function-name",
+              "header": "Custom function name",
+              "type": "input-text-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "table-filters",
+              "header": "Table filters",
+              "type": "code-editor",
+              "value": "{\n \"_id\":\"{{purchases.elogoDocumentId}}\"\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "post-params",
+              "header": "Post",
+              "type": "code-editor",
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "function",
+                  "rule": "value == 'custom'"
+                }
+              ]
+            },
+            {
+              "key": "debug-type",
+              "header": "Debug type",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Log",
+                  "value": "log"
+                },
+                {
+                  "label": "Table",
+                  "value": "table"
+                }
+              ],
+              "value": "log",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.debug"
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Single data",
+                  "name": "single"
+                },
+                {
+                  "label": "Debug",
+                  "name": "debug"
+                },
+                {
+                  "label": "Can reload",
+                  "name": "canReload"
+                },
+                {
+                  "label": "For table",
+                  "name": "forTable"
+                }
+              ],
+              "value": {
+                "single": true,
+                "debug": false,
+                "canReload": false,
+                "forTable": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"invoice-container\">\n    <div class=\"invoice-header\">\n        <div class=\"d-flex justify-content-between align-items-start\">\n            <div>\n                <h4 class=\"invoice-title\">E-FATURA DETAYI</h4>\n                <div class=\"invoice-no\">NO: {{elogoDocuments.invoiceNumber}}</div>\n            </div>\n            <div class=\"invoice-date\">\n                <i class=\"pi pi-calendar me-2\"></i> {{renderDate elogoDocuments.invoice_date}}\n            </div>\n        </div>\n\n        <div class=\"vendor-info mt-4\">\n            <label>CARİ ADI</label>\n            <div class=\"vendor-name\">{{elogoDocuments.supplierName}}</div>\n            <div class=\"vkn-tag\">VKN: {{elogoDocuments.supplierVKN}}</div>\n        </div>\n    </div>\n\n    <div class=\"invoice-body\">\n        <div class=\"section-title\">Ürün Detayları</div>\n        \n        {{!-- Handlebars döngüsü: Kaç ürün varsa o kadar kart oluşturur --}}\n        {{#each elogoDocuments.invoiceLines}}\n        <div class=\"product-item-card\">\n            <div class=\"product-index\">{{@index_plus_one}} {{this.lineId}}</div>\n            <div class=\"product-content\">\n                <div class=\"row g-3\">\n                    <div class=\"col-md-8\">\n                        <div class=\"product-name\">{{this.productName}}</div>\n                        <div class=\"product-meta\">\n                            <span>Birim Fiyat: <strong>{{this.unitPrice}} ₺</strong></span>\n                            <span class=\"mx-2\">|</span>\n                            <span>Adet: <strong>{{this.quantity}}</strong></span>\n                        </div>\n                    </div>\n                    <div class=\"col-md-4 text-end\">\n                        <div class=\"product-total-line\">\n                            {{#each this.lineTaxDetails}}\n                            <label>{{this.taxTypeName}} (%{{this.taxRate}})</label>\n                            {{/each}}\n                            <div class=\"grand-total\">{{this.lineExtensionAmount}} ₺</div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        {{/each}}\n    </div>\n\n    <div class=\"invoice-footer\">\n        <div class=\"row justify-content-end\">\n            <div class=\"col-md-4\">\n                <div class=\"summary-line\">\n                    <span>Ara Toplam</span>\n                    <span>{{elogoDocuments.taxExclusiveAmount}} ₺</span>\n                </div>\n                <div class=\"summary-line\">\n                    <span>Toplam KDV</span>\n                    <span>{{elogoDocuments.taxAmount}} ₺</span>\n                </div>\n                <div class=\"summary-line total\">\n                    <span>Genel Toplam</span>\n                    <span>{{elogoDocuments.taxInclusiveAmount}} ₺</span>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<style>\n    .invoice-container {\n        background: #ffffff;\n        border-radius: 20px;\n        box-shadow: 0 10px 30px rgba(51, 65, 85, 0.1);\n        border: 1px solid #e2e8f0;\n        margin: 20px 1.5rem;\n        overflow: hidden;\n        font-family: 'Inter', sans-serif;\n    }\n\n    /* Header: Profesyonel Slate */\n    .invoice-header {\n        background: #334155;\n        padding: 30px;\n        color: white;\n    }\n    .invoice-title { font-weight: 800; letter-spacing: 1px; margin: 0; font-size: 1.1rem; color: #38bdf8; }\n    .invoice-no { font-size: 0.85rem; color: #94a3b8; margin-top: 5px; }\n    .invoice-date { background: rgba(0,0,0,0.2); padding: 5px 15px; border-radius: 8px; font-size: 0.85rem; }\n\n    .vendor-info label { display: block; font-size: 0.65rem; font-weight: 800; color: #94a3b8; }\n    .vendor-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }\n    .vkn-tag { font-size: 0.75rem; color: #38bdf8; font-weight: 600; }\n\n    /* Body ve Ürün Kartları */\n    .invoice-body { padding: 30px; background: #f8fafc; }\n    .section-title { font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 20px; }\n\n    .product-item-card {\n        background: white;\n        border-radius: 12px;\n        border: 1px solid #e2e8f0;\n        margin-bottom: 15px;\n        display: flex;\n        overflow: hidden;\n        transition: transform 0.2s;\n    }\n    .product-item-card:hover { transform: translateX(5px); border-color: #3b82f6; }\n\n    .product-index {\n        background: #f1f5f9;\n        color: #64748b;\n        width: 40px;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        font-weight: 800;\n        border-right: 1px solid #e2e8f0;\n    }\n\n    .product-content { padding: 15px 20px; flex-grow: 1; }\n    .product-name { font-weight: 700; color: #1e293b; font-size: 0.95rem; margin-bottom: 4px; }\n    .product-meta { font-size: 0.8rem; color: #64748b; }\n\n    /* Fiyat Alanı */\n    .product-total-line label { font-size: 0.65rem; font-weight: 800; color: #94a3b8; display: block; }\n    .tax-value { font-size: 0.75rem; color: #ef4444; font-weight: 600; }\n    .grand-total { font-size: 1.1rem; font-weight: 800; color: #334155; }\n\n    /* Footer ve Özet */\n    .invoice-footer { padding: 30px; border-top: 2px dashed #e2e8f0; background: white; }\n    .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; color: #64748b; }\n    .summary-line.total { border-top: 1px solid #e2e8f0; padding-top: 10px; margin-top: 10px; color: #1e293b; font-weight: 800; font-size: 1.2rem; }\n\n    /* Buton */\n    .btn-ekle {\n        background: #10b981;\n        color: white;\n        border: none;\n        padding: 12px 30px;\n        border-radius: 12px;\n        font-weight: 800;\n        font-size: 0.9rem;\n        transition: 0.3s;\n        box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);\n    }\n    .btn-ekle:hover { background: #059669; transform: translateY(-2px); }\n</style>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "New Render Template 5"
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Invoice"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "\"{{purchases.elogoDocumentId}}\" != \"\"",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ]
+    }
+  ],
+  "styles": "",
+  "createdAt": "2026-06-04T17:40:59.000Z"
+}

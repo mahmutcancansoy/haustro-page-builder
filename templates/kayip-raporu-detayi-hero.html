@@ -1,0 +1,23 @@
+<div class="ass__hero ass__hero--product">
+  <div class="ass__hero-media">
+    <img
+      class="ass__hero-img"
+      src="{{globals.resources}}{{reports.:inventory:.photo.0.name}}"
+      alt=""
+    />
+  </div>
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Kırık / kayıp raporu</span>
+    <h1>Kırık Kayıp Raporu Detayı</h1>
+    <p class="ass__hero-sub">{{#if reports.:inventory:.cins}}{{reports.:inventory:.cins}} {{/if}}{{#if reports.:inventory:.name}}{{reports.:inventory:.name}} {{/if}}{{#if reports.:inventory:.model}}{{reports.:inventory:.model}} {{/if}}{{#if reports.:inventory:.:materiels:.name}}{{reports.:inventory:.:materiels:.name}} {{/if}}{{#if reports.:inventory:.:colors:.name}}{{reports.:inventory:.:colors:.name}} {{/if}}{{#if reports.:inventory:.pattern}}{{reports.:inventory:.pattern}} {{/if}}{{#if reports.:inventory:.width}}{{reports.:inventory:.width}}x{{/if}}{{#if reports.:inventory:.height}}{{reports.:inventory:.height}}x{{/if}}{{#if reports.:inventory:.depth}}{{reports.:inventory:.depth}} {{/if}}{{#if reports.:inventory:.bulk}} {{reports.:inventory:.bulk}}ML {{/if}}{{#if reports.:inventory:.code}}{{reports.:inventory:.code}} {{/if}}</p>
+    <p class="ass__hero-meta-line"><i class="pi pi-building"></i> {{reports.:departments:.label}} ({{reports.:departments:.short}}) · <i class="pi pi-calendar"></i> {{renderDate reports.datetime}}</p>
+  </div>
+  <div class="ass__hero-status">
+    {{#cIf reports.status "==" "0"}}
+      <span class="ass__badge ass__badge--pending"><i class="pi pi-clock"></i> Onay bekliyor</span>
+    {{/cIf}}
+    {{#cIf reports.status "==" "1"}}
+      <span class="ass__badge ass__badge--done"><i class="pi pi-check-circle"></i> Onaylandı</span>
+    {{/cIf}}
+  </div>
+</div>

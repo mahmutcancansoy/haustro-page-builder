@@ -1,0 +1,137 @@
+<div class="amrd__metrics-grid">
+  <article class="amrd-metric amrd-metric--opening">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-inbox"></i></span>
+      <h3 class="amrd-metric__title">Açılış Envanteri</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.oldCounting.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.oldCounting.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+
+  <article class="amrd-metric amrd-metric--purchase">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-shopping-cart"></i></span>
+      <h3 class="amrd-metric__title">Satın Alma</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.purchasing.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.purchasing.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+
+  <article class="amrd-metric amrd-metric--transfer-in">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-sign-in"></i></span>
+      <h3 class="amrd-metric__title">Transfer ( + )</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.transfersIn.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.transfersIn.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+
+  <article class="amrd-metric amrd-metric--transfer-out">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-sign-out"></i></span>
+      <h3 class="amrd-metric__title">Transfer ( - )</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.transfersOut.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.transfersOut.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+
+  <article class="amrd-metric amrd-metric--broken">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-exclamation-triangle"></i></span>
+      <h3 class="amrd-metric__title">Raporlanan Kırık</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.missings.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.missings.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+
+  <article class="amrd-metric amrd-metric--required">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-check-circle"></i></span>
+      <h3 class="amrd-metric__title">Olması Gereken</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.required.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.required.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+
+  <article class="amrd-metric amrd-metric--closing">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-lock"></i></span>
+      <h3 class="amrd-metric__title">Kapanış Envanteri</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.newCounting.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.newCounting.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+
+  <article class="amrd-metric amrd-metric--diff">
+    <div class="amrd-metric__head">
+      <span class="amrd-metric__icon"><i class="pi pi-chart-line"></i></span>
+      <h3 class="amrd-metric__title">Kayıp &amp; Kırık Fark</h3>
+    </div>
+    <div class="amrd-metric__stats">
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-hashtag"></i> Miktar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.difference.stockCount}}</span>
+      </div>
+      <div class="amrd-metric__stat">
+        <span class="amrd-metric__stat-label"><i class="pi pi-wallet"></i> Tutar</span>
+        <span class="amrd-metric__stat-value">{{monthlyCostReports.difference.totalPrice}}<small>₺</small></span>
+      </div>
+    </div>
+  </article>
+</div>

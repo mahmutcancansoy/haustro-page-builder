@@ -1,0 +1,17 @@
+<div class="ass__hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">E-Fatura / E-Arşiv</span>
+    <h1>
+      {{#if elogoDocuments.invoiceNumber}}{{elogoDocuments.invoiceNumber}}{{else}}Tedarik Faturası Detay{{/if}}
+    </h1>
+    <p class="ass__hero-sub">{{elogoDocuments.supplierName}}</p>
+    <p class="ass__hero-meta-line">
+      <i class="pi pi-id-card"></i> {{elogoDocuments.supplierVKN}}
+      · <i class="pi pi-calendar"></i> {{elogoDocuments.invoiceDate}}
+      · <i class="pi pi-wallet"></i> {{elogoDocuments.taxInclusiveAmount}} {{elogoDocuments.currencyCode}}
+    </p>
+  </div>
+  <div class="ass__hero-meta">
+    <span class="ass__chip"><i class="pi pi-file"></i> Fatura detayı</span>
+  </div>
+</div>

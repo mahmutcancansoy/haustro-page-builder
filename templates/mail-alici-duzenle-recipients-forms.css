@@ -1,0 +1,72 @@
+.ass-page .mr-recipients-empty {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--ass-border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--ass-label);
+  font-style: italic;
+  text-align: center;
+  background: #fafafa;
+}
+
+.ass-page .mr-recipients-loop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.ass-page .mr-recipient-item__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  font-size: 0.88rem;
+  color: #334155;
+  word-break: break-word;
+}
+
+.ass-page .mr-recipient-item__email i {
+  flex-shrink: 0;
+  color: var(--ass-primary);
+  font-size: 0.8rem;
+}
+
+.ass-page .mr-recipient-remove-form {
+  flex-shrink: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .mr-recipient-remove-form .form-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .mr-recipient-remove-form .p-button {
+  background: #fff !important;
+  border: 1px solid #fecaca !important;
+  color: #b91c1c !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  padding: 0.35rem 0.65rem !important;
+  border-radius: 8px !important;
+}
+
+.ass-page .mr-recipient-remove-form .p-button:hover {
+  background: #fef2f2 !important;
+  border-color: #f87171 !important;
+}
+
+.ass-page .mr-recipient-add-form .p-inputtext {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.ass-page .mr-recipient-add-form .p-button {
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  border-color: #4557a3 !important;
+  color: #fff !important;
+  border-radius: 10px;
+  font-weight: 700;
+}

@@ -1,0 +1,89 @@
+/* Fatura Takibi Oluştur — form kartı (form ağacına dokunmadan) */
+
+.ass-page .ass__form-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__form-card > .form-container,
+.ass-page .ass__form-card .form-container {
+  padding: 0 1.15rem 1.35rem !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__form-card .condition {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.ass-page .ass__form-card label,
+.ass-page .ass__form-card .p-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ass-label, #64748b);
+  margin-bottom: 0.35rem;
+}
+
+.ass-page .ass__form-card .p-inputtext,
+.ass-page .ass__form-card .p-dropdown,
+.ass-page .ass__form-card .p-calendar,
+.ass-page .ass__form-card .p-inputnumber,
+.ass-page .ass__form-card .p-inputtextarea,
+.ass-page .ass__form-card input.p-inputtext,
+.ass-page .ass__form-card textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 10px !important;
+  border-color: #cbd5e1 !important;
+  font-size: 0.92rem !important;
+}
+
+.ass-page .ass__form-card .p-inputtext:enabled:focus,
+.ass-page .ass__form-card .p-dropdown:not(.p-disabled).p-focus,
+.ass-page .ass__form-card .p-inputtextarea:enabled:focus,
+.ass-page .ass__form-card .p-calendar:not(.p-calendar-disabled).p-focus {
+  border-color: var(--ass-primary, #4557a3) !important;
+  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.12) !important;
+}
+
+.ass-page .ass__form-card .p-field,
+.ass-page .ass__form-card .p-field-checkbox,
+.ass-page .ass__form-card > .form-container > * {
+  margin-bottom: 0.85rem;
+}
+
+.ass-page .ass__form-card .p-button.p-button-success,
+.ass-page .ass__form-card .p-button-success,
+.ass-page .ass__form-card button.p-button:not(.p-button-secondary):not(.p-button-text) {
+  border-radius: 10px;
+  font-weight: 700;
+  min-height: 2.5rem;
+  margin-top: 0.35rem;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.22);
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__form-card > .form-container,
+  .ass-page .ass__form-card .form-container {
+    padding: 0 0.85rem 1rem !important;
+  }
+}
+
+@media print {
+  .ass-page .ass__toolbar {
+    display: none !important;
+  }
+
+  .ass-page .ass__form-card .p-button {
+    display: none !important;
+  }
+}

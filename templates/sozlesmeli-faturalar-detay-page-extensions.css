@@ -1,0 +1,133 @@
+/* Sözleşmeli Faturalar Detay — bilgi + fatura ekleme + tablolar */
+
+.ass-page .ass__detail-card,
+.ass-page .ass__form-card,
+.ass-page .ass__list-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__detail-card > .form-container,
+.ass-page .ass__detail-card .form-container {
+  padding: 0 1.15rem 1.25rem !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__detail-card .form-container > label {
+  display: block;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ass-page .ass__detail-card .form-container > label:last-child {
+  border-bottom: none;
+}
+
+.ass-page .ass__detail-card .form-container label,
+.ass-page .ass__detail-card .form-container .label {
+  color: #64748b !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ass-page .sfd-invoice-card > .condition,
+.ass-page .sfd-invoice-card .condition {
+  padding: 0 1.15rem 1.25rem;
+  margin: 0;
+  border: none;
+}
+
+.ass-page .sfd-invoice-card .form-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .sfd-invoice-card label,
+.ass-page .sfd-invoice-card .p-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ass-label, #64748b);
+  margin-bottom: 0.35rem;
+}
+
+.ass-page .sfd-invoice-card .p-inputtext,
+.ass-page .sfd-invoice-card .p-dropdown,
+.ass-page .sfd-invoice-card .p-calendar,
+.ass-page .sfd-invoice-card .p-inputtextarea,
+.ass-page .sfd-invoice-card input.p-inputtext,
+.ass-page .sfd-invoice-card textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 10px !important;
+  border-color: #cbd5e1 !important;
+  font-size: 0.92rem !important;
+}
+
+.ass-page .sfd-invoice-card .p-button,
+.ass-page .ass__form-card .p-button {
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.ass-page .ass__list-card .p-datatable {
+  border: none;
+  border-radius: 0;
+  font-size: 0.88rem;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: #e2e8f0;
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8fafc;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9;
+  padding: 0.85rem 1rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ass-page .ass__list-card .p-paginator {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__detail-card > .form-container,
+  .ass-page .sfd-invoice-card > .condition {
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+  }
+}
+
+@media print {
+  .ass-page .ass__toolbar {
+    display: none !important;
+  }
+}

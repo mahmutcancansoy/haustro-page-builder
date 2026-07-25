@@ -1,0 +1,37 @@
+<div class="amrd__meta-links">
+  <a class="amrd-meta-link" href="/d/aylik-sayim-sonucu?_id={{monthlyCostReports.previousCounting}}">
+    <span class="amrd-meta-link__icon amrd-meta-link__icon--opening"><i class="pi pi-calendar"></i></span>
+    <span class="amrd-meta-link__body">
+      <span class="amrd-meta-link__label">Açılış Sayımı</span>
+      <span class="amrd-meta-link__action">Açılış Sayımı Detayı <i class="pi pi-angle-right"></i></span>
+    </span>
+  </a>
+
+  <a class="amrd-meta-link" href="/d/aylik-sayim-sonucu?_id={{monthlyCostReports.presentCounting}}">
+    <span class="amrd-meta-link__icon amrd-meta-link__icon--closing"><i class="pi pi-lock"></i></span>
+    <span class="amrd-meta-link__body">
+      <span class="amrd-meta-link__label">Kapanış Sayımı</span>
+      <span class="amrd-meta-link__action">Kapanış Sayımı Detayı <i class="pi pi-angle-right"></i></span>
+    </span>
+  </a>
+
+  {{#cIf params.type "==" "costControl"}}
+  <a class="amrd-meta-link" href="/d/kirik-kayip-listesi-cost-control?_id={{monthlyCostReports._id}}">
+    <span class="amrd-meta-link__icon amrd-meta-link__icon--broken"><i class="pi pi-exclamation-triangle"></i></span>
+    <span class="amrd-meta-link__body">
+      <span class="amrd-meta-link__label">Kırık &amp; Kayıp</span>
+      <span class="amrd-meta-link__action">Değişim Gösteren Envanter Detayı <i class="pi pi-angle-right"></i></span>
+    </span>
+  </a>
+  {{/cIf}}
+
+  {{#cIf params.type "==" ""}}
+  <a class="amrd-meta-link" href="/d/kirik-kayip-listesi?_id={{monthlyCostReports._id}}">
+    <span class="amrd-meta-link__icon amrd-meta-link__icon--broken"><i class="pi pi-exclamation-triangle"></i></span>
+    <span class="amrd-meta-link__body">
+      <span class="amrd-meta-link__label">Kırık &amp; Kayıp</span>
+      <span class="amrd-meta-link__action">Değişim Gösteren Envanter Detayı <i class="pi pi-angle-right"></i></span>
+    </span>
+  </a>
+  {{/cIf}}
+</div>

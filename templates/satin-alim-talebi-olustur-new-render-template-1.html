@@ -1,0 +1,69 @@
+<div class="alert-box alert-error alert-animated">
+  <div class="alert-content">
+    <i class="pi pi-times-circle alert-icon"></i>
+    <div class="alert-text">
+      <strong>Uyarı!</strong> {{departmentsLimitCheck.message}}
+    </div>
+  </div>
+</div>
+<style>
+    /* Genel Kutu Yapısı */
+.alert-box {
+    width:50%;
+  margin: 15px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-left: 6px solid;
+}
+
+/* Hata Durumu Özel Renkleri */
+.alert-error .alert-content {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #ef4444;
+}
+
+.alert-icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+
+.alert-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* --- ANIMASYONLAR --- */
+
+.alert-animated {
+  /* Hem giriş hem de sallanma animasyonunu sırayla çalıştırır */
+  animation: slideIn 0.4s ease-out forwards, shake 0.5s ease-in-out 0.4s;
+}
+
+/* Giriş Efekti: Yukarıdan aşağı kayma ve opaklık */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sallanma Efekti: Yanlış bir durumu vurgulamak için */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+</style>

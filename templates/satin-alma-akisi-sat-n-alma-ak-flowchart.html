@@ -1,0 +1,185 @@
+<div class="wfd-page">
+  <a href="/d/is-akislari" router-link="/d/is-akislari" class="wfd__back"><i class="pi pi-arrow-left"></i> Tüm akışlar</a>
+  <div class="wfd__hero">
+    <div class="wfd__hero-main">
+      <span class="wfd__eyebrow">İş akışı dokümantasyonu</span>
+      <h1>Satın Alma Akışı</h1>
+      <p>Envanter satın alım taleplerinin oluşturulmasından talep karşılanana kadar geçen süreç. Rol bazlı onay zinciri ve teklif yönetimi içerir.</p>
+    </div>
+    <span class="wfd__hero-icon"><i class="pi pi-shopping-cart"></i></span>
+  </div>
+  <div class="wfd-meta-bar">
+    <span>Koleksiyon: <strong>purchases</strong></span>
+    <span>Canlı sayfa: <a href="/d/satin-alim-detayi" router-link="/d/satin-alim-detayi">/d/satin-alim-detayi</a></span>
+    <span>Adım sayısı: <strong>12</strong></span>
+  </div>
+  <div class="wfd-flow-overview"><span class="wfd-flow-node"><span class="wfd-flow-node__num">1</span>Beklemede</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">2</span>Rol Bazlı Onay Zinciri</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">3</span>Teklif Toplanıyor</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">4</span>Teklifler Yüklendi</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">5</span>Teklif Onaylandı</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">6</span>Sipariş Verildi</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">7</span>Sipariş Yolda</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">8</span>Teslim Edildi</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">9</span>Fatura Yüklendi</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">10</span>Talep Karşılandı</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">11</span>Reddedildi</span><span class="wfd-flow-arrow"><i class="pi pi-arrow-right"></i></span><span class="wfd-flow-node"><span class="wfd-flow-node__num">12</span>İptal Edildi</span></div>
+  <div class="wfd-steps"><div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">1</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Beklemede</h3>
+          <span class="wfd-step__code">status: 0</span>
+        </div>
+        <p class="wfd-step__desc">Satın alım talebi oluşturuldu, onay süreci başlamadı.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Talep sahibi / Satın alma ekibi</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Talep satin-alim-talebi-olustur sayfasından açılır.</li><li>status=0 iken teklif toplama ve onay formları kısıtlıdır.</li><li>Onay zinciri betaPurchase custom operasyonu ile yüklenir (oprType: approvalState).</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">2</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Rol Bazlı Onay Zinciri</h3>
+          <span class="wfd-step__code">status: onay</span>
+        </div>
+        <p class="wfd-step__desc">Talep, tanımlı rol sırasına göre en fazla 4 kademede onaylanır.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> betaPurchase.nextRole.roleId ile eşleşen rol; master/admin rolleri</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Onay: oprType=approve, purchaseId + userId gönderilir.</li><li>Red: oprType=reject; red açıklaması zorunlu olabilir.</li><li>Yetki: nextRole.roleId == info.roleId VEYA isMaster.roleId == info.roleId VEYA admin/master rol ID'leri.</li><li>Her onay approvedBy dizisine userName ve datetime ile yazılır.</li><li>workflow-steps-vertical bileşeni zinciri görselleştirir.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">3</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Teklif Toplanıyor</h3>
+          <span class="wfd-step__code">status: 1</span>
+        </div>
+        <p class="wfd-step__desc">Onay sonrası tedarikçilerden teklif toplanır.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Satın alma / tedarik ekibi</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Teklif yükleme: oprType=uploadOffers.</li><li>Tedarikçi ekleme modalı ile yeni tedarikçi tanımlanabilir.</li><li>Her teklif ayrı kayıt olarak purchases altına eklenir.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">4</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Teklifler Yüklendi</h3>
+          <span class="wfd-step__code">status: 2</span>
+        </div>
+        <p class="wfd-step__desc">En az bir teklif sisteme girildi.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Satın alma sorumlusu</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Teklifler karşılaştırma tablosunda listelenir.</li><li>Teklif onay/red işlemleri teklif bazında yapılır.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">5</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Teklif Onaylandı</h3>
+          <span class="wfd-step__code">status: 3</span>
+        </div>
+        <p class="wfd-step__desc">Bir teklif kabul edildi (oprType: offerConfirm).</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Yetkili onaylayıcı</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Onaylanan teklif confirmOffer değişkeninde tutulur.</li><li>Reddedilen teklifler rejectDescription ile işaretlenir.</li><li>Sonraki adım: Sipariş Ver.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">6</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Sipariş Verildi</h3>
+          <span class="wfd-step__code">status: 4</span>
+        </div>
+        <p class="wfd-step__desc">Onaylanan teklif üzerinden sipariş oluşturuldu.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Satın alma ekibi</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Sipariş Ver butonu status=4 yapar.</li><li>Tedarikçi ve fiyat bilgileri kilitlenir.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">7</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Sipariş Yolda</h3>
+          <span class="wfd-step__code">status: 5</span>
+        </div>
+        <p class="wfd-step__desc">Sipariş kargoya / teslimat sürecine girdi.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Satın alma / lojistik</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Sipariş Yolda statüsü manuel güncellenir.</li><li>Takip bilgileri detay sayfasında gösterilir.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">8</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Teslim Edildi</h3>
+          <span class="wfd-step__code">status: 6</span>
+        </div>
+        <p class="wfd-step__desc">Ürün fiziksel olarak teslim alındı.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Talep eden departman / depo</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Teslim sonrası fatura yükleme adımına geçilir.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">9</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Fatura Yüklendi</h3>
+          <span class="wfd-step__code">status: 7</span>
+        </div>
+        <p class="wfd-step__desc">e-Fatura / belge sisteme yüklendi.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Satın alma / muhasebe</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Fatura yükleme: oprType=uploadInvoice, elogoDocumentId ile.</li><li>Belge purchases kaydına bağlanır.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">10</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Talep Karşılandı</h3>
+          <span class="wfd-step__code">status: 8</span>
+        </div>
+        <p class="wfd-step__desc">Süreç başarıyla tamamlandı.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Sistem</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Terminal durum — geri dönüş yapılmaz.</li><li>Geçmiş kayıtlar gecmis-satin-alim-detayi sayfasında arşivlenir.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">11</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">Reddedildi</h3>
+          <span class="wfd-step__code">status: 9</span>
+        </div>
+        <p class="wfd-step__desc">Talep onay veya teklif aşamasında reddedildi.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Onaylayıcı</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Terminal durum.</li><li>Red gerekçesi rejectDescription alanında saklanır.</li></ul>
+        
+      </div>
+    </div>
+<div class="wfd-step">
+      <div class="wfd-step__line"><span class="wfd-step__circle">12</span></div>
+      <div class="wfd-step__body">
+        <div class="wfd-step__head">
+          <h3 class="wfd-step__title">İptal Edildi</h3>
+          <span class="wfd-step__code">status: 10</span>
+        </div>
+        <p class="wfd-step__desc">Talep iptal edildi.</p>
+        <div class="wfd-step__actor"><i class="pi pi-user"></i><span><strong>Yetkili:</strong> Talep sahibi / yetkili</span></div>
+        <p class="wfd-step__rules-title">Kurallar</p>
+        <ul class="wfd-step__rules"><li>Terminal durum.</li><li>Aktif onay veya teklif işlemi yapılamaz.</li></ul>
+        
+      </div>
+    </div></div>
+</div>

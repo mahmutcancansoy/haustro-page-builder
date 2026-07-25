@@ -1,0 +1,58 @@
+<div class="dr-page">
+  <div class="dr__hero">
+    <span class="dr__eyebrow">Operasyon denetimi</span>
+    <h1>Denetleme Raporları</h1>
+    <p>Şubelerin son denetleme tarihi ve puan özeti</p>
+  </div>
+
+  <div class="dr-grid">
+    {{#each departments}}
+    <div class="dr-card">
+      <div class="dr-card__icon-head">
+        <div class="dr-card__icon-wrap">
+          <i class="pi pi-building"></i>
+        </div>
+        {{#if this.short}}<span class="dr-card__badge">{{this.short}}</span>{{/if}}
+      </div>
+
+      <div class="dr-card__body">
+        <h3 class="dr-card__title">{{this.label}}</h3>
+
+        <div class="dr-card__stats">
+          <div class="dr-card__stat">
+            <span class="dr-card__stat-label"><i class="pi pi-calendar"></i> Son denetleme</span>
+            {{#if this.lastInspection.datetime}}
+            <span class="dr-card__date">{{renderDateTime this.lastInspection.datetime}}</span>
+            {{else}}
+            <span class="dr-card__date dr-card__date--empty">Henüz yok</span>
+            {{/if}}
+          </div>
+
+          <div class="dr-card__stat">
+            <span class="dr-card__stat-label"><i class="pi pi-star"></i> Puan</span>
+            {{#if this.lastInspection.total.point}}
+            <span class="dr-card__score">{{this.lastInspection.total.point}}/5</span>
+            <span class="dr-card__score-meta">%{{this.lastInspection.total.pointPercent}} · {{this.lastInspection.resultText}}</span>
+            {{else}}
+            <span class="dr-card__score dr-card__score--empty">—</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <a
+          class="dr-card__cta"
+          href="/d/denetleme-raporu-ozeti?_id={{this._id}}"
+        >
+          <i class="pi pi-eye"></i>
+          Görüntüle
+        </a>
+      </div>
+    </div>
+    {{else}}
+    <div class="dr-empty">
+      <i class="pi pi-inbox"></i>
+      <p>Liste yüklenemedi veya kayıt bulunamadı.</p>
+    </div>
+    {{/each}}
+  </div>
+</div>

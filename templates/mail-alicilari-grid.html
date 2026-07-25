@@ -1,0 +1,59 @@
+<div class="mr-page">
+  <div class="mr__hero">
+    <div class="mr__hero-main">
+      <span class="mr__eyebrow">Sistem ayarları</span>
+      <h1>Mail Alıcıları</h1>
+      <p>Otomatik raporlar, envanter ve teknik talep maillerindeki sabit alıcı listelerini yönetin.</p>
+    </div>
+    {{#if mailRules.length}}<span class="mr__count">{{mailRules.length}} kural</span>{{/if}}
+  </div>
+
+  <div class="mr-grid">
+    {{#each mailRules}}
+    <article class="mr-card">
+      <div class="mr-card__head">
+        <h3 class="mr-card__title">{{this.label}}</h3>
+        {{#if this.active}}
+        <span class="mr-card__badge">Aktif</span>
+        {{else}}
+        <span class="mr-card__badge mr-card__badge--inactive">Pasif</span>
+        {{/if}}
+      </div>
+
+      <p class="mr-card__meta">
+        <strong>Kategori:</strong> {{this.categoryLabel}}<br>
+        <strong>Anahtar:</strong> <code>{{this.key}}</code><br>
+        <strong>Kaynak:</strong> {{this.sourceFile}}
+      </p>
+
+      {{#cIf this.recipientMode "==" "role_only"}}
+      <div class="mr-card__mode"><i class="pi pi-users"></i> {{this.roleNote}}</div>
+      {{/cIf}}
+      {{#cIf this.recipientMode "==" "role_plus_fixed"}}
+      <div class="mr-card__mode"><i class="pi pi-users"></i> {{this.roleNote}}</div>
+      {{/cIf}}
+
+      <ul class="mr-recipients">
+        {{#if this.recipientsText}}
+        <li><i class="pi pi-envelope"></i> {{this.recipientsText}}</li>
+        {{else}}
+        {{#each this.recipients}}
+        <li><i class="pi pi-envelope"></i> {{this.value}}{{#cIf this.kind "==" "username"}} <span style="color:#64748b">(kullanıcı)</span>{{/cIf}}</li>
+        {{else}}
+        <li><i class="pi pi-info-circle"></i> Sabit alıcı tanımlı değil (rol bazlı)</li>
+        {{/each}}
+        {{/if}}
+      </ul>
+
+      <a class="mr-card__cta" href="/d/mail-alici-duzenle?_id={{this._id}}">
+        <i class="pi pi-pencil"></i> Düzenle
+      </a>
+    </article>
+    {{else}}
+    <div class="mr-empty">
+      <i class="pi pi-inbox"></i>
+      <p>Henüz mail alıcı kuralı bulunamadı.</p>
+    </div>
+    {{/each}}
+  </div>
+</div>

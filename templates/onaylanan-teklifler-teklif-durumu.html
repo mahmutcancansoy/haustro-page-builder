@@ -1,0 +1,9 @@
+{{#cIf input.status "==" "0"}}
+  <span class="atr-status atr-status--waiting"><i class="pi pi-clock"></i> Beklemede</span>
+{{/cIf}}
+{{#cIf input.status "==" "1"}}
+  <span class="atr-status atr-status--done"><i class="pi pi-check-circle"></i> Onaylandı</span>
+{{/cIf}}
+{{#cIf input.status "==" "2"}}
+  <span class="atr-status atr-status--danger"><i class="pi pi-times-circle"></i> Reddedildi</span>
+{{/cIf}}

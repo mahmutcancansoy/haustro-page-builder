@@ -1,0 +1,68 @@
+/* Sözleşmeli Faturalar — liste kartı */
+
+.ass-page .ass__list-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__list-card .p-datatable {
+  border: none;
+  border-radius: 0;
+  font-size: 0.88rem;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: #e2e8f0;
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr {
+  transition: background 0.12s ease;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8fafc;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9;
+  padding: 0.85rem 1rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: #fcfdff;
+}
+
+.ass-page .ass__list-card .p-paginator {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+}
+
+.ass-page .sf-detail-btn {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th,
+  .ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="ass__hero ass__hero--person">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Personel kartı</span>
+    <h1>{{users.name}} {{users.surname}}</h1>
+    <p class="ass__hero-sub">{{users.:departments:.label}}{{#if users.:roleTypes:.0.description}} · {{users.:roleTypes:.0.description}}{{/if}}</p>
+  </div>
+  <div class="ass__hero-meta">
+    <span class="ass__chip"><i class="pi pi-id-card"></i> Özlük görüntüleme</span>
+    {{#if users.email}}
+      <span class="ass__chip"><i class="pi pi-envelope"></i> {{users.email}}</span>
+    {{/if}}
+    {{#if users.phone}}
+      <span class="ass__chip"><i class="pi pi-phone"></i> {{users.phone}}</span>
+    {{/if}}
+  </div>
+</div>

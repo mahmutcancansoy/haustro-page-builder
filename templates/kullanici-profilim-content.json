@@ -1,4 +1,5 @@
 {
+  "pageId": "6a1f7b59b1ddfb5646dea36f",
   "content": [
     {
       "type": "data-source",
@@ -916,6 +917,32 @@
                       "value": "Profil Fotoğrafı Güncelle"
                     },
                     {
+                      "key": "formId",
+                      "header": "Form ID",
+                      "type": "input-text-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "submitId",
+                      "header": "Submit Button ID",
+                      "type": "input-text-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "key",
+                      "header": "Key",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.expose"
+                        }
+                      ]
+                    },
+                    {
                       "key": "action",
                       "type": "select-property",
                       "options": [
@@ -946,6 +973,18 @@
                       ],
                       "header": "Action",
                       "value": "update"
+                    },
+                    {
+                      "key": "custom-function-name",
+                      "header": "Custom function name",
+                      "type": "input-text-property",
+                      "value": "",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'custom'"
+                        }
+                      ]
                     },
                     {
                       "key": "table-name",
@@ -982,6 +1021,20 @@
                       "autoCompleteMode": "template"
                     },
                     {
+                      "key": "table-filters",
+                      "header": "Table filters",
+                      "type": "code-editor",
+                      "value": "{\n\n}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'custom'"
+                        }
+                      ]
+                    },
+                    {
                       "key": "on-success",
                       "type": "select-property",
                       "options": [
@@ -1006,12 +1059,164 @@
                       "value": "route"
                     },
                     {
+                      "key": "url",
+                      "header": "Url",
+                      "type": "textarea-property",
+                      "value": "/d/kullanici-profilim",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "on-success",
+                          "rule": "value == 'redirect' || value == 'route'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "query-params",
+                      "header": "Query Params",
+                      "type": "code-editor",
+                      "value": "{\n\n}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "on-success",
+                          "rule": "value == 'route'"
+                        }
+                      ]
+                    },
+                    {
                       "key": "response-name",
                       "header": "Response name",
                       "type": "input-text-property",
                       "value": "",
                       "autoComplete": true,
                       "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "on-success-message",
+                      "header": "On success message",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "header",
+                          "header": "Header",
+                          "type": "input-text-property",
+                          "value": "",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "popUp",
+                          "header": "Pop Up View",
+                          "type": "checkbox-property",
+                          "options": [
+                            {
+                              "label": "Enable",
+                              "name": "popUpView"
+                            }
+                          ],
+                          "value": {
+                            "popUpView": false
+                          },
+                          "inGroup": true
+                        },
+                        {
+                          "key": "life",
+                          "header": "Life",
+                          "type": "input-number-property",
+                          "value": 3000,
+                          "min": 0,
+                          "inGroup": true
+                        },
+                        {
+                          "key": "severity",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Success",
+                              "value": "success"
+                            },
+                            {
+                              "label": "Info",
+                              "value": "info"
+                            },
+                            {
+                              "label": "Warning",
+                              "value": "warn"
+                            },
+                            {
+                              "label": "Error",
+                              "value": "error"
+                            }
+                          ],
+                          "header": "Severity",
+                          "value": "success",
+                          "inGroup": true
+                        }
+                      ]
+                    },
+                    {
+                      "key": "confirm",
+                      "header": "Confirm",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "header",
+                          "header": "Header",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "content",
+                          "header": "Content",
+                          "type": "textarea-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "accept",
+                          "header": "Accept",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "reject",
+                          "header": "Reject",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        }
+                      ],
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.hasConfirm"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "upload-title",
+                      "header": "File upload title",
+                      "type": "input-text-property",
+                      "value": "Dosyalar yükleniyor..."
                     },
                     {
                       "key": "settings",
@@ -1053,16 +1258,41 @@
                       }
                     },
                     {
-                      "key": "url",
-                      "header": "Url",
+                      "key": "reqFieldsArr",
+                      "header": "At least Req fields",
                       "type": "textarea-property",
-                      "value": "/d/kullanici-profilim",
-                      "autoComplete": true,
-                      "autoCompleteMode": "template",
+                      "value": "",
                       "conditions": [
                         {
-                          "key": "on-success",
-                          "rule": "value == 'redirect' || value == 'route'"
+                          "key": "settings",
+                          "rule": "value.minReqFields"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "atLeastError",
+                      "header": "On Fill At Least Msg",
+                      "type": "group-property",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.minReqFields"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "key": "header",
+                          "header": "Header",
+                          "type": "input-text-property",
+                          "value": "",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "",
+                          "inGroup": true
                         }
                       ]
                     }
@@ -1080,13 +1310,17 @@
                   "key": "classes",
                   "header": "Classes",
                   "type": "textarea-property",
-                  "value": "hp-prof-photo-form-host"
+                  "value": "hp-prof-photo-form-host",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
                 },
                 {
                   "key": "styles",
                   "header": "Styles",
                   "type": "code-editor",
-                  "value": "{\n\n}"
+                  "value": "{\n\n}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
                 }
               ]
             }
@@ -1102,13 +1336,17 @@
               "key": "classes",
               "header": "Classes",
               "type": "textarea-property",
-              "value": "hp-prof-photo-card hp-prof__card hp-prof__card--wide"
+              "value": "hp-prof-photo-card hp-prof__card hp-prof__card--wide",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
             },
             {
               "key": "styles",
               "header": "Styles",
               "type": "code-editor",
-              "value": "{\n\n}"
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
             }
           ]
         },
@@ -3790,6 +4028,30 @@
                         {
                           "label": "Bottom",
                           "value": "bottom"
+                        },
+                        {
+                          "label": "Left",
+                          "value": "left"
+                        },
+                        {
+                          "label": "Right",
+                          "value": "right"
+                        },
+                        {
+                          "label": "Top Left",
+                          "value": "top-left"
+                        },
+                        {
+                          "label": "Top Right",
+                          "value": "top-right"
+                        },
+                        {
+                          "label": "Bottom Left",
+                          "value": "bottom-left"
+                        },
+                        {
+                          "label": "Bottom Right",
+                          "value": "bottom-right"
                         }
                       ],
                       "header": "Position",
@@ -3819,6 +4081,19 @@
                             }
                           ],
                           "value": "showOpenBtn",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "responseName",
+                          "header": "Response Name",
+                          "type": "input-text-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "open-type",
+                              "rule": "value =='onPost'"
+                            }
+                          ],
                           "inGroup": true
                         },
                         {
@@ -3858,6 +4133,34 @@
                               "rule": "value =='showOpenBtn'"
                             }
                           ],
+                          "inGroup": true
+                        }
+                      ]
+                    },
+                    {
+                      "key": "stylesGroups",
+                      "header": "Styles",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "maskStyleClass",
+                          "header": "Style class of the mask",
+                          "type": "input-text-property",
+                          "value": "",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "contentStyleClass",
+                          "header": "Style class of the content",
+                          "type": "input-text-property",
+                          "value": "",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "contentStyle",
+                          "header": "Content Section Style",
+                          "type": "textarea-property",
+                          "value": "",
                           "inGroup": true
                         }
                       ]
@@ -3913,9 +4216,9 @@
                         }
                       ],
                       "value": {
-                        "draggable": false,
+                        "draggable": true,
                         "keepInViewport": true,
-                        "resizable": false,
+                        "resizable": true,
                         "modal": true,
                         "blockScroll": true,
                         "closeOnEscape": true,
@@ -3937,6 +4240,30 @@
                           "rule": "value.closable"
                         }
                       ]
+                    },
+                    {
+                      "key": "minimizeIcon",
+                      "header": "Minimize Icon",
+                      "type": "input-text-property",
+                      "value": "pi pi-window-minimize",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.maximizable"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "maximizeIcon",
+                      "header": "Maximize Icon",
+                      "type": "input-text-property",
+                      "value": "pi pi-window-maximize",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.maximizable"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -3952,13 +4279,17 @@
                   "key": "classes",
                   "header": "Classes",
                   "type": "textarea-property",
-                  "value": "hp-prof-modal-host hp-prof__actions"
+                  "value": "hp-prof-modal-host hp-prof__actions",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
                 },
                 {
                   "key": "styles",
                   "header": "Styles",
                   "type": "code-editor",
-                  "value": "{\n\n}"
+                  "value": "{\n\n}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
                 }
               ]
             }
@@ -3974,13 +4305,17 @@
               "key": "classes",
               "header": "Classes",
               "type": "textarea-property",
-              "value": "hp-prof-security-card hp-prof__card hp-prof__card--wide"
+              "value": "hp-prof-security-card hp-prof__card hp-prof__card--wide",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
             },
             {
               "key": "styles",
               "header": "Styles",
               "type": "code-editor",
-              "value": "{\n\n}"
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
             }
           ]
         }
@@ -3996,16 +4331,21 @@
           "key": "classes",
           "header": "Classes",
           "type": "textarea-property",
-          "value": "hp-prof-page"
+          "value": "hp-prof-page",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
         },
         {
           "key": "styles",
           "header": "Styles",
           "type": "code-editor",
-          "value": "{\n\n}"
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
         }
       ]
     }
   ],
-  "styles": "/* Profilim — tüm bloklar (render-template + simple-container) için ortak stiller */\n.hp-prof-page {\n  --hp-primary: #4557a3;\n  --hp-primary-mid: #586495;\n  --hp-muted: #9ba6b7;\n  --hp-label: #777777;\n  --hp-text: #1e293b;\n  --hp-border: #e4e9f2;\n  --hp-surface: #ffffff;\n  --hp-soft: #f4f6fb;\n  --hp-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);\n  max-width: 960px;\n  margin: 0 auto;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  color: var(--hp-text);\n}\n\n.hp-prof-page *,\n.hp-prof-page *::before,\n.hp-prof-page *::after {\n  box-sizing: border-box;\n}\n\n.hp-prof-page .hp-prof__hero {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 1.25rem;\n  padding: 1.5rem;\n  background: var(--hp-surface);\n  border: 1px solid var(--hp-border);\n  border-radius: 18px;\n  box-shadow: var(--hp-shadow);\n  margin-bottom: 1rem;\n  position: relative;\n  overflow: hidden;\n}\n\n.hp-prof-page .hp-prof__hero::before {\n  content: '';\n  position: absolute;\n  inset: 0 0 auto 0;\n  height: 4px;\n  background: linear-gradient(90deg, var(--hp-primary) 0%, var(--hp-primary-mid) 100%);\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__hero {\n    grid-template-columns: auto 1fr;\n    align-items: center;\n    padding: 1.75rem 2rem;\n  }\n}\n\n.hp-prof-page .hp-prof__avatar-wrap {\n  display: flex;\n  justify-content: center;\n}\n\n.hp-prof-page .hp-prof__avatar {\n  width: 120px;\n  height: 120px;\n  border-radius: 22px;\n  object-fit: cover;\n  border: 4px solid rgba(69, 87, 163, 0.16);\n  box-shadow: 0 10px 28px rgba(69, 87, 163, 0.18);\n  display: block;\n}\n\n.hp-prof-page .hp-prof__identity {\n  min-width: 0;\n  text-align: center;\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__identity {\n    text-align: left;\n  }\n}\n\n.hp-prof-page .hp-prof__eyebrow {\n  display: block;\n  font-size: 0.72rem;\n  font-weight: 700;\n  letter-spacing: 0.14em;\n  text-transform: uppercase;\n  color: var(--hp-muted);\n  margin-bottom: 0.35rem;\n}\n\n.hp-prof-page .hp-prof__name {\n  margin: 0 0 0.35rem;\n  font-size: clamp(1.35rem, 3vw, 1.75rem);\n  font-weight: 700;\n  line-height: 1.2;\n  word-break: break-word;\n}\n\n.hp-prof-page .hp-prof__role {\n  margin: 0 0 0.85rem;\n  font-size: 0.95rem;\n  color: var(--hp-label);\n  line-height: 1.45;\n}\n\n.hp-prof-page .hp-prof__chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.5rem;\n  justify-content: center;\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__chips {\n    justify-content: flex-start;\n  }\n}\n\n.hp-prof-page .hp-prof__chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  padding: 0.35rem 0.7rem;\n  border-radius: 999px;\n  background: var(--hp-soft);\n  border: 1px solid var(--hp-border);\n  font-size: 0.78rem;\n  color: var(--hp-primary);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 1rem;\n}\n\n@media (min-width: 640px) {\n  .hp-prof-page .hp-prof__grid {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n}\n\n.hp-prof-page .hp-prof__card,\n.hp-prof-page .hp-prof-photo-card,\n.hp-prof-page .hp-prof-security-card {\n  background: var(--hp-surface);\n  border: 1px solid var(--hp-border);\n  border-radius: 16px;\n  box-shadow: var(--hp-shadow);\n  padding: 1.15rem 1.2rem 1.25rem;\n}\n\n.hp-prof-page .hp-prof__card--wide {\n  grid-column: 1 / -1;\n}\n\n.hp-prof-page .hp-prof-photo-card {\n  margin-bottom: 1rem;\n}\n\n.hp-prof-page .hp-prof-security-card {\n  margin-top: 1rem;\n}\n\n.hp-prof-page .hp-prof__card-title {\n  display: flex;\n  align-items: center;\n  gap: 0.55rem;\n  margin: 0 0 1rem;\n  font-size: 0.95rem;\n  font-weight: 700;\n  color: var(--hp-primary-mid);\n}\n\n.hp-prof-page .hp-prof__card-title i {\n  font-size: 1.15rem;\n  color: var(--hp-primary);\n}\n\n.hp-prof-page .hp-prof__row {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.7rem 0;\n  border-bottom: 1px solid #eef2f7;\n}\n\n.hp-prof-page .hp-prof__row:last-child {\n  border-bottom: none;\n  padding-bottom: 0;\n}\n\n.hp-prof-page .hp-prof__row-label {\n  font-size: 0.82rem;\n  font-weight: 600;\n  color: var(--hp-muted);\n  flex-shrink: 0;\n}\n\n.hp-prof-page .hp-prof__row-value {\n  font-size: 0.92rem;\n  color: var(--hp-text);\n  text-align: right;\n  word-break: break-word;\n}\n\n.hp-prof-page .hp-prof__leave-value {\n  display: flex;\n  align-items: baseline;\n  justify-content: flex-end;\n  gap: 0.35rem;\n  font-weight: 700;\n}\n\n.hp-prof-page .hp-prof__leave-value strong {\n  font-size: 1.65rem;\n  color: var(--hp-primary);\n  line-height: 1;\n}\n\n.hp-prof-page .hp-prof__leave-value span {\n  font-size: 0.82rem;\n  color: var(--hp-label);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__password {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.45rem;\n  letter-spacing: 0.18em;\n  color: var(--hp-text);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__password-dot {\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  background: var(--hp-primary);\n  opacity: 0.55;\n}\n\n.hp-prof-page .hp-prof__actions {\n  margin-top: 0.85rem;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n  min-height: 2.5rem;\n}\n\n.hp-prof-page .hp-prof__btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.45rem;\n  padding: 0.62rem 1rem;\n  border-radius: 10px;\n  font-size: 0.86rem;\n  font-weight: 600;\n  text-decoration: none;\n  border: 1px solid transparent;\n  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;\n}\n\n.hp-prof-page .hp-prof__btn:hover {\n  transform: translateY(-1px);\n}\n\n.hp-prof-page .hp-prof__btn--ghost {\n  background: var(--hp-soft);\n  color: var(--hp-primary);\n  border-color: var(--hp-border);\n}\n\n.hp-prof-page .hp-prof__hint {\n  margin: 0.75rem 0 0;\n  font-size: 0.78rem;\n  color: var(--hp-label);\n  line-height: 1.45;\n}\n\n.hp-prof-page .hp-prof-photo-form-host {\n  margin-top: 0.85rem;\n}\n\n.hp-prof-page .hp-prof-photo-form-host .p-fileupload,\n.hp-prof-page .hp-prof-photo-form-host .p-inputtext,\n.hp-prof-page .hp-prof-photo-form-host input[type=\"file\"] {\n  max-width: 100%;\n}\n\n.hp-prof-page .hp-prof-photo-form-host .p-button {\n  border-radius: 10px;\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof-modal-host {\n  margin: 0;\n  padding: 0;\n}\n\n.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn {\n  background: #4557a3;\n  color: #fff;\n  border: none;\n  border-radius: 10px;\n  font-weight: 600;\n  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.22);\n}\n\n.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn:hover {\n  background: #3f4f96;\n  color: #fff;\n}\n\n.hp-prof-password-modal .p-dialog-content {\n  padding-top: 0.5rem;\n}"
+  "styles": "/* Profilim — tüm bloklar (render-template + simple-container) için ortak stiller */\n.hp-prof-page {\n  --hp-primary: #4557a3;\n  --hp-primary-mid: #586495;\n  --hp-muted: #9ba6b7;\n  --hp-label: #777777;\n  --hp-text: #1e293b;\n  --hp-border: #e4e9f2;\n  --hp-surface: #ffffff;\n  --hp-soft: #f4f6fb;\n  --hp-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);\n  max-width: 960px;\n  margin: 0 auto;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  color: var(--hp-text);\n}\n\n.hp-prof-page *,\n.hp-prof-page *::before,\n.hp-prof-page *::after {\n  box-sizing: border-box;\n}\n\n.hp-prof-page .hp-prof__hero {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 1.25rem;\n  padding: 1.5rem;\n  background: var(--hp-surface);\n  border: 1px solid var(--hp-border);\n  border-radius: 18px;\n  box-shadow: var(--hp-shadow);\n  margin-bottom: 1rem;\n  position: relative;\n  overflow: hidden;\n}\n\n.hp-prof-page .hp-prof__hero::before {\n  content: '';\n  position: absolute;\n  inset: 0 0 auto 0;\n  height: 4px;\n  background: linear-gradient(90deg, var(--hp-primary) 0%, var(--hp-primary-mid) 100%);\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__hero {\n    grid-template-columns: auto 1fr;\n    align-items: center;\n    padding: 1.75rem 2rem;\n  }\n}\n\n.hp-prof-page .hp-prof__avatar-wrap {\n  display: flex;\n  justify-content: center;\n}\n\n.hp-prof-page .hp-prof__avatar {\n  width: 120px;\n  height: 120px;\n  border-radius: 22px;\n  object-fit: cover;\n  border: 4px solid rgba(69, 87, 163, 0.16);\n  box-shadow: 0 10px 28px rgba(69, 87, 163, 0.18);\n  display: block;\n}\n\n.hp-prof-page .hp-prof__identity {\n  min-width: 0;\n  text-align: center;\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__identity {\n    text-align: left;\n  }\n}\n\n.hp-prof-page .hp-prof__eyebrow {\n  display: block;\n  font-size: 0.72rem;\n  font-weight: 700;\n  letter-spacing: 0.14em;\n  text-transform: uppercase;\n  color: var(--hp-muted);\n  margin-bottom: 0.35rem;\n}\n\n.hp-prof-page .hp-prof__name {\n  margin: 0 0 0.35rem;\n  font-size: clamp(1.35rem, 3vw, 1.75rem);\n  font-weight: 700;\n  line-height: 1.2;\n  word-break: break-word;\n}\n\n.hp-prof-page .hp-prof__role {\n  margin: 0 0 0.85rem;\n  font-size: 0.95rem;\n  color: var(--hp-label);\n  line-height: 1.45;\n}\n\n.hp-prof-page .hp-prof__chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.5rem;\n  justify-content: center;\n}\n\n@media (min-width: 768px) {\n  .hp-prof-page .hp-prof__chips {\n    justify-content: flex-start;\n  }\n}\n\n.hp-prof-page .hp-prof__chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  padding: 0.35rem 0.7rem;\n  border-radius: 999px;\n  background: var(--hp-soft);\n  border: 1px solid var(--hp-border);\n  font-size: 0.78rem;\n  color: var(--hp-primary);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 1rem;\n}\n\n@media (min-width: 640px) {\n  .hp-prof-page .hp-prof__grid {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n}\n\n.hp-prof-page .hp-prof__card,\n.hp-prof-page .hp-prof-photo-card,\n.hp-prof-page .hp-prof-security-card {\n  background: var(--hp-surface);\n  border: 1px solid var(--hp-border);\n  border-radius: 16px;\n  box-shadow: var(--hp-shadow);\n  padding: 1.15rem 1.2rem 1.25rem;\n}\n\n.hp-prof-page .hp-prof__card--wide {\n  grid-column: 1 / -1;\n}\n\n.hp-prof-page .hp-prof-photo-card {\n  margin-bottom: 1rem;\n}\n\n.hp-prof-page .hp-prof-security-card {\n  margin-top: 1rem;\n}\n\n.hp-prof-page .hp-prof__card-title {\n  display: flex;\n  align-items: center;\n  gap: 0.55rem;\n  margin: 0 0 1rem;\n  font-size: 0.95rem;\n  font-weight: 700;\n  color: var(--hp-primary-mid);\n}\n\n.hp-prof-page .hp-prof__card-title i {\n  font-size: 1.15rem;\n  color: var(--hp-primary);\n}\n\n.hp-prof-page .hp-prof__row {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.7rem 0;\n  border-bottom: 1px solid #eef2f7;\n}\n\n.hp-prof-page .hp-prof__row:last-child {\n  border-bottom: none;\n  padding-bottom: 0;\n}\n\n.hp-prof-page .hp-prof__row-label {\n  font-size: 0.82rem;\n  font-weight: 600;\n  color: var(--hp-muted);\n  flex-shrink: 0;\n}\n\n.hp-prof-page .hp-prof__row-value {\n  font-size: 0.92rem;\n  color: var(--hp-text);\n  text-align: right;\n  word-break: break-word;\n}\n\n.hp-prof-page .hp-prof__leave-value {\n  display: flex;\n  align-items: baseline;\n  justify-content: flex-end;\n  gap: 0.35rem;\n  font-weight: 700;\n}\n\n.hp-prof-page .hp-prof__leave-value strong {\n  font-size: 1.65rem;\n  color: var(--hp-primary);\n  line-height: 1;\n}\n\n.hp-prof-page .hp-prof__leave-value span {\n  font-size: 0.82rem;\n  color: var(--hp-label);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__password {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.45rem;\n  letter-spacing: 0.18em;\n  color: var(--hp-text);\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof__password-dot {\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  background: var(--hp-primary);\n  opacity: 0.55;\n}\n\n.hp-prof-page .hp-prof__actions {\n  margin-top: 0.85rem;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.65rem;\n  min-height: 2.5rem;\n}\n\n.hp-prof-page .hp-prof__btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.45rem;\n  padding: 0.62rem 1rem;\n  border-radius: 10px;\n  font-size: 0.86rem;\n  font-weight: 600;\n  text-decoration: none;\n  border: 1px solid transparent;\n  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;\n}\n\n.hp-prof-page .hp-prof__btn:hover {\n  transform: translateY(-1px);\n}\n\n.hp-prof-page .hp-prof__btn--ghost {\n  background: var(--hp-soft);\n  color: var(--hp-primary);\n  border-color: var(--hp-border);\n}\n\n.hp-prof-page .hp-prof__hint {\n  margin: 0.75rem 0 0;\n  font-size: 0.78rem;\n  color: var(--hp-label);\n  line-height: 1.45;\n}\n\n.hp-prof-page .hp-prof-photo-form-host {\n  margin-top: 0.85rem;\n}\n\n.hp-prof-page .hp-prof-photo-form-host .p-fileupload,\n.hp-prof-page .hp-prof-photo-form-host .p-inputtext,\n.hp-prof-page .hp-prof-photo-form-host input[type=\"file\"] {\n  max-width: 100%;\n}\n\n.hp-prof-page .hp-prof-photo-form-host .p-button {\n  border-radius: 10px;\n  font-weight: 600;\n}\n\n.hp-prof-page .hp-prof-modal-host {\n  margin: 0;\n  padding: 0;\n}\n\n.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn {\n  background: #4557a3;\n  color: #fff;\n  border: none;\n  border-radius: 10px;\n  font-weight: 600;\n  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.22);\n}\n\n.hp-prof-page .hp-prof-modal-host .p-button.hp-prof__btn:hover {\n  background: #3f4f96;\n  color: #fff;\n}\n\n.hp-prof-password-modal .p-dialog-content {\n  padding-top: 0.5rem;\n}",
+  "syncedAt": "2026-07-14T22:25:01.019Z"
 }

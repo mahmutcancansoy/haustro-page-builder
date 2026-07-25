@@ -1,0 +1,214 @@
+/* Mail alıcı düzenle — tablo + ekle/sil formları */
+
+.mr-page .mr-edit__form-card > .simple-table {
+  padding: 0 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-datatable {
+  border: 1px solid var(--mr-border);
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.88rem;
+  box-shadow: var(--mr-shadow-soft);
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  color: var(--mr-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: var(--mr-border);
+  padding: 0.8rem 1rem;
+  white-space: nowrap;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9;
+  padding: 0.75rem 1rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8fafc;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: #fcfdff;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .label,
+.mr-page .mr-edit__form-card > .simple-table td .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  color: #334155;
+  word-break: break-word;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .form-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-button {
+  background: #fff !important;
+  border: 1px solid #fecaca !important;
+  color: #b91c1c !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  padding: 0.35rem 0.7rem !important;
+  border-radius: 8px !important;
+  min-height: 2rem;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-button:hover {
+  background: #fef2f2 !important;
+  border-color: #f87171 !important;
+  filter: none;
+}
+
+.mr-page .mr-edit__form-card > .simple-table .p-datatable-emptymessage,
+.mr-page .mr-edit__form-card > .simple-table .p-datatable-empty-message {
+  padding: 1.5rem 1rem;
+  color: var(--mr-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Alıcı ekle kartı — ayrı container */
+.mr-page .mr-add-recipient-card {
+  margin: 0 1.25rem 1.25rem;
+  padding: 1rem 1.15rem 1.15rem;
+  background: linear-gradient(180deg, #fafbff 0%, #fff 100%);
+  border: 1px solid var(--mr-border);
+  border-radius: 12px;
+  box-shadow: var(--mr-shadow-soft);
+}
+
+.mr-page .mr-add-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed var(--mr-border);
+}
+
+.mr-page .mr-add-head__icon {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: var(--mr-primary);
+  font-size: 1rem;
+}
+
+.mr-page .mr-add-head h3 {
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--mr-text);
+}
+
+.mr-page .mr-add-head p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--mr-muted);
+  line-height: 1.4;
+}
+
+.mr-page .mr-add-recipient-card .mr-recipient-add-form,
+.mr-page .mr-add-recipient-card .form-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.mr-page .mr-add-recipient-card .mr-recipient-add-form .p-field,
+.mr-page .mr-add-recipient-card .form-container > div {
+  flex: 1 1 220px;
+  min-width: 0;
+  margin-bottom: 0 !important;
+}
+
+.mr-page .mr-add-recipient-card label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mr-muted);
+  margin-bottom: 0.35rem;
+}
+
+.mr-page .mr-add-recipient-card .p-inputtext {
+  width: 100% !important;
+  border-color: #c7d2fe !important;
+  border-radius: 10px !important;
+}
+
+.mr-page .mr-add-recipient-card .p-inputtext:focus {
+  border-color: var(--mr-primary) !important;
+  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;
+}
+
+.mr-page .mr-add-recipient-card .p-button {
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  border-color: #4557a3 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  padding: 0.55rem 1rem !important;
+  min-height: 2.5rem;
+}
+
+.mr-page .mr-add-recipient-card .p-button:hover {
+  filter: brightness(1.05);
+}
+
+@media (max-width: 640px) {
+  .mr-page .mr-add-recipient-card {
+    margin: 0 0.85rem 1rem;
+    padding: 0.85rem;
+  }
+
+  .mr-page .mr-add-recipient-card .form-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mr-page .mr-add-recipient-card .p-button {
+    width: 100%;
+  }
+}
+
+.mr-page .mr-edit__card {
+  margin-bottom: 0;
+}
+
+.mr-page .mr-edit__form-card {
+  margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .mr-page .mr-edit__form-card > .simple-table {
+    padding: 0 0.85rem;
+  }
+}

@@ -1,0 +1,39 @@
+<div class="ass__hero ass__hero--product ass__hero--transfer">
+  <div class="ass__hero-media">
+    <img
+      class="ass__hero-img"
+      src="{{globals.resources}}{{transfers.:inventory:.photo.0.name}}"
+      alt=""
+    />
+  </div>
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Envanter transferi</span>
+    <h1>Transfer Detayı</h1>
+    <p class="ass__hero-sub">{{#if transfers.:inventory:.name}}{{transfers.:inventory:.name}} {{/if}}{{#if transfers.:inventory:.model}}{{transfers.:inventory:.model}} {{/if}}{{#if transfers.:inventory:.:materiels:.name}}{{transfers.:inventory:.:materiels:.name}} {{/if}}{{#if transfers.:inventory:.:colors:.name}}{{transfers.:inventory:.:colors:.name}}{{/if}}</p>
+    <p class="ass__hero-meta-line">
+      <i class="pi pi-arrow-right-arrow-left"></i>
+      {{transfers.:departments:old.label}} ({{transfers.:departments:old.short}})
+      →
+      {{transfers.:departments:new.label}} ({{transfers.:departments:new.short}})
+    </p>
+    <p class="ass__hero-meta-line">
+      <i class="pi pi-calendar"></i> {{renderDateTime transfers.datetime}}
+      ·
+      <i class="pi pi-box"></i> {{transfers.amount}} adet
+    </p>
+  </div>
+  <div class="ass__hero-status">
+    {{#cIf transfers.status "==" "0"}}
+      <span class="ass__badge ass__badge--pending"><i class="pi pi-clock"></i> Beklemede</span>
+    {{/cIf}}
+    {{#cIf transfers.status "==" "1"}}
+      <span class="ass__badge ass__badge--done"><i class="pi pi-check-circle"></i> Tamamlandı</span>
+    {{/cIf}}
+    {{#cIf transfers.status "==" "2"}}
+      <span class="ass__badge ass__badge--pending"><i class="pi pi-truck"></i> Şoför bekleniyor</span>
+    {{/cIf}}
+    {{#cIf transfers.status "==" "3"}}
+      <span class="ass__badge ass__badge--pending"><i class="pi pi-map-marker"></i> Teslimat yolda</span>
+    {{/cIf}}
+  </div>
+</div>

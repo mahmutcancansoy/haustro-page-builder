@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şube Transfer Görseli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+    
+    <style>
+        .transfer-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Yol Çizgisi */
+        .road {
+            height: 4px;
+            background: #dee2e6;
+            width: 100%;
+            position: absolute;
+            top: 65%;
+            left: 0;
+            z-index: 1;
+            border-top: 2px dashed #adb5bd;
+        }
+
+        /* Şube İkonları */
+        .branch-node {
+            z-index: 2;
+            position: relative;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 120px;
+            text-align: center;
+        }
+
+        .branch-icon {
+            font-size: 2rem;
+            color: #3B82F6; /* PrimeBlue */
+        }
+
+        /* Kamyon Animasyonu */
+        .truck-animation {
+            position: absolute;
+            top: 45%;
+            left: -10%;
+            z-index: 3;
+            animation: moveTruck 5s linear infinite;
+            color: #ef4444; /* Sevkiyat Rengi */
+        }
+
+        .truck-icon {
+            font-size: 2.5rem;
+        }
+
+        @keyframes moveTruck {
+            0% { left: 15%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 75%; opacity: 0; }
+        }
+
+        .status-badge {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+    </style>
+
+<div class="container mb-4">
+    <div class="card border-1">
+        <div class="card-body p-0">
+            <div class="transfer-container d-flex justify-content-between align-items-center">
+                
+                <div class="road"></div>
+
+                <div class="branch-node border-primary border-top border-4">
+                    <i class="pi pi-building branch-icon"></i>
+                    <div class="fw-bold mt-2">{{transfers.:departments:old.label}}</div>
+                    <span class="badge bg-secondary status-badge">Çıkış Şubesi</span>
+                </div>
+
+                <div class=" text-center">
+                    <i class="pi pi-truck truck-icon"></i>
+                    <div class="small fw-bold text-dark">{{transfers.:users:driver.name}} {{transfers.:users:driver.surname}}</div>
+                </div>
+
+                <div class="branch-node border-success border-top border-4">
+                    <i class="pi pi-map-marker branch-icon text-success"></i>
+                    <div class="fw-bold mt-2">{{transfers.:departments:new.label}}</div>
+                    <span class="badge bg-secondary status-badge">Varış Şubesi</span>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="card-footer bg-white py-3">
+            <div class="row text-center border-bottom p-4">
+                <div class="col-4">
+                    <img src="{{globals.resources}}{{transfers.:inventory:.photo.0.name}}" class="w-25 rounded"/>
+                </div>
+                <div class="col-4">
+                    <small class="text-muted d-block">Envanter Adı</small>
+                    <span class="fw-bold text-dark">{{#if transfers.:inventory:.cins}}{{transfers.:inventory:.cins}} {{/if}}
+{{#if transfers.:inventory:.name}}{{transfers.:inventory:.name}} {{/if}}
+{{#if transfers.:inventory:.model}}{{transfers.:inventory:.model}} {{/if}}
+{{#if transfers.:inventory:.:materiels:.name}}{{transfers.:inventory:.:materiels:.name}} {{/if}}
+{{#if transfers.:inventory:.:colors:.name}}{{transfers.:inventory:.:colors:.name}} {{/if}}
+{{#if transfers.:inventory:.pattern}}{{transfers.:inventory:.pattern}} {{/if}}
+{{#if transfers.:inventory:.code}}{{transfers.:inventory:.code}} {{/if}}</span>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-3 ">
+                    <small class="text-muted d-block">Teslim Alınan Personel</small>
+                    <span class="fw-bold text-primary">{{transfers.:users:delivered.name}} {{transfers.:users:delivered.surname}}</span>
+                </div>
+                <div class="col-3 border-start border-end">
+                    <small class="text-muted d-block">Envanter Adeti</small>
+                    <span class="fw-bold text-dark">{{transfers.amount}}</span>
+                </div>
+                 <div class="col-3 border-start border-end">
+                    <small class="text-muted d-block">Oluşturma Tarihi</small>
+                    <span class="fw-bold text-dark">{{renderDate transfers.dateTime}}</span>
+                </div>
+                <div class="col-3">
+                    <small class="text-muted d-block">Teslim Alıcak Personel</small>
+                    <span class="fw-bold text-success">{{transfers.:users:received.name}} {{transfers.:users:received.surname}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

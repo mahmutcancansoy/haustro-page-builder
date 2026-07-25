@@ -1,0 +1,362 @@
+{
+  "type": "condition",
+  "isContainer": true,
+  "children": [
+    {
+      "type": "input-select",
+      "isContainer": true,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Envanter Kategorisi"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": ""
+        },
+        {
+          "key": "name",
+          "header": "Name",
+          "type": "input-text-property",
+          "value": ":inventoryCats:category"
+        },
+        {
+          "key": "label",
+          "header": "Label",
+          "type": "input-text-property",
+          "value": "Envanter Kategorisi:",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "!value.inContainer"
+            }
+          ]
+        },
+        {
+          "key": "placeholder",
+          "header": "Placeholder",
+          "type": "input-text-property",
+          "value": "Envanter Seçiniz:",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "search-placeholder",
+          "header": "Search placeholder",
+          "type": "input-text-property",
+          "value": "",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.search"
+            }
+          ]
+        },
+        {
+          "key": "empty-message",
+          "header": "Empty message",
+          "type": "input-text-property",
+          "value": "",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "width",
+          "header": "Width",
+          "type": "input-text-property",
+          "value": "40%"
+        },
+        {
+          "key": "type",
+          "header": "Type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Static",
+              "value": "static"
+            },
+            {
+              "label": "Dynamic",
+              "value": "dynamic"
+            },
+            {
+              "label": "Both (Dynamic+Static)",
+              "value": "both"
+            }
+          ],
+          "value": "dynamic"
+        },
+        {
+          "key": "mode",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Data source",
+              "value": "dataSource"
+            },
+            {
+              "label": "Varible",
+              "value": "variable"
+            }
+          ],
+          "header": "Mode",
+          "value": "dataSource",
+          "conditions": [
+            {
+              "key": "type",
+              "rule": "value == 'dynamic'||value == 'both'"
+            }
+          ]
+        },
+        {
+          "key": "variable",
+          "header": "Variable",
+          "type": "input-text-property",
+          "value": "",
+          "autoComplete": true,
+          "autoCompleteMode": "variable",
+          "conditions": [
+            {
+              "key": "type",
+              "rule": "value == 'dynamic'||value == 'both'"
+            },
+            {
+              "key": "mode",
+              "rule": "value == 'variable'"
+            }
+          ]
+        },
+        {
+          "key": "data-source",
+          "header": "Data source",
+          "type": "input-text-property",
+          "value": "inventoryCats",
+          "autoComplete": true,
+          "autoCompleteMode": "source",
+          "conditions": [
+            {
+              "key": "type",
+              "rule": "value == 'dynamic'||value == 'both'"
+            },
+            {
+              "key": "mode",
+              "rule": "value == 'dataSource'"
+            }
+          ]
+        },
+        {
+          "key": "option-data",
+          "header": "Option data",
+          "type": "group-property",
+          "children": [
+            {
+              "key": "label",
+              "header": "Label",
+              "type": "textarea-property",
+              "value": "{{#if option.:inventoryCats:parent}}\n{{option.:inventoryCats:parent.name}} >  \n{{/if}}\n{{option.name}} ",
+              "inGroup": true,
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "value",
+              "header": "Value",
+              "type": "textarea-property",
+              "value": "option._id",
+              "inGroup": true,
+              "autoComplete": true,
+              "autoCompleteMode": "variable"
+            }
+          ],
+          "conditions": [
+            {
+              "key": "type",
+              "rule": "value == 'dynamic'||value == 'both'"
+            }
+          ]
+        },
+        {
+          "key": "static-default-value",
+          "header": "Default value",
+          "type": "input-text-property",
+          "value": "",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "type",
+              "rule": "value == 'static'"
+            }
+          ]
+        },
+        {
+          "key": "dynamic-default-value",
+          "header": "Default value",
+          "type": "textarea-property",
+          "value": "{{inventory.:inventory:Parent._id}}",
+          "autoComplete": true,
+          "autoCompleteMode": "variable",
+          "conditions": [
+            {
+              "key": "type",
+              "rule": "value == 'dynamic'||value == 'both'"
+            }
+          ]
+        },
+        {
+          "key": "on-change",
+          "header": "On change",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Nothing",
+              "value": "nothing"
+            },
+            {
+              "label": "Post",
+              "value": "post"
+            }
+          ],
+          "value": "nothing"
+        },
+        {
+          "key": "icon",
+          "header": "Icon",
+          "type": "input-text-property",
+          "value": "mdi mdi-chevron-down mdi-28px"
+        },
+        {
+          "key": "spacings",
+          "header": "Spacings",
+          "type": "spacings",
+          "unit": "px",
+          "margins": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "paddings": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "key": "validators",
+          "header": "Validators",
+          "type": "group-property",
+          "children": [
+            {
+              "key": "options",
+              "type": "checkbox-property",
+              "header": "Options",
+              "options": [
+                {
+                  "label": "Required",
+                  "name": "required"
+                }
+              ],
+              "value": {
+                "required": false
+              },
+              "inGroup": true
+            },
+            {
+              "key": "required-text",
+              "header": "Required text",
+              "type": "input-text-property",
+              "value": "Bu alan gereklidir",
+              "conditions": [
+                {
+                  "key": "options",
+                  "rule": "value.required"
+                }
+              ],
+              "inGroup": true
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Select first",
+              "name": "selectFirst"
+            },
+            {
+              "label": "Search",
+              "name": "search"
+            },
+            {
+              "label": "In container",
+              "name": "inContainer"
+            },
+            {
+              "label": "Disabled",
+              "name": "disabled"
+            },
+            {
+              "label": "Readonly",
+              "name": "readonly"
+            },
+            {
+              "label": "Clear button",
+              "name": "clearButton"
+            }
+          ],
+          "value": {
+            "selectFirst": false,
+            "search": true,
+            "inContainer": false,
+            "disabled": false,
+            "readonly": false,
+            "clearButton": false
+          }
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "key": "display-name",
+      "header": "Display name",
+      "type": "input-text-property",
+      "value": "False"
+    },
+    {
+      "key": "condition",
+      "header": "Condition",
+      "type": "textarea-property",
+      "value": "False",
+      "autoComplete": true,
+      "autoCompleteMode": "template"
+    },
+    {
+      "key": "oneTimeCheck",
+      "header": "One Time Check",
+      "type": "checkbox-property",
+      "options": [
+        {
+          "label": "Check on Create Only",
+          "name": "once"
+        }
+      ],
+      "value": {
+        "once": false
+      }
+    }
+  ]
+}

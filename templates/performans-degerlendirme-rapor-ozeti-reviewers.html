@@ -1,0 +1,38 @@
+<div class="pdro-reviewers">
+  <p class="pdro-trend__title">Değerlendiren kişi sayısı</p>
+  <div class="pdro-trend__table-wrap">
+    <table class="pdro-trend__table pdro-reviewers__table">
+      <thead>
+        <tr>
+          <th>Kategori</th>
+          <th class="pdro-trend__num">Kişi</th>
+          <th class="pdro-trend__num">Ortalama</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Üst rol</td>
+          <td class="pdro-trend__num">{{performanceEvaluations.INDEX.seniorCount}}</td>
+          <td class="pdro-trend__num">{{#if performanceEvaluations.INDEX.seniorAverage}}{{performanceEvaluations.INDEX.seniorAverage}}{{else}}—{{/if}}</td>
+        </tr>
+        <tr>
+          <td>Alt rol</td>
+          <td class="pdro-trend__num">{{performanceEvaluations.INDEX.juniorCount}}</td>
+          <td class="pdro-trend__num">{{#if performanceEvaluations.INDEX.juniorAverage}}{{performanceEvaluations.INDEX.juniorAverage}}{{else}}—{{/if}}</td>
+        </tr>
+        <tr>
+          <td>Aynı seviye</td>
+          <td class="pdro-trend__num">{{performanceEvaluations.INDEX.sameCount}}</td>
+          <td class="pdro-trend__num">{{#if performanceEvaluations.INDEX.sameAverage}}{{performanceEvaluations.INDEX.sameAverage}}{{else}}—{{/if}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="pdro-reviewers__total">
+          <td>Toplam</td>
+          <td class="pdro-trend__num">{{performanceEvaluations.INDEX.insertCount}}</td>
+          <td class="pdro-trend__num">{{#if performanceEvaluations.INDEX.averageScore}}{{performanceEvaluations.INDEX.averageScore}}{{else}}—{{/if}}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

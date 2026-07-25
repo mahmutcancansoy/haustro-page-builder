@@ -1,0 +1,91 @@
+{
+  "pageId": "",
+  "content": [
+    {
+      "type": "condition",
+      "isContainer": true,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Header hidden"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "false",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "type": "condition",
+      "isContainer": true,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Ana içerik"
+        },
+        {
+          "key": "condition",
+          "header": "Condition",
+          "type": "textarea-property",
+          "value": "true",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "oneTimeCheck",
+          "header": "One Time Check",
+          "type": "checkbox-property",
+          "options": [
+            {
+              "label": "Check on Create Only",
+              "name": "once"
+            }
+          ],
+          "value": {
+            "once": false
+          }
+        }
+      ],
+      "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"wfd-page\">\n  <div class=\"wfd__hero\">\n    <div class=\"wfd__hero-main\">\n      <span class=\"wfd__eyebrow\">Sabit veriler · Admin</span>\n      <h1>İş Akışları</h1>\n      <p>Satın alma, transfer, teknik talep, izin ve envanter süreçlerinin adım adım dokümantasyonu. Her akışın kuralları ve mail tetikleyicileri aşağıdaki kartlardan erişilebilir.</p>\n    </div>\n    <span class=\"wfd__hero-icon\"><i class=\"pi pi-sitemap\"></i></span>\n  </div>\n  <div class=\"wfd-grid\">\n    <a href=\"/d/satin-alma-akisi\" router-link=\"/d/satin-alma-akisi\" class=\"wfd-card\">\n      <div class=\"wfd-card__head\">\n        <span class=\"wfd-card__icon\"><i class=\"pi pi-shopping-cart\"></i></span>\n        <h3 class=\"wfd-card__title\">Satın Alma Akışı</h3>\n      </div>\n      <p class=\"wfd-card__meta\">Koleksiyon: <code>purchases</code></p>\n      <p class=\"wfd-card__desc\">Envanter satın alım taleplerinin oluşturulmasından talep karşılanana kadar geçen süreç. Rol bazlı onay zinciri ve teklif yönetimi içerir.</p>\n      <span class=\"wfd-card__steps\">12 adım → detay</span>\n    </a>\n<a href=\"/d/transfer-asamalari\" router-link=\"/d/transfer-asamalari\" class=\"wfd-card\">\n      <div class=\"wfd-card__head\">\n        <span class=\"wfd-card__icon\"><i class=\"pi pi-send\"></i></span>\n        <h3 class=\"wfd-card__title\">Transfer Aşamaları</h3>\n      </div>\n      <p class=\"wfd-card__meta\">Koleksiyon: <code>transfers</code></p>\n      <p class=\"wfd-card__desc\">Envanter transferlerinin onay, şoför teslimi ve alıcı onayı ile tamamlanma süreci.</p>\n      <span class=\"wfd-card__steps\">5 adım → detay</span>\n    </a>\n<a href=\"/d/teknik-talep-akisi\" router-link=\"/d/teknik-talep-akisi\" class=\"wfd-card\">\n      <div class=\"wfd-card__head\">\n        <span class=\"wfd-card__icon\"><i class=\"pi pi-cog\"></i></span>\n        <h3 class=\"wfd-card__title\">Teknik Talep Akışı</h3>\n      </div>\n      <p class=\"wfd-card__meta\">Koleksiyon: <code>technicalDemands</code></p>\n      <p class=\"wfd-card__desc\">Arıza ve bakım taleplerinin teknisyen atamasından onarım tamamlanmasına kadar geçen süreç.</p>\n      <span class=\"wfd-card__steps\">9 adım → detay</span>\n    </a>\n<a href=\"/d/izin-talepleri-akisi\" router-link=\"/d/izin-talepleri-akisi\" class=\"wfd-card\">\n      <div class=\"wfd-card__head\">\n        <span class=\"wfd-card__icon\"><i class=\"pi pi-calendar\"></i></span>\n        <h3 class=\"wfd-card__title\">İzin Talepleri</h3>\n      </div>\n      <p class=\"wfd-card__meta\">Koleksiyon: <code>leaveRequests</code></p>\n      <p class=\"wfd-card__desc\">Yıllık izin ve benzeri izin taleplerinin personel → yönetici → İK onay zinciri.</p>\n      <span class=\"wfd-card__steps\">5 adım → detay</span>\n    </a>\n<a href=\"/d/envanter-talebi-akisi\" router-link=\"/d/envanter-talebi-akisi\" class=\"wfd-card\">\n      <div class=\"wfd-card__head\">\n        <span class=\"wfd-card__icon\"><i class=\"pi pi-inbox\"></i></span>\n        <h3 class=\"wfd-card__title\">Envanter Talebi</h3>\n      </div>\n      <p class=\"wfd-card__meta\">Koleksiyon: <code>inventoryDemands</code></p>\n      <p class=\"wfd-card__desc\">Departmanların envanter ihtiyaç taleplerinin onaylanması ve transfer sürecine bağlanması.</p>\n      <span class=\"wfd-card__steps\">4 adım → detay</span>\n    </a>\n  </div>\n</div>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "İş akışları grid"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "styles": "/* İş akışı dokümantasyon sayfaları */\n.wfd-page {\n  --wfd-primary: #4557a3;\n  --wfd-primary-mid: #5b6fd6;\n  --wfd-surface: #ffffff;\n  --wfd-text: #0f172a;\n  --wfd-muted: #475569;\n  --wfd-border: #e2e8f0;\n  --wfd-radius: 14px;\n  --wfd-shadow: 0 4px 20px rgba(69, 87, 163, 0.12);\n\n  width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  padding: 1.25rem 1rem 2.5rem;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  color: var(--wfd-text);\n  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);\n  box-sizing: border-box;\n}\n\n.wfd-page *,\n.wfd-page *::before,\n.wfd-page *::after {\n  box-sizing: border-box;\n}\n\n.wfd-page .wfd__hero {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 1.35rem;\n  padding: 1.35rem 1.5rem;\n  border-radius: var(--wfd-radius);\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 52%, #7c8ce8 100%);\n  color: #fff;\n  box-shadow: 0 14px 36px rgba(69, 87, 163, 0.32);\n}\n\n.wfd-page .wfd__hero-main {\n  min-width: 0;\n  flex: 1;\n}\n\n.wfd-page .wfd__eyebrow {\n  display: inline-block;\n  margin-bottom: 0.4rem;\n  padding: 0.2rem 0.55rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.28);\n  font-size: 0.66rem;\n  font-weight: 800;\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n}\n\n.wfd-page .wfd__hero h1 {\n  margin: 0 0 0.35rem;\n  font-size: clamp(1.15rem, 2.4vw, 1.55rem);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n}\n\n.wfd-page .wfd__hero p {\n  margin: 0;\n  font-size: 0.92rem;\n  line-height: 1.5;\n  color: rgba(255, 255, 255, 0.92);\n}\n\n.wfd-page .wfd__hero-icon {\n  flex-shrink: 0;\n  width: 3rem;\n  height: 3rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 12px;\n  background: rgba(255, 255, 255, 0.15);\n  font-size: 1.35rem;\n}\n\n.wfd-page .wfd__back {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  margin-bottom: 1rem;\n  padding: 0.4rem 0.75rem;\n  border-radius: 8px;\n  background: var(--wfd-surface);\n  border: 1px solid var(--wfd-border);\n  color: var(--wfd-primary);\n  font-size: 0.85rem;\n  font-weight: 600;\n  text-decoration: none;\n  box-shadow: var(--wfd-shadow);\n}\n\n.wfd-page .wfd__back:hover {\n  background: #f8fafc;\n}\n\n/* Index grid */\n.wfd-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n  gap: 1rem;\n}\n\n.wfd-card {\n  display: flex;\n  flex-direction: column;\n  padding: 1.15rem 1.25rem;\n  border-radius: var(--wfd-radius);\n  background: var(--wfd-surface);\n  border: 1px solid var(--wfd-border);\n  box-shadow: var(--wfd-shadow);\n  text-decoration: none;\n  color: inherit;\n  transition: transform 0.15s, box-shadow 0.15s;\n}\n\n.wfd-card:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 8px 28px rgba(69, 87, 163, 0.18);\n}\n\n.wfd-card__head {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  margin-bottom: 0.65rem;\n}\n\n.wfd-card__icon {\n  width: 2.5rem;\n  height: 2.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 10px;\n  background: linear-gradient(135deg, #eef2ff, #e0e7ff);\n  color: var(--wfd-primary);\n  font-size: 1.1rem;\n}\n\n.wfd-card__title {\n  margin: 0;\n  font-size: 1.05rem;\n  font-weight: 800;\n  color: var(--wfd-text);\n}\n\n.wfd-card__meta {\n  margin: 0 0 0.5rem;\n  font-size: 0.78rem;\n  color: var(--wfd-muted);\n}\n\n.wfd-card__meta code {\n  padding: 0.1rem 0.35rem;\n  border-radius: 4px;\n  background: #f1f5f9;\n  font-size: 0.75rem;\n}\n\n.wfd-card__desc {\n  margin: 0;\n  font-size: 0.86rem;\n  line-height: 1.45;\n  color: var(--wfd-muted);\n  flex: 1;\n}\n\n.wfd-card__steps {\n  margin-top: 0.75rem;\n  padding-top: 0.65rem;\n  border-top: 1px solid var(--wfd-border);\n  font-size: 0.78rem;\n  font-weight: 700;\n  color: var(--wfd-primary-mid);\n}\n\n/* Flow overview — horizontal mini chart */\n.wfd-flow-overview {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 0.35rem;\n  margin-bottom: 1.5rem;\n  padding: 1rem 1.15rem;\n  border-radius: var(--wfd-radius);\n  background: var(--wfd-surface);\n  border: 1px solid var(--wfd-border);\n  box-shadow: var(--wfd-shadow);\n  overflow-x: auto;\n}\n\n.wfd-flow-node {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  padding: 0.35rem 0.65rem;\n  border-radius: 999px;\n  background: #eef2ff;\n  border: 1px solid #c7d2fe;\n  font-size: 0.72rem;\n  font-weight: 700;\n  color: var(--wfd-primary);\n  white-space: nowrap;\n}\n\n.wfd-flow-node__num {\n  width: 1.25rem;\n  height: 1.25rem;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 50%;\n  background: var(--wfd-primary);\n  color: #fff;\n  font-size: 0.65rem;\n}\n\n.wfd-flow-arrow {\n  color: #94a3b8;\n  font-size: 0.75rem;\n  flex-shrink: 0;\n}\n\n/* Vertical step detail */\n.wfd-steps {\n  display: flex;\n  flex-direction: column;\n  gap: 0;\n}\n\n.wfd-step {\n  display: flex;\n  gap: 1rem;\n  padding-bottom: 1.25rem;\n  position: relative;\n}\n\n.wfd-step:not(:last-child) .wfd-step__line::after {\n  content: '';\n  position: absolute;\n  top: 2.25rem;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 2px;\n  height: calc(100% - 0.5rem);\n  background: #c7d2fe;\n  z-index: 0;\n}\n\n.wfd-step__line {\n  position: relative;\n  width: 2.25rem;\n  flex-shrink: 0;\n  display: flex;\n  justify-content: center;\n}\n\n.wfd-step__circle {\n  width: 2.25rem;\n  height: 2.25rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 50%;\n  background: var(--wfd-primary);\n  color: #fff;\n  font-weight: 800;\n  font-size: 0.8rem;\n  z-index: 1;\n  box-shadow: 0 0 0 4px rgba(91, 111, 214, 0.15);\n}\n\n.wfd-step__body {\n  flex: 1;\n  min-width: 0;\n  padding: 0.85rem 1rem;\n  border-radius: var(--wfd-radius);\n  background: var(--wfd-surface);\n  border: 1px solid var(--wfd-border);\n  box-shadow: var(--wfd-shadow);\n}\n\n.wfd-step__head {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: baseline;\n  gap: 0.5rem;\n  margin-bottom: 0.35rem;\n}\n\n.wfd-step__title {\n  margin: 0;\n  font-size: 1rem;\n  font-weight: 800;\n  color: var(--wfd-text);\n}\n\n.wfd-step__code {\n  padding: 0.15rem 0.45rem;\n  border-radius: 6px;\n  background: #f1f5f9;\n  font-size: 0.72rem;\n  font-weight: 700;\n  color: var(--wfd-muted);\n}\n\n.wfd-step__desc {\n  margin: 0 0 0.65rem;\n  font-size: 0.88rem;\n  line-height: 1.45;\n  color: var(--wfd-muted);\n}\n\n.wfd-step__actor {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.4rem;\n  margin-bottom: 0.65rem;\n  padding: 0.5rem 0.65rem;\n  border-radius: 8px;\n  background: #fffbeb;\n  border: 1px solid #fde68a;\n  font-size: 0.82rem;\n  color: #92400e;\n}\n\n.wfd-step__actor i {\n  margin-top: 0.1rem;\n}\n\n.wfd-step__rules {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.wfd-step__rules-title {\n  margin: 0 0 0.4rem;\n  font-size: 0.72rem;\n  font-weight: 800;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: var(--wfd-primary);\n}\n\n.wfd-step__rules li {\n  position: relative;\n  padding: 0.3rem 0 0.3rem 1.1rem;\n  font-size: 0.84rem;\n  line-height: 1.4;\n  color: var(--wfd-text);\n}\n\n.wfd-step__rules li::before {\n  content: '';\n  position: absolute;\n  left: 0;\n  top: 0.65rem;\n  width: 5px;\n  height: 5px;\n  border-radius: 50%;\n  background: var(--wfd-primary-mid);\n}\n\n.wfd-step__mail {\n  margin-top: 0.65rem;\n  padding-top: 0.55rem;\n  border-top: 1px dashed var(--wfd-border);\n}\n\n.wfd-step__mail-title {\n  margin: 0 0 0.35rem;\n  font-size: 0.72rem;\n  font-weight: 800;\n  color: #059669;\n}\n\n.wfd-step__mail ul {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.wfd-step__mail li {\n  font-size: 0.8rem;\n  color: var(--wfd-muted);\n  padding: 0.15rem 0;\n}\n\n.wfd-meta-bar {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.75rem;\n  margin-bottom: 1.25rem;\n  padding: 0.75rem 1rem;\n  border-radius: var(--wfd-radius);\n  background: var(--wfd-surface);\n  border: 1px solid var(--wfd-border);\n  font-size: 0.82rem;\n}\n\n.wfd-meta-bar span {\n  color: var(--wfd-muted);\n}\n\n.wfd-meta-bar strong {\n  color: var(--wfd-text);\n}\n\n.wfd-meta-bar a {\n  color: var(--wfd-primary-mid);\n  font-weight: 600;\n}\n"
+}

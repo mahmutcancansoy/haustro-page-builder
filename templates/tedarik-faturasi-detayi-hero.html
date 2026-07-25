@@ -1,0 +1,38 @@
+<div class="ass__hero ass__hero--product">
+  {{#if supplyInvoice.:inventory:._id}}
+  <div class="ass__hero-media">
+    <img
+      class="ass__hero-img"
+      src="{{globals.resources}}{{supplyInvoice.:inventory:.photo.0.name}}"
+      alt=""
+    />
+  </div>
+  {{/if}}
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Tedarik faturası</span>
+    <h1>
+      {{#if supplyInvoice.invoiceNo}}{{supplyInvoice.invoiceNo}}{{else}}Tedarik Faturası Detayı{{/if}}
+    </h1>
+    <p class="ass__hero-sub">
+      {{#if supplyInvoice.:inventory:._id}}
+        {{#if supplyInvoice.:inventory:.cins}}{{supplyInvoice.:inventory:.cins}} {{/if}}{{#if supplyInvoice.:inventory:.name}}{{supplyInvoice.:inventory:.name}} {{/if}}{{#if supplyInvoice.:inventory:.model}}{{supplyInvoice.:inventory:.model}} {{/if}}{{#if supplyInvoice.:inventory:.code}}{{supplyInvoice.:inventory:.code}}{{/if}}
+      {{else}}
+        {{supplyInvoice.:serviceCats:.name}}
+      {{/if}}
+    </p>
+    <p class="ass__hero-meta-line">
+      <i class="pi pi-briefcase"></i> {{supplyInvoice.:suppliers:.name}}
+      · <i class="pi pi-building"></i> {{supplyInvoice.:departments:.label}} ({{supplyInvoice.:departments:.short}})
+      · <i class="pi pi-calendar"></i> {{renderDateTime supplyInvoice.datetime}}
+      · <i class="pi pi-wallet"></i> {{supplyInvoice.invoiceAmount}} TL
+    </p>
+  </div>
+  <div class="ass__hero-status">
+    {{#cIf supplyInvoice.paymentStatus "==" "1"}}
+      <span class="ass__badge ass__badge--done"><i class="pi pi-check-circle"></i> Ödendi</span>
+    {{/cIf}}
+    {{#cIf supplyInvoice.paymentStatus "==" "0"}}
+      <span class="ass__badge ass__badge--pending"><i class="pi pi-clock"></i> Ödenmedi</span>
+    {{/cIf}}
+  </div>
+</div>

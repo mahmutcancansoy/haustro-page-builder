@@ -1,0 +1,662 @@
+/* Aylık Sayım Sonucu — modern detay sayfası */
+.ass-page {
+  --ass-primary: #4557a3;
+  --ass-primary-mid: #586495;
+  --ass-accent: #5b6fd6;
+  --ass-muted: #94a3b8;
+  --ass-label: #64748b;
+  --ass-text: #1e293b;
+  --ass-border: #e2e8f0;
+  --ass-surface: #ffffff;
+  --ass-soft: #f8fafc;
+  --ass-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);
+  --ass-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 1.25rem 1rem 2.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ass-text);
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .ass-page {
+    padding: 1.5rem 1.5rem 2.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ass-page {
+    padding: 1.75rem 2rem 3rem;
+  }
+}
+
+.ass-page *,
+.ass-page *::before,
+.ass-page *::after {
+  box-sizing: border-box;
+}
+
+/* Toolbar */
+.ass-page .ass__toolbar {
+  order: -20;
+  flex: 0 0 auto;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 0 1rem 0 !important;
+  padding: 0 !important;
+}
+
+.ass-page .ass__toolbar > .row,
+.ass-page .ass__toolbar .row {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.ass-page .ass__toolbar .col,
+.ass-page .ass__toolbar [class*='col-'] {
+  flex: 0 1 auto;
+  width: auto !important;
+  max-width: none;
+  padding: 0 !important;
+}
+
+.ass-page .ass__toolbar .col:last-child,
+.ass-page .ass__toolbar [class*='col-']:last-child {
+  margin-left: auto;
+}
+
+.ass-page .ass__toolbar .p-button {
+  border-radius: 10px;
+  font-weight: 600;
+  min-height: 2.5rem;
+}
+
+.ass-page .ass__toolbar .p-button-success,
+.ass-page .ass__toolbar .p-button.p-button-success {
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.2);
+}
+
+/* Hero */
+.ass-page .ass__hero {
+  order: -10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--ass-radius);
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+  color: #fff;
+  box-shadow: 0 12px 40px rgba(69, 87, 163, 0.25);
+}
+
+.ass-page .ass__hero-main {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.ass-page .ass__eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 0.35rem;
+}
+
+.ass-page .ass__hero h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.ass-page .ass__hero-sub {
+  margin: 0;
+  font-size: 0.92rem;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+
+.ass-page .ass__hero-meta {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ass-page .ass__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.ass-page .ass__chip i {
+  font-size: 0.82rem;
+  opacity: 0.9;
+}
+
+/* Liste kartı */
+.ass-page .ass__list-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface);
+  border: 1px solid var(--ass-border);
+  border-radius: var(--ass-radius);
+  box-shadow: var(--ass-shadow);
+  overflow: hidden;
+}
+
+.ass-page .ass__list-card > .form-container,
+.ass-page .ass__list-card .form-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__list-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--ass-border);
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+}
+
+.ass-page .ass__list-head-icon {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #eef2ff;
+  color: var(--ass-primary);
+  font-size: 1rem;
+}
+
+.ass-page .ass__list-head h2 {
+  margin: 0 0 0.15rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ass-text);
+}
+
+.ass-page .ass__list-head p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--ass-label);
+  line-height: 1.4;
+}
+
+/* Tablo */
+.ass-page .ass__inventory {
+  padding: 0;
+}
+
+.ass-page .ass-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ass-page .ass-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.ass-page .ass-table thead {
+  background: var(--ass-soft);
+  border-bottom: 2px solid var(--ass-border);
+}
+
+.ass-page .ass-table th {
+  padding: 0.85rem 1.15rem;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ass-label);
+  white-space: nowrap;
+}
+
+.ass-page .ass-table th.ass-table__qty,
+.ass-page .ass-table td.ass-table__qty {
+  text-align: right;
+  width: 7rem;
+}
+
+.ass-page .ass-table th.ass-table__num,
+.ass-page .ass-table td.ass-table__num {
+  width: 3.25rem;
+  text-align: center;
+  color: var(--ass-muted);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.ass-page .ass-table tbody {
+  counter-reset: ass-row;
+}
+
+.ass-page .ass-table tbody .ass-table__num::before {
+  counter-increment: ass-row;
+  content: counter(ass-row);
+}
+
+.ass-page .ass-table__row {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.12s ease;
+}
+
+.ass-page .ass-table__row:hover {
+  background: #f8fafc;
+}
+
+.ass-page .ass-table__row:last-child {
+  border-bottom: none;
+}
+
+.ass-page .ass-table td {
+  padding: 0.9rem 1.15rem;
+  vertical-align: middle;
+}
+
+.ass-page .ass-table__link {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  max-width: 100%;
+  text-decoration: none;
+  color: var(--ass-primary);
+  font-weight: 700;
+  line-height: 1.45;
+  transition: color 0.12s ease;
+}
+
+.ass-page .ass-table__link:hover {
+  color: var(--ass-accent);
+}
+
+.ass-page .ass-table__link-icon {
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-top: 0.05rem;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #eef2ff;
+  color: var(--ass-primary);
+  font-size: 0.78rem;
+}
+
+.ass-page .ass-table__link-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.ass-page .ass-table__link-arrow {
+  flex: 0 0 auto;
+  margin-top: 0.2rem;
+  font-size: 0.68rem;
+  opacity: 0;
+  transform: translateX(-2px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.ass-page .ass-table__link:hover .ass-table__link-arrow {
+  opacity: 0.7;
+  transform: translateX(0);
+}
+
+.ass-page .ass-qty-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: var(--ass-primary);
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ass-page .ass__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--ass-muted);
+}
+
+.ass-page .ass__empty i {
+  font-size: 2rem;
+  opacity: 0.55;
+}
+
+.ass-page .ass__empty p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ass-label);
+}
+
+/* Eski loop/grid kalıntılarını gizle */
+.ass-page .ass__list-card .loop,
+.ass-page .ass__list-card .grid.ass__legacy-row {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__hero {
+    padding: 1.1rem 1.15rem;
+  }
+
+  .ass-page .ass-table thead {
+    display: none;
+  }
+
+  .ass-page .ass-table,
+  .ass-page .ass-table tbody,
+  .ass-page .ass-table tr,
+  .ass-page .ass-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .ass-page .ass-table__row {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--ass-border);
+  }
+
+  .ass-page .ass-table__row:hover {
+    background: #fff;
+  }
+
+  .ass-page .ass-table td {
+    padding: 0.25rem 0;
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  .ass-page .ass-table td.ass-table__num {
+    display: none;
+  }
+
+  .ass-page .ass-table td.ass-table__qty {
+    margin-top: 0.35rem;
+  }
+
+  .ass-page .ass-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ass-muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .ass-page .ass-table td.ass-table__name::before {
+    display: none;
+  }
+}
+
+@media print {
+  .ass-page {
+    background: #fff;
+    padding: 0;
+  }
+
+  .ass-page .ass__toolbar {
+    display: none !important;
+  }
+
+  .ass-page .ass__hero {
+    box-shadow: none;
+    border-radius: 0;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .ass-page .ass__list-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .ass-page .ass-table__link {
+    color: #000;
+  }
+
+  .ass-page .ass-table__link-arrow {
+    display: none;
+  }
+}
+
+/* Tesisat Teknik Arıza — liste sayfası */
+
+.ass-page .tta-hero .ass__chip {
+  padding: 0.28rem 0.55rem !important;
+}
+
+.ass-page .tta-section + .tta-section {
+  margin-top: 0.35rem;
+}
+
+.ass-page .tta-section--overdue .ass__list-head-icon {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.ass-page .tta-section--approval .ass__list-head-icon {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.ass-page .ass__list-card .p-datatable {
+  border: none;
+  border-radius: 0;
+  font-size: 0.88rem;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: #e2e8f0;
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr {
+  transition: background 0.12s ease;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8fafc;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9;
+  padding: 0.85rem 1rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: #fcfdff;
+}
+
+.ass-page .ass__list-card .p-datatable-emptymessage td {
+  text-align: center;
+  padding: 2.5rem 1rem !important;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ass-page .tta-desc,
+.ass-page .tta-desc.label {
+  color: #1e293b !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+}
+
+.ass-page .tta-dept,
+.ass-page .tta-dept.label,
+.ass-page .tta-user,
+.ass-page .tta-user.label,
+.ass-page .tta-date,
+.ass-page .tta-date.label {
+  color: #334155 !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+}
+
+.ass-page .tta-status,
+.ass-page .tta-status.label,
+.ass-page td .tta-status,
+.ass-page .p-datatable td .label.tta-status {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: max-content !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  padding: 0.28rem 0.7rem !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em;
+  text-transform: none !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+.ass-page .tta-data-table .p-datatable-tbody > tr > td:nth-child(5),
+.ass-page .ass__list-card .p-datatable-tbody > tr > td:nth-child(5) {
+  min-width: 12.5rem;
+  white-space: nowrap;
+}
+
+.ass-page .tta-status--pending {
+  background: #fff7ed;
+  color: #c2410c !important;
+  border: 1px solid #fed7aa;
+}
+
+.ass-page .tta-status--assigned {
+  background: #eff6ff;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe;
+}
+
+.ass-page .tta-status--inspect {
+  background: #f5f3ff;
+  color: #6d28d9 !important;
+  border: 1px solid #ddd6fe;
+}
+
+.ass-page .tta-status--waiting {
+  background: #fffbeb;
+  color: #b45309 !important;
+  border: 1px solid #fde68a;
+}
+
+.ass-page .tta-status--approval {
+  background: #ecfeff;
+  color: #0e7490 !important;
+  border: 1px solid #a5f3fc;
+}
+
+.ass-page .tta-status--progress {
+  background: #eef2ff;
+  color: #4338ca !important;
+  border: 1px solid #c7d2fe;
+}
+
+.ass-page .tta-status--done {
+  background: #ecfdf5;
+  color: #047857 !important;
+  border: 1px solid #a7f3d0;
+}
+
+.ass-page .tta-status--planned {
+  background: #f0fdf4;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0;
+}
+
+.ass-page .ass__list-card .p-button.tta-detail-btn,
+.ass-page .ass__list-card .p-button.tta-detail-btn.p-button-secondary {
+  border-radius: 999px;
+  font-weight: 700;
+  min-height: 2rem;
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
+  background: #fff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #4557a3 !important;
+  box-shadow: 0 2px 8px rgba(69, 87, 163, 0.1);
+}
+
+.ass-page .ass__list-card .p-button.tta-detail-btn:hover {
+  background: #eef2ff !important;
+  border-color: #a5b4fc !important;
+  color: #3730a3 !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th,
+  .ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .ass-page .tta-status,
+  .ass-page .tta-status.label {
+    font-size: 0.62rem !important;
+  }
+}

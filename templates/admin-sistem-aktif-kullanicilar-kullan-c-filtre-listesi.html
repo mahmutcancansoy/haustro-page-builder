@@ -1,0 +1,106 @@
+{{#each adminOverview}}
+<div class="auo-page auo-page--list">
+  <a class="auo-back" href="/d/admin-sistem-durumu">
+    <i class="pi pi-arrow-left"></i> Sistem durumuna dön
+  </a>
+
+  <div class="auo__hero">
+    <div class="auo__hero-main">
+      <span class="auo__eyebrow">Sistem yönetimi</span>
+      <h1>{{this.filterLabel}}</h1>
+      <p>{{this.filteredUserCount}} kullanıcı listeleniyor.</p>
+    </div>
+    {{#if this.filteredUserCount}}
+    <span class="auo__count">{{this.filteredUserCount}}</span>
+    {{/if}}
+  </div>
+
+  <div class="auo__card" id="kullanici-listesi">
+    <div class="auo__list-head">
+      <div class="auo__list-head-icon"><i class="pi pi-id-card"></i></div>
+      <div>
+        <h2>{{this.filterLabel}}</h2>
+        <p>Bu görünüme uyan aktif kullanıcılar.</p>
+      </div>
+    </div>
+
+    {{#if this.users}}
+    <div class="auo-table-wrap">
+      <table class="auo-table">
+        <thead>
+          <tr>
+            <th scope="col">Kullanıcı</th>
+            <th scope="col">Departman</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Son giriş</th>
+            <th scope="col">Okunmamış mesaj</th>
+            <th scope="col">Bildirim</th>
+            <th scope="col">Toplam bekleyen</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.users}}
+          <tr class="auo-table__row{{#cIf this.hasPending "==" "1"}} auo-table__row--pending{{/cIf}}{{#cIf this.neverLoggedIn "==" "1"}} auo-table__row--never{{/cIf}}">
+            <td class="auo-table__user" data-label="Kullanıcı">
+              <strong>{{this.fullName}}</strong>
+              <span class="auo-table__email">{{this.email}}</span>
+            </td>
+            <td data-label="Departman">{{this.departmentLabel}}</td>
+            <td data-label="Rol">{{this.roleLabel}}</td>
+            <td data-label="Son giriş">
+              {{#cIf this.lastLoginToday "==" "1"}}
+              <span class="auo-badge auo-badge--today">{{this.lastLogin}}</span>
+              {{else}}
+              {{#cIf this.neverLoggedIn "==" "1"}}
+              <span class="auo-badge auo-badge--never">Hiç giriş yok</span>
+              {{else}}
+              {{this.lastLogin}}
+              {{/cIf}}
+              {{/cIf}}
+            </td>
+            <td class="auo-table__num" data-label="Mesaj">
+              {{#if this.unreadMessages}}
+              <span class="auo-pill auo-pill--msg">{{this.unreadMessages}}</span>
+              {{else}}
+              <span class="auo-pill auo-pill--zero">0</span>
+              {{/if}}
+            </td>
+            <td class="auo-table__num" data-label="Bildirim">
+              {{#if this.pendingNotifications}}
+              <span class="auo-pill auo-pill--notif">{{this.pendingNotifications}}</span>
+              {{else}}
+              <span class="auo-pill auo-pill--zero">0</span>
+              {{/if}}
+            </td>
+            <td class="auo-table__num" data-label="Toplam">
+              {{#if this.pendingTotal}}
+              <span class="auo-pill auo-pill--total">{{this.pendingTotal}}</span>
+              {{else}}
+              <span class="auo-pill auo-pill--zero">0</span>
+              {{/if}}
+            </td>
+            <td class="auo-table__action" data-label="">
+              <div class="auo-table__actions">
+                <a class="auo-link" href="/d/admin-sistem-durumu?_id={{this._id}}&view=logs#sayfa-loglari">
+                  <i class="pi pi-history"></i> Loglar
+                </a>
+                <a class="auo-link auo-link--muted" href="/d/admin-sistem-durumu?_id={{this._id}}">
+                  <i class="pi pi-arrow-right"></i> Profil
+                </a>
+              </div>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="auo-empty">
+      <i class="pi pi-inbox"></i>
+      <p>Bu filtreye uyan kullanıcı bulunamadı.</p>
+    </div>
+    {{/if}}
+  </div>
+</div>
+{{/each}}

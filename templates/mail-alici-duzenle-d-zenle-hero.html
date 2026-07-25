@@ -1,0 +1,43 @@
+<div class="mr-edit">
+  <a class="mr-back" href="/d/mail-alicilari"><i class="pi pi-arrow-left"></i> Listeye dön</a>
+
+  {{#if mailRecipients.label}}
+  <div class="mr__hero">
+    <div class="mr__hero-main">
+      <span class="mr__eyebrow">Mail alıcı düzenle</span>
+      <h1>{{mailRecipients.label}}</h1>
+      <p>{{mailRecipients.categoryLabel}} · <code>{{mailRecipients.key}}</code></p>
+    </div>
+  </div>
+
+  <div class="mr-edit__card">
+    <p class="mr-edit__label">Kaynak dosya</p>
+    <p class="mr-edit__value">{{mailRecipients.sourceFile}}</p>
+
+    {{#cIf mailRecipients.recipientMode "!=" "fixed"}}
+    <p class="mr-edit__label">Mod</p>
+    <p class="mr-edit__value">{{mailRecipients.roleNote}}</p>
+    {{/cIf}}
+
+    <p class="mr-edit__label">Kayıtlı alıcılar</p>
+    <div class="mr-edit__recipients-box">
+      {{#if mailRecipients.recipientsText}}
+      {{mailRecipients.recipientsText}}
+      {{else}}
+      {{#each mailRecipients.recipients}}
+      {{this.value}}{{#unless @last}}, {{/unless}}
+      {{else}}
+      <span class="mr-edit__recipients-empty">Henüz alıcı tanımlı değil</span>
+      {{/each}}
+      {{/if}}
+    </div>
+    <p class="mr-edit__hint">Bu liste veritabanındaki güncel değerdir. Düzenlemek için aşağıdaki formu kullanın.</p>
+  </div>
+  {{else}}
+  <div class="mr-empty">
+    <i class="pi pi-exclamation-circle"></i>
+    <p>Kayıt bulunamadı. Listeden bir kural seçerek düzenleyin.</p>
+    <a class="mr-card__cta" href="/d/mail-alicilari">Mail Alıcıları listesi</a>
+  </div>
+  {{/if}}
+</div>

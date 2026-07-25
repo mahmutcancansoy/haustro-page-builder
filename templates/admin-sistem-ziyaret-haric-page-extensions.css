@@ -1,0 +1,184 @@
+/* Ziyaret logu hariç tutulanlar — form + tablo */
+
+.pve-page .auo__hero {
+  margin-bottom: 1rem;
+}
+
+.pve-card {
+  width: 100%;
+  margin: 0 0 1.25rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(69, 87, 163, 0.08);
+  /* Select dropdown kesilmesin */
+  overflow: visible;
+}
+
+.pve-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 16px 16px 0 0;
+}
+
+.pve-card__head-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4557a3;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.pve-card__head h2 {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+  color: #1e293b;
+}
+
+.pve-card__head p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #64748b;
+}
+
+.pve-card__body {
+  padding: 1.15rem 1.25rem 1.35rem;
+  overflow: visible;
+}
+
+.pve-add-form,
+.pve-add-form .form-container,
+.pve-page-visits-block,
+.pve-page .auo-page-visits-block {
+  overflow: visible !important;
+}
+
+.pve-add-form .p-field {
+  margin: 0 0 0.75rem !important;
+}
+
+.pve-add-form .p-dropdown,
+.pve-add-form .p-inputtext {
+  width: 100% !important;
+  max-width: 32rem !important;
+  border-radius: 10px !important;
+}
+
+/* Seçili değer ve liste satırları okunabilir olsun */
+.pve-add-form .p-dropdown .p-dropdown-label,
+.pve-add-form .p-dropdown .p-inputtext {
+  color: #0f172a !important;
+  opacity: 1 !important;
+  line-height: 1.4 !important;
+  min-height: 1.25rem !important;
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.pve-add-form .p-dropdown-panel,
+.p-dropdown-panel {
+  z-index: 1200 !important;
+}
+
+.p-dropdown-panel .p-dropdown-item,
+.p-dropdown-panel .p-dropdown-item span {
+  color: #0f172a !important;
+  opacity: 1 !important;
+  line-height: 1.35 !important;
+}
+
+.pve-add-form .p-button {
+  margin-top: 0.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  min-width: 8rem;
+  min-height: 2.5rem;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem;
+}
+
+.pve-add-form .p-button .p-button-label,
+.pve-add-form .p-button-label,
+.pve-page .p-button .p-button-label {
+  display: inline !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #fff !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+.pve-add-form .p-button.p-button-success,
+.pve-add-form .p-button-success {
+  background: #16a34a !important;
+  border-color: #16a34a !important;
+  color: #fff !important;
+}
+
+.pve-table-wrap {
+  overflow-x: auto;
+}
+
+.pve-html-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.pve-html-table th,
+.pve-html-table td {
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  color: #1e293b;
+  vertical-align: top;
+}
+
+.pve-html-table th {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #64748b;
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+.pve-html-table tbody tr:hover td {
+  background: #f8fafc;
+}
+
+.pve-paginate {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
+.pve-remove-form {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem !important;
+}
+
+.pve-hint {
+  margin: 0;
+  padding: 1.25rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-align: center;
+}

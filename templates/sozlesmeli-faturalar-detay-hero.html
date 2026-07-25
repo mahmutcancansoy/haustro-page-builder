@@ -1,0 +1,17 @@
+<div class="ass__hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Sözleşme faturaları</span>
+    <h1>
+      {{#if contractInvoices.:suppliers:.name}}{{contractInvoices.:suppliers:.name}}{{else}}Sözleşmeli Fatura Detayı{{/if}}
+    </h1>
+    <p class="ass__hero-sub">
+      Sözleşme bilgileri, Logo fatura eşleştirme ve işlenen / bekleyen faturalar.
+    </p>
+  </div>
+  <div class="ass__hero-meta">
+    {{#if contractInvoices.periodPrice}}
+      <span class="ass__chip"><i class="pi pi-wallet"></i> {{contractInvoices.periodPrice}}</span>
+    {{/if}}
+    <span class="ass__chip"><i class="pi pi-file"></i> Detay</span>
+  </div>
+</div>

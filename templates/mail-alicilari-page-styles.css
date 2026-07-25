@@ -1,0 +1,571 @@
+/* Mail alıcıları — panel standart paleti (ass/dr ile uyumlu) */
+.mr-page {
+  --mr-primary: #4557a3;
+  --mr-primary-mid: #5b6fd6;
+  --mr-primary-light: #7c8ce8;
+  --mr-indigo-mid: #c7d2fe;
+  --mr-surface: #ffffff;
+  --mr-text: #0f172a;
+  --mr-muted: #475569;
+  --mr-border: #e2e8f0;
+  --mr-radius: 14px;
+  --mr-shadow: 0 4px 20px rgba(69, 87, 163, 0.12);
+  --mr-shadow-soft: 0 2px 12px rgba(69, 87, 163, 0.08);
+
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  padding: 1.25rem 1rem 2.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--mr-text);
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  box-sizing: border-box;
+}
+
+.mr-page *,
+.mr-page *::before,
+.mr-page *::after {
+  box-sizing: border-box;
+}
+
+.mr-page .mr__hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--mr-radius);
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 52%, #7c8ce8 100%);
+  color: #fff;
+  box-shadow: 0 14px 36px rgba(69, 87, 163, 0.32);
+}
+
+.mr-page .mr__hero-main {
+  min-width: 0;
+}
+
+.mr-page .mr__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.mr-page .mr__hero h1 {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.mr-page .mr__hero p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.mr-page .mr__count {
+  flex-shrink: 0;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.mr-page .mr-section {
+  margin-bottom: 1.5rem;
+}
+
+.mr-page .mr-section__title {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mr-muted);
+}
+
+.mr-page .mr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.mr-page .mr-card {
+  position: relative;
+  background: var(--mr-surface);
+  border: 1px solid var(--mr-border);
+  border-radius: var(--mr-radius);
+  box-shadow: var(--mr-shadow-soft);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow: hidden;
+}
+
+.mr-page .mr-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);
+}
+
+.mr-page .mr-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.15rem;
+}
+
+.mr-page .mr-card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--mr-text);
+}
+
+.mr-page .mr-card__badge {
+  flex-shrink: 0;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #eef2ff;
+  color: #4557a3;
+  border: 1px solid #c7d2fe;
+}
+
+.mr-page .mr-card__badge--inactive {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.mr-page .mr-card__meta {
+  font-size: 0.78rem;
+  color: var(--mr-muted);
+  line-height: 1.4;
+}
+
+.mr-page .mr-card__meta code {
+  font-size: 0.72rem;
+  background: #f1f5f9;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  color: #334155;
+}
+
+.mr-page .mr-recipients {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mr-page .mr-recipients li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: #334155;
+}
+
+.mr-page .mr-recipients li i {
+  color: var(--mr-primary-mid);
+  font-size: 0.75rem;
+}
+
+.mr-page .mr-card__mode {
+  font-size: 0.75rem;
+  color: #4557a3;
+  background: #f8fafc;
+  border: 1px dashed #c7d2fe;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+}
+
+.mr-page .mr-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%);
+  color: #fff !important;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  width: fit-content;
+  border: 1px solid #4557a3;
+  box-shadow: 0 4px 14px rgba(69, 87, 163, 0.22);
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.mr-page .mr-card__cta:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.mr-page .mr-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--mr-muted);
+}
+
+.mr-page .mr-empty i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  opacity: 0.5;
+  color: var(--mr-primary-light);
+}
+
+/* Düzenle sayfası — tam genişlik, dengeli yatay boşluk */
+.mr-page.ass-page {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 1.25rem 1.25rem 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .mr-page.ass-page {
+    padding: 1.5rem 1.75rem 2.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mr-page.ass-page {
+    padding: 1.75rem 2rem 3rem;
+  }
+}
+
+.mr-edit {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.mr-page .mr-edit__card {
+  background: var(--mr-surface);
+  border: 1px solid var(--mr-border);
+  border-radius: var(--mr-radius);
+  box-shadow: var(--mr-shadow-soft);
+  padding: 1.25rem 1.35rem;
+  margin-bottom: 0;
+}
+
+.mr-page .mr-edit__recipients-box {
+  margin: 0 0 0.65rem;
+  padding: 0.9rem 1rem;
+  background: #f8fafc;
+  border: 1px solid var(--mr-border);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #334155;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.mr-page .mr-edit__recipients-empty {
+  color: var(--mr-muted);
+  font-style: italic;
+}
+
+.mr-page .mr-edit__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--mr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mr-page .mr-edit__value {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+.mr-page .mr-edit__hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.78rem;
+  color: var(--mr-muted);
+  line-height: 1.45;
+}
+
+.mr-page .mr-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  color: var(--mr-primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.mr-page .mr-back:hover {
+  color: var(--mr-primary-mid);
+}
+
+.mr-page .mr-edit__form-card {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  background: var(--mr-surface);
+  border: 1px solid var(--mr-border);
+  border-radius: var(--mr-radius);
+  box-shadow: var(--mr-shadow-soft);
+  overflow: hidden;
+}
+
+.mr-page .mr-edit__form-card .mr-form-head {
+  margin-bottom: 0;
+  padding: 1.15rem 1.25rem;
+  border-bottom: 1px solid var(--mr-border);
+}
+
+/* Form — rol/hizmet sayfaları ile uyumlu */
+.mr-page .mr-edit__form-card .mr-form,
+.mr-page .mr-edit__form-card .form-container {
+  margin-top: 0;
+  padding: 0 1.25rem 1.25rem;
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.mr-page .mr-form-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--mr-border);
+}
+
+.mr-page .mr-form-head__icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: var(--mr-primary);
+  font-size: 1.1rem;
+}
+
+.mr-page .mr-form-head h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mr-text);
+}
+
+.mr-page .mr-form-head p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--mr-muted);
+  line-height: 1.45;
+}
+
+.mr-page .mr-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.mr-page .form-container .p-inputtext,
+.mr-page .mr-edit__form-card input.p-inputtext {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.mr-page .form-container textarea,
+.mr-page .form-container .p-inputtextarea {
+  border-color: #c7d2fe !important;
+  border-radius: 10px !important;
+}
+
+.mr-page .form-container textarea:focus,
+.mr-page .form-container .p-inputtextarea:focus {
+  border-color: var(--mr-primary) !important;
+  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;
+}
+
+.mr-page .form-container .p-button,
+.mr-page .form-container button.p-button {
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  border-color: #4557a3 !important;
+  color: #fff !important;
+}
+
+.mr-page .form-container .p-button:hover,
+.mr-page .form-container button.p-button:hover {
+  filter: brightness(1.05);
+}
+
+/* Mail alıcı düzenle — form-array */
+.mr-page .mr-recipients-array {
+  width: 100%;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.mr-page .mr-recipients-array .mr-recipient-row {
+  margin-bottom: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: #f8fafc;
+  border: 1px solid var(--mr-border);
+  border-radius: 10px;
+}
+
+.mr-page .mr-recipients-array .mr-recipient-input,
+.mr-page .mr-recipients-array input.p-inputtext {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-color: #c7d2fe !important;
+  border-radius: 10px !important;
+}
+
+.mr-page .mr-recipients-array .mr-recipient-input:focus,
+.mr-page .mr-recipients-array input.p-inputtext:focus {
+  border-color: var(--mr-primary) !important;
+  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;
+}
+
+.mr-page .mr-recipients-array label {
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  color: var(--mr-muted) !important;
+}
+
+/* Mail alıcı düzenle — custom ekle/sil (eski) */
+.mr-page .mr-recipients-empty {
+  margin: 0 0 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--mr-border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--mr-muted);
+  font-style: italic;
+  text-align: center;
+  background: #fafafa;
+}
+
+.mr-page .mr-recipients-loop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.mr-page .mr-recipient-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  background: #f8fafc;
+  border: 1px solid var(--mr-border);
+  border-radius: 10px;
+}
+
+.mr-page .mr-recipient-item__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  font-size: 0.88rem;
+  color: #334155;
+  word-break: break-word;
+}
+
+.mr-page .mr-recipient-item__email i {
+  flex-shrink: 0;
+  color: var(--mr-primary);
+  font-size: 0.8rem;
+}
+
+.mr-page .mr-recipient-remove-col {
+  flex-shrink: 0;
+}
+
+.mr-page .mr-recipient-remove-form {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.mr-page .mr-recipient-remove-form .form-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mr-page .mr-recipient-remove-form .p-button {
+  background: #fff !important;
+  border: 1px solid #fecaca !important;
+  color: #b91c1c !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  padding: 0.35rem 0.65rem !important;
+  border-radius: 8px !important;
+}
+
+.mr-page .mr-recipient-remove-form .p-button:hover {
+  background: #fef2f2 !important;
+  border-color: #f87171 !important;
+  filter: none;
+}
+
+.mr-page .mr-recipient-add-form .form-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.65rem;
+  margin-top: 0;
+  padding: 0 0 1rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mr-page .mr-recipient-add-form .p-inputtext {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.mr-page .mr-recipient-add-form .p-button {
+  flex-shrink: 0;
+}

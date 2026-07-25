@@ -1,0 +1,116 @@
+/* Kırık Kayıp Raporları — aksiyon bar ve tablo */
+.ass-page .ass__actions {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.ass-page .ass__actions .p-button {
+  border-radius: 10px;
+  font-weight: 600;
+  min-height: 2.5rem;
+}
+
+.ass-page .ass__actions .p-button-success,
+.ass-page .ass__actions .p-button.p-button-success {
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.2);
+}
+
+.ass-page .ass__list-card .simple-table,
+.ass-page .ass__list-card .ass__data-table {
+  width: 100%;
+}
+
+.ass-page .ass__list-card .p-datatable {
+  border: none;
+  border-radius: 0;
+  font-size: 0.88rem;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-header {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: #e2e8f0;
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr {
+  transition: background 0.12s ease;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8fafc;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9;
+  padding: 0.85rem 1rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: #fcfdff;
+}
+
+.ass-page .ass__list-card .p-datatable .p-button {
+  border-radius: 8px;
+  font-weight: 600;
+  min-height: 2rem;
+}
+
+.ass-page .ass__list-card .p-paginator {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+}
+
+.ass-page .ass__list-card .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #4557a3;
+  border-color: #4557a3;
+  color: #fff;
+}
+
+.ass-page .ass__list-card .p-datatable-emptymessage td {
+  text-align: center;
+  padding: 2.5rem 1rem !important;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__actions {
+    justify-content: stretch;
+  }
+
+  .ass-page .ass__actions .p-button {
+    width: 100%;
+  }
+
+  .ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th,
+  .ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media print {
+  .ass-page .ass__actions {
+    display: none !important;
+  }
+}

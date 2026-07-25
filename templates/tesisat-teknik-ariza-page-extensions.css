@@ -1,0 +1,215 @@
+/* Tesisat Teknik Arıza — liste sayfası */
+
+.ass-page .tta-hero .ass__chip {
+  padding: 0.28rem 0.55rem !important;
+}
+
+.ass-page .tta-section + .tta-section {
+  margin-top: 0.35rem;
+}
+
+.ass-page .tta-section--overdue .ass__list-head-icon {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.ass-page .tta-section--approval .ass__list-head-icon {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.ass-page .tta-section--filter .ass__list-head-icon {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.ass-page .tta-archive-form,
+.ass-page .ass__list-card .tta-archive-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.85rem 1rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.ass-page .tta-archive-form .p-button.tta-filter-btn,
+.ass-page .ass__list-card .p-button.tta-filter-btn {
+  border-radius: 999px;
+  font-weight: 700;
+  min-height: 2.4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.ass-page .ass__list-card .p-datatable {
+  border: none;
+  border-radius: 0;
+  font-size: 0.88rem;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: #e2e8f0;
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr {
+  transition: background 0.12s ease;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8fafc;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9;
+  padding: 0.85rem 1rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: #fcfdff;
+}
+
+.ass-page .ass__list-card .p-datatable-emptymessage td {
+  text-align: center;
+  padding: 2.5rem 1rem !important;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ass-page .tta-desc,
+.ass-page .tta-desc.label {
+  color: #1e293b !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+}
+
+.ass-page .tta-dept,
+.ass-page .tta-dept.label,
+.ass-page .tta-user,
+.ass-page .tta-user.label,
+.ass-page .tta-date,
+.ass-page .tta-date.label {
+  color: #334155 !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+}
+
+.ass-page .tta-status,
+.ass-page .tta-status.label,
+.ass-page td .tta-status,
+.ass-page .p-datatable td .label.tta-status {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: max-content !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  padding: 0.28rem 0.7rem !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em;
+  text-transform: none !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+.ass-page .tta-data-table .p-datatable-tbody > tr > td:nth-child(5),
+.ass-page .ass__list-card .p-datatable-tbody > tr > td:nth-child(5) {
+  min-width: 12.5rem;
+  white-space: nowrap;
+}
+
+.ass-page .tta-status--pending {
+  background: #fff7ed;
+  color: #c2410c !important;
+  border: 1px solid #fed7aa;
+}
+
+.ass-page .tta-status--assigned {
+  background: #eff6ff;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe;
+}
+
+.ass-page .tta-status--inspect {
+  background: #f5f3ff;
+  color: #6d28d9 !important;
+  border: 1px solid #ddd6fe;
+}
+
+.ass-page .tta-status--waiting {
+  background: #fffbeb;
+  color: #b45309 !important;
+  border: 1px solid #fde68a;
+}
+
+.ass-page .tta-status--approval {
+  background: #ecfeff;
+  color: #0e7490 !important;
+  border: 1px solid #a5f3fc;
+}
+
+.ass-page .tta-status--progress {
+  background: #eef2ff;
+  color: #4338ca !important;
+  border: 1px solid #c7d2fe;
+}
+
+.ass-page .tta-status--done {
+  background: #ecfdf5;
+  color: #047857 !important;
+  border: 1px solid #a7f3d0;
+}
+
+.ass-page .tta-status--planned {
+  background: #f0fdf4;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0;
+}
+
+.ass-page .ass__list-card .p-button.tta-detail-btn,
+.ass-page .ass__list-card .p-button.tta-detail-btn.p-button-secondary {
+  border-radius: 999px;
+  font-weight: 700;
+  min-height: 2rem;
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
+  background: #fff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #4557a3 !important;
+  box-shadow: 0 2px 8px rgba(69, 87, 163, 0.1);
+}
+
+.ass-page .ass__list-card .p-button.tta-detail-btn:hover {
+  background: #eef2ff !important;
+  border-color: #a5b4fc !important;
+  color: #3730a3 !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .ass__list-card .p-datatable .p-datatable-thead > tr > th,
+  .ass-page .ass__list-card .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .ass-page .tta-status,
+  .ass-page .tta-status.label {
+    font-size: 0.62rem !important;
+  }
+}

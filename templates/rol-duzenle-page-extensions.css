@@ -1,0 +1,200 @@
+/* Rol Düzenle — form kartı */
+
+.ass-page .rldu-hero .ass__hero-meta {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ass-page .rldu-chip--role {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.ass-page .ass__form-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__form-card .rldu-form {
+  padding: 0 1.15rem 1.35rem !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ass-page .ass__form-card .rldu-form > .condition {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.ass-page .ass__form-card label,
+.ass-page .ass__form-card .p-field label,
+.ass-page .ass__form-card .p-checkbox-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ass-label, #64748b);
+  margin-bottom: 0.35rem;
+}
+
+.ass-page .ass__form-card .p-inputtext,
+.ass-page .ass__form-card .p-dropdown,
+.ass-page .ass__form-card .p-inputnumber,
+.ass-page .ass__form-card .p-inputnumber-input,
+.ass-page .ass__form-card .p-multiselect,
+.ass-page .ass__form-card input.p-inputtext,
+.ass-page .ass__form-card .p-inputnumber .p-inputtext {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 10px !important;
+  border-color: #cbd5e1 !important;
+  font-size: 0.92rem !important;
+}
+
+.ass-page .ass__form-card .p-inputtext:enabled:focus,
+.ass-page .ass__form-card .p-dropdown:not(.p-disabled).p-focus,
+.ass-page .ass__form-card .p-inputnumber:not(.p-disabled).p-focus .p-inputtext,
+.ass-page .ass__form-card .p-multiselect:not(.p-disabled).p-focus {
+  border-color: var(--ass-primary, #4557a3) !important;
+  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.12) !important;
+}
+
+.ass-page .ass__form-card .p-field,
+.ass-page .ass__form-card .p-inputnumber,
+.ass-page .ass__form-card .p-multiselect,
+.ass-page .ass__form-card .input-text,
+.ass-page .ass__form-card .input-number,
+.ass-page .ass__form-card .input-select,
+.ass-page .ass__form-card .input-multiselect {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.ass-page .ass__form-card .p-checkbox {
+  align-items: center;
+}
+
+.ass-page .ass__form-card .p-checkbox .p-checkbox-box {
+  border-radius: 6px;
+  border-color: #cbd5e1;
+}
+
+.ass-page .ass__form-card .p-checkbox .p-checkbox-box.p-highlight {
+  background: var(--ass-primary, #4557a3);
+  border-color: var(--ass-primary, #4557a3);
+}
+
+/* Seçili değer metni */
+.ass-page .ass__form-card .p-dropdown .p-dropdown-label,
+.ass-page .ass__form-card .p-dropdown .p-dropdown-label.p-placeholder,
+.ass-page .ass__form-card .p-multiselect .p-multiselect-label,
+.ass-page .ass__form-card .p-multiselect .p-multiselect-label.p-placeholder {
+  color: #1e293b !important;
+}
+
+.ass-page .ass__form-card .p-dropdown .p-dropdown-label.p-placeholder,
+.ass-page .ass__form-card .p-multiselect .p-multiselect-label.p-placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Multiselect seçili chip'ler */
+.ass-page .ass__form-card .p-multiselect-token {
+  background: #eef2ff !important;
+  color: #312e81 !important;
+  border: 1px solid #c7d2fe !important;
+  border-radius: 8px !important;
+}
+
+.ass-page .ass__form-card .p-multiselect-token-label {
+  color: #312e81 !important;
+}
+
+.ass-page .ass__form-card .p-multiselect-token-icon {
+  color: #4557a3 !important;
+}
+
+/* Açılır liste — panel body'ye append edildiği için sayfa stili global */
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus,
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight,
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight.p-focus {
+  background: #eef2ff !important;
+  color: #312e81 !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover,
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
+  background: #f8fafc !important;
+  color: #1e293b !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item,
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+  color: #334155 !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight .p-checkbox .p-checkbox-box.p-highlight,
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight .p-checkbox .p-checkbox-box.p-highlight {
+  background: #4557a3 !important;
+  border-color: #4557a3 !important;
+}
+
+.ass-page .ass__form-card .rldu-form > .p-button,
+.ass-page .ass__form-card .rldu-form > button.p-button {
+  align-self: flex-end;
+  margin-top: 0.35rem;
+  min-width: 9rem;
+  min-height: 2.5rem;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(69, 87, 163, 0.22);
+}
+
+.ass-page .ass__form-card .rldu-form > .p-button.p-button-default,
+.ass-page .ass__form-card .rldu-form > button.p-button-default {
+  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;
+  border-color: #4557a3 !important;
+  color: #fff !important;
+}
+
+@media (max-width: 767px) {
+  .ass-page .rldu-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ass-page .rldu-hero .ass__hero-meta {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .ass-page .ass__form-card .rldu-form {
+    padding: 0 0.85rem 1rem !important;
+  }
+
+  .ass-page .ass__form-card .rldu-form > .p-button,
+  .ass-page .ass__form-card .rldu-form > button.p-button {
+    align-self: stretch;
+    width: 100%;
+  }
+}
+
+@media print {
+  .ass-page .ass__toolbar {
+    display: none !important;
+  }
+
+  .ass-page .ass__form-card .rldu-form > .p-button,
+  .ass-page .ass__form-card .rldu-form > button.p-button {
+    display: none !important;
+  }
+}

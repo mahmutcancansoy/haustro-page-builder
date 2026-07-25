@@ -1,0 +1,15 @@
+<div class="ass__hero rldu-hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Yetkilendirme</span>
+    <h1>Rol Düzenle</h1>
+    <p class="ass__hero-sub">{{#if roleTypes.description}}{{roleTypes.description}}{{else}}Rol bilgilerini güncelleyin{{/if}}{{#if roleTypes.:roleGroups:.name}} · {{roleTypes.:roleGroups:.name}}{{/if}}</p>
+  </div>
+  <div class="ass__hero-meta">
+    {{#if roleTypes.role}}
+      <span class="ass__chip rldu-chip--role"><i class="pi pi-hashtag"></i> Rol {{roleTypes.role}}</span>
+    {{/if}}
+    {{#if roleTypes.:roleGroups:.name}}
+      <span class="ass__chip"><i class="pi pi-sitemap"></i> {{roleTypes.:roleGroups:.name}}</span>
+    {{/if}}
+  </div>
+</div>

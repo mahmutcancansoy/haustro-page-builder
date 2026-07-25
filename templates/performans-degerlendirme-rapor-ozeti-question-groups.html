@@ -1,0 +1,45 @@
+{{#if performanceEvaluations.INDEX.questionGroupSummary}}
+<div class="pdro-question-groups">
+  <p class="pdro-trend__title">Soru grubu özeti (A–E)</p>
+  {{#each performanceEvaluations.INDEX.questionGroupSummary}}
+  <section class="pdro-question-group pdro-question-group--{{group}}">
+    <div class="pdro-question-group__head">
+      <span class="pdro-question-group__badge">{{group}} grubu</span>
+      <span class="pdro-question-group__meta">Ortalama <strong>{{averageScore}}</strong> · {{questionCount}} soru</span>
+    </div>
+    <div class="pdro-question-group__extremes">
+      <div class="pdro-question-group__extreme pdro-question-group__extreme--low">
+        <span class="pdro-question-group__label">En düşük</span>
+        <span class="pdro-question-group__score">{{lowest.averageScore}}</span>
+        <p class="pdro-question-group__criterion">{{lowest.criterion}}</p>
+      </div>
+      <div class="pdro-question-group__extreme pdro-question-group__extreme--high">
+        <span class="pdro-question-group__label">En yüksek</span>
+        <span class="pdro-question-group__score">{{highest.averageScore}}</span>
+        <p class="pdro-question-group__criterion">{{highest.criterion}}</p>
+      </div>
+    </div>
+    <div class="pdro-question-group__table-wrap">
+      <table class="pdro-trend__table pdro-question-group__table">
+        <thead>
+          <tr>
+            <th class="pdro-trend__num">#</th>
+            <th>Soru</th>
+            <th class="pdro-trend__num">Ortalama</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each questions}}
+          <tr>
+            <td class="pdro-trend__num">{{id}}</td>
+            <td>{{criterion}}</td>
+            <td class="pdro-trend__num">{{averageScore}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {{/each}}
+</div>
+{{/if}}

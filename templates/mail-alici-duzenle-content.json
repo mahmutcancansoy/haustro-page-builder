@@ -1,0 +1,2779 @@
+{
+  "pageId": "6a3bc0e743f4623d22b4042f",
+  "content": [
+    {
+      "type": "data-source",
+      "isContainer": false,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Mail kuralı"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "mailRecipients"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "get"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "mailRecipients",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n    \"_id\": \"{{params._id}}\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": true,
+            "debug": false,
+            "canReload": true,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "simple-container",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"mr-edit\">\n  <a class=\"mr-back\" href=\"/d/mail-alicilari\"><i class=\"pi pi-arrow-left\"></i> Listeye dön</a>\n\n  {{#if mailRecipients.label}}\n  <div class=\"mr__hero\">\n    <div class=\"mr__hero-main\">\n      <span class=\"mr__eyebrow\">Mail alıcı düzenle</span>\n      <h1>{{mailRecipients.label}}</h1>\n      <p>{{mailRecipients.categoryLabel}} · <code>{{mailRecipients.key}}</code></p>\n    </div>\n  </div>\n\n  <div class=\"mr-edit__card\">\n    <p class=\"mr-edit__label\">Kaynak dosya</p>\n    <p class=\"mr-edit__value\">{{mailRecipients.sourceFile}}</p>\n\n    {{#cIf mailRecipients.recipientMode \"!=\" \"fixed\"}}\n    <p class=\"mr-edit__label\">Mod</p>\n    <p class=\"mr-edit__value\">{{mailRecipients.roleNote}}</p>\n    {{/cIf}}\n\n    <p class=\"mr-edit__label\">Kayıtlı alıcılar</p>\n    <div class=\"mr-edit__recipients-box\">\n      {{#if mailRecipients.recipientsText}}\n      {{mailRecipients.recipientsText}}\n      {{else}}\n      {{#each mailRecipients.recipients}}\n      {{this.value}}{{#unless @last}}, {{/unless}}\n      {{else}}\n      <span class=\"mr-edit__recipients-empty\">Henüz alıcı tanımlı değil</span>\n      {{/each}}\n      {{/if}}\n    </div>\n    <p class=\"mr-edit__hint\">Bu liste veritabanındaki güncel değerdir. Düzenlemek için aşağıdaki formu kullanın.</p>\n  </div>\n  {{else}}\n  <div class=\"mr-empty\">\n    <i class=\"pi pi-exclamation-circle\"></i>\n    <p>Kayıt bulunamadı. Listeden bir kural seçerek düzenleyin.</p>\n    <a class=\"mr-card__cta\" href=\"/d/mail-alicilari\">Mail Alıcıları listesi</a>\n  </div>\n  {{/if}}\n</div>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Düzenle hero"
+            }
+          ]
+        },
+        {
+          "type": "simple-container",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "render-template",
+              "isContainer": false,
+              "isTextEditor": true,
+              "content": "<div class=\"mr-form-head\">\n  <div class=\"mr-form-head__icon\"><i class=\"pi pi-envelope\"></i></div>\n  <div>\n    <h2>Alıcı listesi</h2>\n    <p>Tablodan alıcı kaldırabilir veya alttaki alandan yeni alıcı ekleyebilirsiniz.</p>\n  </div>\n</div>",
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Form başlık"
+                }
+              ]
+            },
+            {
+              "type": "simple-table",
+              "isContainer": true,
+              "children": [
+                {
+                  "type": "table-column",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "label",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "New Label 1"
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "{{input.value}}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "label",
+                          "header": "Form label",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.inForm"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "action",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "No action",
+                              "value": "noAction"
+                            },
+                            {
+                              "label": "Link",
+                              "value": "link"
+                            },
+                            {
+                              "label": "Route",
+                              "value": "route"
+                            },
+                            {
+                              "label": "Download",
+                              "value": "download"
+                            }
+                          ],
+                          "header": "Action",
+                          "value": "noAction"
+                        },
+                        {
+                          "key": "url",
+                          "header": "Url",
+                          "type": "textarea-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value != 'noAction'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "query-params",
+                          "header": "Query Params",
+                          "type": "code-editor",
+                          "value": "{\n\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "filename",
+                          "header": "Filename",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'download'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "url-targer",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "_self",
+                              "value": "_self"
+                            },
+                            {
+                              "label": "_blank",
+                              "value": "_blank"
+                            }
+                          ],
+                          "header": "Target",
+                          "value": "_self",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'link'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "styles",
+                          "header": "Styles",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "font-size",
+                              "header": "Font size",
+                              "type": "input-text-property",
+                              "value": "15px",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "color",
+                              "header": "Color",
+                              "type": "color-picker-property",
+                              "value": "#777777",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "decoration",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "None",
+                                  "value": "none"
+                                },
+                                {
+                                  "label": "Overline",
+                                  "value": "overline"
+                                },
+                                {
+                                  "label": "Line through",
+                                  "value": "line-through"
+                                },
+                                {
+                                  "label": "Underline",
+                                  "value": "underline"
+                                }
+                              ],
+                              "header": "Decoration",
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "font-style",
+                              "type": "checkbox-property",
+                              "header": "Font styles",
+                              "options": [
+                                {
+                                  "label": "Bold",
+                                  "name": "bold"
+                                },
+                                {
+                                  "label": "Italic",
+                                  "name": "italic"
+                                }
+                              ],
+                              "value": {
+                                "bold": false,
+                                "italic": false
+                              },
+                              "inGroup": true
+                            },
+                            {
+                              "key": "alignment",
+                              "header": "Alignment",
+                              "type": "select-button",
+                              "options": [
+                                {
+                                  "label": "Left",
+                                  "value": "left"
+                                },
+                                {
+                                  "label": "Center",
+                                  "value": "center"
+                                },
+                                {
+                                  "label": "Right",
+                                  "value": "right"
+                                }
+                              ],
+                              "value": "left",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "In form",
+                              "name": "inForm"
+                            }
+                          ],
+                          "value": {
+                            "inForm": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Mail & User"
+                    },
+                    {
+                      "key": "variable",
+                      "header": "Variable name",
+                      "type": "input-text-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "header",
+                      "header": "Header",
+                      "type": "input-text-property",
+                      "value": "Mail & User"
+                    },
+                    {
+                      "key": "width",
+                      "header": "Width",
+                      "type": "input-text-property",
+                      "value": "auto"
+                    },
+                    {
+                      "key": "content-direction",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "row",
+                          "value": "row"
+                        },
+                        {
+                          "label": "column",
+                          "value": "column"
+                        }
+                      ],
+                      "header": "Content direction",
+                      "value": "row"
+                    },
+                    {
+                      "key": "justify-content",
+                      "header": "Justify content",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Unset",
+                          "value": "unset"
+                        },
+                        {
+                          "label": "Start",
+                          "value": "flex-start"
+                        },
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "End",
+                          "value": "flex-end"
+                        }
+                      ],
+                      "value": "center"
+                    },
+                    {
+                      "key": "align-items",
+                      "header": "Align items",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Unset",
+                          "value": "unset"
+                        },
+                        {
+                          "label": "Start",
+                          "value": "flex-start"
+                        },
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "End",
+                          "value": "flex-end"
+                        }
+                      ],
+                      "value": ""
+                    },
+                    {
+                      "key": "filter-type",
+                      "header": "Filter Type",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "No Filter",
+                          "value": "none"
+                        },
+                        {
+                          "label": "Text",
+                          "value": "text"
+                        },
+                        {
+                          "label": "Select",
+                          "value": "select"
+                        }
+                      ],
+                      "value": "none"
+                    },
+                    {
+                      "key": "filter-select",
+                      "header": "Filter Select Options",
+                      "type": "textarea-property",
+                      "value": [],
+                      "conditions": [
+                        {
+                          "key": "filter-type",
+                          "rule": "value=='select'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "settings",
+                      "header": "Settings",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Hide in mobile",
+                          "name": "hideInMobile"
+                        }
+                      ],
+                      "value": {
+                        "hideInMobile": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "table-column",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "form-container",
+                      "isContainer": true,
+                      "children": [
+                        {
+                          "type": "button",
+                          "isContainer": false,
+                          "properties": [
+                            {
+                              "key": "display-name",
+                              "header": "Display name",
+                              "type": "input-text-property",
+                              "value": "Kaldır"
+                            },
+                            {
+                              "key": "id",
+                              "header": "Button ID",
+                              "type": "input-text-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "classes",
+                              "header": "Classes",
+                              "type": "textarea-property",
+                              "value": ""
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "Kaldır",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "severity",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Primary",
+                                  "value": "p-button-default"
+                                },
+                                {
+                                  "label": "Secondary",
+                                  "value": "p-button-secondary"
+                                },
+                                {
+                                  "label": "Success",
+                                  "value": "p-button-success"
+                                },
+                                {
+                                  "label": "Info",
+                                  "value": "p-button-info"
+                                },
+                                {
+                                  "label": "Warning",
+                                  "value": "p-button-warning"
+                                },
+                                {
+                                  "label": "Help",
+                                  "value": "p-button-help"
+                                },
+                                {
+                                  "label": "Danger",
+                                  "value": "p-button-danger"
+                                }
+                              ],
+                              "header": "Severity",
+                              "value": "p-button-default"
+                            },
+                            {
+                              "key": "size",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Small",
+                                  "value": "p-button-sm"
+                                },
+                                {
+                                  "label": "Normal",
+                                  "value": "p-button"
+                                },
+                                {
+                                  "label": "Large",
+                                  "value": "p-button-lg"
+                                }
+                              ],
+                              "header": "Size",
+                              "value": "p-button-sm"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "icon-position",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Left",
+                                  "value": "left"
+                                },
+                                {
+                                  "label": "Right",
+                                  "value": "right"
+                                }
+                              ],
+                              "header": "Icon position",
+                              "value": "left",
+                              "conditions": [
+                                {
+                                  "key": "settings",
+                                  "rule": "value.hasIcon"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "auto"
+                            },
+                            {
+                              "key": "action",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Submit",
+                                  "value": "submit"
+                                },
+                                {
+                                  "label": "Save",
+                                  "value": "save"
+                                },
+                                {
+                                  "label": "Link",
+                                  "value": "link"
+                                },
+                                {
+                                  "label": "Route",
+                                  "value": "route"
+                                },
+                                {
+                                  "label": "Route back",
+                                  "value": "back"
+                                },
+                                {
+                                  "label": "Download",
+                                  "value": "download"
+                                },
+                                {
+                                  "label": "Add",
+                                  "value": "add"
+                                },
+                                {
+                                  "label": "Edit",
+                                  "value": "edit"
+                                },
+                                {
+                                  "label": "Custom",
+                                  "value": "custom"
+                                },
+                                {
+                                  "label": "Modal Close",
+                                  "value": "closeModal"
+                                }
+                              ],
+                              "header": "Action",
+                              "value": "submit"
+                            },
+                            {
+                              "key": "formKey",
+                              "header": "Form Key",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'save'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url",
+                              "header": "Url",
+                              "type": "textarea-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "query-params",
+                              "header": "Query Params",
+                              "type": "code-editor",
+                              "value": "{\n\n}",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'route'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "filename",
+                              "header": "Filename",
+                              "type": "input-text-property",
+                              "value": "",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'download'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "url-targer",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "_self",
+                                  "value": "_self"
+                                },
+                                {
+                                  "label": "_blank",
+                                  "value": "_blank"
+                                }
+                              ],
+                              "header": "Target",
+                              "value": "_self",
+                              "conditions": [
+                                {
+                                  "key": "action",
+                                  "rule": "value == 'link'"
+                                }
+                              ]
+                            },
+                            {
+                              "key": "styles",
+                              "header": "Styles",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "font-style",
+                                  "type": "checkbox-property",
+                                  "header": "Font styles",
+                                  "options": [
+                                    {
+                                      "label": "Bold",
+                                      "name": "bold"
+                                    },
+                                    {
+                                      "label": "Italic",
+                                      "name": "italic"
+                                    }
+                                  ],
+                                  "value": {
+                                    "bold": false,
+                                    "italic": false
+                                  },
+                                  "inGroup": true
+                                }
+                              ]
+                            },
+                            {
+                              "key": "addEditButton",
+                              "header": "Add Or Edit Button",
+                              "type": "group-property",
+                              "children": [
+                                {
+                                  "key": "type",
+                                  "type": "select-property",
+                                  "header": "Type",
+                                  "options": [
+                                    {
+                                      "label": "None",
+                                      "value": "none"
+                                    },
+                                    {
+                                      "label": "Add",
+                                      "value": "add"
+                                    },
+                                    {
+                                      "label": "Edit",
+                                      "value": "edit"
+                                    }
+                                  ],
+                                  "value": "none",
+                                  "inGroup": true
+                                },
+                                []
+                              ]
+                            },
+                            {
+                              "key": "spacings",
+                              "header": "Spacings",
+                              "type": "spacings",
+                              "unit": "px",
+                              "margins": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "paddings": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "key": "settings",
+                              "type": "checkbox-property",
+                              "header": "Settings",
+                              "options": [
+                                {
+                                  "label": "In form",
+                                  "name": "inForm"
+                                },
+                                {
+                                  "label": "Has icon",
+                                  "name": "hasIcon"
+                                },
+                                {
+                                  "label": "Rounded",
+                                  "name": "rounded"
+                                },
+                                {
+                                  "label": "Has shadow",
+                                  "name": "hasShadow"
+                                },
+                                {
+                                  "label": "Has outline",
+                                  "name": "hasOutline"
+                                },
+                                {
+                                  "label": "Text button",
+                                  "name": "textButton"
+                                },
+                                {
+                                  "label": "Disabled",
+                                  "name": "disabled"
+                                }
+                              ],
+                              "value": {
+                                "inForm": true,
+                                "hasIcon": false,
+                                "rounded": false,
+                                "hasShadow": false,
+                                "hasOutline": false,
+                                "textButton": false,
+                                "disabled": false
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "New Form Container 2"
+                        },
+                        {
+                          "key": "formId",
+                          "header": "Form ID",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "submitId",
+                          "header": "Submit Button ID",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "key",
+                          "header": "Key",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.expose"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "action",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Add",
+                              "value": "add"
+                            },
+                            {
+                              "label": "Get",
+                              "value": "get"
+                            },
+                            {
+                              "label": "Update",
+                              "value": "update"
+                            },
+                            {
+                              "label": "Custom",
+                              "value": "custom"
+                            },
+                            {
+                              "label": "Delete",
+                              "value": "delete"
+                            },
+                            {
+                              "label": "Hard delete",
+                              "value": "hardDelete"
+                            }
+                          ],
+                          "header": "Action",
+                          "value": "custom"
+                        },
+                        {
+                          "key": "custom-function-name",
+                          "header": "Custom function name",
+                          "type": "input-text-property",
+                          "value": "mailRecipients",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'custom'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "table-name",
+                          "header": "Table name",
+                          "type": "input-text-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value != 'custom'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "field-id",
+                          "header": "Field id",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'update'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "hidden-values",
+                          "header": "Hidden values",
+                          "type": "code-editor",
+                          "value": "{\n \"oprType\": \"removeRecipient\",\n \"_id\":\"{{params._id}}\",\n \"recipient\":\"{{input.value}}\"\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "table-filters",
+                          "header": "Table filters",
+                          "type": "code-editor",
+                          "value": "{\n\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'custom'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "on-success",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Reset form",
+                              "value": "reset"
+                            },
+                            {
+                              "label": "Route",
+                              "value": "route"
+                            },
+                            {
+                              "label": "Redirect",
+                              "value": "redirect"
+                            },
+                            {
+                              "label": "Nothing",
+                              "value": "nothing"
+                            }
+                          ],
+                          "header": "On success",
+                          "value": "reset"
+                        },
+                        {
+                          "key": "url",
+                          "header": "Url",
+                          "type": "textarea-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "on-success",
+                              "rule": "value == 'redirect' || value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "query-params",
+                          "header": "Query Params",
+                          "type": "code-editor",
+                          "value": "{\n\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "on-success",
+                              "rule": "value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "response-name",
+                          "header": "Response name",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "on-success-message",
+                          "header": "On success message",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "header",
+                              "header": "Header",
+                              "type": "input-text-property",
+                              "value": "",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "popUp",
+                              "header": "Pop Up View",
+                              "type": "checkbox-property",
+                              "options": [
+                                {
+                                  "label": "Enable",
+                                  "name": "popUpView"
+                                }
+                              ],
+                              "value": {
+                                "popUpView": false
+                              },
+                              "inGroup": true
+                            },
+                            {
+                              "key": "life",
+                              "header": "Life",
+                              "type": "input-number-property",
+                              "value": 3000,
+                              "min": 0,
+                              "inGroup": true
+                            },
+                            {
+                              "key": "severity",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "Success",
+                                  "value": "success"
+                                },
+                                {
+                                  "label": "Info",
+                                  "value": "info"
+                                },
+                                {
+                                  "label": "Warning",
+                                  "value": "warn"
+                                },
+                                {
+                                  "label": "Error",
+                                  "value": "error"
+                                }
+                              ],
+                              "header": "Severity",
+                              "value": "success",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "confirm",
+                          "header": "Confirm",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "header",
+                              "header": "Header",
+                              "type": "input-text-property",
+                              "value": "Uyarı",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "content",
+                              "header": "Content",
+                              "type": "textarea-property",
+                              "value": "Bu kullanıcı kaldırmak istediğinizden emin misiniz ?",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "accept",
+                              "header": "Accept",
+                              "type": "input-text-property",
+                              "value": "Evet",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "reject",
+                              "header": "Reject",
+                              "type": "input-text-property",
+                              "value": "Hayır",
+                              "autoComplete": true,
+                              "autoCompleteMode": "template",
+                              "inGroup": true
+                            }
+                          ],
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasConfirm"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "upload-title",
+                          "header": "File upload title",
+                          "type": "input-text-property",
+                          "value": "Dosyalar yükleniyor..."
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "Hidden",
+                              "name": "hidden"
+                            },
+                            {
+                              "label": "Has confirm",
+                              "name": "hasConfirm"
+                            },
+                            {
+                              "label": "Debug",
+                              "name": "debug"
+                            },
+                            {
+                              "label": "Debug response",
+                              "name": "debugResponse"
+                            },
+                            {
+                              "label": "Expose",
+                              "name": "expose"
+                            },
+                            {
+                              "label": "At Least Required Fields",
+                              "name": "minReqFields"
+                            }
+                          ],
+                          "value": {
+                            "hidden": true,
+                            "hasConfirm": true,
+                            "debug": false,
+                            "debugResponse": false,
+                            "expose": false,
+                            "minReqFields": false
+                          }
+                        },
+                        {
+                          "key": "reqFieldsArr",
+                          "header": "At least Req fields",
+                          "type": "textarea-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.minReqFields"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "atLeastError",
+                          "header": "On Fill At Least Msg",
+                          "type": "group-property",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.minReqFields"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "key": "header",
+                              "header": "Header",
+                              "type": "input-text-property",
+                              "value": "",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "text",
+                              "header": "Text",
+                              "type": "textarea-property",
+                              "value": "",
+                              "inGroup": true
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "İşlemler"
+                    },
+                    {
+                      "key": "variable",
+                      "header": "Variable name",
+                      "type": "input-text-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "header",
+                      "header": "Header",
+                      "type": "input-text-property",
+                      "value": "İşlemler"
+                    },
+                    {
+                      "key": "width",
+                      "header": "Width",
+                      "type": "input-text-property",
+                      "value": "auto"
+                    },
+                    {
+                      "key": "content-direction",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "row",
+                          "value": "row"
+                        },
+                        {
+                          "label": "column",
+                          "value": "column"
+                        }
+                      ],
+                      "header": "Content direction",
+                      "value": "row"
+                    },
+                    {
+                      "key": "justify-content",
+                      "header": "Justify content",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Unset",
+                          "value": "unset"
+                        },
+                        {
+                          "label": "Start",
+                          "value": "flex-start"
+                        },
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "End",
+                          "value": "flex-end"
+                        }
+                      ],
+                      "value": "center"
+                    },
+                    {
+                      "key": "align-items",
+                      "header": "Align items",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Unset",
+                          "value": "unset"
+                        },
+                        {
+                          "label": "Start",
+                          "value": "flex-start"
+                        },
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "End",
+                          "value": "flex-end"
+                        }
+                      ],
+                      "value": ""
+                    },
+                    {
+                      "key": "filter-type",
+                      "header": "Filter Type",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "No Filter",
+                          "value": "none"
+                        },
+                        {
+                          "label": "Text",
+                          "value": "text"
+                        },
+                        {
+                          "label": "Select",
+                          "value": "select"
+                        }
+                      ],
+                      "value": "none"
+                    },
+                    {
+                      "key": "filter-select",
+                      "header": "Filter Select Options",
+                      "type": "textarea-property",
+                      "value": [],
+                      "conditions": [
+                        {
+                          "key": "filter-type",
+                          "rule": "value=='select'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "settings",
+                      "header": "Settings",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Hide in mobile",
+                          "name": "hideInMobile"
+                        }
+                      ],
+                      "value": {
+                        "hideInMobile": false
+                      }
+                    }
+                  ]
+                }
+              ],
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "New Simple Table 1"
+                },
+                {
+                  "key": "classes",
+                  "header": "Classes",
+                  "type": "textarea-property",
+                  "value": ""
+                },
+                {
+                  "key": "mode",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Data source",
+                      "value": "dataSource"
+                    },
+                    {
+                      "label": "Varible",
+                      "value": "variable"
+                    }
+                  ],
+                  "header": "Mode",
+                  "value": "variable"
+                },
+                {
+                  "key": "variable",
+                  "header": "Variable",
+                  "type": "input-text-property",
+                  "value": "mailRecipients.recipients",
+                  "autoComplete": true,
+                  "autoCompleteMode": "variable",
+                  "conditions": [
+                    {
+                      "key": "mode",
+                      "rule": "value == 'variable'"
+                    }
+                  ]
+                },
+                {
+                  "key": "data-source",
+                  "header": "Data source",
+                  "type": "input-text-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "source",
+                  "conditions": [
+                    {
+                      "key": "mode",
+                      "rule": "value == 'dataSource'"
+                    }
+                  ]
+                },
+                {
+                  "key": "empty-message",
+                  "header": "Empty message",
+                  "type": "input-text-property",
+                  "value": ""
+                },
+                {
+                  "key": "paginator-position",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Bottom",
+                      "value": "bottom"
+                    },
+                    {
+                      "label": "Top",
+                      "value": "top"
+                    },
+                    {
+                      "label": "Both",
+                      "value": "both"
+                    }
+                  ],
+                  "header": "Paginator position",
+                  "value": "bottom",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.pagination"
+                    }
+                  ]
+                },
+                {
+                  "key": "row-count",
+                  "header": "Row count",
+                  "type": "input-number-property",
+                  "value": 25,
+                  "min": 0
+                },
+                {
+                  "key": "alignment",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Left",
+                      "value": "left"
+                    },
+                    {
+                      "label": "Center",
+                      "value": "center"
+                    },
+                    {
+                      "label": "Right",
+                      "value": "right"
+                    }
+                  ],
+                  "header": "Alignment",
+                  "value": "center"
+                },
+                {
+                  "key": "reorder-table",
+                  "header": "Reorder table",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.reorder"
+                    }
+                  ]
+                },
+                {
+                  "key": "settings",
+                  "type": "checkbox-property",
+                  "header": "Settings",
+                  "options": [
+                    {
+                      "label": "Pagination",
+                      "name": "pagination"
+                    },
+                    {
+                      "label": "Sorting",
+                      "name": "sorting"
+                    },
+                    {
+                      "label": "Reorder",
+                      "name": "reorder"
+                    }
+                  ],
+                  "value": {
+                    "pagination": false,
+                    "sorting": false,
+                    "reorder": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": "simple-container",
+              "isContainer": true,
+              "children": [
+                {
+                  "type": "render-template",
+                  "isContainer": false,
+                  "isTextEditor": true,
+                  "content": "<div class=\"mr-add-head\">\n  <div class=\"mr-add-head__icon\"><i class=\"pi pi-user-plus\"></i></div>\n  <div>\n    <h3>Yeni alıcı ekle</h3>\n    <p>E-posta adresi veya kullanıcı adı girin.</p>\n  </div>\n</div>",
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Alıcı ekle başlık"
+                    }
+                  ]
+                },
+                {
+                  "type": "form-container",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "input-text",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Alıcı"
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "name",
+                          "header": "Name",
+                          "type": "input-text-property",
+                          "value": "recipient"
+                        },
+                        {
+                          "key": "label",
+                          "header": "Label",
+                          "type": "input-text-property",
+                          "value": "Alıcı",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "!value.inContainer"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "mask",
+                          "header": "Mask",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "placeholder",
+                          "header": "Placeholder",
+                          "type": "input-text-property",
+                          "value": "ornek@thegalliard.com",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "default-value",
+                          "header": "Default value",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "icon",
+                          "header": "Icon",
+                          "type": "input-text-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "icon-position",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Left",
+                              "value": "left"
+                            },
+                            {
+                              "label": "Right",
+                              "value": "right"
+                            }
+                          ],
+                          "header": "Icon position",
+                          "value": "left",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "width",
+                          "header": "Width",
+                          "type": "input-text-property",
+                          "value": "40%"
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        },
+                        {
+                          "key": "validators",
+                          "header": "Validators",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "options",
+                              "type": "checkbox-property",
+                              "header": "Options",
+                              "options": [
+                                {
+                                  "label": "Required",
+                                  "name": "required"
+                                },
+                                {
+                                  "label": "Email",
+                                  "name": "email"
+                                },
+                                {
+                                  "label": "RegExp",
+                                  "name": "regExp"
+                                },
+                                {
+                                  "label": "Min Length",
+                                  "name": "minLenght"
+                                },
+                                {
+                                  "label": "Max Length",
+                                  "name": "maxLenght"
+                                }
+                              ],
+                              "value": {
+                                "required": false,
+                                "email": false,
+                                "regExp": false,
+                                "minLenght": false,
+                                "maxLenght": false
+                              },
+                              "inGroup": true
+                            },
+                            {
+                              "key": "required-text",
+                              "header": "Required text",
+                              "type": "input-text-property",
+                              "value": "Bu alan gereklidir",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.required"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "email-text",
+                              "header": "Email text",
+                              "type": "input-text-property",
+                              "value": "Geçersiz email formatı",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.email"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "regexp-pattern",
+                              "header": "RegExp pattern",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.regExp"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "regexp-text",
+                              "header": "RegExp text",
+                              "type": "input-text-property",
+                              "value": "Geçersiz format",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.regExp"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "min-length",
+                              "header": "Min length",
+                              "type": "input-number-property",
+                              "value": 1,
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.minLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "min-length-text",
+                              "header": "Min length text",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.minLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "max-length",
+                              "header": "Max length",
+                              "type": "input-number-property",
+                              "value": 100,
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.maxLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "max-length-text",
+                              "header": "Max length text",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.maxLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "Disabled",
+                              "name": "disabled"
+                            },
+                            {
+                              "label": "Readonly",
+                              "name": "readonly"
+                            },
+                            {
+                              "label": "Has icon",
+                              "name": "hasIcon"
+                            },
+                            {
+                              "label": "In container",
+                              "name": "inContainer"
+                            }
+                          ],
+                          "value": {
+                            "inContainer": false,
+                            "disabled": false,
+                            "readonly": false,
+                            "hasIcon": false
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Alıcı Ekle"
+                        },
+                        {
+                          "key": "id",
+                          "header": "Button ID",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "Alıcı Ekle",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "severity",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Primary",
+                              "value": "p-button-default"
+                            },
+                            {
+                              "label": "Secondary",
+                              "value": "p-button-secondary"
+                            },
+                            {
+                              "label": "Success",
+                              "value": "p-button-success"
+                            },
+                            {
+                              "label": "Info",
+                              "value": "p-button-info"
+                            },
+                            {
+                              "label": "Warning",
+                              "value": "p-button-warning"
+                            },
+                            {
+                              "label": "Help",
+                              "value": "p-button-help"
+                            },
+                            {
+                              "label": "Danger",
+                              "value": "p-button-danger"
+                            }
+                          ],
+                          "header": "Severity",
+                          "value": ""
+                        },
+                        {
+                          "key": "size",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Small",
+                              "value": "p-button-sm"
+                            },
+                            {
+                              "label": "Normal",
+                              "value": "p-button"
+                            },
+                            {
+                              "label": "Large",
+                              "value": "p-button-lg"
+                            }
+                          ],
+                          "header": "Size",
+                          "value": ""
+                        },
+                        {
+                          "key": "icon",
+                          "header": "Icon",
+                          "type": "input-text-property",
+                          "value": "pi pi-check",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "icon-position",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Left",
+                              "value": "left"
+                            },
+                            {
+                              "label": "Right",
+                              "value": "right"
+                            }
+                          ],
+                          "header": "Icon position",
+                          "value": "left",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.hasIcon"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "width",
+                          "header": "Width",
+                          "type": "input-text-property",
+                          "value": "auto"
+                        },
+                        {
+                          "key": "action",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Submit",
+                              "value": "submit"
+                            },
+                            {
+                              "label": "Save",
+                              "value": "save"
+                            },
+                            {
+                              "label": "Link",
+                              "value": "link"
+                            },
+                            {
+                              "label": "Route",
+                              "value": "route"
+                            },
+                            {
+                              "label": "Route back",
+                              "value": "back"
+                            },
+                            {
+                              "label": "Download",
+                              "value": "download"
+                            },
+                            {
+                              "label": "Add",
+                              "value": "add"
+                            },
+                            {
+                              "label": "Edit",
+                              "value": "edit"
+                            },
+                            {
+                              "label": "Custom",
+                              "value": "custom"
+                            },
+                            {
+                              "label": "Modal Close",
+                              "value": "closeModal"
+                            }
+                          ],
+                          "header": "Action",
+                          "value": "submit"
+                        },
+                        {
+                          "key": "formKey",
+                          "header": "Form Key",
+                          "type": "input-text-property",
+                          "value": "",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'save'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "url",
+                          "header": "Url",
+                          "type": "textarea-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "query-params",
+                          "header": "Query Params",
+                          "type": "code-editor",
+                          "value": "{\n\n}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'route'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "filename",
+                          "header": "Filename",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'download'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "url-targer",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "_self",
+                              "value": "_self"
+                            },
+                            {
+                              "label": "_blank",
+                              "value": "_blank"
+                            }
+                          ],
+                          "header": "Target",
+                          "value": "_self",
+                          "conditions": [
+                            {
+                              "key": "action",
+                              "rule": "value == 'link'"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "styles",
+                          "header": "Styles",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "font-style",
+                              "type": "checkbox-property",
+                              "header": "Font styles",
+                              "options": [
+                                {
+                                  "label": "Bold",
+                                  "name": "bold"
+                                },
+                                {
+                                  "label": "Italic",
+                                  "name": "italic"
+                                }
+                              ],
+                              "value": {
+                                "bold": false,
+                                "italic": false
+                              },
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "addEditButton",
+                          "header": "Add Or Edit Button",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "type",
+                              "type": "select-property",
+                              "header": "Type",
+                              "options": [
+                                {
+                                  "label": "None",
+                                  "value": "none"
+                                },
+                                {
+                                  "label": "Add",
+                                  "value": "add"
+                                },
+                                {
+                                  "label": "Edit",
+                                  "value": "edit"
+                                }
+                              ],
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            []
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "In form",
+                              "name": "inForm"
+                            },
+                            {
+                              "label": "Has icon",
+                              "name": "hasIcon"
+                            },
+                            {
+                              "label": "Rounded",
+                              "name": "rounded"
+                            },
+                            {
+                              "label": "Has shadow",
+                              "name": "hasShadow"
+                            },
+                            {
+                              "label": "Has outline",
+                              "name": "hasOutline"
+                            },
+                            {
+                              "label": "Text button",
+                              "name": "textButton"
+                            },
+                            {
+                              "label": "Disabled",
+                              "name": "disabled"
+                            }
+                          ],
+                          "value": {
+                            "inForm": true,
+                            "hasIcon": true,
+                            "rounded": false,
+                            "hasShadow": false,
+                            "hasOutline": false,
+                            "textButton": false,
+                            "disabled": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Mail alıcı güncelleme formu"
+                    },
+                    {
+                      "key": "formId",
+                      "header": "Form ID",
+                      "type": "input-text-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "submitId",
+                      "header": "Submit Button ID",
+                      "type": "input-text-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "key",
+                      "header": "Key",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.expose"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "action",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Add",
+                          "value": "add"
+                        },
+                        {
+                          "label": "Get",
+                          "value": "get"
+                        },
+                        {
+                          "label": "Update",
+                          "value": "update"
+                        },
+                        {
+                          "label": "Custom",
+                          "value": "custom"
+                        },
+                        {
+                          "label": "Delete",
+                          "value": "delete"
+                        },
+                        {
+                          "label": "Hard delete",
+                          "value": "hardDelete"
+                        }
+                      ],
+                      "header": "Action",
+                      "value": "custom"
+                    },
+                    {
+                      "key": "custom-function-name",
+                      "header": "Custom function name",
+                      "type": "input-text-property",
+                      "value": "mailRecipients",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'custom'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "table-name",
+                      "header": "Table name",
+                      "type": "input-text-property",
+                      "value": "mailRecipients",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value != 'custom'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "field-id",
+                      "header": "Field id",
+                      "type": "input-text-property",
+                      "value": "{{mailRecipients._id}}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'update'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "hidden-values",
+                      "header": "Hidden values",
+                      "type": "code-editor",
+                      "value": "{\n  \"oprType\": \"addRecipient\",\n  \"_id\": \"{{params._id}}\"\n}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "table-filters",
+                      "header": "Table filters",
+                      "type": "code-editor",
+                      "value": "{\n\n}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'custom'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "on-success",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Reset form",
+                          "value": "reset"
+                        },
+                        {
+                          "label": "Route",
+                          "value": "route"
+                        },
+                        {
+                          "label": "Redirect",
+                          "value": "redirect"
+                        },
+                        {
+                          "label": "Nothing",
+                          "value": "nothing"
+                        }
+                      ],
+                      "header": "On success",
+                      "value": "route"
+                    },
+                    {
+                      "key": "url",
+                      "header": "Url",
+                      "type": "textarea-property",
+                      "value": "/d/mail-alici-duzenle",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "on-success",
+                          "rule": "value == 'redirect' || value == 'route'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "query-params",
+                      "header": "Query Params",
+                      "type": "code-editor",
+                      "value": "{\n    \"_id\": \"{{params._id}}\"\n}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "on-success",
+                          "rule": "value == 'route'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "response-name",
+                      "header": "Response name",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "on-success-message",
+                      "header": "On success message",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "header",
+                          "header": "Header",
+                          "type": "input-text-property",
+                          "value": "Başarılı",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "Mail alıcıları güncellendi.",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "popUp",
+                          "header": "Pop Up View",
+                          "type": "checkbox-property",
+                          "options": [
+                            {
+                              "label": "Enable",
+                              "name": "popUpView"
+                            }
+                          ],
+                          "value": {
+                            "popUpView": true
+                          },
+                          "inGroup": true
+                        },
+                        {
+                          "key": "life",
+                          "header": "Life",
+                          "type": "input-number-property",
+                          "value": 3000,
+                          "min": 0,
+                          "inGroup": true
+                        },
+                        {
+                          "key": "severity",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Success",
+                              "value": "success"
+                            },
+                            {
+                              "label": "Info",
+                              "value": "info"
+                            },
+                            {
+                              "label": "Warning",
+                              "value": "warn"
+                            },
+                            {
+                              "label": "Error",
+                              "value": "error"
+                            }
+                          ],
+                          "header": "Severity",
+                          "value": "success",
+                          "inGroup": true
+                        }
+                      ]
+                    },
+                    {
+                      "key": "confirm",
+                      "header": "Confirm",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "header",
+                          "header": "Header",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "content",
+                          "header": "Content",
+                          "type": "textarea-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "accept",
+                          "header": "Accept",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "reject",
+                          "header": "Reject",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "inGroup": true
+                        }
+                      ],
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.hasConfirm"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "upload-title",
+                      "header": "File upload title",
+                      "type": "input-text-property",
+                      "value": "Dosyalar yükleniyor..."
+                    },
+                    {
+                      "key": "settings",
+                      "type": "checkbox-property",
+                      "header": "Settings",
+                      "options": [
+                        {
+                          "label": "Hidden",
+                          "name": "hidden"
+                        },
+                        {
+                          "label": "Has confirm",
+                          "name": "hasConfirm"
+                        },
+                        {
+                          "label": "Debug",
+                          "name": "debug"
+                        },
+                        {
+                          "label": "Debug response",
+                          "name": "debugResponse"
+                        },
+                        {
+                          "label": "Expose",
+                          "name": "expose"
+                        },
+                        {
+                          "label": "At Least Required Fields",
+                          "name": "minReqFields"
+                        }
+                      ],
+                      "value": {
+                        "hidden": false,
+                        "hasConfirm": false,
+                        "debug": false,
+                        "debugResponse": false,
+                        "expose": false,
+                        "minReqFields": false
+                      }
+                    },
+                    {
+                      "key": "reqFieldsArr",
+                      "header": "At least Req fields",
+                      "type": "textarea-property",
+                      "value": "",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.minReqFields"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "atLeastError",
+                      "header": "On Fill At Least Msg",
+                      "type": "group-property",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.minReqFields"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "key": "header",
+                          "header": "Header",
+                          "type": "input-text-property",
+                          "value": "",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "text",
+                          "header": "Text",
+                          "type": "textarea-property",
+                          "value": "",
+                          "inGroup": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Alıcı ekle kartı"
+                },
+                {
+                  "key": "classes",
+                  "header": "Classes",
+                  "type": "textarea-property",
+                  "value": "mr-add-recipient-card"
+                },
+                {
+                  "key": "styles",
+                  "header": "Styles",
+                  "type": "code-editor",
+                  "value": "{\n\n}"
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Alıcı formu kartı"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": "mr-edit__form-card",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "styles",
+              "header": "Styles",
+              "type": "code-editor",
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Mail Alıcı Düzenle Layout"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": "mr-page",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "styles",
+          "header": "Styles",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        }
+      ]
+    }
+  ],
+  "styles": "/* Mail alıcıları — panel standart paleti (ass/dr ile uyumlu) */\n.mr-page {\n  --mr-primary: #4557a3;\n  --mr-primary-mid: #5b6fd6;\n  --mr-primary-light: #7c8ce8;\n  --mr-indigo-mid: #c7d2fe;\n  --mr-surface: #ffffff;\n  --mr-text: #0f172a;\n  --mr-muted: #475569;\n  --mr-border: #e2e8f0;\n  --mr-radius: 14px;\n  --mr-shadow: 0 4px 20px rgba(69, 87, 163, 0.12);\n  --mr-shadow-soft: 0 2px 12px rgba(69, 87, 163, 0.08);\n\n  width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  padding: 1.25rem 1rem 2.5rem;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  color: var(--mr-text);\n  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);\n  box-sizing: border-box;\n}\n\n.mr-page *,\n.mr-page *::before,\n.mr-page *::after {\n  box-sizing: border-box;\n}\n\n.mr-page .mr__hero {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 1.35rem;\n  padding: 1.35rem 1.5rem;\n  border-radius: var(--mr-radius);\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 52%, #7c8ce8 100%);\n  color: #fff;\n  box-shadow: 0 14px 36px rgba(69, 87, 163, 0.32);\n}\n\n.mr-page .mr__hero-main {\n  min-width: 0;\n}\n\n.mr-page .mr__eyebrow {\n  display: inline-block;\n  margin-bottom: 0.4rem;\n  padding: 0.2rem 0.55rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.18);\n  border: 1px solid rgba(255, 255, 255, 0.28);\n  font-size: 0.66rem;\n  font-weight: 800;\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n  color: #fff;\n}\n\n.mr-page .mr__hero h1 {\n  margin: 0 0 0.3rem;\n  font-size: clamp(1.1rem, 2.2vw, 1.45rem);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n  color: #fff;\n}\n\n.mr-page .mr__hero p {\n  margin: 0;\n  font-size: 0.9rem;\n  color: rgba(255, 255, 255, 0.92);\n  line-height: 1.45;\n  font-weight: 500;\n}\n\n.mr-page .mr__count {\n  flex-shrink: 0;\n  padding: 0.45rem 0.85rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.28);\n  font-size: 0.8rem;\n  font-weight: 700;\n  color: #fff;\n}\n\n.mr-page .mr-section {\n  margin-bottom: 1.5rem;\n}\n\n.mr-page .mr-section__title {\n  margin: 0 0 0.75rem;\n  font-size: 0.78rem;\n  font-weight: 800;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: var(--mr-muted);\n}\n\n.mr-page .mr-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));\n  gap: 1rem;\n}\n\n.mr-page .mr-card {\n  position: relative;\n  background: var(--mr-surface);\n  border: 1px solid var(--mr-border);\n  border-radius: var(--mr-radius);\n  box-shadow: var(--mr-shadow-soft);\n  padding: 1rem 1.1rem;\n  display: flex;\n  flex-direction: column;\n  gap: 0.75rem;\n  overflow: hidden;\n}\n\n.mr-page .mr-card::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 4px;\n  background: linear-gradient(90deg, #4557a3 0%, #5b6fd6 55%, #7c8ce8 100%);\n}\n\n.mr-page .mr-card__head {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 0.75rem;\n  margin-top: 0.15rem;\n}\n\n.mr-page .mr-card__title {\n  margin: 0;\n  font-size: 1rem;\n  font-weight: 700;\n  line-height: 1.35;\n  color: var(--mr-text);\n}\n\n.mr-page .mr-card__badge {\n  flex-shrink: 0;\n  padding: 0.2rem 0.55rem;\n  border-radius: 999px;\n  font-size: 0.68rem;\n  font-weight: 700;\n  background: #eef2ff;\n  color: #4557a3;\n  border: 1px solid #c7d2fe;\n}\n\n.mr-page .mr-card__badge--inactive {\n  background: #fef2f2;\n  color: #b91c1c;\n  border-color: #fecaca;\n}\n\n.mr-page .mr-card__meta {\n  font-size: 0.78rem;\n  color: var(--mr-muted);\n  line-height: 1.4;\n}\n\n.mr-page .mr-card__meta code {\n  font-size: 0.72rem;\n  background: #f1f5f9;\n  padding: 0.1rem 0.35rem;\n  border-radius: 4px;\n  color: #334155;\n}\n\n.mr-page .mr-recipients {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  display: flex;\n  flex-direction: column;\n  gap: 0.35rem;\n}\n\n.mr-page .mr-recipients li {\n  display: flex;\n  align-items: center;\n  gap: 0.45rem;\n  font-size: 0.82rem;\n  color: #334155;\n}\n\n.mr-page .mr-recipients li i {\n  color: var(--mr-primary-mid);\n  font-size: 0.75rem;\n}\n\n.mr-page .mr-card__mode {\n  font-size: 0.75rem;\n  color: #4557a3;\n  background: #f8fafc;\n  border: 1px dashed #c7d2fe;\n  border-radius: 8px;\n  padding: 0.45rem 0.6rem;\n}\n\n.mr-page .mr-card__cta {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.4rem;\n  margin-top: auto;\n  padding: 0.5rem 0.85rem;\n  border-radius: 8px;\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%);\n  color: #fff !important;\n  text-decoration: none;\n  font-size: 0.82rem;\n  font-weight: 700;\n  width: fit-content;\n  border: 1px solid #4557a3;\n  box-shadow: 0 4px 14px rgba(69, 87, 163, 0.22);\n  transition: filter 0.15s ease, transform 0.15s ease;\n}\n\n.mr-page .mr-card__cta:hover {\n  filter: brightness(1.05);\n  transform: translateY(-1px);\n}\n\n.mr-page .mr-empty {\n  grid-column: 1 / -1;\n  text-align: center;\n  padding: 2.5rem 1rem;\n  color: var(--mr-muted);\n}\n\n.mr-page .mr-empty i {\n  font-size: 2rem;\n  margin-bottom: 0.5rem;\n  display: block;\n  opacity: 0.5;\n  color: var(--mr-primary-light);\n}\n\n/* Düzenle sayfası — tam genişlik, dengeli yatay boşluk */\n.mr-page.ass-page {\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n  padding: 1.25rem 1.25rem 2.5rem;\n}\n\n@media (min-width: 768px) {\n  .mr-page.ass-page {\n    padding: 1.5rem 1.75rem 2.75rem;\n  }\n}\n\n@media (min-width: 1200px) {\n  .mr-page.ass-page {\n    padding: 1.75rem 2rem 3rem;\n  }\n}\n\n.mr-edit {\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n}\n\n.mr-page .mr-edit__card {\n  background: var(--mr-surface);\n  border: 1px solid var(--mr-border);\n  border-radius: var(--mr-radius);\n  box-shadow: var(--mr-shadow-soft);\n  padding: 1.25rem 1.35rem;\n  margin-bottom: 0;\n}\n\n.mr-page .mr-edit__recipients-box {\n  margin: 0 0 0.65rem;\n  padding: 0.9rem 1rem;\n  background: #f8fafc;\n  border: 1px solid var(--mr-border);\n  border-radius: 10px;\n  font-size: 0.88rem;\n  line-height: 1.55;\n  color: #334155;\n  word-break: break-word;\n  white-space: pre-wrap;\n}\n\n.mr-page .mr-edit__recipients-empty {\n  color: var(--mr-muted);\n  font-style: italic;\n}\n\n.mr-page .mr-edit__label {\n  margin: 0 0 0.35rem;\n  font-size: 0.78rem;\n  font-weight: 700;\n  color: var(--mr-muted);\n  text-transform: uppercase;\n  letter-spacing: 0.04em;\n}\n\n.mr-page .mr-edit__value {\n  margin: 0 0 1rem;\n  font-size: 0.95rem;\n}\n\n.mr-page .mr-edit__hint {\n  margin: 0.5rem 0 0;\n  font-size: 0.78rem;\n  color: var(--mr-muted);\n  line-height: 1.45;\n}\n\n.mr-page .mr-back {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  margin-bottom: 1rem;\n  color: var(--mr-primary);\n  text-decoration: none;\n  font-size: 0.85rem;\n  font-weight: 600;\n}\n\n.mr-page .mr-back:hover {\n  color: var(--mr-primary-mid);\n}\n\n.mr-page .mr-edit__form-card {\n  margin-top: 1rem;\n  width: 100%;\n  max-width: 100%;\n  padding: 0;\n  background: var(--mr-surface);\n  border: 1px solid var(--mr-border);\n  border-radius: var(--mr-radius);\n  box-shadow: var(--mr-shadow-soft);\n  overflow: hidden;\n}\n\n.mr-page .mr-edit__form-card .mr-form-head {\n  margin-bottom: 0;\n  padding: 1.15rem 1.25rem;\n  border-bottom: 1px solid var(--mr-border);\n}\n\n/* Form — rol/hizmet sayfaları ile uyumlu */\n.mr-page .mr-edit__form-card .mr-form,\n.mr-page .mr-edit__form-card .form-container {\n  margin-top: 0;\n  padding: 0 1.25rem 1.25rem;\n  width: 100%;\n  max-width: 100%;\n  background: transparent;\n  border: none;\n  border-radius: 0;\n  box-shadow: none;\n}\n\n.mr-page .mr-form-head {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.85rem;\n  margin-bottom: 1rem;\n  padding-bottom: 0.85rem;\n  border-bottom: 1px solid var(--mr-border);\n}\n\n.mr-page .mr-form-head__icon {\n  flex-shrink: 0;\n  width: 2.5rem;\n  height: 2.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 10px;\n  background: #eef2ff;\n  color: var(--mr-primary);\n  font-size: 1.1rem;\n}\n\n.mr-page .mr-form-head h2 {\n  margin: 0 0 0.25rem;\n  font-size: 1rem;\n  font-weight: 700;\n  color: var(--mr-text);\n}\n\n.mr-page .mr-form-head p {\n  margin: 0;\n  font-size: 0.82rem;\n  color: var(--mr-muted);\n  line-height: 1.45;\n}\n\n.mr-page .mr-form-actions {\n  display: flex;\n  gap: 0.75rem;\n  margin-top: 1rem;\n}\n\n.mr-page .form-container .p-inputtext,\n.mr-page .mr-edit__form-card input.p-inputtext {\n  width: 100% !important;\n  max-width: 100% !important;\n}\n\n.mr-page .form-container textarea,\n.mr-page .form-container .p-inputtextarea {\n  border-color: #c7d2fe !important;\n  border-radius: 10px !important;\n}\n\n.mr-page .form-container textarea:focus,\n.mr-page .form-container .p-inputtextarea:focus {\n  border-color: var(--mr-primary) !important;\n  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;\n}\n\n.mr-page .form-container .p-button,\n.mr-page .form-container button.p-button {\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;\n  border-color: #4557a3 !important;\n  color: #fff !important;\n}\n\n.mr-page .form-container .p-button:hover,\n.mr-page .form-container button.p-button:hover {\n  filter: brightness(1.05);\n}\n\n/* Mail alıcı düzenle — form-array */\n.mr-page .mr-recipients-array {\n  width: 100%;\n  margin: 0.25rem 0 0.75rem;\n}\n\n.mr-page .mr-recipients-array .mr-recipient-row {\n  margin-bottom: 0.5rem;\n  padding: 0.65rem 0.85rem;\n  background: #f8fafc;\n  border: 1px solid var(--mr-border);\n  border-radius: 10px;\n}\n\n.mr-page .mr-recipients-array .mr-recipient-input,\n.mr-page .mr-recipients-array input.p-inputtext {\n  width: 100% !important;\n  max-width: 100% !important;\n  border-color: #c7d2fe !important;\n  border-radius: 10px !important;\n}\n\n.mr-page .mr-recipients-array .mr-recipient-input:focus,\n.mr-page .mr-recipients-array input.p-inputtext:focus {\n  border-color: var(--mr-primary) !important;\n  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;\n}\n\n.mr-page .mr-recipients-array label {\n  font-size: 0.78rem !important;\n  font-weight: 600 !important;\n  color: var(--mr-muted) !important;\n}\n\n/* Mail alıcı düzenle — custom ekle/sil (eski) */\n.mr-page .mr-recipients-empty {\n  margin: 0 0 0.75rem;\n  padding: 0.85rem 1rem;\n  border: 1px dashed var(--mr-border);\n  border-radius: 10px;\n  font-size: 0.85rem;\n  color: var(--mr-muted);\n  font-style: italic;\n  text-align: center;\n  background: #fafafa;\n}\n\n.mr-page .mr-recipients-loop {\n  display: flex;\n  flex-direction: column;\n  gap: 0.45rem;\n}\n\n.mr-page .mr-recipient-item-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.75rem;\n  padding: 0.55rem 0.75rem;\n  background: #f8fafc;\n  border: 1px solid var(--mr-border);\n  border-radius: 10px;\n}\n\n.mr-page .mr-recipient-item__email {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.45rem;\n  min-width: 0;\n  font-size: 0.88rem;\n  color: #334155;\n  word-break: break-word;\n}\n\n.mr-page .mr-recipient-item__email i {\n  flex-shrink: 0;\n  color: var(--mr-primary);\n  font-size: 0.8rem;\n}\n\n.mr-page .mr-recipient-remove-col {\n  flex-shrink: 0;\n}\n\n.mr-page .mr-recipient-remove-form {\n  margin: 0 !important;\n  padding: 0 !important;\n}\n\n.mr-page .mr-recipient-remove-form .form-container {\n  margin: 0 !important;\n  padding: 0 !important;\n  background: transparent !important;\n  border: none !important;\n  box-shadow: none !important;\n}\n\n.mr-page .mr-recipient-remove-form .p-button {\n  background: #fff !important;\n  border: 1px solid #fecaca !important;\n  color: #b91c1c !important;\n  font-size: 0.78rem !important;\n  font-weight: 600 !important;\n  padding: 0.35rem 0.65rem !important;\n  border-radius: 8px !important;\n}\n\n.mr-page .mr-recipient-remove-form .p-button:hover {\n  background: #fef2f2 !important;\n  border-color: #f87171 !important;\n  filter: none;\n}\n\n.mr-page .mr-recipient-add-form .form-container {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  gap: 0.65rem;\n  margin-top: 0;\n  padding: 0 0 1rem !important;\n  background: transparent !important;\n  border: none !important;\n  box-shadow: none !important;\n}\n\n.mr-page .mr-recipient-add-form .p-inputtext {\n  flex: 1 1 220px;\n  min-width: 0;\n}\n\n.mr-page .mr-recipient-add-form .p-button {\n  flex-shrink: 0;\n}\n\n/* mr-edit-extensions */\n/* Mail alıcı düzenle — tablo + ekle/sil formları */\n\n.mr-page .mr-edit__form-card > .simple-table {\n  padding: 0 1.25rem;\n  margin-bottom: 0.25rem;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable {\n  border: 1px solid var(--mr-border);\n  border-radius: 12px;\n  overflow: hidden;\n  font-size: 0.88rem;\n  box-shadow: var(--mr-shadow-soft);\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-thead > tr > th {\n  background: #f8fafc;\n  color: var(--mr-muted);\n  font-size: 0.68rem;\n  font-weight: 800;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  border-color: var(--mr-border);\n  padding: 0.8rem 1rem;\n  white-space: nowrap;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr > td {\n  border-color: #f1f5f9;\n  padding: 0.75rem 1rem;\n  color: #334155;\n  vertical-align: middle;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr:hover {\n  background: #f8fafc;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr:nth-child(even) {\n  background: #fcfdff;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .label,\n.mr-page .mr-edit__form-card > .simple-table td .label {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.45rem;\n  font-size: 0.88rem;\n  color: #334155;\n  word-break: break-word;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .form-container {\n  margin: 0 !important;\n  padding: 0 !important;\n  background: transparent !important;\n  border: none !important;\n  box-shadow: none !important;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-button {\n  background: #fff !important;\n  border: 1px solid #fecaca !important;\n  color: #b91c1c !important;\n  font-size: 0.78rem !important;\n  font-weight: 600 !important;\n  padding: 0.35rem 0.7rem !important;\n  border-radius: 8px !important;\n  min-height: 2rem;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-button:hover {\n  background: #fef2f2 !important;\n  border-color: #f87171 !important;\n  filter: none;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable-emptymessage,\n.mr-page .mr-edit__form-card > .simple-table .p-datatable-empty-message {\n  padding: 1.5rem 1rem;\n  color: var(--mr-muted);\n  font-size: 0.85rem;\n  font-style: italic;\n  text-align: center;\n}\n\n/* Alıcı ekle formu — kartın altı */\n.mr-page .mr-edit__form-card > .form-container {\n  margin: 0 !important;\n  padding: 1rem 1.25rem 1.25rem !important;\n  border-top: 1px solid var(--mr-border);\n  background: linear-gradient(180deg, #fafbff 0%, #fff 100%);\n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  gap: 0.75rem;\n}\n\n.mr-page .mr-edit__form-card > .form-container .p-field,\n.mr-page .mr-edit__form-card > .form-container > div {\n  flex: 1 1 220px;\n  min-width: 0;\n  margin-bottom: 0 !important;\n}\n\n.mr-page .mr-edit__form-card > .form-container label {\n  font-size: 0.82rem;\n  font-weight: 600;\n  color: var(--mr-muted);\n  margin-bottom: 0.35rem;\n}\n\n.mr-page .mr-edit__form-card > .form-container .p-inputtext {\n  width: 100% !important;\n  max-width: 100% !important;\n  border-color: #c7d2fe !important;\n  border-radius: 10px !important;\n}\n\n.mr-page .mr-edit__form-card > .form-container .p-inputtext:focus {\n  border-color: var(--mr-primary) !important;\n  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;\n}\n\n.mr-page .mr-edit__form-card > .form-container > .p-button,\n.mr-page .mr-edit__form-card > .form-container .p-button:last-child {\n  flex: 0 0 auto;\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;\n  border-color: #4557a3 !important;\n  color: #fff !important;\n  font-weight: 700 !important;\n  border-radius: 10px !important;\n  padding: 0.55rem 1rem !important;\n  min-height: 2.5rem;\n}\n\n.mr-page .mr-edit__form-card > .form-container > .p-button:hover,\n.mr-page .mr-edit__form-card > .form-container .p-button:last-child:hover {\n  filter: brightness(1.05);\n}\n\n.mr-page .mr-edit__card {\n  margin-bottom: 0;\n}\n\n.mr-page .mr-edit__form-card {\n  margin-top: 1rem;\n}\n\n@media (max-width: 640px) {\n  .mr-page .mr-edit__form-card > .simple-table {\n    padding: 0 0.85rem;\n  }\n\n  .mr-page .mr-edit__form-card > .form-container {\n    padding: 0.85rem !important;\n    flex-direction: column;\n    align-items: stretch;\n  }\n\n  .mr-page .mr-edit__form-card > .form-container > .p-button,\n  .mr-page .mr-edit__form-card > .form-container .p-button:last-child {\n    width: 100%;\n  }\n}\n\n/* mr-edit-extensions */\n/* Mail alıcı düzenle — tablo + ekle/sil formları */\n\n.mr-page .mr-edit__form-card > .simple-table {\n  padding: 0 1.25rem;\n  margin-bottom: 0.25rem;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable {\n  border: 1px solid var(--mr-border);\n  border-radius: 12px;\n  overflow: hidden;\n  font-size: 0.88rem;\n  box-shadow: var(--mr-shadow-soft);\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-thead > tr > th {\n  background: #f8fafc;\n  color: var(--mr-muted);\n  font-size: 0.68rem;\n  font-weight: 800;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  border-color: var(--mr-border);\n  padding: 0.8rem 1rem;\n  white-space: nowrap;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr > td {\n  border-color: #f1f5f9;\n  padding: 0.75rem 1rem;\n  color: #334155;\n  vertical-align: middle;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr:hover {\n  background: #f8fafc;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable .p-datatable-tbody > tr:nth-child(even) {\n  background: #fcfdff;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .label,\n.mr-page .mr-edit__form-card > .simple-table td .label {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.45rem;\n  font-size: 0.88rem;\n  color: #334155;\n  word-break: break-word;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .form-container {\n  margin: 0 !important;\n  padding: 0 !important;\n  background: transparent !important;\n  border: none !important;\n  box-shadow: none !important;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-button {\n  background: #fff !important;\n  border: 1px solid #fecaca !important;\n  color: #b91c1c !important;\n  font-size: 0.78rem !important;\n  font-weight: 600 !important;\n  padding: 0.35rem 0.7rem !important;\n  border-radius: 8px !important;\n  min-height: 2rem;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-button:hover {\n  background: #fef2f2 !important;\n  border-color: #f87171 !important;\n  filter: none;\n}\n\n.mr-page .mr-edit__form-card > .simple-table .p-datatable-emptymessage,\n.mr-page .mr-edit__form-card > .simple-table .p-datatable-empty-message {\n  padding: 1.5rem 1rem;\n  color: var(--mr-muted);\n  font-size: 0.85rem;\n  font-style: italic;\n  text-align: center;\n}\n\n/* Alıcı ekle kartı — ayrı container */\n.mr-page .mr-add-recipient-card {\n  margin: 0 1.25rem 1.25rem;\n  padding: 1rem 1.15rem 1.15rem;\n  background: linear-gradient(180deg, #fafbff 0%, #fff 100%);\n  border: 1px solid var(--mr-border);\n  border-radius: 12px;\n  box-shadow: var(--mr-shadow-soft);\n}\n\n.mr-page .mr-add-head {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.75rem;\n  margin-bottom: 0.85rem;\n  padding-bottom: 0.85rem;\n  border-bottom: 1px dashed var(--mr-border);\n}\n\n.mr-page .mr-add-head__icon {\n  flex-shrink: 0;\n  width: 2.25rem;\n  height: 2.25rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 10px;\n  background: #eef2ff;\n  color: var(--mr-primary);\n  font-size: 1rem;\n}\n\n.mr-page .mr-add-head h3 {\n  margin: 0 0 0.2rem;\n  font-size: 0.95rem;\n  font-weight: 700;\n  color: var(--mr-text);\n}\n\n.mr-page .mr-add-head p {\n  margin: 0;\n  font-size: 0.8rem;\n  color: var(--mr-muted);\n  line-height: 1.4;\n}\n\n.mr-page .mr-add-recipient-card .mr-recipient-add-form,\n.mr-page .mr-add-recipient-card .form-container {\n  margin: 0 !important;\n  padding: 0 !important;\n  border: none !important;\n  box-shadow: none !important;\n  background: transparent !important;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  gap: 0.75rem;\n}\n\n.mr-page .mr-add-recipient-card .mr-recipient-add-form .p-field,\n.mr-page .mr-add-recipient-card .form-container > div {\n  flex: 1 1 220px;\n  min-width: 0;\n  margin-bottom: 0 !important;\n}\n\n.mr-page .mr-add-recipient-card label {\n  font-size: 0.82rem;\n  font-weight: 600;\n  color: var(--mr-muted);\n  margin-bottom: 0.35rem;\n}\n\n.mr-page .mr-add-recipient-card .p-inputtext {\n  width: 100% !important;\n  border-color: #c7d2fe !important;\n  border-radius: 10px !important;\n}\n\n.mr-page .mr-add-recipient-card .p-inputtext:focus {\n  border-color: var(--mr-primary) !important;\n  box-shadow: 0 0 0 3px rgba(69, 87, 163, 0.15) !important;\n}\n\n.mr-page .mr-add-recipient-card .p-button {\n  flex: 0 0 auto;\n  background: linear-gradient(135deg, #4557a3 0%, #5b6fd6 100%) !important;\n  border-color: #4557a3 !important;\n  color: #fff !important;\n  font-weight: 700 !important;\n  border-radius: 10px !important;\n  padding: 0.55rem 1rem !important;\n  min-height: 2.5rem;\n}\n\n.mr-page .mr-add-recipient-card .p-button:hover {\n  filter: brightness(1.05);\n}\n\n@media (max-width: 640px) {\n  .mr-page .mr-add-recipient-card {\n    margin: 0 0.85rem 1rem;\n    padding: 0.85rem;\n  }\n\n  .mr-page .mr-add-recipient-card .form-container {\n    flex-direction: column;\n    align-items: stretch;\n  }\n\n  .mr-page .mr-add-recipient-card .p-button {\n    width: 100%;\n  }\n}\n\n.mr-page .mr-edit__card {\n  margin-bottom: 0;\n}\n\n.mr-page .mr-edit__form-card {\n  margin-top: 1rem;\n}\n\n@media (max-width: 640px) {\n  .mr-page .mr-edit__form-card > .simple-table {\n    padding: 0 0.85rem;\n  }\n}",
+  "syncedAt": "2026-06-24T15:08:32.805Z",
+  "patchedAt": "2026-06-24T15:11:15.015Z"
+}

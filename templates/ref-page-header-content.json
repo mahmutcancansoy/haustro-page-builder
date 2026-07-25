@@ -1,0 +1,3406 @@
+{
+  "_id": "5fccfa914fe5a5001250f1a4",
+  "pageId": "5fccfa8d4fe5a5001250f1a2",
+  "content": [
+    {
+      "type": "data-source",
+      "isContainer": false,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "test2"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "test2"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "get"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "test2",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": false,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "page-header",
+      "isContainer": false,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Upload Test"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": ""
+        },
+        {
+          "key": "text",
+          "header": "Text",
+          "type": "textarea-property",
+          "value": "Upload Test",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "bg-color",
+          "header": "Background color",
+          "type": "color-picker-property",
+          "value": "#fff"
+        },
+        {
+          "key": "text-color",
+          "header": "Text color",
+          "type": "color-picker-property",
+          "value": "#000"
+        }
+      ]
+    },
+    {
+      "type": "content-header",
+      "isContainer": false,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Form"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": ""
+        },
+        {
+          "key": "text",
+          "header": "Text",
+          "type": "textarea-property",
+          "value": "Form",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "bg-color",
+          "header": "Background color",
+          "type": "color-picker-property",
+          "value": "#586495"
+        },
+        {
+          "key": "text-color",
+          "header": "Text color",
+          "type": "color-picker-property",
+          "value": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "form-container",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "input-select",
+          "isContainer": true,
+          "children": [],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "New Input Select 1"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": ""
+            },
+            {
+              "key": "name",
+              "header": "Name",
+              "type": "input-text-property",
+              "value": "test"
+            },
+            {
+              "key": "label",
+              "header": "Label",
+              "type": "input-text-property",
+              "value": "{{test2.0.name}}",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "!value.inContainer"
+                }
+              ]
+            },
+            {
+              "key": "placeholder",
+              "header": "Placeholder",
+              "type": "input-text-property",
+              "value": "{{test2.0.surname}}",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "search-placeholder",
+              "header": "Search placeholder",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.search"
+                }
+              ]
+            },
+            {
+              "key": "empty-message",
+              "header": "Empty message",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "width",
+              "header": "Width",
+              "type": "input-text-property",
+              "value": "40%"
+            },
+            {
+              "key": "type",
+              "header": "Type",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Static",
+                  "value": "static"
+                },
+                {
+                  "label": "Dynamic",
+                  "value": "dynamic"
+                },
+                {
+                  "label": "Both (Dynamic+Static)",
+                  "value": "both"
+                }
+              ],
+              "value": "dynamic"
+            },
+            {
+              "key": "mode",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Data source",
+                  "value": "dataSource"
+                },
+                {
+                  "label": "Varible",
+                  "value": "variable"
+                }
+              ],
+              "header": "Mode",
+              "value": "dataSource",
+              "conditions": [
+                {
+                  "key": "type",
+                  "rule": "value == 'dynamic'||value == 'both'"
+                }
+              ]
+            },
+            {
+              "key": "variable",
+              "header": "Variable",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "variable",
+              "conditions": [
+                {
+                  "key": "type",
+                  "rule": "value == 'dynamic'||value == 'both'"
+                },
+                {
+                  "key": "mode",
+                  "rule": "value == 'variable'"
+                }
+              ]
+            },
+            {
+              "key": "data-source",
+              "header": "Data source",
+              "type": "input-text-property",
+              "value": "test2",
+              "autoComplete": true,
+              "autoCompleteMode": "source",
+              "conditions": [
+                {
+                  "key": "type",
+                  "rule": "value == 'dynamic'||value == 'both'"
+                },
+                {
+                  "key": "mode",
+                  "rule": "value == 'dataSource'"
+                }
+              ]
+            },
+            {
+              "key": "option-data",
+              "header": "Option data",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "label",
+                  "header": "Label",
+                  "type": "textarea-property",
+                  "value": "{{test2.name}} {{test2.surname}}",
+                  "inGroup": true,
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
+                },
+                {
+                  "key": "value",
+                  "header": "Value",
+                  "type": "textarea-property",
+                  "value": "test2._id",
+                  "inGroup": true,
+                  "autoComplete": true,
+                  "autoCompleteMode": "variable"
+                }
+              ],
+              "conditions": [
+                {
+                  "key": "type",
+                  "rule": "value == 'dynamic'||value == 'both'"
+                }
+              ]
+            },
+            {
+              "key": "static-default-value",
+              "header": "Default value",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "variable",
+              "conditions": [
+                {
+                  "key": "type",
+                  "rule": "value == 'static'"
+                }
+              ]
+            },
+            {
+              "key": "dynamic-default-value",
+              "header": "Default value",
+              "type": "textarea-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "variable",
+              "conditions": [
+                {
+                  "key": "type",
+                  "rule": "value == 'dynamic'||value == 'both'"
+                }
+              ]
+            },
+            {
+              "key": "on-change",
+              "header": "On change",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Nothing",
+                  "value": "nothing"
+                },
+                {
+                  "label": "Post",
+                  "value": "post"
+                }
+              ],
+              "value": "nothing"
+            },
+            {
+              "key": "icon",
+              "header": "Icon",
+              "type": "input-text-property",
+              "value": "mdi mdi-chevron-down mdi-28px"
+            },
+            {
+              "key": "spacings",
+              "header": "Spacings",
+              "type": "spacings",
+              "unit": "px",
+              "margins": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "paddings": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "key": "validators",
+              "header": "Validators",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "options",
+                  "type": "checkbox-property",
+                  "header": "Options",
+                  "options": [
+                    {
+                      "label": "Required",
+                      "name": "required"
+                    }
+                  ],
+                  "value": {
+                    "required": false
+                  },
+                  "inGroup": true
+                },
+                {
+                  "key": "required-text",
+                  "header": "Required text",
+                  "type": "input-text-property",
+                  "value": "Bu alan gereklidir",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.required"
+                    }
+                  ],
+                  "inGroup": true
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Select first",
+                  "name": "selectFirst"
+                },
+                {
+                  "label": "Search",
+                  "name": "search"
+                },
+                {
+                  "label": "In container",
+                  "name": "inContainer"
+                },
+                {
+                  "label": "Disabled",
+                  "name": "disabled"
+                },
+                {
+                  "label": "Readonly",
+                  "name": "readonly"
+                },
+                {
+                  "label": "Clear button",
+                  "name": "clearButton"
+                }
+              ],
+              "value": {
+                "selectFirst": true,
+                "search": false,
+                "inContainer": false,
+                "disabled": false,
+                "readonly": false,
+                "clearButton": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "input-text",
+          "isContainer": false,
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "name"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": ""
+            },
+            {
+              "key": "name",
+              "header": "Name",
+              "type": "input-text-property",
+              "value": "name"
+            },
+            {
+              "key": "label",
+              "header": "Label",
+              "type": "input-text-property",
+              "value": "Name:",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "!value.inContainer"
+                }
+              ]
+            },
+            {
+              "key": "mask",
+              "header": "Mask",
+              "type": "input-text-property",
+              "value": ""
+            },
+            {
+              "key": "placeholder",
+              "header": "Placeholder",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "default-value",
+              "header": "Default value",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "icon",
+              "header": "Icon",
+              "type": "input-text-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.hasIcon"
+                }
+              ]
+            },
+            {
+              "key": "icon-position",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Left",
+                  "value": "left"
+                },
+                {
+                  "label": "Right",
+                  "value": "right"
+                }
+              ],
+              "header": "Icon position",
+              "value": "left",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.hasIcon"
+                }
+              ]
+            },
+            {
+              "key": "width",
+              "header": "Width",
+              "type": "input-text-property",
+              "value": "40%"
+            },
+            {
+              "key": "spacings",
+              "header": "Spacings",
+              "type": "spacings",
+              "unit": "px",
+              "margins": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "paddings": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "key": "validators",
+              "header": "Validators",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "options",
+                  "type": "checkbox-property",
+                  "header": "Options",
+                  "options": [
+                    {
+                      "label": "Required",
+                      "name": "required"
+                    },
+                    {
+                      "label": "Email",
+                      "name": "email"
+                    },
+                    {
+                      "label": "RegExp",
+                      "name": "regExp"
+                    },
+                    {
+                      "label": "Min Length",
+                      "name": "minLenght"
+                    },
+                    {
+                      "label": "Max Length",
+                      "name": "maxLenght"
+                    }
+                  ],
+                  "value": {
+                    "required": false,
+                    "email": false,
+                    "regExp": false,
+                    "minLenght": false,
+                    "maxLenght": false
+                  },
+                  "inGroup": true
+                },
+                {
+                  "key": "required-text",
+                  "header": "Required text",
+                  "type": "input-text-property",
+                  "value": "Bu alan gereklidir",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.required"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "email-text",
+                  "header": "Email text",
+                  "type": "input-text-property",
+                  "value": "Geçersiz email formatı",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.email"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "regexp-pattern",
+                  "header": "RegExp pattern",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.regExp"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "regexp-text",
+                  "header": "RegExp text",
+                  "type": "input-text-property",
+                  "value": "Geçersiz format",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.regExp"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "min-length",
+                  "header": "Min length",
+                  "type": "input-number-property",
+                  "value": 1,
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.minLenght"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "min-length-text",
+                  "header": "Min length text",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.minLenght"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "max-length",
+                  "header": "Max length",
+                  "type": "input-number-property",
+                  "value": 100,
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.maxLenght"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "max-length-text",
+                  "header": "Max length text",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.maxLenght"
+                    }
+                  ],
+                  "inGroup": true
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Disabled",
+                  "name": "disabled"
+                },
+                {
+                  "label": "Readonly",
+                  "name": "readonly"
+                },
+                {
+                  "label": "Has icon",
+                  "name": "hasIcon"
+                },
+                {
+                  "label": "In container",
+                  "name": "inContainer"
+                }
+              ],
+              "value": {
+                "inContainer": false,
+                "disabled": false,
+                "readonly": false,
+                "hasIcon": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "input-text",
+          "isContainer": false,
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "surname"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": ""
+            },
+            {
+              "key": "name",
+              "header": "Name",
+              "type": "input-text-property",
+              "value": "surname"
+            },
+            {
+              "key": "label",
+              "header": "Label",
+              "type": "input-text-property",
+              "value": "Surname:",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "!value.inContainer"
+                }
+              ]
+            },
+            {
+              "key": "mask",
+              "header": "Mask",
+              "type": "input-text-property",
+              "value": ""
+            },
+            {
+              "key": "placeholder",
+              "header": "Placeholder",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "default-value",
+              "header": "Default value",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "icon",
+              "header": "Icon",
+              "type": "input-text-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.hasIcon"
+                }
+              ]
+            },
+            {
+              "key": "icon-position",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Left",
+                  "value": "left"
+                },
+                {
+                  "label": "Right",
+                  "value": "right"
+                }
+              ],
+              "header": "Icon position",
+              "value": "left",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.hasIcon"
+                }
+              ]
+            },
+            {
+              "key": "width",
+              "header": "Width",
+              "type": "input-text-property",
+              "value": "40%"
+            },
+            {
+              "key": "spacings",
+              "header": "Spacings",
+              "type": "spacings",
+              "unit": "px",
+              "margins": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "paddings": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "key": "validators",
+              "header": "Validators",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "options",
+                  "type": "checkbox-property",
+                  "header": "Options",
+                  "options": [
+                    {
+                      "label": "Required",
+                      "name": "required"
+                    },
+                    {
+                      "label": "Email",
+                      "name": "email"
+                    },
+                    {
+                      "label": "RegExp",
+                      "name": "regExp"
+                    },
+                    {
+                      "label": "Min Length",
+                      "name": "minLenght"
+                    },
+                    {
+                      "label": "Max Length",
+                      "name": "maxLenght"
+                    }
+                  ],
+                  "value": {
+                    "required": false,
+                    "email": false,
+                    "regExp": false,
+                    "minLenght": false,
+                    "maxLenght": false
+                  },
+                  "inGroup": true
+                },
+                {
+                  "key": "required-text",
+                  "header": "Required text",
+                  "type": "input-text-property",
+                  "value": "Bu alan gereklidir",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.required"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "email-text",
+                  "header": "Email text",
+                  "type": "input-text-property",
+                  "value": "Geçersiz email formatı",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.email"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "regexp-pattern",
+                  "header": "RegExp pattern",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.regExp"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "regexp-text",
+                  "header": "RegExp text",
+                  "type": "input-text-property",
+                  "value": "Geçersiz format",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.regExp"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "min-length",
+                  "header": "Min length",
+                  "type": "input-number-property",
+                  "value": 1,
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.minLenght"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "min-length-text",
+                  "header": "Min length text",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.minLenght"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "max-length",
+                  "header": "Max length",
+                  "type": "input-number-property",
+                  "value": 100,
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.maxLenght"
+                    }
+                  ],
+                  "inGroup": true
+                },
+                {
+                  "key": "max-length-text",
+                  "header": "Max length text",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.maxLenght"
+                    }
+                  ],
+                  "inGroup": true
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "Disabled",
+                  "name": "disabled"
+                },
+                {
+                  "label": "Readonly",
+                  "name": "readonly"
+                },
+                {
+                  "label": "Has icon",
+                  "name": "hasIcon"
+                },
+                {
+                  "label": "In container",
+                  "name": "inContainer"
+                }
+              ],
+              "value": {
+                "inContainer": false,
+                "disabled": false,
+                "readonly": false,
+                "hasIcon": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "input-file",
+          "isContainer": false,
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "photo"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": ""
+            },
+            {
+              "key": "name",
+              "header": "Name",
+              "type": "input-text-property",
+              "value": "photo"
+            },
+            {
+              "key": "label",
+              "header": "Label",
+              "type": "input-text-property",
+              "value": "Photo:",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "!value.inContainer"
+                }
+              ]
+            },
+            {
+              "key": "accept",
+              "header": "Accepted files",
+              "type": "input-text-property",
+              "value": "image/*"
+            },
+            {
+              "key": "max-file-size",
+              "header": "Max file size",
+              "type": "input-text-property",
+              "value": ""
+            },
+            {
+              "key": "file-limit",
+              "header": "Max files",
+              "type": "input-number-property",
+              "value": 2,
+              "min": 1,
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.multiple"
+                }
+              ]
+            },
+            {
+              "key": "default-value",
+              "header": "Default value",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "variable"
+            },
+            {
+              "key": "base-url",
+              "header": "Base url",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "docker compose cropper-width",
+              "header": "Cropper width",
+              "type": "input-number-property",
+              "value": 250,
+              "min": 1,
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.cropper"
+                }
+              ]
+            },
+            {
+              "key": "cropper-height",
+              "header": "Cropper height",
+              "type": "input-number-property",
+              "value": 250,
+              "min": 1,
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.cropper"
+                }
+              ]
+            },
+            {
+              "key": "cropper-header",
+              "header": "Cropper Header",
+              "type": "input-text-property",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.cropper"
+                }
+              ]
+            },
+            {
+              "key": "cropper-button",
+              "header": "Cropper Button Label",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.cropper"
+                }
+              ]
+            },
+            {
+              "key": "aspect-ratio",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "1 / 1",
+                  "value": 1
+                },
+                {
+                  "label": "4 / 3",
+                  "value": 1.3333333333333333
+                },
+                {
+                  "label": "16 / 9",
+                  "value": 1.7777777777777777
+                }
+              ],
+              "header": "Aspect Ratio",
+              "value": 1,
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.cropper"
+                }
+              ]
+            },
+            {
+              "key": "bg",
+              "header": "Background",
+              "type": "color-picker-property",
+              "value": "#fff",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.cropper"
+                }
+              ]
+            },
+            {
+              "key": "invalid-messages",
+              "header": "Invalid messages",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "size-summary",
+                  "header": "Size summary",
+                  "type": "input-text-property",
+                  "value": "{0}: Geçersiz dosya boyutu.",
+                  "inGroup": true
+                },
+                {
+                  "key": "size-detail",
+                  "header": "Size detail",
+                  "type": "input-text-property",
+                  "value": "Maksimum dosya boyutu: {0}",
+                  "inGroup": true
+                },
+                {
+                  "key": "type-summary",
+                  "header": "Type summary",
+                  "type": "input-text-property",
+                  "value": "Geçersiz dosya türü",
+                  "inGroup": true
+                },
+                {
+                  "key": "type-detail",
+                  "header": "Type detail",
+                  "type": "input-text-property",
+                  "value": "Geçerli dosya türleri: {0}",
+                  "inGroup": true
+                },
+                {
+                  "key": "limit-summary",
+                  "header": "Limit summary",
+                  "type": "input-text-property",
+                  "value": "Maksimum dosya adeti {0}",
+                  "inGroup": true
+                },
+                {
+                  "key": "limit-detail",
+                  "header": "Limit detail",
+                  "type": "input-text-property",
+                  "value": "Dosya yükleme limitini aştınız.",
+                  "inGroup": true
+                }
+              ]
+            },
+            {
+              "key": "validators",
+              "header": "Validators",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "options",
+                  "type": "checkbox-property",
+                  "header": "Options",
+                  "options": [
+                    {
+                      "label": "Required",
+                      "name": "required"
+                    }
+                  ],
+                  "value": {
+                    "required": false
+                  },
+                  "inGroup": true
+                },
+                {
+                  "key": "required-text",
+                  "header": "Required text",
+                  "type": "input-text-property",
+                  "value": "Bu alan gereklidir",
+                  "conditions": [
+                    {
+                      "key": "options",
+                      "rule": "value.required"
+                    }
+                  ],
+                  "inGroup": true
+                }
+              ]
+            },
+            {
+              "key": "icons",
+              "header": "Icons",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "chose",
+                  "header": "Chose",
+                  "type": "input-text-property",
+                  "value": "mdi mdi-plus",
+                  "inGroup": true
+                },
+                {
+                  "key": "clear",
+                  "header": "Clear",
+                  "type": "input-text-property",
+                  "value": "mdi mdi-close",
+                  "inGroup": true
+                }
+              ]
+            },
+            {
+              "key": "spacings",
+              "header": "Spacings",
+              "type": "spacings",
+              "unit": "px",
+              "margins": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "paddings": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "In container",
+                  "name": "inContainer"
+                },
+                {
+                  "label": "Disabled",
+                  "name": "disabled"
+                },
+                {
+                  "label": "Multiple",
+                  "name": "multiple"
+                },
+                {
+                  "label": "Clear button",
+                  "name": "clear"
+                },
+                {
+                  "label": "Cropper",
+                  "name": "cropper"
+                }
+              ],
+              "value": {
+                "inContainer": false,
+                "disabled": false,
+                "multiple": true,
+                "clear": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "isContainer": false,
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "upload"
+            },
+            {
+              "key": "classes",
+              "header": "Classes",
+              "type": "textarea-property",
+              "value": ""
+            },
+            {
+              "key": "text",
+              "header": "Text",
+              "type": "textarea-property",
+              "value": "Upload",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "severity",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Primary",
+                  "value": "p-button-default"
+                },
+                {
+                  "label": "Secondary",
+                  "value": "p-button-secondary"
+                },
+                {
+                  "label": "Success",
+                  "value": "p-button-success"
+                },
+                {
+                  "label": "Info",
+                  "value": "p-button-info"
+                },
+                {
+                  "label": "Warning",
+                  "value": "p-button-warning"
+                },
+                {
+                  "label": "Help",
+                  "value": "p-button-help"
+                },
+                {
+                  "label": "Danger",
+                  "value": "p-button-danger"
+                }
+              ],
+              "header": "Severity",
+              "value": "p-button-default"
+            },
+            {
+              "key": "size",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Small",
+                  "value": "p-button-sm"
+                },
+                {
+                  "label": "Normal",
+                  "value": "p-button"
+                },
+                {
+                  "label": "Large",
+                  "value": "p-button-lg"
+                }
+              ],
+              "header": "Size",
+              "value": "p-button-sm"
+            },
+            {
+              "key": "icon",
+              "header": "Icon",
+              "type": "input-text-property",
+              "value": "",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.hasIcon"
+                }
+              ]
+            },
+            {
+              "key": "icon-position",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Left",
+                  "value": "left"
+                },
+                {
+                  "label": "Right",
+                  "value": "right"
+                }
+              ],
+              "header": "Icon position",
+              "value": "left",
+              "conditions": [
+                {
+                  "key": "settings",
+                  "rule": "value.hasIcon"
+                }
+              ]
+            },
+            {
+              "key": "width",
+              "header": "Width",
+              "type": "input-text-property",
+              "value": "auto"
+            },
+            {
+              "key": "action",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Submit",
+                  "value": "submit"
+                },
+                {
+                  "label": "Link",
+                  "value": "link"
+                },
+                {
+                  "label": "Route",
+                  "value": "route"
+                },
+                {
+                  "label": "Route back",
+                  "value": "back"
+                },
+                {
+                  "label": "Download",
+                  "value": "download"
+                },
+                {
+                  "label": "Custom",
+                  "value": "custom"
+                },
+                {
+                  "label": "Modal Close",
+                  "value": "closeModal"
+                }
+              ],
+              "header": "Action",
+              "value": "submit"
+            },
+            {
+              "key": "url",
+              "header": "Url",
+              "type": "textarea-property",
+              "value": "{{test2.0.photo.0.name}}",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "action",
+                  "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                }
+              ]
+            },
+            {
+              "key": "query-params",
+              "header": "Query Params",
+              "type": "code-editor",
+              "value": "{\n\n}",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "action",
+                  "rule": "value == 'route'"
+                }
+              ]
+            },
+            {
+              "key": "filename",
+              "header": "Filename",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "conditions": [
+                {
+                  "key": "action",
+                  "rule": "value == 'download'"
+                }
+              ]
+            },
+            {
+              "key": "url-targer",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "_self",
+                  "value": "_self"
+                },
+                {
+                  "label": "_blank",
+                  "value": "_blank"
+                }
+              ],
+              "header": "Target",
+              "value": "_self",
+              "conditions": [
+                {
+                  "key": "action",
+                  "rule": "value == 'link'"
+                }
+              ]
+            },
+            {
+              "key": "styles",
+              "header": "Styles",
+              "type": "group-property",
+              "children": [
+                {
+                  "key": "font-style",
+                  "type": "checkbox-property",
+                  "header": "Font styles",
+                  "options": [
+                    {
+                      "label": "Bold",
+                      "name": "bold"
+                    },
+                    {
+                      "label": "Italic",
+                      "name": "italic"
+                    }
+                  ],
+                  "value": {
+                    "bold": false,
+                    "italic": false
+                  },
+                  "inGroup": true
+                }
+              ]
+            },
+            {
+              "key": "spacings",
+              "header": "Spacings",
+              "type": "spacings",
+              "unit": "px",
+              "margins": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "paddings": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "key": "settings",
+              "type": "checkbox-property",
+              "header": "Settings",
+              "options": [
+                {
+                  "label": "In form",
+                  "name": "inForm"
+                },
+                {
+                  "label": "Has icon",
+                  "name": "hasIcon"
+                },
+                {
+                  "label": "Rounded",
+                  "name": "rounded"
+                },
+                {
+                  "label": "Has shadow",
+                  "name": "hasShadow"
+                },
+                {
+                  "label": "Has outline",
+                  "name": "hasOutline"
+                },
+                {
+                  "label": "Text button",
+                  "name": "textButton"
+                },
+                {
+                  "label": "Disabled",
+                  "name": "disabled"
+                }
+              ],
+              "value": {
+                "inForm": true,
+                "hasIcon": false,
+                "rounded": false,
+                "hasShadow": false,
+                "hasOutline": false,
+                "textButton": false,
+                "disabled": false
+              }
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "New Form 1"
+        },
+        {
+          "key": "key",
+          "header": "Key",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.expose"
+            }
+          ]
+        },
+        {
+          "key": "action",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Add",
+              "value": "add"
+            },
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Update",
+              "value": "update"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Delete",
+              "value": "delete"
+            },
+            {
+              "label": "Hard delete",
+              "value": "hardDelete"
+            }
+          ],
+          "header": "Action",
+          "value": "add"
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "action",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "test2",
+          "conditions": [
+            {
+              "key": "action",
+              "rule": "value != 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "field-id",
+          "header": "Field id",
+          "type": "input-text-property",
+          "value": "",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "action",
+              "rule": "value == 'update'"
+            }
+          ]
+        },
+        {
+          "key": "hidden-values",
+          "header": "Hidden values",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "action",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "on-success",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Reset form",
+              "value": "reset"
+            },
+            {
+              "label": "Route",
+              "value": "route"
+            },
+            {
+              "label": "Redirect",
+              "value": "redirect"
+            },
+            {
+              "label": "Nothing",
+              "value": "nothing"
+            }
+          ],
+          "header": "On success",
+          "value": "nothing"
+        },
+        {
+          "key": "url",
+          "header": "Url",
+          "type": "textarea-property",
+          "value": "",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "on-success",
+              "rule": "value == 'redirect' || value == 'route'"
+            }
+          ]
+        },
+        {
+          "key": "query-params",
+          "header": "Query Params",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "on-success",
+              "rule": "value == 'route'"
+            }
+          ]
+        },
+        {
+          "key": "response-name",
+          "header": "Response name",
+          "type": "input-text-property",
+          "value": "",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "on-success-message",
+          "header": "On success message",
+          "type": "group-property",
+          "children": [
+            {
+              "key": "header",
+              "header": "Header",
+              "type": "input-text-property",
+              "value": "Succes",
+              "inGroup": true
+            },
+            {
+              "key": "text",
+              "header": "Text",
+              "type": "textarea-property",
+              "value": "",
+              "inGroup": true
+            },
+            {
+              "key": "life",
+              "header": "Life",
+              "type": "input-number-property",
+              "value": 3000,
+              "min": 0,
+              "inGroup": true
+            },
+            {
+              "key": "severity",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Success",
+                  "value": "success"
+                },
+                {
+                  "label": "Info",
+                  "value": "info"
+                },
+                {
+                  "label": "Warning",
+                  "value": "warn"
+                },
+                {
+                  "label": "Error",
+                  "value": "error"
+                }
+              ],
+              "header": "Severity",
+              "value": "success",
+              "inGroup": true
+            }
+          ]
+        },
+        {
+          "key": "confirm",
+          "header": "Confirm",
+          "type": "group-property",
+          "children": [
+            {
+              "key": "header",
+              "header": "Header",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "inGroup": true
+            },
+            {
+              "key": "content",
+              "header": "Content",
+              "type": "textarea-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "inGroup": true
+            },
+            {
+              "key": "accept",
+              "header": "Accept",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "inGroup": true
+            },
+            {
+              "key": "reject",
+              "header": "Reject",
+              "type": "input-text-property",
+              "value": "",
+              "autoComplete": true,
+              "autoCompleteMode": "template",
+              "inGroup": true
+            }
+          ],
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.hasConfirm"
+            }
+          ]
+        },
+        {
+          "key": "upload-title",
+          "header": "File upload title",
+          "type": "input-text-property",
+          "value": "Dosyalar yükleniyor..."
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Hidden",
+              "name": "hidden"
+            },
+            {
+              "label": "Has confirm",
+              "name": "hasConfirm"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Debug response",
+              "name": "debugResponse"
+            },
+            {
+              "label": "Expose",
+              "name": "expose"
+            }
+          ],
+          "value": {
+            "hidden": false,
+            "hasConfirm": false,
+            "debug": false,
+            "debugResponse": false,
+            "expose": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "content-header",
+      "isContainer": false,
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Table"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": ""
+        },
+        {
+          "key": "text",
+          "header": "Text",
+          "type": "textarea-property",
+          "value": "Table",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "bg-color",
+          "header": "Background color",
+          "type": "color-picker-property",
+          "value": "#586495"
+        },
+        {
+          "key": "text-color",
+          "header": "Text color",
+          "type": "color-picker-property",
+          "value": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "isContainer": true,
+      "children": [
+        {
+          "type": "table-column",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "label",
+              "isContainer": false,
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "name"
+                },
+                {
+                  "key": "classes",
+                  "header": "Classes",
+                  "type": "textarea-property",
+                  "value": ""
+                },
+                {
+                  "key": "text",
+                  "header": "Text",
+                  "type": "textarea-property",
+                  "value": "{{input.name}} {{input.surname}}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
+                },
+                {
+                  "key": "label",
+                  "header": "Form label",
+                  "type": "input-text-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.inForm"
+                    }
+                  ]
+                },
+                {
+                  "key": "action",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "No action",
+                      "value": "noAction"
+                    },
+                    {
+                      "label": "Link",
+                      "value": "link"
+                    },
+                    {
+                      "label": "Route",
+                      "value": "route"
+                    },
+                    {
+                      "label": "Download",
+                      "value": "download"
+                    }
+                  ],
+                  "header": "Action",
+                  "value": "noAction"
+                },
+                {
+                  "key": "url",
+                  "header": "Url",
+                  "type": "textarea-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value != 'noAction'"
+                    }
+                  ]
+                },
+                {
+                  "key": "query-params",
+                  "header": "Query Params",
+                  "type": "code-editor",
+                  "value": "{\n\n}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'route'"
+                    }
+                  ]
+                },
+                {
+                  "key": "filename",
+                  "header": "Filename",
+                  "type": "input-text-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'download'"
+                    }
+                  ]
+                },
+                {
+                  "key": "url-targer",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "_self",
+                      "value": "_self"
+                    },
+                    {
+                      "label": "_blank",
+                      "value": "_blank"
+                    }
+                  ],
+                  "header": "Target",
+                  "value": "_self",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'link'"
+                    }
+                  ]
+                },
+                {
+                  "key": "styles",
+                  "header": "Styles",
+                  "type": "group-property",
+                  "children": [
+                    {
+                      "key": "font-size",
+                      "header": "Font size",
+                      "type": "input-text-property",
+                      "value": "15px",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "color",
+                      "header": "Color",
+                      "type": "color-picker-property",
+                      "value": "#000",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "decoration",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "None",
+                          "value": "none"
+                        },
+                        {
+                          "label": "Overline",
+                          "value": "overline"
+                        },
+                        {
+                          "label": "Line through",
+                          "value": "line-through"
+                        },
+                        {
+                          "label": "Underline",
+                          "value": "underline"
+                        }
+                      ],
+                      "header": "Decoration",
+                      "value": "none",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "font-style",
+                      "type": "checkbox-property",
+                      "header": "Font styles",
+                      "options": [
+                        {
+                          "label": "Bold",
+                          "name": "bold"
+                        },
+                        {
+                          "label": "Italic",
+                          "name": "italic"
+                        }
+                      ],
+                      "value": {
+                        "bold": false,
+                        "italic": false
+                      },
+                      "inGroup": true
+                    },
+                    {
+                      "key": "alignment",
+                      "header": "Alignment",
+                      "type": "select-button",
+                      "options": [
+                        {
+                          "label": "Left",
+                          "value": "left"
+                        },
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "Right",
+                          "value": "right"
+                        }
+                      ],
+                      "value": "left",
+                      "inGroup": true
+                    }
+                  ]
+                },
+                {
+                  "key": "spacings",
+                  "header": "Spacings",
+                  "type": "spacings",
+                  "unit": "px",
+                  "margins": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "paddings": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "key": "settings",
+                  "type": "checkbox-property",
+                  "header": "Settings",
+                  "options": [
+                    {
+                      "label": "In form",
+                      "name": "inForm"
+                    }
+                  ],
+                  "value": {
+                    "inForm": false
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "name"
+            },
+            {
+              "key": "variable",
+              "header": "Variable name",
+              "type": "input-text-property",
+              "value": "name"
+            },
+            {
+              "key": "header",
+              "header": "Header",
+              "type": "input-text-property",
+              "value": "Name"
+            },
+            {
+              "key": "width",
+              "header": "Width",
+              "type": "input-text-property",
+              "value": "auto"
+            },
+            {
+              "key": "content-direction",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "row",
+                  "value": "row"
+                },
+                {
+                  "label": "column",
+                  "value": "column"
+                }
+              ],
+              "header": "Content direction",
+              "value": "row"
+            },
+            {
+              "key": "justify-content",
+              "header": "Justify content",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Unset",
+                  "value": "unset"
+                },
+                {
+                  "label": "Start",
+                  "value": "flex-start"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                },
+                {
+                  "label": "End",
+                  "value": "flex-end"
+                }
+              ],
+              "value": ""
+            },
+            {
+              "key": "align-items",
+              "header": "Align items",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Unset",
+                  "value": "unset"
+                },
+                {
+                  "label": "Start",
+                  "value": "flex-start"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                },
+                {
+                  "label": "End",
+                  "value": "flex-end"
+                }
+              ],
+              "value": ""
+            },
+            {
+              "key": "filter-type",
+              "header": "Filter Type",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "No Filter",
+                  "value": "none"
+                },
+                {
+                  "label": "Text",
+                  "value": "text"
+                },
+                {
+                  "label": "Select",
+                  "value": "select"
+                }
+              ],
+              "value": "none"
+            },
+            {
+              "key": "filter-select",
+              "header": "Filter Select Options",
+              "type": "textarea-property",
+              "value": [],
+              "conditions": [
+                {
+                  "key": "filter-type",
+                  "rule": "value=='select'"
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "header": "Settings",
+              "type": "checkbox-property",
+              "options": [
+                {
+                  "label": "Hide in mobile",
+                  "name": "hideInMobile"
+                }
+              ],
+              "value": {
+                "hideInMobile": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "table-column",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "loop",
+              "isContainer": true,
+              "children": [
+                {
+                  "type": "image",
+                  "isContainer": false,
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "New Image 1"
+                    },
+                    {
+                      "key": "classes",
+                      "header": "Classes",
+                      "type": "textarea-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "width",
+                      "header": "Width",
+                      "type": "input-text-property",
+                      "value": "60px"
+                    },
+                    {
+                      "key": "height",
+                      "header": "Height",
+                      "type": "input-text-property",
+                      "value": "auto"
+                    },
+                    {
+                      "key": "src",
+                      "header": "Source",
+                      "type": "textarea-property",
+                      "value": "http://192.168.0.10/resources/{{input.name}}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "border",
+                      "header": "Border",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "style",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "none",
+                              "value": "none"
+                            },
+                            {
+                              "label": "solid",
+                              "value": "solid"
+                            },
+                            {
+                              "label": "dashed",
+                              "value": "dashed"
+                            },
+                            {
+                              "label": "dotted",
+                              "value": "dotted"
+                            }
+                          ],
+                          "header": "Style",
+                          "value": "solid",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "color",
+                          "header": "Color",
+                          "type": "color-picker-property",
+                          "value": "#000",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "width",
+                          "header": "Width",
+                          "type": "input-text-property",
+                          "value": "1px",
+                          "inGroup": true
+                        },
+                        {
+                          "key": "radius",
+                          "header": "Radius",
+                          "type": "input-text-property",
+                          "value": "5px",
+                          "inGroup": true
+                        }
+                      ]
+                    },
+                    {
+                      "key": "spacings",
+                      "header": "Spacings",
+                      "type": "spacings",
+                      "unit": "px",
+                      "margins": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "paddings": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "photo loop"
+                },
+                {
+                  "key": "mode",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Varible",
+                      "value": "variable"
+                    },
+                    {
+                      "label": "Data source",
+                      "value": "dataSource"
+                    },
+                    {
+                      "label": "Static For Loop",
+                      "value": "forLoop"
+                    }
+                  ],
+                  "header": "Mode",
+                  "value": "variable"
+                },
+                {
+                  "key": "variable",
+                  "header": "Variable",
+                  "type": "input-text-property",
+                  "value": "input.photo",
+                  "autoComplete": true,
+                  "autoCompleteMode": "variable",
+                  "conditions": [
+                    {
+                      "key": "mode",
+                      "rule": "value == 'variable'"
+                    }
+                  ]
+                },
+                {
+                  "key": "data-source",
+                  "header": "Data source",
+                  "type": "input-text-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "source",
+                  "conditions": [
+                    {
+                      "key": "mode",
+                      "rule": "value == 'dataSource'"
+                    }
+                  ]
+                },
+                {
+                  "key": "loopLength",
+                  "header": "Loop Length",
+                  "type": "input-text-property",
+                  "value": 0,
+                  "conditions": [
+                    {
+                      "key": "mode",
+                      "rule": "value == 'forLoop'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "photo"
+            },
+            {
+              "key": "variable",
+              "header": "Variable name",
+              "type": "input-text-property",
+              "value": ""
+            },
+            {
+              "key": "header",
+              "header": "Header",
+              "type": "input-text-property",
+              "value": "Photo"
+            },
+            {
+              "key": "width",
+              "header": "Width",
+              "type": "input-text-property",
+              "value": "auto"
+            },
+            {
+              "key": "content-direction",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "row",
+                  "value": "row"
+                },
+                {
+                  "label": "column",
+                  "value": "column"
+                }
+              ],
+              "header": "Content direction",
+              "value": "column"
+            },
+            {
+              "key": "justify-content",
+              "header": "Justify content",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Unset",
+                  "value": "unset"
+                },
+                {
+                  "label": "Start",
+                  "value": "flex-start"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                },
+                {
+                  "label": "End",
+                  "value": "flex-end"
+                }
+              ],
+              "value": ""
+            },
+            {
+              "key": "align-items",
+              "header": "Align items",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Unset",
+                  "value": "unset"
+                },
+                {
+                  "label": "Start",
+                  "value": "flex-start"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                },
+                {
+                  "label": "End",
+                  "value": "flex-end"
+                }
+              ],
+              "value": ""
+            },
+            {
+              "key": "filter-type",
+              "header": "Filter Type",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "No Filter",
+                  "value": "none"
+                },
+                {
+                  "label": "Text",
+                  "value": "text"
+                },
+                {
+                  "label": "Select",
+                  "value": "select"
+                }
+              ],
+              "value": "none"
+            },
+            {
+              "key": "filter-select",
+              "header": "Filter Select Options",
+              "type": "textarea-property",
+              "value": [],
+              "conditions": [
+                {
+                  "key": "filter-type",
+                  "rule": "value=='select'"
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "header": "Settings",
+              "type": "checkbox-property",
+              "options": [
+                {
+                  "label": "Hide in mobile",
+                  "name": "hideInMobile"
+                }
+              ],
+              "value": {
+                "hideInMobile": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "table-column",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "button",
+              "isContainer": false,
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "edit"
+                },
+                {
+                  "key": "classes",
+                  "header": "Classes",
+                  "type": "textarea-property",
+                  "value": ""
+                },
+                {
+                  "key": "text",
+                  "header": "Text",
+                  "type": "textarea-property",
+                  "value": "Edit",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
+                },
+                {
+                  "key": "severity",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Primary",
+                      "value": "p-button-default"
+                    },
+                    {
+                      "label": "Secondary",
+                      "value": "p-button-secondary"
+                    },
+                    {
+                      "label": "Success",
+                      "value": "p-button-success"
+                    },
+                    {
+                      "label": "Info",
+                      "value": "p-button-info"
+                    },
+                    {
+                      "label": "Warning",
+                      "value": "p-button-warning"
+                    },
+                    {
+                      "label": "Help",
+                      "value": "p-button-help"
+                    },
+                    {
+                      "label": "Danger",
+                      "value": "p-button-danger"
+                    }
+                  ],
+                  "header": "Severity",
+                  "value": "p-button-default"
+                },
+                {
+                  "key": "size",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Small",
+                      "value": "p-button-sm"
+                    },
+                    {
+                      "label": "Normal",
+                      "value": "p-button"
+                    },
+                    {
+                      "label": "Large",
+                      "value": "p-button-lg"
+                    }
+                  ],
+                  "header": "Size",
+                  "value": "p-button-sm"
+                },
+                {
+                  "key": "icon",
+                  "header": "Icon",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.hasIcon"
+                    }
+                  ]
+                },
+                {
+                  "key": "icon-position",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Left",
+                      "value": "left"
+                    },
+                    {
+                      "label": "Right",
+                      "value": "right"
+                    }
+                  ],
+                  "header": "Icon position",
+                  "value": "left",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.hasIcon"
+                    }
+                  ]
+                },
+                {
+                  "key": "width",
+                  "header": "Width",
+                  "type": "input-text-property",
+                  "value": "auto"
+                },
+                {
+                  "key": "action",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Submit",
+                      "value": "submit"
+                    },
+                    {
+                      "label": "Link",
+                      "value": "link"
+                    },
+                    {
+                      "label": "Route",
+                      "value": "route"
+                    },
+                    {
+                      "label": "Route back",
+                      "value": "back"
+                    },
+                    {
+                      "label": "Download",
+                      "value": "download"
+                    },
+                    {
+                      "label": "Custom",
+                      "value": "custom"
+                    },
+                    {
+                      "label": "Modal Close",
+                      "value": "closeModal"
+                    }
+                  ],
+                  "header": "Action",
+                  "value": "route"
+                },
+                {
+                  "key": "url",
+                  "header": "Url",
+                  "type": "textarea-property",
+                  "value": "/d/upload_edit",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                    }
+                  ]
+                },
+                {
+                  "key": "query-params",
+                  "header": "Query Params",
+                  "type": "code-editor",
+                  "value": "{\n    \"id\": \"{{input._id}}\"\n}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'route'"
+                    }
+                  ]
+                },
+                {
+                  "key": "filename",
+                  "header": "Filename",
+                  "type": "input-text-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'download'"
+                    }
+                  ]
+                },
+                {
+                  "key": "url-targer",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "_self",
+                      "value": "_self"
+                    },
+                    {
+                      "label": "_blank",
+                      "value": "_blank"
+                    }
+                  ],
+                  "header": "Target",
+                  "value": "_self",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'link'"
+                    }
+                  ]
+                },
+                {
+                  "key": "styles",
+                  "header": "Styles",
+                  "type": "group-property",
+                  "children": [
+                    {
+                      "key": "font-style",
+                      "type": "checkbox-property",
+                      "header": "Font styles",
+                      "options": [
+                        {
+                          "label": "Bold",
+                          "name": "bold"
+                        },
+                        {
+                          "label": "Italic",
+                          "name": "italic"
+                        }
+                      ],
+                      "value": {
+                        "bold": false,
+                        "italic": false
+                      },
+                      "inGroup": true
+                    }
+                  ]
+                },
+                {
+                  "key": "spacings",
+                  "header": "Spacings",
+                  "type": "spacings",
+                  "unit": "px",
+                  "margins": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "paddings": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "key": "settings",
+                  "type": "checkbox-property",
+                  "header": "Settings",
+                  "options": [
+                    {
+                      "label": "In form",
+                      "name": "inForm"
+                    },
+                    {
+                      "label": "Has icon",
+                      "name": "hasIcon"
+                    },
+                    {
+                      "label": "Rounded",
+                      "name": "rounded"
+                    },
+                    {
+                      "label": "Has shadow",
+                      "name": "hasShadow"
+                    },
+                    {
+                      "label": "Has outline",
+                      "name": "hasOutline"
+                    },
+                    {
+                      "label": "Text button",
+                      "name": "textButton"
+                    },
+                    {
+                      "label": "Disabled",
+                      "name": "disabled"
+                    }
+                  ],
+                  "value": {
+                    "inForm": false,
+                    "hasIcon": false,
+                    "rounded": false,
+                    "hasShadow": false,
+                    "hasOutline": true,
+                    "textButton": false,
+                    "disabled": false
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "actions"
+            },
+            {
+              "key": "variable",
+              "header": "Variable name",
+              "type": "input-text-property",
+              "value": ""
+            },
+            {
+              "key": "header",
+              "header": "Header",
+              "type": "input-text-property",
+              "value": "Actions"
+            },
+            {
+              "key": "width",
+              "header": "Width",
+              "type": "input-text-property",
+              "value": "auto"
+            },
+            {
+              "key": "content-direction",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "row",
+                  "value": "row"
+                },
+                {
+                  "label": "column",
+                  "value": "column"
+                }
+              ],
+              "header": "Content direction",
+              "value": "row"
+            },
+            {
+              "key": "justify-content",
+              "header": "Justify content",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Unset",
+                  "value": "unset"
+                },
+                {
+                  "label": "Start",
+                  "value": "flex-start"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                },
+                {
+                  "label": "End",
+                  "value": "flex-end"
+                }
+              ],
+              "value": ""
+            },
+            {
+              "key": "align-items",
+              "header": "Align items",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "Unset",
+                  "value": "unset"
+                },
+                {
+                  "label": "Start",
+                  "value": "flex-start"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                },
+                {
+                  "label": "End",
+                  "value": "flex-end"
+                }
+              ],
+              "value": ""
+            },
+            {
+              "key": "filter-type",
+              "header": "Filter Type",
+              "type": "select-property",
+              "options": [
+                {
+                  "label": "No Filter",
+                  "value": "none"
+                },
+                {
+                  "label": "Text",
+                  "value": "text"
+                },
+                {
+                  "label": "Select",
+                  "value": "select"
+                }
+              ],
+              "value": "none"
+            },
+            {
+              "key": "filter-select",
+              "header": "Filter Select Options",
+              "type": "textarea-property",
+              "value": [],
+              "conditions": [
+                {
+                  "key": "filter-type",
+                  "rule": "value=='select'"
+                }
+              ]
+            },
+            {
+              "key": "settings",
+              "header": "Settings",
+              "type": "checkbox-property",
+              "options": [
+                {
+                  "label": "Hide in mobile",
+                  "name": "hideInMobile"
+                }
+              ],
+              "value": {
+                "hideInMobile": false
+              }
+            }
+          ]
+        }
+      ],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "table"
+        },
+        {
+          "key": "classes",
+          "header": "Classes",
+          "type": "textarea-property",
+          "value": ""
+        },
+        {
+          "key": "data-source",
+          "header": "Data source",
+          "type": "input-text-property",
+          "value": "test2",
+          "autoComplete": true,
+          "autoCompleteMode": "source"
+        },
+        {
+          "key": "empty-message",
+          "header": "Empty message",
+          "type": "input-text-property",
+          "value": "empty."
+        },
+        {
+          "key": "paginator-position",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Bottom",
+              "value": "bottom"
+            },
+            {
+              "label": "Top",
+              "value": "top"
+            },
+            {
+              "label": "Both",
+              "value": "both"
+            }
+          ],
+          "header": "Paginator position",
+          "value": "bottom",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.pagination"
+            }
+          ]
+        },
+        {
+          "key": "row-count",
+          "header": "Row count",
+          "type": "input-number-property",
+          "value": 25,
+          "min": 0
+        },
+        {
+          "key": "alignment",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ],
+          "header": "Alignment",
+          "value": "center"
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Pagination",
+              "name": "pagination"
+            },
+            {
+              "label": "Sorting",
+              "name": "sorting"
+            },
+            {
+              "label": "General Filter",
+              "name": "filtering"
+            },
+            {
+              "label": "Show Clear Filters Button",
+              "name": "clearAllFilterBtn"
+            }
+          ],
+          "value": {
+            "pagination": true,
+            "sorting": false,
+            "clearAllFilterBtn": false,
+            "filtering": false
+          }
+        }
+      ]
+    }
+  ],
+  "styles": ""
+}

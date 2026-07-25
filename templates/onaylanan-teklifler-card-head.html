@@ -1,0 +1,88 @@
+<div class="ass__list-head ot-head">
+  <div class="ass__list-head-icon"><i class="pi pi-shopping-cart"></i></div>
+  <div class="ot-head__main">
+    <div class="ot-head__title-row">
+      <div>
+        <p class="ot-head__eyebrow">Satın Alma Özeti</p>
+        <h2>
+          {{#if input.:inventory:._id}}
+            {{#if input.:inventory:.cins}}{{input.:inventory:.cins}} {{/if}}{{#if input.:inventory:.name}}{{input.:inventory:.name}} {{/if}}{{#if input.:inventory:.model}}{{input.:inventory:.model}} {{/if}}{{#if input.:inventory:.:materiels:.name}}{{input.:inventory:.:materiels:.name}} {{/if}}{{#if input.:inventory:.:colors:.name}}{{input.:inventory:.:colors:.name}} {{/if}}{{#if input.:inventory:.pattern}}{{input.:inventory:.pattern}} {{/if}}{{#if input.:inventory:.code}}{{input.:inventory:.code}}{{/if}}
+          {{else}}
+            {{#if input.:serviceCats:.name}}{{input.:serviceCats:.name}}{{else}}Satın Alım Talebi{{/if}}
+          {{/if}}
+        </h2>
+      </div>
+
+      <div class="ot-head__status">
+        {{#cIf input.status "==" "0"}}
+          <span class="atr-status atr-status--waiting"><i class="pi pi-clock"></i> Beklemede</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "1"}}
+          <span class="atr-status atr-status--transit"><i class="pi pi-spin pi-spinner"></i> Teklif Toplanıyor</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "2"}}
+          <span class="atr-status atr-status--cargo"><i class="pi pi-file-import"></i> Teklifler Yüklendi</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "3"}}
+          <span class="atr-status atr-status--done"><i class="pi pi-check-circle"></i> Teklif Onaylandı</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "4"}}
+          <span class="atr-status atr-status--arrive"><i class="pi pi-shopping-cart"></i> Sipariş Verildi</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "5"}}
+          <span class="atr-status atr-status--transit"><i class="pi pi-map-marker"></i> Sipariş Yolda</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "6"}}
+          <span class="atr-status atr-status--done"><i class="pi pi-box"></i> Teslim Edildi</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "7"}}
+          <span class="atr-status atr-status--arrive"><i class="pi pi-file-pdf"></i> Fatura Yüklendi</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "8"}}
+          <span class="atr-status atr-status--done"><i class="pi pi-verified"></i> Talep Karşılandı</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "9"}}
+          <span class="atr-status atr-status--danger"><i class="pi pi-times-circle"></i> Reddedildi</span>
+        {{/cIf}}
+        {{#cIf input.status "==" "10"}}
+          <span class="atr-status atr-status--created"><i class="pi pi-ban"></i> İptal Edildi</span>
+        {{/cIf}}
+      </div>
+    </div>
+
+    <div class="ot-metrics">
+      {{#if input.:inventory:.no}}
+      <div class="ot-metric">
+        <span class="ot-metric__label">Envanter No</span>
+        <span class="ot-metric__value">{{input.:inventory:.no}}</span>
+      </div>
+      {{/if}}
+      <div class="ot-metric">
+        <span class="ot-metric__label">Talep Miktarı</span>
+        <span class="ot-metric__value">{{input.count}} Adet</span>
+      </div>
+      {{#if input.:inventory:.basePrice}}
+      <div class="ot-metric">
+        <span class="ot-metric__label">Baz Fiyat</span>
+        <span class="ot-metric__value">{{input.:inventory:.basePrice}} ₺</span>
+      </div>
+      {{/if}}
+      <div class="ot-metric">
+        <span class="ot-metric__label">Şube / Depo</span>
+        <span class="ot-metric__value">{{input.:departments:.label}}{{#if input.:departments:.short}} ({{input.:departments:.short}}){{/if}}</span>
+      </div>
+      <div class="ot-metric">
+        <span class="ot-metric__label">Talep Eden</span>
+        <span class="ot-metric__value">{{input.:users:demander.name}} {{input.:users:demander.surname}}</span>
+      </div>
+      <div class="ot-metric">
+        <span class="ot-metric__label">Talep Tarihi</span>
+        <span class="ot-metric__value">{{renderDate input.datetime}}</span>
+      </div>
+    </div>
+
+    {{#if input.description}}
+    <p class="ot-head__desc">{{input.description}}</p>
+    {{/if}}
+  </div>
+</div>

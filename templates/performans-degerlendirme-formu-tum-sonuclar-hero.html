@@ -1,0 +1,12 @@
+<div class="ass__hero ass__hero--person pdft-hero">
+  <div class="ass__hero-main">
+    <span class="ass__eyebrow">Tüm değerlendirmeler</span>
+    <h1>{{performanceEvaluations.formName}}</h1>
+    <p class="ass__hero-sub">{{performanceEvaluations.periodText}} · {{user.name}} {{user.surname}}</p>
+  </div>
+  {{#if performanceEvaluations.averageEvaluationScores}}
+    <div class="ass__hero-meta">
+      <span class="ass__chip pdft-chip--score"><i class="pi pi-star-fill"></i> Genel ort. {{performanceEvaluations.averageEvaluationScores}}</span>
+    </div>
+  {{/if}}
+</div>

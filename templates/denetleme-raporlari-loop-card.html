@@ -1,0 +1,30 @@
+<div class="dr-card__header">
+  {{#if input.short}}<span class="dr-card__code">{{input.short}}</span>{{/if}}
+  <h3 class="dr-card__title">{{input.label}}</h3>
+</div>
+
+<div class="dr-card__metrics">
+  <div class="dr-card__metric">
+    <span class="dr-card__metric-label">Son denetleme</span>
+    {{#if input.lastInspection.datetime}}
+    <span class="dr-card__metric-value">{{renderDateTime input.lastInspection.datetime}}</span>
+    {{else}}
+    <span class="dr-card__metric-value dr-card__metric-value--muted">Henüz yok</span>
+    {{/if}}
+  </div>
+
+  <div class="dr-card__metric">
+    <span class="dr-card__metric-label">Puan</span>
+    {{#if input.lastInspection.total.point}}
+    <div class="dr-card__score">
+      <span class="dr-card__score-num">{{input.lastInspection.total.point}}</span>
+      <span class="dr-card__score-max">/5</span>
+    </div>
+    {{#if input.lastInspection.resultText}}
+    <span class="dr-card__badge">{{input.lastInspection.resultText}}</span>
+    {{/if}}
+    {{else}}
+    <span class="dr-card__metric-value dr-card__metric-value--muted">—</span>
+    {{/if}}
+  </div>
+</div>

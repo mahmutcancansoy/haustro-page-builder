@@ -1,0 +1,151 @@
+{
+  "_id": "69c305ff5170eb001c6a8bd3",
+  "isExpanded": false,
+  "type": "sub",
+  "properties": [
+    {
+      "key": "display-name",
+      "type": "input-text-property",
+      "header": "Display Name",
+      "value": "Şube Limitleri"
+    },
+    {
+      "key": "label",
+      "type": "input-text-property",
+      "header": "Label",
+      "value": "Şube Limitleri"
+    },
+    {
+      "key": "icon",
+      "type": "input-text-property",
+      "header": "Icon",
+      "value": ""
+    },
+    {
+      "key": "route-type",
+      "type": "select-property",
+      "options": [
+        {
+          "label": "Dynamic",
+          "value": "dynamic"
+        },
+        {
+          "label": "Static",
+          "value": "static"
+        },
+        {
+          "label": "External",
+          "value": "external"
+        }
+      ],
+      "header": "Route Type",
+      "value": "dynamic"
+    },
+    {
+      "key": "url-targer",
+      "type": "select-property",
+      "options": [
+        {
+          "label": "_self",
+          "value": "_self"
+        },
+        {
+          "label": "_blank",
+          "value": "_blank"
+        }
+      ],
+      "header": "Target",
+      "value": "_self",
+      "conditions": [
+        {
+          "key": "route-type",
+          "rule": "value == 'external'"
+        }
+      ]
+    },
+    {
+      "key": "url",
+      "type": "input-text-property",
+      "header": "Url",
+      "value": "sube-limitleri",
+      "conditions": [
+        {
+          "key": "route-type",
+          "rule": "value != 'category'"
+        }
+      ]
+    },
+    {
+      "key": "bg",
+      "header": "Background",
+      "type": "group-property",
+      "children": [
+        {
+          "key": "bg-type",
+          "header": "Type",
+          "type": "select-button",
+          "options": [
+            {
+              "label": "Color",
+              "value": "color"
+            },
+            {
+              "label": "Gradient",
+              "value": "gradient"
+            }
+          ],
+          "value": "color",
+          "inGroup": true
+        },
+        {
+          "key": "color",
+          "header": "Color",
+          "type": "color-picker-property",
+          "value": "#fff",
+          "inGroup": true,
+          "conditions": [
+            {
+              "key": "bg-type",
+              "rule": "value == 'color'"
+            }
+          ]
+        },
+        {
+          "key": "gradient",
+          "header": "Gradient",
+          "type": "gradient-picker-property",
+          "value": "linear-gradient(90deg, #fff 0%, #000 100%)",
+          "inGroup": true,
+          "conditions": [
+            {
+              "key": "bg-type",
+              "rule": "value == 'gradient'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "settings",
+      "type": "checkbox-property",
+      "header": "Settings",
+      "options": [
+        {
+          "label": "Hidden",
+          "name": "hidden"
+        },
+        {
+          "label": "Alert When Leave",
+          "name": "leaveAlert"
+        }
+      ],
+      "value": {
+        "hidden": false,
+        "leaveAlert": false
+      }
+    }
+  ],
+  "parent": "69c305f05170eb0015370b55",
+  "children": [],
+  "createdAt": "2026-03-25T00:45:35.000Z"
+}

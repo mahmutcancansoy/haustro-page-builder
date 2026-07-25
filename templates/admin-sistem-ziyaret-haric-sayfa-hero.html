@@ -1,0 +1,18 @@
+{{#each visitExcludedMeta}}
+<div class="auo-page auo-page--list pve-page">
+  <a class="auo-back" href="/d/admin-sistem-durumu">
+    <i class="pi pi-arrow-left"></i> Sistem durumuna dön
+  </a>
+
+  <div class="auo__hero">
+    <div class="auo__hero-main">
+      <span class="auo__eyebrow">Sistem yönetimi</span>
+      <h1>Ziyaret Logu Hariç Tutulanlar</h1>
+      <p>
+        Bu listedeki kullanıcılar sayfa ziyaret loguna yazılmaz ve anlık kullanıcılar listesinde görünmez.
+      </p>
+    </div>
+    <span class="auo__count">{{this.excludedCount}}</span>
+  </div>
+</div>
+{{/each}}

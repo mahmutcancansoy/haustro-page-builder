@@ -1,0 +1,114 @@
+/* Tedarik Faturası Detay (elogo) — hero + form kartı + kalem loop */
+.ass-page .ass__hero-meta-line {
+  margin: 0.35rem 0 0;
+  font-size: 0.86rem;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+
+.ass-page .ass__hero-meta-line i {
+  font-size: 0.82rem;
+  margin-right: 0.15rem;
+}
+
+.ass-page .ass__detail-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: var(--ass-surface, #fff);
+  border: 1px solid var(--ass-border, #e2e8f0);
+  border-radius: var(--ass-radius, 16px);
+  box-shadow: var(--ass-shadow, 0 4px 24px rgba(69, 87, 163, 0.08));
+  overflow: hidden;
+}
+
+.ass-page .ass__detail-card > .form-container,
+.ass-page .ass__detail-card .form-container {
+  padding: 0 1.15rem 1.25rem !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.ass-page .ass__detail-card .form-container > label,
+.ass-page .ass__detail-card .form-container > .condition {
+  display: block;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ass-page .ass__detail-card .form-container > label:last-child,
+.ass-page .ass__detail-card .form-container > .condition:last-child {
+  border-bottom: none;
+}
+
+.ass-page .ass__detail-card .form-container label,
+.ass-page .ass__detail-card .form-container .label {
+  color: #64748b !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ass-page .ass__detail-card .form-container .label + span,
+.ass-page .ass__detail-card .form-container .label ~ .value,
+.ass-page .ass__detail-card .form-container label ~ span:not(.label) {
+  color: #1e293b !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  line-height: 1.45;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+/* Fatura kalemleri */
+.ass-page .ass__detail-card .loop .simple-container,
+.ass-page .tf-line-item {
+  margin: 0.75rem 0 !important;
+  padding: 0.9rem 1rem !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+.ass-page .ass__detail-card .loop .simple-container .simple-container {
+  margin-top: 0.65rem !important;
+  padding: 0.75rem 0.85rem !important;
+  background: #fff !important;
+  border: 1px dashed #e2e8f0 !important;
+  border-radius: 10px !important;
+}
+
+.ass-page .ass__detail-card .form-container > .loop {
+  display: block;
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.ass-page .ass__detail-card .form-container > .condition {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .ass-page .ass__detail-card .form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.5rem;
+    padding: 0 1.35rem 1.35rem !important;
+  }
+
+  .ass-page .ass__detail-card .form-container > .loop,
+  .ass-page .ass__detail-card .form-container > .condition {
+    grid-column: 1 / -1;
+  }
+}
+
+@media print {
+  .ass-page .ass__toolbar {
+    display: none !important;
+  }
+}
