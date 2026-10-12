@@ -3,6 +3,138 @@
   "content": [
     {
       "type": "data-source",
+      "isContainer": false,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Sayfa ziyaret logu"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "_pageVisitEnter"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "custom"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "pageVisitLog",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n  \"action\": \"enter\",\n  \"pageId\": \"6914b7315170eb00171816d2\",\n  \"pageUrl\": \"hizmet-satin-alim-detayi\",\n  \"path\": \"/d/hizmet-satin-alim-detayi\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": true,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "data-source",
       "isContainer": true,
       "children": [],
       "properties": [
@@ -1797,6 +1929,20 @@
       "type": "condition",
       "isContainer": true,
       "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "{{#cIf purchases.status \"==\" \"0\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-now\" title=\"Onay\"></i><i class=\"is-wait\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Onay bekleniyor</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"1\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif toplanıyor</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"2\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklifler yüklendi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"3\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif onaylandı</div>{{#cIf purchases.:users:demander._id \"==\" info._id}}<div class=\"sat-flow__mine\">Tamamlama alanları bu sayfada</div>{{/cIf}}</div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"4\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-now\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş verildi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"5\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-now\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş yolda</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"6\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura bekleniyor</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"7\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura yüklendi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"8\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-done\" title=\"Fatura\"></i><i class=\"is-done\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Tamamlandı</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"9\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">Reddedildi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"10\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">İptal edildi</div></div>{{/cIf}}\n<style>\n.sat-flow{min-width:168px;line-height:1.3}\n.sat-flow__dots{display:flex;gap:4px;align-items:center}\n.sat-flow__dots i{width:8px;height:8px;border-radius:99px;background:#e2e8f0;display:block}\n.sat-flow__dots i.is-done{background:#16a34a}\n.sat-flow__dots i.is-now{background:#4557a3;width:10px;height:10px;box-shadow:0 0 0 3px rgba(69,87,163,.18)}\n.sat-flow__name{margin-top:4px;font-size:12px;font-weight:650;color:#1e293b}\n.sat-flow__mine{margin-top:4px;display:inline-block;font-size:11px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:2px 8px}\n.sat-flow__bad{font-size:12px;font-weight:700;color:#b91c1c}\n.sat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px;color:#64748b;font-size:12px}\n.sat-legend b{color:#1e293b;font-weight:650}\n.sat-legend span{white-space:nowrap}\n.sat-legend span+span:before{content:\"→\";margin-right:10px;color:#cbd5e1}\n.sat-owner-act{margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}\n.sat-owner-act strong{display:block;margin-bottom:4px}\n</style>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Talep sahibi süreç"
+            }
+          ]
+        },
         {
           "type": "render-template",
           "isContainer": false,
@@ -9640,7 +9786,7 @@
                                       "key": "openBtnClass",
                                       "header": "Open button class",
                                       "type": "input-text-property",
-                                      "value": "p-button-success p-button-sm p-button-outlined p-ripple",
+                                      "value": "p-button-success p-button-sm p-button-outlined p-ripple teklif-yeni-ekle",
                                       "conditions": [
                                         {
                                           "key": "open-type",
@@ -14693,7 +14839,7 @@
                           "key": "base-url",
                           "header": "Base url",
                           "type": "input-text-property",
-                          "value": "http://192.168.0.10/resources/",
+                          "value": "https://backend.haustro.net/resources/",
                           "autoComplete": true,
                           "autoCompleteMode": "template"
                         },
@@ -20315,7 +20461,7 @@
               "key": "url",
               "header": "Url",
               "type": "textarea-property",
-              "value": "/d/anasayfa",
+              "value": "/d/satin-alim-talepleri",
               "autoComplete": true,
               "autoCompleteMode": "template",
               "conditions": [
@@ -36580,6 +36726,6 @@
       ]
     }
   ],
-  "styles": "",
-  "syncedAt": "2026-07-20T15:53:30.561Z"
+  "styles": ".teklif-yeni-ekle.p-button{width:430px !important;max-width:100% !important;margin-top:12px !important;display:inline-flex !important;justify-content:center;}",
+  "syncedAt": "2026-10-12T22:46:06.173Z"
 }

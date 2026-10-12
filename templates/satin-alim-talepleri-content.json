@@ -2,6 +2,138 @@
   "pageId": "620efaa1b03e36003b6cf060",
   "content": [
     {
+      "type": "data-source",
+      "isContainer": false,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Sayfa ziyaret logu"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "_pageVisitEnter"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "custom"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "pageVisitLog",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n  \"action\": \"enter\",\n  \"pageId\": \"620efaa1b03e36003b6cf060\",\n  \"pageUrl\": \"satin-alim-talepleri\",\n  \"path\": \"/d/satin-alim-talepleri\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": true,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
       "type": "condition",
       "isContainer": true,
       "children": [
@@ -65,7 +197,7 @@
               "key": "table-filters",
               "header": "Table filters",
               "type": "code-editor",
-              "value": "{\n    \"delete\" : \"0\",\n    \"sort\" : {\"datetime\": -1},\n    \"status\":\"0\"\n}",
+              "value": "{\n    \"delete\" : \"0\",\n    \"sort\" : {\"datetime\": -1},\n    \"$or\": [\n        {\"status\": \"0\"},\n        {\":users:demander\": \"{{info._id}}\"}\n    ]\n}",
               "autoComplete": true,
               "autoCompleteMode": "template"
             },
@@ -232,7 +364,7 @@
               "key": "table-filters",
               "header": "Table filters",
               "type": "code-editor",
-              "value": "{\n    \"delete\" : \"0\",\n    \"sort\" : {\"datetime\": -1},\n    \"purchaseType\":{\"$ne\":\"service\"},\n    \"status\":\"0\"\n}",
+              "value": "{\n    \"delete\" : \"0\",\n    \"sort\" : {\"datetime\": -1},\n    \"purchaseType\": {\"$ne\":\"service\"},\n    \"$or\": [\n        {\"status\": \"0\"},\n        {\":users:demander\": \"{{info._id}}\"}\n    ]\n}",
               "autoComplete": true,
               "autoCompleteMode": "template"
             },
@@ -399,7 +531,7 @@
               "key": "table-filters",
               "header": "Table filters",
               "type": "code-editor",
-              "value": "{\n    \"delete\" : \"0\",\n    \"sort\" : {\"datetime\": -1},\n    \"purchaseType\":\"service\",\n    \"status\": \"0\"\n}",
+              "value": "{\n    \"delete\" : \"0\",\n    \"sort\" : {\"datetime\": -1},\n    \"purchaseType\": \"service\",\n    \"$or\": [\n        {\"status\": \"0\"},\n        {\":users:demander\": \"{{info._id}}\"}\n    ]\n}",
               "autoComplete": true,
               "autoCompleteMode": "template"
             },
@@ -2744,6 +2876,20 @@
       "isContainer": true,
       "children": [
         {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"sat-legend\"><b>Süreç</b><span>Talep</span><span>Onay</span><span>Teklif</span><span>Sipariş</span><span>Yolda</span><span>Teslim</span><span>Fatura</span><span>Bitti</span></div>\n<p class=\"sat-legend\" style=\"margin-top:0\">Oluşturduğunuz talepler tamamlanana kadar bu listede kalır. Size düşen işlem, talebin detayında açılır.</p>\n<style>\n.sat-flow{min-width:168px;line-height:1.3}\n.sat-flow__dots{display:flex;gap:4px;align-items:center}\n.sat-flow__dots i{width:8px;height:8px;border-radius:99px;background:#e2e8f0;display:block}\n.sat-flow__dots i.is-done{background:#16a34a}\n.sat-flow__dots i.is-now{background:#4557a3;width:10px;height:10px;box-shadow:0 0 0 3px rgba(69,87,163,.18)}\n.sat-flow__name{margin-top:4px;font-size:12px;font-weight:650;color:#1e293b}\n.sat-flow__mine{margin-top:4px;display:inline-block;font-size:11px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:2px 8px}\n.sat-flow__bad{font-size:12px;font-weight:700;color:#b91c1c}\n.sat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px;color:#64748b;font-size:12px}\n.sat-legend b{color:#1e293b;font-weight:650}\n.sat-legend span{white-space:nowrap}\n.sat-legend span+span:before{content:\"→\";margin-right:10px;color:#cbd5e1}\n.sat-owner-act{margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}\n.sat-owner-act strong{display:block;margin-bottom:4px}\n</style>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Süreç açıklaması"
+            }
+          ]
+        },
+        {
           "type": "table",
           "isContainer": true,
           "children": [
@@ -3141,111 +3287,197 @@
               "isContainer": true,
               "children": [
                 {
-                  "type": "image",
-                  "isContainer": false,
-                  "properties": [
+                  "type": "condition",
+                  "isContainer": true,
+                  "children": [
                     {
-                      "key": "display-name",
-                      "header": "Display name",
-                      "type": "input-text-property",
-                      "value": "photo"
-                    },
-                    {
-                      "key": "classes",
-                      "header": "Classes",
-                      "type": "textarea-property",
-                      "value": ""
-                    },
-                    {
-                      "key": "width",
-                      "header": "Width",
-                      "type": "input-text-property",
-                      "value": "60px"
-                    },
-                    {
-                      "key": "height",
-                      "header": "Height",
-                      "type": "input-text-property",
-                      "value": "auto"
-                    },
-                    {
-                      "key": "src",
-                      "header": "Source",
-                      "type": "textarea-property",
-                      "value": "{{globals.resources}}{{input.:inventory:.photo.0.name}}",
-                      "autoComplete": true,
-                      "autoCompleteMode": "template"
-                    },
-                    {
-                      "key": "border",
-                      "header": "Border",
-                      "type": "group-property",
-                      "children": [
+                      "type": "image",
+                      "isContainer": false,
+                      "properties": [
                         {
-                          "key": "style",
-                          "type": "select-property",
-                          "options": [
-                            {
-                              "label": "none",
-                              "value": "none"
-                            },
-                            {
-                              "label": "solid",
-                              "value": "solid"
-                            },
-                            {
-                              "label": "dashed",
-                              "value": "dashed"
-                            },
-                            {
-                              "label": "dotted",
-                              "value": "dotted"
-                            }
-                          ],
-                          "header": "Style",
-                          "value": "solid",
-                          "inGroup": true
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "photo"
                         },
                         {
-                          "key": "color",
-                          "header": "Color",
-                          "type": "color-picker-property",
-                          "value": "#C8C8C8",
-                          "inGroup": true
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
                         },
                         {
                           "key": "width",
                           "header": "Width",
                           "type": "input-text-property",
-                          "value": "1px",
-                          "inGroup": true
+                          "value": "60px"
                         },
                         {
-                          "key": "radius",
-                          "header": "Radius",
+                          "key": "height",
+                          "header": "Height",
                           "type": "input-text-property",
-                          "value": "5px",
-                          "inGroup": true
+                          "value": "auto"
+                        },
+                        {
+                          "key": "src",
+                          "header": "Source",
+                          "type": "textarea-property",
+                          "value": "{{globals.withoutImage}}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "border",
+                          "header": "Border",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "style",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "none",
+                                  "value": "none"
+                                },
+                                {
+                                  "label": "solid",
+                                  "value": "solid"
+                                },
+                                {
+                                  "label": "dashed",
+                                  "value": "dashed"
+                                },
+                                {
+                                  "label": "dotted",
+                                  "value": "dotted"
+                                }
+                              ],
+                              "header": "Style",
+                              "value": "solid",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "color",
+                              "header": "Color",
+                              "type": "color-picker-property",
+                              "value": "#C8C8C8",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "1px",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "radius",
+                              "header": "Radius",
+                              "type": "input-text-property",
+                              "value": "5px",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            10,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
                         }
                       ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Item Without Image"
                     },
                     {
-                      "key": "spacings",
-                      "header": "Spacings",
-                      "type": "spacings",
-                      "unit": "px",
-                      "margins": [
-                        0,
-                        10,
-                        0,
-                        0
+                      "key": "condition",
+                      "header": "Condition",
+                      "type": "textarea-property",
+                      "value": "\"{{input.:inventory:.photo.length}}\" == \"0\"",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "oneTimeCheck",
+                      "header": "One Time Check",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Check on Create Only",
+                          "name": "once"
+                        }
                       ],
-                      "paddings": [
-                        0,
-                        0,
-                        0,
-                        0
+                      "value": {
+                        "once": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "condition",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "render-template",
+                      "isContainer": false,
+                      "isTextEditor": true,
+                      "content": "<div class=\"hst-photo-hover\">\n  <img class=\"hst-photo-hover__thumb\" src=\"{{globals.resources}}{{input.:inventory:.photo.0.name}}\" alt=\"\" onerror=\"this.onerror=null;this.src='{{globals.withoutImage}}';\">\n  <img class=\"hst-photo-hover__zoom\" src=\"{{globals.resources}}{{input.:inventory:.photo.0.name}}\" alt=\"\" onerror=\"this.onerror=null;this.src='{{globals.withoutImage}}';\">\n</div>\n<style>\n.hst-photo-hover {\n  position: relative;\n  display: inline-block;\n  z-index: 1;\n  margin-right: 10px;\n}\n.hst-photo-hover__thumb {\n  display: block;\n  width: 60px;\n  height: 60px;\n  object-fit: cover;\n  border: 1px solid #C8C8C8;\n  border-radius: 5px;\n  cursor: zoom-in;\n  background: #fff;\n}\n.hst-photo-hover__zoom {\n  visibility: hidden;\n  opacity: 0;\n  position: absolute;\n  left: calc(100% + 12px);\n  top: 50%;\n  transform: translateY(-50%);\n  width: 320px;\n  max-width: min(320px, 55vw);\n  height: auto;\n  z-index: 10000;\n  border: 1px solid #e2e8f0;\n  border-radius: 8px;\n  background: #fff;\n  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.22);\n  pointer-events: none;\n  transition: opacity 0.12s ease;\n}\n.hst-photo-hover:hover {\n  z-index: 10000;\n}\n.hst-photo-hover:hover .hst-photo-hover__zoom {\n  visibility: visible;\n  opacity: 1;\n}\n.p-datatable:has(.hst-photo-hover) .p-datatable-wrapper,\n.p-datatable:has(.hst-photo-hover) .p-datatable-scrollable-wrapper,\n.p-datatable:has(.hst-photo-hover) .p-datatable-scrollable-body,\n.p-datatable:has(.hst-photo-hover) .p-datatable-table-container,\n.p-datatable:has(.hst-photo-hover) table,\n.p-datatable:has(.hst-photo-hover) .p-datatable-tbody > tr,\n.p-datatable:has(.hst-photo-hover) .p-datatable-tbody > tr > td {\n  overflow: visible !important;\n}\n.p-datatable:has(.hst-photo-hover) .p-datatable-tbody > tr:hover {\n  position: relative;\n  z-index: 20;\n}\n</style>",
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Fotoğraf Hover"
+                        }
                       ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Item Image"
+                    },
+                    {
+                      "key": "condition",
+                      "header": "Condition",
+                      "type": "textarea-property",
+                      "value": "\"{{input.:inventory:.photo.0.name}}\"!=\"\"",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "oneTimeCheck",
+                      "header": "One Time Check",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Check on Create Only",
+                          "name": "once"
+                        }
+                      ],
+                      "value": {
+                        "once": false
+                      }
                     }
                   ]
                 }
@@ -5337,285 +5569,16 @@
               "isContainer": true,
               "children": [
                 {
-                  "type": "condition",
-                  "isContainer": true,
-                  "children": [
-                    {
-                      "type": "label",
-                      "isContainer": false,
-                      "properties": [
-                        {
-                          "key": "display-name",
-                          "header": "Display name",
-                          "type": "input-text-property",
-                          "value": "status 0"
-                        },
-                        {
-                          "key": "classes",
-                          "header": "Classes",
-                          "type": "textarea-property",
-                          "value": ""
-                        },
-                        {
-                          "key": "text",
-                          "header": "Text",
-                          "type": "textarea-property",
-                          "value": "Beklemede",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template"
-                        },
-                        {
-                          "key": "label",
-                          "header": "Form label",
-                          "type": "input-text-property",
-                          "value": "",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "settings",
-                              "rule": "value.inForm"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "action",
-                          "type": "select-property",
-                          "options": [
-                            {
-                              "label": "No action",
-                              "value": "noAction"
-                            },
-                            {
-                              "label": "Link",
-                              "value": "link"
-                            },
-                            {
-                              "label": "Route",
-                              "value": "route"
-                            },
-                            {
-                              "label": "Download",
-                              "value": "download"
-                            }
-                          ],
-                          "header": "Action",
-                          "value": "noAction"
-                        },
-                        {
-                          "key": "url",
-                          "header": "Url",
-                          "type": "textarea-property",
-                          "value": "",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value != 'noAction'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "query-params",
-                          "header": "Query Params",
-                          "type": "code-editor",
-                          "value": "{\n\n}",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value == 'route'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "filename",
-                          "header": "Filename",
-                          "type": "input-text-property",
-                          "value": "",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value == 'download'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "url-targer",
-                          "type": "select-property",
-                          "options": [
-                            {
-                              "label": "_self",
-                              "value": "_self"
-                            },
-                            {
-                              "label": "_blank",
-                              "value": "_blank"
-                            }
-                          ],
-                          "header": "Target",
-                          "value": "_self",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value == 'link'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "styles",
-                          "header": "Styles",
-                          "type": "group-property",
-                          "children": [
-                            {
-                              "key": "font-size",
-                              "header": "Font size",
-                              "type": "input-text-property",
-                              "value": "15px",
-                              "inGroup": true
-                            },
-                            {
-                              "key": "color",
-                              "header": "Color",
-                              "type": "color-picker-property",
-                              "value": "#eccd23",
-                              "inGroup": true
-                            },
-                            {
-                              "key": "decoration",
-                              "type": "select-property",
-                              "options": [
-                                {
-                                  "label": "None",
-                                  "value": "none"
-                                },
-                                {
-                                  "label": "Overline",
-                                  "value": "overline"
-                                },
-                                {
-                                  "label": "Line through",
-                                  "value": "line-through"
-                                },
-                                {
-                                  "label": "Underline",
-                                  "value": "underline"
-                                }
-                              ],
-                              "header": "Decoration",
-                              "value": "none",
-                              "inGroup": true
-                            },
-                            {
-                              "key": "font-style",
-                              "type": "checkbox-property",
-                              "header": "Font styles",
-                              "options": [
-                                {
-                                  "label": "Bold",
-                                  "name": "bold"
-                                },
-                                {
-                                  "label": "Italic",
-                                  "name": "italic"
-                                }
-                              ],
-                              "value": {
-                                "bold": true,
-                                "italic": false
-                              },
-                              "inGroup": true
-                            },
-                            {
-                              "key": "alignment",
-                              "header": "Alignment",
-                              "type": "select-button",
-                              "options": [
-                                {
-                                  "label": "Left",
-                                  "value": "left"
-                                },
-                                {
-                                  "label": "Center",
-                                  "value": "center"
-                                },
-                                {
-                                  "label": "Right",
-                                  "value": "right"
-                                }
-                              ],
-                              "value": "left",
-                              "inGroup": true
-                            }
-                          ]
-                        },
-                        {
-                          "key": "spacings",
-                          "header": "Spacings",
-                          "type": "spacings",
-                          "unit": "px",
-                          "margins": [
-                            0,
-                            0,
-                            0,
-                            0
-                          ],
-                          "paddings": [
-                            0,
-                            0,
-                            0,
-                            0
-                          ]
-                        },
-                        {
-                          "key": "settings",
-                          "type": "checkbox-property",
-                          "header": "Settings",
-                          "options": [
-                            {
-                              "label": "In form",
-                              "name": "inForm"
-                            }
-                          ],
-                          "value": {
-                            "inForm": false
-                          }
-                        }
-                      ]
-                    }
-                  ],
+                  "type": "render-template",
+                  "isContainer": false,
+                  "isTextEditor": true,
+                  "content": "{{#cIf input.status \"==\" \"0\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-now\" title=\"Onay\"></i><i class=\"is-wait\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Onay bekleniyor</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"1\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif toplanıyor</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"2\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklifler yüklendi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"3\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif onaylandı</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"4\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-now\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş verildi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"5\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-now\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş yolda</div>{{#cIf input.:users:demander._id \"==\" info._id}}<div class=\"sat-flow__mine\">Sizin işleminiz: Teslim alma</div>{{/cIf}}</div>{{/cIf}}\n{{#cIf input.status \"==\" \"6\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura bekleniyor</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"7\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura yüklendi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"8\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-done\" title=\"Fatura\"></i><i class=\"is-done\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Tamamlandı</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"9\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">Reddedildi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"10\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">İptal edildi</div></div>{{/cIf}}\n<style>\n.sat-flow{min-width:168px;line-height:1.3}\n.sat-flow__dots{display:flex;gap:4px;align-items:center}\n.sat-flow__dots i{width:8px;height:8px;border-radius:99px;background:#e2e8f0;display:block}\n.sat-flow__dots i.is-done{background:#16a34a}\n.sat-flow__dots i.is-now{background:#4557a3;width:10px;height:10px;box-shadow:0 0 0 3px rgba(69,87,163,.18)}\n.sat-flow__name{margin-top:4px;font-size:12px;font-weight:650;color:#1e293b}\n.sat-flow__mine{margin-top:4px;display:inline-block;font-size:11px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:2px 8px}\n.sat-flow__bad{font-size:12px;font-weight:700;color:#b91c1c}\n.sat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px;color:#64748b;font-size:12px}\n.sat-legend b{color:#1e293b;font-weight:650}\n.sat-legend span{white-space:nowrap}\n.sat-legend span+span:before{content:\"→\";margin-right:10px;color:#cbd5e1}\n.sat-owner-act{margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}\n.sat-owner-act strong{display:block;margin-bottom:4px}\n</style>",
                   "properties": [
                     {
                       "key": "display-name",
                       "header": "Display name",
                       "type": "input-text-property",
-                      "value": "status 0"
-                    },
-                    {
-                      "key": "condition",
-                      "header": "Condition",
-                      "type": "textarea-property",
-                      "value": "\"{{input.status}}\" == \"0\"",
-                      "autoComplete": true,
-                      "autoCompleteMode": "template"
-                    },
-                    {
-                      "key": "oneTimeCheck",
-                      "header": "One Time Check",
-                      "type": "checkbox-property",
-                      "options": [
-                        {
-                          "label": "Check on Create Only",
-                          "name": "once"
-                        }
-                      ],
-                      "value": {
-                        "once": true
-                      }
+                      "value": "Süreç takibi"
                     }
                   ]
                 }
@@ -5637,7 +5600,7 @@
                   "key": "header",
                   "header": "Header",
                   "type": "input-text-property",
-                  "value": "Durumu"
+                  "value": "Süreç"
                 },
                 {
                   "key": "width",
@@ -6818,6 +6781,20 @@
       "type": "condition",
       "isContainer": true,
       "children": [
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"sat-legend\"><b>Süreç</b><span>Talep</span><span>Onay</span><span>Teklif</span><span>Sipariş</span><span>Yolda</span><span>Teslim</span><span>Fatura</span><span>Bitti</span></div>\n<p class=\"sat-legend\" style=\"margin-top:0\">Oluşturduğunuz talepler tamamlanana kadar bu listede kalır. Size düşen işlem, talebin detayında açılır.</p>\n<style>\n.sat-flow{min-width:168px;line-height:1.3}\n.sat-flow__dots{display:flex;gap:4px;align-items:center}\n.sat-flow__dots i{width:8px;height:8px;border-radius:99px;background:#e2e8f0;display:block}\n.sat-flow__dots i.is-done{background:#16a34a}\n.sat-flow__dots i.is-now{background:#4557a3;width:10px;height:10px;box-shadow:0 0 0 3px rgba(69,87,163,.18)}\n.sat-flow__name{margin-top:4px;font-size:12px;font-weight:650;color:#1e293b}\n.sat-flow__mine{margin-top:4px;display:inline-block;font-size:11px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:2px 8px}\n.sat-flow__bad{font-size:12px;font-weight:700;color:#b91c1c}\n.sat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px;color:#64748b;font-size:12px}\n.sat-legend b{color:#1e293b;font-weight:650}\n.sat-legend span{white-space:nowrap}\n.sat-legend span+span:before{content:\"→\";margin-right:10px;color:#cbd5e1}\n.sat-owner-act{margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}\n.sat-owner-act strong{display:block;margin-bottom:4px}\n</style>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Süreç açıklaması"
+            }
+          ]
+        },
         {
           "type": "table",
           "isContainer": true,
@@ -9161,285 +9138,16 @@
               "isContainer": true,
               "children": [
                 {
-                  "type": "condition",
-                  "isContainer": true,
-                  "children": [
-                    {
-                      "type": "label",
-                      "isContainer": false,
-                      "properties": [
-                        {
-                          "key": "display-name",
-                          "header": "Display name",
-                          "type": "input-text-property",
-                          "value": "status 0"
-                        },
-                        {
-                          "key": "classes",
-                          "header": "Classes",
-                          "type": "textarea-property",
-                          "value": ""
-                        },
-                        {
-                          "key": "text",
-                          "header": "Text",
-                          "type": "textarea-property",
-                          "value": "Beklemede",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template"
-                        },
-                        {
-                          "key": "label",
-                          "header": "Form label",
-                          "type": "input-text-property",
-                          "value": "",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "settings",
-                              "rule": "value.inForm"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "action",
-                          "type": "select-property",
-                          "options": [
-                            {
-                              "label": "No action",
-                              "value": "noAction"
-                            },
-                            {
-                              "label": "Link",
-                              "value": "link"
-                            },
-                            {
-                              "label": "Route",
-                              "value": "route"
-                            },
-                            {
-                              "label": "Download",
-                              "value": "download"
-                            }
-                          ],
-                          "header": "Action",
-                          "value": "noAction"
-                        },
-                        {
-                          "key": "url",
-                          "header": "Url",
-                          "type": "textarea-property",
-                          "value": "",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value != 'noAction'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "query-params",
-                          "header": "Query Params",
-                          "type": "code-editor",
-                          "value": "{\n\n}",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value == 'route'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "filename",
-                          "header": "Filename",
-                          "type": "input-text-property",
-                          "value": "",
-                          "autoComplete": true,
-                          "autoCompleteMode": "template",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value == 'download'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "url-targer",
-                          "type": "select-property",
-                          "options": [
-                            {
-                              "label": "_self",
-                              "value": "_self"
-                            },
-                            {
-                              "label": "_blank",
-                              "value": "_blank"
-                            }
-                          ],
-                          "header": "Target",
-                          "value": "_self",
-                          "conditions": [
-                            {
-                              "key": "action",
-                              "rule": "value == 'link'"
-                            }
-                          ]
-                        },
-                        {
-                          "key": "styles",
-                          "header": "Styles",
-                          "type": "group-property",
-                          "children": [
-                            {
-                              "key": "font-size",
-                              "header": "Font size",
-                              "type": "input-text-property",
-                              "value": "15px",
-                              "inGroup": true
-                            },
-                            {
-                              "key": "color",
-                              "header": "Color",
-                              "type": "color-picker-property",
-                              "value": "#eccd23",
-                              "inGroup": true
-                            },
-                            {
-                              "key": "decoration",
-                              "type": "select-property",
-                              "options": [
-                                {
-                                  "label": "None",
-                                  "value": "none"
-                                },
-                                {
-                                  "label": "Overline",
-                                  "value": "overline"
-                                },
-                                {
-                                  "label": "Line through",
-                                  "value": "line-through"
-                                },
-                                {
-                                  "label": "Underline",
-                                  "value": "underline"
-                                }
-                              ],
-                              "header": "Decoration",
-                              "value": "none",
-                              "inGroup": true
-                            },
-                            {
-                              "key": "font-style",
-                              "type": "checkbox-property",
-                              "header": "Font styles",
-                              "options": [
-                                {
-                                  "label": "Bold",
-                                  "name": "bold"
-                                },
-                                {
-                                  "label": "Italic",
-                                  "name": "italic"
-                                }
-                              ],
-                              "value": {
-                                "bold": true,
-                                "italic": false
-                              },
-                              "inGroup": true
-                            },
-                            {
-                              "key": "alignment",
-                              "header": "Alignment",
-                              "type": "select-button",
-                              "options": [
-                                {
-                                  "label": "Left",
-                                  "value": "left"
-                                },
-                                {
-                                  "label": "Center",
-                                  "value": "center"
-                                },
-                                {
-                                  "label": "Right",
-                                  "value": "right"
-                                }
-                              ],
-                              "value": "left",
-                              "inGroup": true
-                            }
-                          ]
-                        },
-                        {
-                          "key": "spacings",
-                          "header": "Spacings",
-                          "type": "spacings",
-                          "unit": "px",
-                          "margins": [
-                            0,
-                            0,
-                            0,
-                            0
-                          ],
-                          "paddings": [
-                            0,
-                            0,
-                            0,
-                            0
-                          ]
-                        },
-                        {
-                          "key": "settings",
-                          "type": "checkbox-property",
-                          "header": "Settings",
-                          "options": [
-                            {
-                              "label": "In form",
-                              "name": "inForm"
-                            }
-                          ],
-                          "value": {
-                            "inForm": false
-                          }
-                        }
-                      ]
-                    }
-                  ],
+                  "type": "render-template",
+                  "isContainer": false,
+                  "isTextEditor": true,
+                  "content": "{{#cIf input.status \"==\" \"0\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-now\" title=\"Onay\"></i><i class=\"is-wait\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Onay bekleniyor</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"1\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif toplanıyor</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"2\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklifler yüklendi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"3\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif onaylandı</div>{{#cIf input.:users:demander._id \"==\" info._id}}<div class=\"sat-flow__mine\">Sizin işleminiz: Hizmeti tamamlayın</div>{{/cIf}}</div>{{/cIf}}\n{{#cIf input.status \"==\" \"4\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-now\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş verildi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"5\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-now\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş yolda</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"6\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura bekleniyor</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"7\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura yüklendi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"8\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-done\" title=\"Fatura\"></i><i class=\"is-done\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Tamamlandı</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"9\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">Reddedildi</div></div>{{/cIf}}\n{{#cIf input.status \"==\" \"10\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">İptal edildi</div></div>{{/cIf}}\n<style>\n.sat-flow{min-width:168px;line-height:1.3}\n.sat-flow__dots{display:flex;gap:4px;align-items:center}\n.sat-flow__dots i{width:8px;height:8px;border-radius:99px;background:#e2e8f0;display:block}\n.sat-flow__dots i.is-done{background:#16a34a}\n.sat-flow__dots i.is-now{background:#4557a3;width:10px;height:10px;box-shadow:0 0 0 3px rgba(69,87,163,.18)}\n.sat-flow__name{margin-top:4px;font-size:12px;font-weight:650;color:#1e293b}\n.sat-flow__mine{margin-top:4px;display:inline-block;font-size:11px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:2px 8px}\n.sat-flow__bad{font-size:12px;font-weight:700;color:#b91c1c}\n.sat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px;color:#64748b;font-size:12px}\n.sat-legend b{color:#1e293b;font-weight:650}\n.sat-legend span{white-space:nowrap}\n.sat-legend span+span:before{content:\"→\";margin-right:10px;color:#cbd5e1}\n.sat-owner-act{margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}\n.sat-owner-act strong{display:block;margin-bottom:4px}\n</style>",
                   "properties": [
                     {
                       "key": "display-name",
                       "header": "Display name",
                       "type": "input-text-property",
-                      "value": "status 0"
-                    },
-                    {
-                      "key": "condition",
-                      "header": "Condition",
-                      "type": "textarea-property",
-                      "value": "\"{{input.status}}\" == \"0\"",
-                      "autoComplete": true,
-                      "autoCompleteMode": "template"
-                    },
-                    {
-                      "key": "oneTimeCheck",
-                      "header": "One Time Check",
-                      "type": "checkbox-property",
-                      "options": [
-                        {
-                          "label": "Check on Create Only",
-                          "name": "once"
-                        }
-                      ],
-                      "value": {
-                        "once": true
-                      }
+                      "value": "Süreç takibi"
                     }
                   ]
                 }
@@ -9461,7 +9169,7 @@
                   "key": "header",
                   "header": "Header",
                   "type": "input-text-property",
-                  "value": "Durumu"
+                  "value": "Süreç"
                 },
                 {
                   "key": "width",
@@ -10251,5 +9959,5 @@
     }
   ],
   "styles": "",
-  "syncedAt": "2026-07-20T15:53:28.492Z"
+  "syncedAt": "2026-10-12T22:46:06.155Z"
 }

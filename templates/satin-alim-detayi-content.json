@@ -3,6 +3,138 @@
   "content": [
     {
       "type": "data-source",
+      "isContainer": false,
+      "children": [],
+      "properties": [
+        {
+          "key": "display-name",
+          "header": "Display name",
+          "type": "input-text-property",
+          "value": "Sayfa ziyaret logu"
+        },
+        {
+          "key": "variable-name",
+          "header": "Variable name",
+          "type": "input-text-property",
+          "value": "_pageVisitEnter"
+        },
+        {
+          "key": "function",
+          "header": "Function",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Get",
+              "value": "get"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            }
+          ],
+          "value": "custom"
+        },
+        {
+          "key": "table-name",
+          "header": "Table name",
+          "type": "input-text-property",
+          "value": "",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'get'"
+            }
+          ]
+        },
+        {
+          "key": "custom-function-name",
+          "header": "Custom function name",
+          "type": "input-text-property",
+          "value": "pageVisitLog",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "table-filters",
+          "header": "Table filters",
+          "type": "code-editor",
+          "value": "{\n\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template"
+        },
+        {
+          "key": "post-params",
+          "header": "Post",
+          "type": "code-editor",
+          "value": "{\n  \"action\": \"enter\",\n  \"pageId\": \"6788396da01c3524305d1dc0\",\n  \"pageUrl\": \"satin-alim-detayi\",\n  \"path\": \"/d/satin-alim-detayi\"\n}",
+          "autoComplete": true,
+          "autoCompleteMode": "template",
+          "conditions": [
+            {
+              "key": "function",
+              "rule": "value == 'custom'"
+            }
+          ]
+        },
+        {
+          "key": "debug-type",
+          "header": "Debug type",
+          "type": "select-property",
+          "options": [
+            {
+              "label": "Log",
+              "value": "log"
+            },
+            {
+              "label": "Table",
+              "value": "table"
+            }
+          ],
+          "value": "log",
+          "conditions": [
+            {
+              "key": "settings",
+              "rule": "value.debug"
+            }
+          ]
+        },
+        {
+          "key": "settings",
+          "type": "checkbox-property",
+          "header": "Settings",
+          "options": [
+            {
+              "label": "Single data",
+              "name": "single"
+            },
+            {
+              "label": "Debug",
+              "name": "debug"
+            },
+            {
+              "label": "Can reload",
+              "name": "canReload"
+            },
+            {
+              "label": "For table",
+              "name": "forTable"
+            }
+          ],
+          "value": {
+            "single": true,
+            "debug": false,
+            "canReload": false,
+            "forTable": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "data-source",
       "isContainer": true,
       "children": [],
       "properties": [
@@ -2172,7 +2304,21 @@
           "type": "render-template",
           "isContainer": false,
           "isTextEditor": true,
-          "content": "<div class=\"purchase-detail-wrapper\">\n    <div class=\"main-header-card mb-4\">\n        <div class=\"row align-items-center\">\n            <div class=\"col-auto\">\n                <div class=\"product-image-wrapper\">\n                    <img src=\"{{globals.resources}}{{purchases.:inventory:.photo.0.name}}\" alt=\"Envanter\" class=\"w-25 rounded-3\">\n                </div>\n            </div>\n            <div class=\"col\">\n                <h4 class=\"mb-1 fw-bold text-white\">Satın Alım Talep Detayı</h4>\n                <p class=\"mb-2 text-white-50\">{{#if purchases.:inventory:.cins}}{{purchases.:inventory:.cins}} {{/if}}{{#if purchases.:inventory:.name}}{{purchases.:inventory:.name}} {{/if}}{{#if purchases.:inventory:.model}}{{purchases.:inventory:.model}} {{/if}}{{#if purchases.:inventory:.:materiels:.name}}{{purchases.:inventory:.:materiels:.name}} {{/if}}{{#if purchases.:inventory:.:colors:.name}}{{purchases.:inventory:.:colors:.name}} {{/if}}{{#if purchases.:inventory:.pattern}}{{purchases.:inventory:.pattern}} {{/if}}{{#if purchases.:inventory:.width}}{{purchases.:inventory:.width}}x{{/if}}{{#if purchases.:inventory:.height}}{{purchases.:inventory:.height}}x{{/if}}{{#if purchases.:inventory:.depth}}{{purchases.:inventory:.depth}} {{/if}}{{#if purchases.:inventory:.bulk}} {{purchases.:inventory:.bulk}}ML {{/if}}{{#if purchases.:inventory:.code}}{{purchases.:inventory:.code}} {{/if}}</p>\n                <div class=\"d-flex flex-wrap gap-3 mt-2\">\n                    <span class=\"badge text-light\"><i class=\"pi pi-building me-1\"></i>{{departmentsOfInventory.departments}}</span>\n                    <span class=\"badge text-light\"><i class=\"pi pi-money-bill me-1\"></i>Baz Fiyat: {{purchases.:inventory:.basePrice}} ₺</span>\n                </div>\n            </div>\n            <div class=\"col-auto text-end\">\n    {{#cIf purchases.status \"==\" \"0\"}}\n        <div class=\"status-pill status-waiting\">\n            <i class=\"pi pi-clock\"></i> Beklemede\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"1\"}}\n        <div class=\"status-pill status-process\">\n            <i class=\"pi pi-spin pi-spinner\"></i> Teklif Toplanıyor\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"2\"}}\n        <div class=\"status-pill status-info\">\n            <i class=\"pi pi-file-import\"></i> Teklifler Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"3\"}}\n        <div class=\"status-pill status-approved\">\n            <i class=\"pi pi-check-circle\"></i> Teklif Onaylandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"4\"}}\n        <div class=\"status-pill status-order\">\n            <i class=\"pi pi-shopping-cart\"></i> Sipariş Verildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"5\"}}\n        <div class=\"status-pill status-shipping\">\n            <i class=\"pi pi-map-marker\"></i> Sipariş Yolda\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"6\"}}\n        <div class=\"status-pill status-delivered\">\n            <i class=\"pi pi-box\"></i> Teslim Edildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"7\"}}\n        <div class=\"status-pill status-invoice\">\n            <i class=\"pi pi-file-pdf\"></i> Fatura Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"8\"}}\n        <div class=\"status-pill status-final\">\n            <i class=\"pi pi-verified\"></i> Talep Karşılandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"9\"}}\n        <div class=\"status-pill status-rejected\">\n            <i class=\"pi pi-times-circle\"></i> Reddedildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"10\"}}\n        <div class=\"status-pill status-cancel\">\n            <i class=\"pi pi-ban\"></i> İptal Edildi\n        </div>\n    {{/cIf}}\n</div>\n        </div>\n    </div>\n\n    <div class=\"row gy-4\">\n        <div class=\"col-12 col-lg-7\">\n            <div class=\"info-card\">\n                <div class=\"card-header-modern\">\n                    <i class=\"pi pi-box\"></i>\n                    <h5>Envanter Teknik Detayları</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <div class=\"detail-grid\">\n                        <div class=\"detail-item\">\n                            <label>Envanter No</label>\n                            <span>{{purchases.:inventory:.no}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Envanter Tipi</label>\n                            <span>{{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.name}}\n{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.name}} -\n{{/if}}\n{{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.name}}\n{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.name}} -\n{{/if}}\n{{purchases.:inventory:.:inventoryCats:category.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Ebatlar (En x Boy x Der)</label>\n                            <span>{{purchases.:inventory:.width}} x {{purchases.:inventory:.height}} x {{purchases.:inventory:.depth}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Materyal / Renk</label>\n                            <span>{{purchases.:inventory:.:materiels:.name}} / {{purchases.:inventory:.:colors:.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Amortisman Süresi</label>\n                            <span>{{purchases.:inventory:.:depreciations:.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Bakım İhtiyacı</label>\n                            <span>{{#if purchases.:inventory:.:periodicMaintenances:.name}}\n{{purchases.:inventory:.:periodicMaintenances:.name}} Ay\n{{else}}\nYok\n{{/if}}</span>\n                        </div>\n                    </div>\n                    \n                    <div class=\"special-code-section mt-4\">\n    <label class=\"d-block mb-2 text-muted small fw-bold\">ÖZEL KOD HİYERARŞİSİ</label>\n    <div class=\"code-flow d-flex align-items-center flex-wrap gap-2\">\n        \n        {{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else}}\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n        {{/if}}\n\n    </div>\n</div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-12 col-lg-5\">\n            <div class=\"info-card h-100\">\n                <div class=\"card-header-modern secondary\">\n                    <i class=\"pi pi-send\"></i>\n                    <h5>Talep Bilgileri</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <ul class=\"vertical-detail-list\">\n                        <li>\n                            <i class=\"pi pi-user\"></i>\n                            <div>\n                                <label>Talep Eden</label>\n                                <span>{{purchases.:users:demander.name}} {{purchases.:users:demander.surname}}</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-map-marker\"></i>\n                            <div>\n                                <label>Şube / Depo</label>\n                                <span>{{purchases.:departments:.label}} ({{purchases.:departments:.short}})</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-info-circle\"></i>\n                            <div>\n                                <label>Talep Açıklaması</label>\n                                <span>{{purchases.description}}</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-list\"></i>\n                            <div>\n                                <label>Miktar / Aktif Stok</label>\n                                <span>{{purchases.count}} Adet / <strong class=\"text-primary\">{{stock.length}} Mevcut</strong></span>\n                            </div>\n                        </li>\n                    </ul>\n\n                    <div class=\"date-grid mt-4\">\n                        <div class=\"date-item\">\n                            <label>Talep Tarihi</label>\n                            <span>{{renderDate purchases.datetime}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Onay Tarihi</label>\n                            <span>{{renderDate purchases.terminateDatetime}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Garanti Bitiş Tarihi</label>\n                            <span>{{renderDate purchases.expiryGuarantee}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Son Tüketim Tarihi</label>\n                            <span>{{renderDate purchases.expiryDate}}</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<style>\n/* Ana Renkler ve Font */\n:root {\n    --primary-color: #4557a3;\n    --header-bg: #408090; /* Görseldeki turkuaz tonu */\n    --card-shadow: 0 10px 30px rgba(0,0,0,0.08);\n}\n\n.purchase-detail-wrapper {\n    font-family: 'Inter', sans-serif;\n    color: #334155;\n    background: #f8fafc;\n    padding: 20px;\n}\n\n/* Üst Kart Tasarımı */\n.main-header-card {\n    background: var(--header-bg);\n    padding: 30px;\n    border-radius: 20px;\n    box-shadow: var(--card-shadow);\n}\n\n.product-image-wrapper img {\n    border: 4px solid rgba(255,255,255,0.2);\n    box-shadow: 0 4px 10px rgba(0,0,0,0.2);\n}\n\n/* Teklifler Yüklendi - Açık Mavi */\n.status-info {\n    background: #e6f7ff;\n    color: #1890ff;\n    border: 1px solid #91d5ff;\n}\n/* Onaylandı (Statü 3) - Canlı Yeşil Tonu */\n.status-approved {\n    background: #f6ffed !important;\n    color: #52c41a !important;\n    border: 1px solid #b7eb8f !important;\n    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.15);\n},\n/* Sipariş Verildi / Yolda - Mor Tonları */\n.status-order, .status-shipping {\n    background: #f9f0ff;\n    color: #722ed1;\n    border: 1px solid #d3adf7;\n}\n\n/* Teslim Edildi / Fatura - Turkuaz/Yeşil Tonları */\n.status-delivered, .status-invoice {\n    background: #e6fffb;\n    color: #13c2c2;\n    border: 1px solid #87e8de;\n}\n\n/* Tamamlandı (8) - Koyu Yeşil */\n.status-final {\n    background: #f6ffed;\n    color: #389e0d;\n    border: 1px solid #b7eb8f;\n}\n\n/* İptal Edildi (10) - Koyu Gri */\n.status-cancel {\n    background: #f5f5f5;\n    color: #595959;\n    border: 1px solid #d9d9d9;\n}\n\n/* Mevcut Statü Pill Yapısı (Sabit Kalabilir) */\n.status-pill {\n    padding: 8px 16px;\n    border-radius: 50px;\n    font-weight: 700;\n    font-size: 0.85rem;\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.05);\n}\n.status-waiting {\n        background-color: #fefce8; /* Çok açık sarı */\n        color: #854d0e;            /* Koyu altın/amber */\n        border-color: #fef08a;\n        box-shadow: 0 2px 4px rgba(234, 179, 8, 0.1);\n    }\n    .status-waiting i {\n        color: #ca8a04;\n    }\n\n/* Bilgi Kartları */\n.info-card {\n    background: white;\n    border-radius: 16px;\n    box-shadow: var(--card-shadow);\n    overflow: hidden;\n    border: 1px solid #e2e8f0;\n}\n\n.card-header-modern {\n    padding: 15px 25px;\n    background: #f1f5f9;\n    border-bottom: 1px solid #e2e8f0;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.card-header-modern h5 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }\n.card-header-modern i { font-size: 1.2rem; color: var(--primary-color); }\n\n.card-content-modern { padding: 25px; }\n\n/* Grid Yapısı */\n.detail-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 20px;\n}\n\n.detail-item label {\n    display: block;\n    font-size: 0.75rem;\n    color: #94a3b8;\n    text-transform: uppercase;\n    font-weight: 700;\n    margin-bottom: 4px;\n}\n\n.detail-item span { font-weight: 600; color: #1e293b; }\n\n/* Liste Yapısı */\n.vertical-detail-list { list-style: none; padding: 0; margin: 0; }\n.vertical-detail-list li {\n    display: flex;\n    gap: 15px;\n    margin-bottom: 20px;\n    align-items: flex-start;\n}\n\n.vertical-detail-list i {\n    background: #eef2ff;\n    color: var(--primary-color);\n    padding: 10px;\n    border-radius: 10px;\n}\n\n.vertical-detail-list label { display: block; font-size: 0.8rem; color: #64748b; margin-bottom: 2px; }\n.vertical-detail-list span { font-weight: 600; }\n\n/* Özel Kod Akışı */\n.code-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }\n.code-step {\n    background: #f1f5f9;\n    padding: 5px 12px;\n    border-radius: 8px;\n    font-size: 0.85rem;\n    font-weight: 600;\n}\n.code-step.empty { color: #cbd5e1; font-weight: 400; }\n\n.date-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 10px;\n    background: #f8fafc;\n    padding: 15px;\n    border-radius: 12px;\n}\n.date-item label { display: block; font-size: 0.7rem; color: #94a3b8; }\n.date-item span { font-weight: 600; font-size: 0.9rem; }\n</style>",
+          "content": "{{#cIf purchases.status \"==\" \"0\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-now\" title=\"Onay\"></i><i class=\"is-wait\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Onay bekleniyor</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"1\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif toplanıyor</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"2\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklifler yüklendi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"3\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-now\" title=\"Teklif\"></i><i class=\"is-wait\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Teklif onaylandı</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"4\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-now\" title=\"Sipariş\"></i><i class=\"is-wait\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş verildi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"5\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-now\" title=\"Yolda\"></i><i class=\"is-wait\" title=\"Teslim\"></i><i class=\"is-wait\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Sipariş yolda</div>{{#cIf purchases.:users:demander._id \"==\" info._id}}<div class=\"sat-flow__mine\">Teslim alma alanları bu sayfada</div>{{/cIf}}</div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"6\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura bekleniyor</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"7\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-now\" title=\"Fatura\"></i><i class=\"is-wait\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Fatura yüklendi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"8\"}}<div class=\"sat-flow\"><div class=\"sat-flow__dots\" title=\"Talep → Onay → Teklif → Sipariş → Yolda → Teslim → Fatura → Bitti\"><i class=\"is-done\" title=\"Talep\"></i><i class=\"is-done\" title=\"Onay\"></i><i class=\"is-done\" title=\"Teklif\"></i><i class=\"is-done\" title=\"Sipariş\"></i><i class=\"is-done\" title=\"Yolda\"></i><i class=\"is-done\" title=\"Teslim\"></i><i class=\"is-done\" title=\"Fatura\"></i><i class=\"is-done\" title=\"Bitti\"></i></div><div class=\"sat-flow__name\">Tamamlandı</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"9\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">Reddedildi</div></div>{{/cIf}}\n{{#cIf purchases.status \"==\" \"10\"}}<div class=\"sat-flow\"><div class=\"sat-flow__bad\">İptal edildi</div></div>{{/cIf}}\n<style>\n.sat-flow{min-width:168px;line-height:1.3}\n.sat-flow__dots{display:flex;gap:4px;align-items:center}\n.sat-flow__dots i{width:8px;height:8px;border-radius:99px;background:#e2e8f0;display:block}\n.sat-flow__dots i.is-done{background:#16a34a}\n.sat-flow__dots i.is-now{background:#4557a3;width:10px;height:10px;box-shadow:0 0 0 3px rgba(69,87,163,.18)}\n.sat-flow__name{margin-top:4px;font-size:12px;font-weight:650;color:#1e293b}\n.sat-flow__mine{margin-top:4px;display:inline-block;font-size:11px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:2px 8px}\n.sat-flow__bad{font-size:12px;font-weight:700;color:#b91c1c}\n.sat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px;color:#64748b;font-size:12px}\n.sat-legend b{color:#1e293b;font-weight:650}\n.sat-legend span{white-space:nowrap}\n.sat-legend span+span:before{content:\"→\";margin-right:10px;color:#cbd5e1}\n.sat-owner-act{margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}\n.sat-owner-act strong{display:block;margin-bottom:4px}\n</style>",
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Talep sahibi süreç"
+            }
+          ]
+        },
+        {
+          "type": "render-template",
+          "isContainer": false,
+          "isTextEditor": true,
+          "content": "<div class=\"purchase-detail-wrapper\">\n    <div class=\"main-header-card mb-4\">\n        <div class=\"row align-items-center\">\n            <div class=\"col-auto\">\n                <div class=\"product-image-wrapper\">\n                    {{#if purchases.:inventory:.photo.0.name}}\n<img src=\"https://backend.haustro.net/resources/{{purchases.:inventory:.photo.0.name}}\" alt=\"Envanter\" class=\"w-25 rounded-3\" onerror=\"this.onerror=null;this.src='{{globals.withoutImage}}';\">\n{{else}}\n<img src=\"{{globals.withoutImage}}\" alt=\"Envanter\" class=\"w-25 rounded-3\">\n{{/if}}\n                </div>\n            </div>\n            <div class=\"col\">\n                <h4 class=\"mb-1 fw-bold text-white\">Satın Alım Talep Detayı</h4>\n                <p class=\"mb-2 text-white-50\">{{#if purchases.:inventory:.cins}}{{purchases.:inventory:.cins}} {{/if}}{{#if purchases.:inventory:.name}}{{purchases.:inventory:.name}} {{/if}}{{#if purchases.:inventory:.model}}{{purchases.:inventory:.model}} {{/if}}{{#if purchases.:inventory:.:materiels:.name}}{{purchases.:inventory:.:materiels:.name}} {{/if}}{{#if purchases.:inventory:.:colors:.name}}{{purchases.:inventory:.:colors:.name}} {{/if}}{{#if purchases.:inventory:.pattern}}{{purchases.:inventory:.pattern}} {{/if}}{{#if purchases.:inventory:.width}}{{purchases.:inventory:.width}}x{{/if}}{{#if purchases.:inventory:.height}}{{purchases.:inventory:.height}}x{{/if}}{{#if purchases.:inventory:.depth}}{{purchases.:inventory:.depth}} {{/if}}{{#if purchases.:inventory:.bulk}} {{purchases.:inventory:.bulk}}ML {{/if}}{{#if purchases.:inventory:.code}}{{purchases.:inventory:.code}} {{/if}}</p>\n                <div class=\"d-flex flex-wrap gap-3 mt-2\">\n                    <span class=\"badge text-light\"><i class=\"pi pi-building me-1\"></i>{{departmentsOfInventory.departments}}</span>\n                    <span class=\"badge text-light\"><i class=\"pi pi-money-bill me-1\"></i>Baz Fiyat: {{purchases.:inventory:.basePrice}} ₺</span>\n                </div>\n            </div>\n            <div class=\"col-auto text-end\">\n    {{#cIf purchases.status \"==\" \"0\"}}\n        <div class=\"status-pill status-waiting\">\n            <i class=\"pi pi-clock\"></i> Beklemede\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"1\"}}\n        <div class=\"status-pill status-process\">\n            <i class=\"pi pi-spin pi-spinner\"></i> Teklif Toplanıyor\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"2\"}}\n        <div class=\"status-pill status-info\">\n            <i class=\"pi pi-file-import\"></i> Teklifler Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"3\"}}\n        <div class=\"status-pill status-approved\">\n            <i class=\"pi pi-check-circle\"></i> Teklif Onaylandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"4\"}}\n        <div class=\"status-pill status-order\">\n            <i class=\"pi pi-shopping-cart\"></i> Sipariş Verildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"5\"}}\n        <div class=\"status-pill status-shipping\">\n            <i class=\"pi pi-map-marker\"></i> Sipariş Yolda\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"6\"}}\n        <div class=\"status-pill status-delivered\">\n            <i class=\"pi pi-box\"></i> Teslim Edildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"7\"}}\n        <div class=\"status-pill status-invoice\">\n            <i class=\"pi pi-file-pdf\"></i> Fatura Yüklendi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"8\"}}\n        <div class=\"status-pill status-final\">\n            <i class=\"pi pi-verified\"></i> Talep Karşılandı\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"9\"}}\n        <div class=\"status-pill status-rejected\">\n            <i class=\"pi pi-times-circle\"></i> Reddedildi\n        </div>\n    {{/cIf}}\n\n    {{#cIf purchases.status \"==\" \"10\"}}\n        <div class=\"status-pill status-cancel\">\n            <i class=\"pi pi-ban\"></i> İptal Edildi\n        </div>\n    {{/cIf}}\n</div>\n        </div>\n    </div>\n\n    <div class=\"row gy-4\">\n        <div class=\"col-12 col-lg-7\">\n            <div class=\"info-card\">\n                <div class=\"card-header-modern\">\n                    <i class=\"pi pi-box\"></i>\n                    <h5>Envanter Teknik Detayları</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <div class=\"detail-grid\">\n                        <div class=\"detail-item\">\n                            <label>Envanter No</label>\n                            <span>{{purchases.:inventory:.no}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Envanter Tipi</label>\n                            <span>{{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.name}}\n{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.name}} -\n{{/if}}\n{{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.name}}\n{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.name}} -\n{{/if}}\n{{purchases.:inventory:.:inventoryCats:category.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Ebatlar (En x Boy x Der)</label>\n                            <span>{{purchases.:inventory:.width}} x {{purchases.:inventory:.height}} x {{purchases.:inventory:.depth}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Materyal / Renk</label>\n                            <span>{{purchases.:inventory:.:materiels:.name}} / {{purchases.:inventory:.:colors:.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Amortisman Süresi</label>\n                            <span>{{purchases.:inventory:.:depreciations:.name}}</span>\n                        </div>\n                        <div class=\"detail-item\">\n                            <label>Bakım İhtiyacı</label>\n                            <span>{{#if purchases.:inventory:.:periodicMaintenances:.name}}\n{{purchases.:inventory:.:periodicMaintenances:.name}} Ay\n{{else}}\nYok\n{{/if}}</span>\n                        </div>\n                    </div>\n                    \n                    <div class=\"special-code-section mt-4\">\n    <label class=\"d-block mb-2 text-muted small fw-bold\">ÖZEL KOD HİYERARŞİSİ</label>\n    <div class=\"code-flow d-flex align-items-center flex-wrap gap-2\">\n        \n        {{#if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else if purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}\n            <span class=\"code-step\">{{purchases.:inventory:.:inventoryCats:category.:inventoryCats:parent.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n\n        {{else}}\n            <span class=\"code-step active\">{{purchases.:inventory:.:inventoryCats:category.short}}</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n            <i class=\"pi pi-angle-right text-muted\"></i>\n            <span class=\"code-step empty text-muted\">Boş</span>\n        {{/if}}\n\n    </div>\n</div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-12 col-lg-5\">\n            <div class=\"info-card h-100\">\n                <div class=\"card-header-modern secondary\">\n                    <i class=\"pi pi-send\"></i>\n                    <h5>Talep Bilgileri</h5>\n                </div>\n                <div class=\"card-content-modern\">\n                    <ul class=\"vertical-detail-list\">\n                        <li>\n                            <i class=\"pi pi-user\"></i>\n                            <div>\n                                <label>Talep Eden</label>\n                                <span>{{purchases.:users:demander.name}} {{purchases.:users:demander.surname}}</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-map-marker\"></i>\n                            <div>\n                                <label>Şube / Depo</label>\n                                <span>{{purchases.:departments:.label}} ({{purchases.:departments:.short}})</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-info-circle\"></i>\n                            <div>\n                                <label>Talep Açıklaması</label>\n                                <span>{{purchases.description}}</span>\n                            </div>\n                        </li>\n                        <li>\n                            <i class=\"pi pi-list\"></i>\n                            <div>\n                                <label>Miktar / Aktif Stok</label>\n                                <span>{{purchases.count}} Adet / <strong class=\"text-primary\">{{stock.length}} Mevcut</strong></span>\n                            </div>\n                        </li>\n                    </ul>\n\n                    <div class=\"date-grid mt-4\">\n                        <div class=\"date-item\">\n                            <label>Talep Tarihi</label>\n                            <span>{{renderDate purchases.datetime}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Onay Tarihi</label>\n                            <span>{{renderDate purchases.terminateDatetime}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Garanti Bitiş Tarihi</label>\n                            <span>{{renderDate purchases.expiryGuarantee}}</span>\n                        </div>\n                        <div class=\"date-item\">\n                            <label>Son Tüketim Tarihi</label>\n                            <span>{{renderDate purchases.expiryDate}}</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<style>\n/* Ana Renkler ve Font */\n:root {\n    --primary-color: #4557a3;\n    --header-bg: #408090; /* Görseldeki turkuaz tonu */\n    --card-shadow: 0 10px 30px rgba(0,0,0,0.08);\n}\n\n.purchase-detail-wrapper {\n    font-family: 'Inter', sans-serif;\n    color: #334155;\n    background: #f8fafc;\n    padding: 20px;\n}\n\n/* Üst Kart Tasarımı */\n.main-header-card {\n    background: var(--header-bg);\n    padding: 30px;\n    border-radius: 20px;\n    box-shadow: var(--card-shadow);\n}\n\n.product-image-wrapper img {\n    border: 4px solid rgba(255,255,255,0.2);\n    box-shadow: 0 4px 10px rgba(0,0,0,0.2);\n}\n\n/* Teklifler Yüklendi - Açık Mavi */\n.status-info {\n    background: #e6f7ff;\n    color: #1890ff;\n    border: 1px solid #91d5ff;\n}\n/* Onaylandı (Statü 3) - Canlı Yeşil Tonu */\n.status-approved {\n    background: #f6ffed !important;\n    color: #52c41a !important;\n    border: 1px solid #b7eb8f !important;\n    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.15);\n},\n/* Sipariş Verildi / Yolda - Mor Tonları */\n.status-order, .status-shipping {\n    background: #f9f0ff;\n    color: #722ed1;\n    border: 1px solid #d3adf7;\n}\n\n/* Teslim Edildi / Fatura - Turkuaz/Yeşil Tonları */\n.status-delivered, .status-invoice {\n    background: #e6fffb;\n    color: #13c2c2;\n    border: 1px solid #87e8de;\n}\n\n/* Tamamlandı (8) - Koyu Yeşil */\n.status-final {\n    background: #f6ffed;\n    color: #389e0d;\n    border: 1px solid #b7eb8f;\n}\n\n/* İptal Edildi (10) - Koyu Gri */\n.status-cancel {\n    background: #f5f5f5;\n    color: #595959;\n    border: 1px solid #d9d9d9;\n}\n\n/* Mevcut Statü Pill Yapısı (Sabit Kalabilir) */\n.status-pill {\n    padding: 8px 16px;\n    border-radius: 50px;\n    font-weight: 700;\n    font-size: 0.85rem;\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.05);\n}\n.status-waiting {\n        background-color: #fefce8; /* Çok açık sarı */\n        color: #854d0e;            /* Koyu altın/amber */\n        border-color: #fef08a;\n        box-shadow: 0 2px 4px rgba(234, 179, 8, 0.1);\n    }\n    .status-waiting i {\n        color: #ca8a04;\n    }\n\n/* Bilgi Kartları */\n.info-card {\n    background: white;\n    border-radius: 16px;\n    box-shadow: var(--card-shadow);\n    overflow: hidden;\n    border: 1px solid #e2e8f0;\n}\n\n.card-header-modern {\n    padding: 15px 25px;\n    background: #f1f5f9;\n    border-bottom: 1px solid #e2e8f0;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.card-header-modern h5 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }\n.card-header-modern i { font-size: 1.2rem; color: var(--primary-color); }\n\n.card-content-modern { padding: 25px; }\n\n/* Grid Yapısı */\n.detail-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 20px;\n}\n\n.detail-item label {\n    display: block;\n    font-size: 0.75rem;\n    color: #94a3b8;\n    text-transform: uppercase;\n    font-weight: 700;\n    margin-bottom: 4px;\n}\n\n.detail-item span { font-weight: 600; color: #1e293b; }\n\n/* Liste Yapısı */\n.vertical-detail-list { list-style: none; padding: 0; margin: 0; }\n.vertical-detail-list li {\n    display: flex;\n    gap: 15px;\n    margin-bottom: 20px;\n    align-items: flex-start;\n}\n\n.vertical-detail-list i {\n    background: #eef2ff;\n    color: var(--primary-color);\n    padding: 10px;\n    border-radius: 10px;\n}\n\n.vertical-detail-list label { display: block; font-size: 0.8rem; color: #64748b; margin-bottom: 2px; }\n.vertical-detail-list span { font-weight: 600; }\n\n/* Özel Kod Akışı */\n.code-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }\n.code-step {\n    background: #f1f5f9;\n    padding: 5px 12px;\n    border-radius: 8px;\n    font-size: 0.85rem;\n    font-weight: 600;\n}\n.code-step.empty { color: #cbd5e1; font-weight: 400; }\n\n.date-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 10px;\n    background: #f8fafc;\n    padding: 15px;\n    border-radius: 12px;\n}\n.date-item label { display: block; font-size: 0.7rem; color: #94a3b8; }\n.date-item span { font-weight: 600; font-size: 0.9rem; }\n</style>",
           "properties": [
             {
               "key": "display-name",
@@ -14495,6 +14641,1617 @@
               "value": "New Render Template 4"
             }
           ]
+        },
+        {
+          "type": "condition",
+          "isContainer": true,
+          "children": [
+            {
+              "type": "render-template",
+              "isContainer": false,
+              "isTextEditor": true,
+              "content": "<div class=\"sat-owner-act\"><strong>Sizin işleminiz: Teslim alma</strong><span>Eksiksiz veya eksik geldiğini burada işaretleyin. Ayrı bir teslimat ekranına geçmeniz gerekmez.</span></div><style>\n.sat-flow{min-width:168px;line-height:1.3}\n.sat-flow__dots{display:flex;gap:4px;align-items:center}\n.sat-flow__dots i{width:8px;height:8px;border-radius:99px;background:#e2e8f0;display:block}\n.sat-flow__dots i.is-done{background:#16a34a}\n.sat-flow__dots i.is-now{background:#4557a3;width:10px;height:10px;box-shadow:0 0 0 3px rgba(69,87,163,.18)}\n.sat-flow__name{margin-top:4px;font-size:12px;font-weight:650;color:#1e293b}\n.sat-flow__mine{margin-top:4px;display:inline-block;font-size:11px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:2px 8px}\n.sat-flow__bad{font-size:12px;font-weight:700;color:#b91c1c}\n.sat-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px;color:#64748b;font-size:12px}\n.sat-legend b{color:#1e293b;font-weight:650}\n.sat-legend span{white-space:nowrap}\n.sat-legend span+span:before{content:\"→\";margin-right:10px;color:#cbd5e1}\n.sat-owner-act{margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}\n.sat-owner-act strong{display:block;margin-bottom:4px}\n</style>",
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "Teslim alma açıklaması"
+                }
+              ]
+            },
+            {
+              "type": "form-container",
+              "isContainer": true,
+              "children": [
+                {
+                  "type": "input-radio",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "input-select-option",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Eksiksiz Teslim Alındı"
+                        },
+                        {
+                          "key": "label",
+                          "header": "Label",
+                          "type": "input-text-property",
+                          "value": "Eksiksiz Teslim Alındı"
+                        },
+                        {
+                          "key": "value",
+                          "header": "Value",
+                          "type": "input-text-property",
+                          "value": "full"
+                        },
+                        {
+                          "key": "icon",
+                          "header": "Icon",
+                          "type": "input-text-property",
+                          "value": ""
+                        }
+                      ]
+                    },
+                    {
+                      "type": "input-select-option",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Eksiksiz Teslim Alındı"
+                        },
+                        {
+                          "key": "label",
+                          "header": "Label",
+                          "type": "input-text-property",
+                          "value": "Eksik Teslim Alındı"
+                        },
+                        {
+                          "key": "value",
+                          "header": "Value",
+                          "type": "input-text-property",
+                          "value": "missing"
+                        },
+                        {
+                          "key": "icon",
+                          "header": "Icon",
+                          "type": "input-text-property",
+                          "value": ""
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "New Input Radio 1"
+                    },
+                    {
+                      "key": "classes",
+                      "header": "Classes",
+                      "type": "textarea-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "name",
+                      "header": "Name",
+                      "type": "input-text-property",
+                      "value": "deliveryStatus"
+                    },
+                    {
+                      "key": "label",
+                      "header": "Label",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "!value.inContainer"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "direction",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Vertical",
+                          "value": "vertical"
+                        },
+                        {
+                          "label": "Horizontal",
+                          "value": "horizontal"
+                        }
+                      ],
+                      "header": "Direction",
+                      "value": "vertical"
+                    },
+                    {
+                      "key": "type",
+                      "header": "Type",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Static",
+                          "value": "static"
+                        },
+                        {
+                          "label": "Dynamic",
+                          "value": "dynamic"
+                        }
+                      ],
+                      "value": "static"
+                    },
+                    {
+                      "key": "mode",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Data source",
+                          "value": "dataSource"
+                        },
+                        {
+                          "label": "Varible",
+                          "value": "variable"
+                        }
+                      ],
+                      "header": "Mode",
+                      "value": "dataSource",
+                      "conditions": [
+                        {
+                          "key": "type",
+                          "rule": "value == 'dynamic'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "variable",
+                      "header": "Variable",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "variable",
+                      "conditions": [
+                        {
+                          "key": "type",
+                          "rule": "value == 'dynamic'"
+                        },
+                        {
+                          "key": "mode",
+                          "rule": "value == 'variable'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "data-source",
+                      "header": "Data source",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "source",
+                      "conditions": [
+                        {
+                          "key": "type",
+                          "rule": "value == 'dynamic'"
+                        },
+                        {
+                          "key": "mode",
+                          "rule": "value == 'dataSource'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "option-data",
+                      "header": "Option data",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "label",
+                          "header": "Label",
+                          "type": "textarea-property",
+                          "value": "",
+                          "inGroup": true,
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "image",
+                          "header": "Image",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "url",
+                              "header": "Url",
+                              "type": "textarea-property",
+                              "value": "",
+                              "inGroup": true,
+                              "autoComplete": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "auto",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "height",
+                              "header": "Height",
+                              "type": "input-text-property",
+                              "value": "auto",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "value",
+                          "header": "Value",
+                          "type": "textarea-property",
+                          "value": "",
+                          "inGroup": true,
+                          "autoComplete": true,
+                          "autoCompleteMode": "variable"
+                        }
+                      ],
+                      "conditions": [
+                        {
+                          "key": "type",
+                          "rule": "value == 'dynamic'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "static-default-value",
+                      "header": "Default value",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "variable",
+                      "conditions": [
+                        {
+                          "key": "type",
+                          "rule": "value == 'static'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "dynamic-default-value",
+                      "header": "Default value",
+                      "type": "textarea-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "variable",
+                      "conditions": [
+                        {
+                          "key": "type",
+                          "rule": "value == 'dynamic'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "on-change",
+                      "header": "On change",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Nothing",
+                          "value": "nothing"
+                        },
+                        {
+                          "label": "Post",
+                          "value": "post"
+                        }
+                      ],
+                      "value": "nothing"
+                    },
+                    {
+                      "key": "validators",
+                      "header": "Validators",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "options",
+                          "type": "checkbox-property",
+                          "header": "Options",
+                          "options": [
+                            {
+                              "label": "Required",
+                              "name": "required"
+                            }
+                          ],
+                          "value": {
+                            "required": false
+                          },
+                          "inGroup": true
+                        },
+                        {
+                          "key": "required-text",
+                          "header": "Required text",
+                          "type": "input-text-property",
+                          "value": "Bu alan gereklidir",
+                          "conditions": [
+                            {
+                              "key": "options",
+                              "rule": "value.required"
+                            }
+                          ],
+                          "inGroup": true
+                        }
+                      ]
+                    },
+                    {
+                      "key": "settings",
+                      "type": "checkbox-property",
+                      "header": "Settings",
+                      "options": [
+                        {
+                          "label": "Select first",
+                          "name": "selectFirst"
+                        },
+                        {
+                          "label": "In container",
+                          "name": "inContainer"
+                        },
+                        {
+                          "label": "Disabled",
+                          "name": "disabled"
+                        },
+                        {
+                          "label": "Readonly",
+                          "name": "readonly"
+                        }
+                      ],
+                      "value": {
+                        "selectFirst": true,
+                        "inContainer": false,
+                        "disabled": false,
+                        "readonly": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "condition",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "input-number",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "New Input Number Field 1"
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "name",
+                          "header": "Name",
+                          "type": "input-text-property",
+                          "value": "missingStock",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "id",
+                          "header": "ID",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "label",
+                          "header": "Label",
+                          "type": "input-text-property",
+                          "value": "Eksik Adet:",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "!value.inContainer"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "placeholder",
+                          "header": "Placeholder",
+                          "type": "input-text-property",
+                          "value": "",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "default-value",
+                          "header": "Default value",
+                          "type": "input-text-property",
+                          "value": "0",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "mode",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Decimal",
+                              "value": "decimal"
+                            },
+                            {
+                              "label": "Currency",
+                              "value": "currency"
+                            }
+                          ],
+                          "header": "Mode",
+                          "value": "decimal"
+                        },
+                        {
+                          "key": "min-fraction-digits",
+                          "header": "Min fraction digits",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "max-fraction-digits",
+                          "header": "Max fraction digits",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "max-length",
+                          "header": "Max length",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "prefix",
+                          "header": "Prefix",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "suffix",
+                          "header": "Suffix",
+                          "type": "input-text-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "button-layout",
+                          "type": "select-property",
+                          "options": [
+                            {
+                              "label": "Stacked",
+                              "value": "stacked"
+                            },
+                            {
+                              "label": "Horizontal",
+                              "value": "horizontal"
+                            }
+                          ],
+                          "header": "Button layout",
+                          "value": "stacked",
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.showButtons"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "increment-button",
+                          "header": "Increment button",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "class",
+                              "header": "Class",
+                              "type": "input-text-property",
+                              "value": "p-button-secondary p-button-sm",
+                              "inGroup": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "input-text-property",
+                              "value": "mdi mdi-chevron-up mdi-18px",
+                              "inGroup": true,
+                              "autoCompleteMode": "variable"
+                            }
+                          ],
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.showButtons"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "decrement-button",
+                          "header": "Decrement button",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "class",
+                              "header": "Class",
+                              "type": "input-text-property",
+                              "value": "p-button-secondary p-button-sm",
+                              "inGroup": true,
+                              "autoCompleteMode": "template"
+                            },
+                            {
+                              "key": "icon",
+                              "header": "Icon",
+                              "type": "input-text-property",
+                              "value": "mdi mdi-chevron-down mdi-18px",
+                              "inGroup": true,
+                              "autoCompleteMode": "variable"
+                            }
+                          ],
+                          "conditions": [
+                            {
+                              "key": "settings",
+                              "rule": "value.showButtons"
+                            }
+                          ]
+                        },
+                        {
+                          "key": "min-value",
+                          "header": "Minimum value",
+                          "type": "input-text-property",
+                          "value": 0,
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "max-value",
+                          "header": "Maximum value",
+                          "type": "input-text-property",
+                          "value": "{{offer.stockAmount}}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "step",
+                          "header": "Step",
+                          "type": "input-text-property",
+                          "value": 1
+                        },
+                        {
+                          "key": "width",
+                          "header": "Width",
+                          "type": "input-text-property",
+                          "value": "40%"
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        },
+                        {
+                          "key": "validators",
+                          "header": "Validators",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "options",
+                              "type": "checkbox-property",
+                              "header": "Options",
+                              "options": [
+                                {
+                                  "label": "Required",
+                                  "name": "required"
+                                },
+                                {
+                                  "label": "RegExp",
+                                  "name": "regExp"
+                                },
+                                {
+                                  "label": "Min Length",
+                                  "name": "minLenght"
+                                },
+                                {
+                                  "label": "Max Length",
+                                  "name": "maxLenght"
+                                }
+                              ],
+                              "value": {
+                                "required": false,
+                                "regExp": false,
+                                "minLenght": false,
+                                "maxLenght": false
+                              },
+                              "inGroup": true
+                            },
+                            {
+                              "key": "required-text",
+                              "header": "Required text",
+                              "type": "input-text-property",
+                              "value": "Bu alan gereklidir",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.required"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "regexp-pattern",
+                              "header": "RegExp pattern",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.regExp"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "regexp-text",
+                              "header": "RegExp text",
+                              "type": "input-text-property",
+                              "value": "Geçersiz format",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.regExp"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "min-length",
+                              "header": "Min length",
+                              "type": "input-number-property",
+                              "value": 1,
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.minLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "min-length-text",
+                              "header": "Min length text",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.minLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "max-length",
+                              "header": "Max length",
+                              "type": "input-number-property",
+                              "value": 100,
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.maxLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            },
+                            {
+                              "key": "max-length-text",
+                              "header": "Max length text",
+                              "type": "input-text-property",
+                              "value": "",
+                              "conditions": [
+                                {
+                                  "key": "options",
+                                  "rule": "value.maxLenght"
+                                }
+                              ],
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "settings",
+                          "type": "checkbox-property",
+                          "header": "Settings",
+                          "options": [
+                            {
+                              "label": "Format value",
+                              "name": "formatValue"
+                            },
+                            {
+                              "label": "Use grouping separators",
+                              "name": "useGrouping"
+                            },
+                            {
+                              "label": "Show buttons",
+                              "name": "showButtons"
+                            },
+                            {
+                              "label": "Disabled",
+                              "name": "disabled"
+                            },
+                            {
+                              "label": "In container",
+                              "name": "inContainer"
+                            },
+                            {
+                              "label": "Has Sub Field",
+                              "name": "hasSubField"
+                            }
+                          ],
+                          "value": {
+                            "inContainer": false,
+                            "showButtons": false,
+                            "disabled": false,
+                            "formatValue": true,
+                            "useGrouping": false,
+                            "hasSubField": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "New Condition 1"
+                    },
+                    {
+                      "key": "condition",
+                      "header": "Condition",
+                      "type": "textarea-property",
+                      "value": "\"{{forms.deliveredForm.deliveryStatus.value}}\" == \"missing\"",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "oneTimeCheck",
+                      "header": "One Time Check",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Check on Create Only",
+                          "name": "once"
+                        }
+                      ],
+                      "value": {
+                        "once": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "isContainer": false,
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Teslim Al"
+                    },
+                    {
+                      "key": "id",
+                      "header": "Button ID",
+                      "type": "input-text-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "classes",
+                      "header": "Classes",
+                      "type": "textarea-property",
+                      "value": ""
+                    },
+                    {
+                      "key": "text",
+                      "header": "Text",
+                      "type": "textarea-property",
+                      "value": "Teslim Al",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "severity",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Primary",
+                          "value": "p-button-default"
+                        },
+                        {
+                          "label": "Secondary",
+                          "value": "p-button-secondary"
+                        },
+                        {
+                          "label": "Success",
+                          "value": "p-button-success"
+                        },
+                        {
+                          "label": "Info",
+                          "value": "p-button-info"
+                        },
+                        {
+                          "label": "Warning",
+                          "value": "p-button-warning"
+                        },
+                        {
+                          "label": "Help",
+                          "value": "p-button-help"
+                        },
+                        {
+                          "label": "Danger",
+                          "value": "p-button-danger"
+                        }
+                      ],
+                      "header": "Severity",
+                      "value": "p-button-default"
+                    },
+                    {
+                      "key": "size",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Small",
+                          "value": "p-button-sm"
+                        },
+                        {
+                          "label": "Normal",
+                          "value": "p-button"
+                        },
+                        {
+                          "label": "Large",
+                          "value": "p-button-lg"
+                        }
+                      ],
+                      "header": "Size",
+                      "value": "p-button"
+                    },
+                    {
+                      "key": "icon",
+                      "header": "Icon",
+                      "type": "input-text-property",
+                      "value": "",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.hasIcon"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "icon-position",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Left",
+                          "value": "left"
+                        },
+                        {
+                          "label": "Right",
+                          "value": "right"
+                        }
+                      ],
+                      "header": "Icon position",
+                      "value": "left",
+                      "conditions": [
+                        {
+                          "key": "settings",
+                          "rule": "value.hasIcon"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "width",
+                      "header": "Width",
+                      "type": "input-text-property",
+                      "value": "auto"
+                    },
+                    {
+                      "key": "action",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Submit",
+                          "value": "submit"
+                        },
+                        {
+                          "label": "Save",
+                          "value": "save"
+                        },
+                        {
+                          "label": "Link",
+                          "value": "link"
+                        },
+                        {
+                          "label": "Route",
+                          "value": "route"
+                        },
+                        {
+                          "label": "Route back",
+                          "value": "back"
+                        },
+                        {
+                          "label": "Download",
+                          "value": "download"
+                        },
+                        {
+                          "label": "Add",
+                          "value": "add"
+                        },
+                        {
+                          "label": "Edit",
+                          "value": "edit"
+                        },
+                        {
+                          "label": "Custom",
+                          "value": "custom"
+                        },
+                        {
+                          "label": "Modal Close",
+                          "value": "closeModal"
+                        }
+                      ],
+                      "header": "Action",
+                      "value": "submit"
+                    },
+                    {
+                      "key": "formKey",
+                      "header": "Form Key",
+                      "type": "input-text-property",
+                      "value": "",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'save'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "url",
+                      "header": "Url",
+                      "type": "textarea-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value != 'submit' && value != 'custom' && value != 'back' && value != 'closeModal'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "query-params",
+                      "header": "Query Params",
+                      "type": "code-editor",
+                      "value": "{\n\n}",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'route'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "filename",
+                      "header": "Filename",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'download'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "url-targer",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "_self",
+                          "value": "_self"
+                        },
+                        {
+                          "label": "_blank",
+                          "value": "_blank"
+                        }
+                      ],
+                      "header": "Target",
+                      "value": "_self",
+                      "conditions": [
+                        {
+                          "key": "action",
+                          "rule": "value == 'link'"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "styles",
+                      "header": "Styles",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "font-style",
+                          "type": "checkbox-property",
+                          "header": "Font styles",
+                          "options": [
+                            {
+                              "label": "Bold",
+                              "name": "bold"
+                            },
+                            {
+                              "label": "Italic",
+                              "name": "italic"
+                            }
+                          ],
+                          "value": {
+                            "bold": true,
+                            "italic": false
+                          },
+                          "inGroup": true
+                        }
+                      ]
+                    },
+                    {
+                      "key": "addEditButton",
+                      "header": "Add Or Edit Button",
+                      "type": "group-property",
+                      "children": [
+                        {
+                          "key": "type",
+                          "type": "select-property",
+                          "header": "Type",
+                          "options": [
+                            {
+                              "label": "None",
+                              "value": "none"
+                            },
+                            {
+                              "label": "Add",
+                              "value": "add"
+                            },
+                            {
+                              "label": "Edit",
+                              "value": "edit"
+                            }
+                          ],
+                          "value": "none",
+                          "inGroup": true
+                        },
+                        []
+                      ]
+                    },
+                    {
+                      "key": "spacings",
+                      "header": "Spacings",
+                      "type": "spacings",
+                      "unit": "px",
+                      "margins": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "paddings": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    {
+                      "key": "settings",
+                      "type": "checkbox-property",
+                      "header": "Settings",
+                      "options": [
+                        {
+                          "label": "In form",
+                          "name": "inForm"
+                        },
+                        {
+                          "label": "Has icon",
+                          "name": "hasIcon"
+                        },
+                        {
+                          "label": "Rounded",
+                          "name": "rounded"
+                        },
+                        {
+                          "label": "Has shadow",
+                          "name": "hasShadow"
+                        },
+                        {
+                          "label": "Has outline",
+                          "name": "hasOutline"
+                        },
+                        {
+                          "label": "Text button",
+                          "name": "textButton"
+                        },
+                        {
+                          "label": "Disabled",
+                          "name": "disabled"
+                        }
+                      ],
+                      "value": {
+                        "inForm": true,
+                        "hasIcon": false,
+                        "rounded": false,
+                        "hasShadow": false,
+                        "hasOutline": false,
+                        "textButton": false,
+                        "disabled": false
+                      }
+                    }
+                  ]
+                }
+              ],
+              "properties": [
+                {
+                  "key": "display-name",
+                  "header": "Display name",
+                  "type": "input-text-property",
+                  "value": "deliveredForm"
+                },
+                {
+                  "key": "formId",
+                  "header": "Form ID",
+                  "type": "input-text-property",
+                  "value": ""
+                },
+                {
+                  "key": "submitId",
+                  "header": "Submit Button ID",
+                  "type": "input-text-property",
+                  "value": ""
+                },
+                {
+                  "key": "key",
+                  "header": "Key",
+                  "type": "input-text-property",
+                  "value": "deliveredForm",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.expose"
+                    }
+                  ]
+                },
+                {
+                  "key": "action",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Add",
+                      "value": "add"
+                    },
+                    {
+                      "label": "Get",
+                      "value": "get"
+                    },
+                    {
+                      "label": "Update",
+                      "value": "update"
+                    },
+                    {
+                      "label": "Custom",
+                      "value": "custom"
+                    },
+                    {
+                      "label": "Delete",
+                      "value": "delete"
+                    },
+                    {
+                      "label": "Hard delete",
+                      "value": "hardDelete"
+                    }
+                  ],
+                  "header": "Action",
+                  "value": "custom"
+                },
+                {
+                  "key": "custom-function-name",
+                  "header": "Custom function name",
+                  "type": "input-text-property",
+                  "value": "betaPurchase",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'custom'"
+                    }
+                  ]
+                },
+                {
+                  "key": "table-name",
+                  "header": "Table name",
+                  "type": "input-text-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value != 'custom'"
+                    }
+                  ]
+                },
+                {
+                  "key": "field-id",
+                  "header": "Field id",
+                  "type": "input-text-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'update'"
+                    }
+                  ]
+                },
+                {
+                  "key": "hidden-values",
+                  "header": "Hidden values",
+                  "type": "code-editor",
+                  "value": "{\n    \"oprType\":\"delivered\",\n    \"userId\":\"{{info._id}}\",\n    \"purchaseId\":\"{{params._id}}\"\n}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
+                },
+                {
+                  "key": "table-filters",
+                  "header": "Table filters",
+                  "type": "code-editor",
+                  "value": "{\n\n}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "action",
+                      "rule": "value == 'custom'"
+                    }
+                  ]
+                },
+                {
+                  "key": "on-success",
+                  "type": "select-property",
+                  "options": [
+                    {
+                      "label": "Reset form",
+                      "value": "reset"
+                    },
+                    {
+                      "label": "Route",
+                      "value": "route"
+                    },
+                    {
+                      "label": "Redirect",
+                      "value": "redirect"
+                    },
+                    {
+                      "label": "Nothing",
+                      "value": "nothing"
+                    }
+                  ],
+                  "header": "On success",
+                  "value": "route"
+                },
+                {
+                  "key": "url",
+                  "header": "Url",
+                  "type": "textarea-property",
+                  "value": "/d/satin-alim-talepleri",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "on-success",
+                      "rule": "value == 'redirect' || value == 'route'"
+                    }
+                  ]
+                },
+                {
+                  "key": "query-params",
+                  "header": "Query Params",
+                  "type": "code-editor",
+                  "value": "{\n\n}",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template",
+                  "conditions": [
+                    {
+                      "key": "on-success",
+                      "rule": "value == 'route'"
+                    }
+                  ]
+                },
+                {
+                  "key": "response-name",
+                  "header": "Response name",
+                  "type": "input-text-property",
+                  "value": "",
+                  "autoComplete": true,
+                  "autoCompleteMode": "template"
+                },
+                {
+                  "key": "on-success-message",
+                  "header": "On success message",
+                  "type": "group-property",
+                  "children": [
+                    {
+                      "key": "header",
+                      "header": "Header",
+                      "type": "input-text-property",
+                      "value": "Başarılı",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "text",
+                      "header": "Text",
+                      "type": "textarea-property",
+                      "value": "Teslim Alma İşleminiz Başarılı",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "popUp",
+                      "header": "Pop Up View",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Enable",
+                          "name": "popUpView"
+                        }
+                      ],
+                      "value": {
+                        "popUpView": false
+                      },
+                      "inGroup": true
+                    },
+                    {
+                      "key": "life",
+                      "header": "Life",
+                      "type": "input-number-property",
+                      "value": 3000,
+                      "min": 0,
+                      "inGroup": true
+                    },
+                    {
+                      "key": "severity",
+                      "type": "select-property",
+                      "options": [
+                        {
+                          "label": "Success",
+                          "value": "success"
+                        },
+                        {
+                          "label": "Info",
+                          "value": "info"
+                        },
+                        {
+                          "label": "Warning",
+                          "value": "warn"
+                        },
+                        {
+                          "label": "Error",
+                          "value": "error"
+                        }
+                      ],
+                      "header": "Severity",
+                      "value": "success",
+                      "inGroup": true
+                    }
+                  ]
+                },
+                {
+                  "key": "confirm",
+                  "header": "Confirm",
+                  "type": "group-property",
+                  "children": [
+                    {
+                      "key": "header",
+                      "header": "Header",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "content",
+                      "header": "Content",
+                      "type": "textarea-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "accept",
+                      "header": "Accept",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "reject",
+                      "header": "Reject",
+                      "type": "input-text-property",
+                      "value": "",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template",
+                      "inGroup": true
+                    }
+                  ],
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.hasConfirm"
+                    }
+                  ]
+                },
+                {
+                  "key": "upload-title",
+                  "header": "File upload title",
+                  "type": "input-text-property",
+                  "value": "Dosyalar yükleniyor..."
+                },
+                {
+                  "key": "settings",
+                  "type": "checkbox-property",
+                  "header": "Settings",
+                  "options": [
+                    {
+                      "label": "Hidden",
+                      "name": "hidden"
+                    },
+                    {
+                      "label": "Has confirm",
+                      "name": "hasConfirm"
+                    },
+                    {
+                      "label": "Debug",
+                      "name": "debug"
+                    },
+                    {
+                      "label": "Debug response",
+                      "name": "debugResponse"
+                    },
+                    {
+                      "label": "Expose",
+                      "name": "expose"
+                    },
+                    {
+                      "label": "At Least Required Fields",
+                      "name": "minReqFields"
+                    }
+                  ],
+                  "value": {
+                    "hidden": false,
+                    "hasConfirm": false,
+                    "debug": false,
+                    "debugResponse": false,
+                    "expose": true,
+                    "minReqFields": false
+                  }
+                },
+                {
+                  "key": "reqFieldsArr",
+                  "header": "At least Req fields",
+                  "type": "textarea-property",
+                  "value": "",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.minReqFields"
+                    }
+                  ]
+                },
+                {
+                  "key": "atLeastError",
+                  "header": "On Fill At Least Msg",
+                  "type": "group-property",
+                  "conditions": [
+                    {
+                      "key": "settings",
+                      "rule": "value.minReqFields"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "key": "header",
+                      "header": "Header",
+                      "type": "input-text-property",
+                      "value": "",
+                      "inGroup": true
+                    },
+                    {
+                      "key": "text",
+                      "header": "Text",
+                      "type": "textarea-property",
+                      "value": "",
+                      "inGroup": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "key": "display-name",
+              "header": "Display name",
+              "type": "input-text-property",
+              "value": "Talep Sahibi Teslim Alabilir"
+            },
+            {
+              "key": "condition",
+              "header": "Condition",
+              "type": "textarea-property",
+              "value": "\"{{purchases.:users:demander._id}}\" == \"{{info._id}}\"",
+              "autoComplete": true,
+              "autoCompleteMode": "template"
+            },
+            {
+              "key": "oneTimeCheck",
+              "header": "One Time Check",
+              "type": "checkbox-property",
+              "options": [
+                {
+                  "label": "Check on Create Only",
+                  "name": "once"
+                }
+              ],
+              "value": {
+                "once": false
+              }
+            }
+          ]
         }
       ],
       "properties": [
@@ -22325,7 +24082,7 @@
                                       "key": "openBtnClass",
                                       "header": "Open button class",
                                       "type": "input-text-property",
-                                      "value": "p-button-success p-button-sm p-button-outlined p-ripple",
+                                      "value": "p-button-success p-button-sm p-button-outlined p-ripple teklif-yeni-ekle",
                                       "conditions": [
                                         {
                                           "key": "open-type",
@@ -27378,7 +29135,7 @@
                           "key": "base-url",
                           "header": "Base url",
                           "type": "input-text-property",
-                          "value": "http://192.168.0.10/resources/",
+                          "value": "https://backend.haustro.net/resources/",
                           "autoComplete": true,
                           "autoCompleteMode": "template"
                         },
@@ -38187,111 +39944,292 @@
               "isContainer": true,
               "children": [
                 {
-                  "type": "image",
-                  "isContainer": false,
-                  "properties": [
+                  "type": "condition",
+                  "isContainer": true,
+                  "children": [
                     {
-                      "key": "display-name",
-                      "header": "Display name",
-                      "type": "input-text-property",
-                      "value": "Image"
-                    },
-                    {
-                      "key": "classes",
-                      "header": "Classes",
-                      "type": "textarea-property",
-                      "value": ""
-                    },
-                    {
-                      "key": "width",
-                      "header": "Width",
-                      "type": "input-text-property",
-                      "value": "80px"
-                    },
-                    {
-                      "key": "height",
-                      "header": "Height",
-                      "type": "input-text-property",
-                      "value": "auto"
-                    },
-                    {
-                      "key": "src",
-                      "header": "Source",
-                      "type": "textarea-property",
-                      "value": "{{globals.resources}}{{purchases.:inventory:.photo.0.name}}",
-                      "autoComplete": true,
-                      "autoCompleteMode": "template"
-                    },
-                    {
-                      "key": "border",
-                      "header": "Border",
-                      "type": "group-property",
-                      "children": [
+                      "type": "image",
+                      "isContainer": false,
+                      "properties": [
                         {
-                          "key": "style",
-                          "type": "select-property",
-                          "options": [
-                            {
-                              "label": "none",
-                              "value": "none"
-                            },
-                            {
-                              "label": "solid",
-                              "value": "solid"
-                            },
-                            {
-                              "label": "dashed",
-                              "value": "dashed"
-                            },
-                            {
-                              "label": "dotted",
-                              "value": "dotted"
-                            }
-                          ],
-                          "header": "Style",
-                          "value": "none",
-                          "inGroup": true
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Image"
                         },
                         {
-                          "key": "color",
-                          "header": "Color",
-                          "type": "color-picker-property",
-                          "value": "none",
-                          "inGroup": true
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
                         },
                         {
                           "key": "width",
                           "header": "Width",
                           "type": "input-text-property",
-                          "value": "0",
-                          "inGroup": true
+                          "value": "80px"
                         },
                         {
-                          "key": "radius",
-                          "header": "Radius",
+                          "key": "height",
+                          "header": "Height",
                           "type": "input-text-property",
-                          "value": "5px",
-                          "inGroup": true
+                          "value": "auto"
+                        },
+                        {
+                          "key": "src",
+                          "header": "Source",
+                          "type": "textarea-property",
+                          "value": "{{globals.withoutImage}}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "border",
+                          "header": "Border",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "style",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "none",
+                                  "value": "none"
+                                },
+                                {
+                                  "label": "solid",
+                                  "value": "solid"
+                                },
+                                {
+                                  "label": "dashed",
+                                  "value": "dashed"
+                                },
+                                {
+                                  "label": "dotted",
+                                  "value": "dotted"
+                                }
+                              ],
+                              "header": "Style",
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "color",
+                              "header": "Color",
+                              "type": "color-picker-property",
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "0",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "radius",
+                              "header": "Radius",
+                              "type": "input-text-property",
+                              "value": "5px",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
                         }
                       ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Item Without Image"
                     },
                     {
-                      "key": "spacings",
-                      "header": "Spacings",
-                      "type": "spacings",
-                      "unit": "px",
-                      "margins": [
-                        0,
-                        0,
-                        0,
-                        0
+                      "key": "condition",
+                      "header": "Condition",
+                      "type": "textarea-property",
+                      "value": "\"{{purchases.:inventory:.photo.0.name}}\" == \"\"",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "oneTimeCheck",
+                      "header": "One Time Check",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Check on Create Only",
+                          "name": "once"
+                        }
                       ],
-                      "paddings": [
-                        0,
-                        0,
-                        0,
-                        0
+                      "value": {
+                        "once": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "condition",
+                  "isContainer": true,
+                  "children": [
+                    {
+                      "type": "image",
+                      "isContainer": false,
+                      "properties": [
+                        {
+                          "key": "display-name",
+                          "header": "Display name",
+                          "type": "input-text-property",
+                          "value": "Image"
+                        },
+                        {
+                          "key": "classes",
+                          "header": "Classes",
+                          "type": "textarea-property",
+                          "value": ""
+                        },
+                        {
+                          "key": "width",
+                          "header": "Width",
+                          "type": "input-text-property",
+                          "value": "80px"
+                        },
+                        {
+                          "key": "height",
+                          "header": "Height",
+                          "type": "input-text-property",
+                          "value": "auto"
+                        },
+                        {
+                          "key": "src",
+                          "header": "Source",
+                          "type": "textarea-property",
+                          "value": "https://backend.haustro.net/resources/{{purchases.:inventory:.photo.0.name}}",
+                          "autoComplete": true,
+                          "autoCompleteMode": "template"
+                        },
+                        {
+                          "key": "border",
+                          "header": "Border",
+                          "type": "group-property",
+                          "children": [
+                            {
+                              "key": "style",
+                              "type": "select-property",
+                              "options": [
+                                {
+                                  "label": "none",
+                                  "value": "none"
+                                },
+                                {
+                                  "label": "solid",
+                                  "value": "solid"
+                                },
+                                {
+                                  "label": "dashed",
+                                  "value": "dashed"
+                                },
+                                {
+                                  "label": "dotted",
+                                  "value": "dotted"
+                                }
+                              ],
+                              "header": "Style",
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "color",
+                              "header": "Color",
+                              "type": "color-picker-property",
+                              "value": "none",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "width",
+                              "header": "Width",
+                              "type": "input-text-property",
+                              "value": "0",
+                              "inGroup": true
+                            },
+                            {
+                              "key": "radius",
+                              "header": "Radius",
+                              "type": "input-text-property",
+                              "value": "5px",
+                              "inGroup": true
+                            }
+                          ]
+                        },
+                        {
+                          "key": "spacings",
+                          "header": "Spacings",
+                          "type": "spacings",
+                          "unit": "px",
+                          "margins": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "paddings": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ]
+                        }
                       ]
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "key": "display-name",
+                      "header": "Display name",
+                      "type": "input-text-property",
+                      "value": "Item Image"
+                    },
+                    {
+                      "key": "condition",
+                      "header": "Condition",
+                      "type": "textarea-property",
+                      "value": "\"{{purchases.:inventory:.photo.0.name}}\"!=\"\"",
+                      "autoComplete": true,
+                      "autoCompleteMode": "template"
+                    },
+                    {
+                      "key": "oneTimeCheck",
+                      "header": "One Time Check",
+                      "type": "checkbox-property",
+                      "options": [
+                        {
+                          "label": "Check on Create Only",
+                          "name": "once"
+                        }
+                      ],
+                      "value": {
+                        "once": false
+                      }
                     }
                   ]
                 }
@@ -45625,6 +47563,6 @@
       ]
     }
   ],
-  "styles": "",
-  "syncedAt": "2026-07-20T15:52:42.291Z"
+  "styles": ".teklif-yeni-ekle.p-button{width:430px !important;max-width:100% !important;margin-top:12px !important;display:inline-flex !important;justify-content:center;}",
+  "syncedAt": "2026-10-12T22:46:06.158Z"
 }

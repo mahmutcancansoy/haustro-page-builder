@@ -3,7 +3,11 @@
         <div class="row align-items-center">
             <div class="col-auto">
                 <div class="product-image-wrapper">
-                    <img src="{{globals.resources}}{{purchases.:inventory:.photo.0.name}}" alt="Envanter" class="w-25 rounded-3">
+                    {{#if purchases.:inventory:.photo.0.name}}
+<img src="https://backend.haustro.net/resources/{{purchases.:inventory:.photo.0.name}}" alt="Envanter" class="w-25 rounded-3" onerror="this.onerror=null;this.src='{{globals.withoutImage}}';">
+{{else}}
+<img src="{{globals.withoutImage}}" alt="Envanter" class="w-25 rounded-3">
+{{/if}}
                 </div>
             </div>
             <div class="col">
